@@ -33,7 +33,6 @@
         <servlet-class>Syncode.Basket.Servlet.BackEnd.CekNick</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>Home</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.Home</servlet-class>
     </servlet>
@@ -44,7 +43,7 @@
     <servlet>
         <servlet-name>Teams</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.Teams</servlet-class>
-====</servlet>
+    </servlet>
     <servlet>
         <servlet-name>DataPlayer</servlet-name>
         <servlet-class>Syncode.Basket.Data.DataPlayer</servlet-class>
