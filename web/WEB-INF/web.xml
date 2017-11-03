@@ -8,6 +8,10 @@
         <servlet-name>DatabaseHandler</servlet-name>
         <servlet-class>Syncode.Basket.Handler.DatabaseHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.Dashboard</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Connect</servlet-name>
         <url-pattern>/Connect</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>DatabaseHandler</servlet-name>
         <url-pattern>/DatabaseHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/Dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
