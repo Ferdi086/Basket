@@ -157,7 +157,7 @@
 		<div class="container">
 			<div class="wthree_team_grids">
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 						<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -169,7 +169,7 @@
 					<p>177 cm</p>
 				</div>
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -181,7 +181,7 @@
 					<p>177 cm</p>
 				</div>
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -193,7 +193,7 @@
 					<p>177 cm</p>
 				</div>
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -209,7 +209,7 @@
 
 			<div class="wthree_team_grids">
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -221,7 +221,7 @@
 					<p>177 cm</p>
 				</div>
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -233,7 +233,7 @@
 					<p>177 cm</p>
 				</div>
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
@@ -245,7 +245,7 @@
 					<p>177 cm</p>
 				</div>
 				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+					<a href="player_detail.jsp">
 					<div class="hovereffect">
 						<img src="images/player/1.png" alt=" " class="img-responsive" />
 						<div class="overlay">
