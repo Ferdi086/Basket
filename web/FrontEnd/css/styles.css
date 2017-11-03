@@ -1,0 +1,221 @@
+.team_name{
+margin-top:5%;
+color:#23B684;
+margin-left:-5%;
+border-bottom: 2px solid #ffcc00;
+}
+.team_logo img{
+margin-left:10%;
+max-width:200px;
+}
+.team_foto{
+	padding:30px 10px;
+	background-color:#f2f2f2;
+	background: url(../images/dott.png)repeat 0px 0px;
+	margin-top:-1%;
+	border-bottom:2px solid #23B684;
+	border-top:2px solid #23B684;
+	}
+.team_foto img{
+	max-width:600px;
+	width:100%;
+	border:2px solid #ffcc00;
+}
+@media(max-width: 520px){
+	.team_name h3{
+		font-size:20px;
+	}
+}
+.team_stats{
+color:#23B684;
+margin-top:5%;
+margin-left:5%;
+}
+.team_stats2{
+margin-left:5%;
+margin-bottom:5%;
+}
+.team_stats2 img{
+max-width:50px;
+}
+.kotak_team{
+	background-color:#f2f2f2;
+	padding:3px;
+	margin-top:2%;
+	border:2px solid #23B684;
+}
+.kotak_team_isi{
+	display:inline-block;
+}
+.kotak_team_isi h5{
+	font-size:17px !important;
+}
+.top_point{
+	margin-top:2%;
+	margin-right:5%;
+}
+.top_point h4 , .abc a{
+	color:#ffcc00 !important;
+}
+body{
+overflow-x:hidden;
+}
+.general_stats{
+	margin: 0 5%;
+	margin-bottom:2%;
+}
+.table td, .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 9px !important;
+}
+.tr_general th{
+	color:white !important;
+	background-color:#23B684 !important;
+}
+.nav li a{
+padding:15px;
+font-size:17px;
+color:#23B684;
+}
+.nav li.active>a, .a_jud h3 a{
+color:black;
+}
+.general_stats select{
+	font-size:15px;
+	padding:6px;
+}
+
+/* Player.html */
+.se_team select{
+	font-size:16px;
+	padding:7px;
+}
+.se_team input{
+	font-size:16px;
+	padding:4px;
+}
+.se_team{
+	margin-top:2%;
+	margin-left:8%;
+}
+.abc table tr td {
+	padding:4px !important;
+	border: 1px solid lightgrey !important;
+}
+.abc table{
+	max-width:950px;
+	margin-top:1%;
+}
+.abc table tr td:hover{
+	background-color: lightgrey;
+}
+#aa{
+	background-color: lightgrey !important;
+}
+
+/* player detail */
+.det_player{
+	background-color:#f2f2f2;
+	background: url(../images/dott.png)repeat 0px 0px;
+	margin-top:2%;
+	border-bottom:2px solid #23B684;
+	border-top:2px solid #23B684;
+	padding:2%;
+}
+.foto_p {
+	border:2px solid #ffcc00;
+	margin-left: 10%;
+	background-color: white;
+}
+.det_player .wthree_team_grid{
+	padding:0 !important;
+}
+.nama_p{
+	margin-top: -5%;
+	color:black;
+	margin-left:2%;
+}
+.nama_p h1{
+	color:#ffcc00;
+}
+.nama_p img{
+	max-width: 100px;
+	margin-right: 5%;
+}
+.nama_p h4{
+	color:black;
+	margin-bottom: 2%;
+}
+.nama_p h4 span{
+	font-weight: lighter;
+}
+.stat_p tbody{
+	width: 100%;
+}
+.tb_p {
+	text-align: center;
+	color:grey;
+	margin-top: 2%;
+	margin-right: 2%;
+	background-color: white;
+	width:94px;
+	display: inline-block;
+}
+.stat_p h3{
+	border-bottom: 4px solid #ffcc00;
+	margin-bottom: 2%;
+	color:white;
+}
+.tb_p td{
+	border: 2px solid #ffcc00;
+	padding:10px;
+	min-width: 94px
+}
+.tb_p h3{
+	border:none !important;
+}
+.tb_h {
+	background-color: #23B684 !important;
+	color:white;
+}
+.game_stats{
+	margin: 3% auto;
+	padding: 0 5%;
+}
+.game_stats select{
+	font-size:15px;
+	padding:6px;
+	margin:2% 0;
+}
+/*    NEWS */
+.a_box{
+	margin: 1% 0 2% 5%;
+}
+.a_gbr img{
+	max-width: 300px !important;
+}
+.a_tgl {
+	color:grey;
+	margin-bottom: 2%;
+}
+.a_jud h3 a:hover{
+	color:#23B684;
+}
+
+/*  NEWS DETAIL */
+.a_detail{
+	margin-top:2%;
+	margin-bottom: 3%;
+}
+.a_detail img{
+	max-height: 400px;
+	margin: 2% 0;
+}
+.a_det_tgl{
+	color:grey;
+	margin-top: 1%;
+	font-size:18px;
+}
+.a_det_isi{
+	text-align: justify;
+	font-size:16px;
+}
