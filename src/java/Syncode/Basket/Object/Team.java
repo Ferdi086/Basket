@@ -12,13 +12,15 @@ package Syncode.Basket.Object;
 public class Team {
     private String id;
     private String Team;
+    private String Logo;
     
 public Team(){
 }
-
-public Team(String id, String Team) {
+   
+public Team(String id, String Team, String Logo) {
     this.id = id;
     this.Team = Team;
+    this.Logo = Logo;
 }
 
     public String getId() {
@@ -35,6 +37,14 @@ public Team(String id, String Team) {
 
     public void setTeam(String Team) {
         this.Team = Team;
+    }
+    
+     public String getLogo() {
+        return Logo;
+    }
+
+    public void setLogo(String Logo) {
+        this.Logo = Logo;
     }
 
     

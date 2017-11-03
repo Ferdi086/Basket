@@ -17,11 +17,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Logo from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3)));
               
             }
         } catch (SQLException ex) {

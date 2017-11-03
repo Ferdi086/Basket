@@ -5,6 +5,9 @@
 	License: Creative Commons Attribution 3.0 Unported
 	License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,79 +90,19 @@
 
 
 <div class="container-a2">
-		<ul class="caption-style-2">
-			<li>
-				<a href="#"><img src="images/team/bima.png" alt=""></a>
+		<ul class="caption-style-2">                        
+                        <c:forEach var = "item" items = "${requestScope.team}">
+                            <li>
+				<a href="team_detail.jsp?ID=${item.value.id}"><img src="../img/Team/${item.value.logo}" alt="" width="200px" height="200px"></a>
 				<div class="caption">
 					<div class="blur"></div>
 					<div class="caption-text">
-						<h1><a href="team_detail.html">Bima Perkasa Jogja</a></h1>
+						<h1><a href="team_detail.jsp?ID=${item.value.id}"><c:out value = "${item.value.team}"/></a></h1>
 					</div>
 				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/nsh.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1><a href="team_detail.html">NSH</a></h1>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/cls.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1><a href="team_detail.html">CLS Knights</a></h1>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/cls.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1><a href="team_detail.html">CLS Knights</a></h1>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/cls.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1><a href="team_detail.html">CLS Knights</a></h1>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/cls.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1>CLS Knights</h1>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/cls.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1>CLS Knights</h1>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="#"><img src="images/team/cls.png" alt=""></a>
-				<div class="caption">
-					<div class="blur"></div>
-					<div class="caption-text">
-						<h1>CLS Knights</h1>
-					</div>
-				</div>
-			</li>
+                            </li>
+                        </c:forEach>
+                        
 		</ul>
 </div>
 </center>

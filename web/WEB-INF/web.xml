@@ -32,6 +32,18 @@
         <servlet-name>CekNick</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.CekNick</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.Home</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Players</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.Players</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Teams</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.Teams</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -67,6 +79,18 @@
          C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\pemain\
       </param-value>
     </context-param>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/FrontEnd/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Players</servlet-name>
+        <url-pattern>/FrontEnd/Players</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Teams</servlet-name>
+        <url-pattern>/FrontEnd/Teams</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
