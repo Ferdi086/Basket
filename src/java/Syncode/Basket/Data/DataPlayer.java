@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet.BackEnd;
+package Syncode.Basket.Data;
 
 import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.json.JSONArray;
 
 /**
  *
  * @author meiiko
  */
-public class Player extends HttpServlet {
-        
+public class DataPlayer extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,26 +29,16 @@ public class Player extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(false);
-            PrintWriter out = response.getWriter();
-            //String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            //String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           //session.removeAttribute("ErrMess");
-           // session.removeAttribute("alert");
-            //request.setAttribute("ErrMess", ErrMess);
-           // request.setAttribute("alert", alert);
-            
-            HashMap tm = dh.getTeam();
-            HashMap pos = dh.getPosisi();
-          // out.println(pos);
-            request.setAttribute("team",tm);
-            request.setAttribute("posisi",pos);
-                    request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
-                  
+       DatabaseHandler dh = new DatabaseHandler();
+        response.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        JSONArray ars = dh.getPlayer();
+        
+        out.println(ars);
+        out.flush();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

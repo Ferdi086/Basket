@@ -109,20 +109,19 @@ public class doInsertPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + nama +"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
                     } else {
-                       file = new File( filePath + nama +"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
                     }
                     
                     Exten="."+ ext;
-                    foto = nama+Exten;
-                    
+                    foto = id_team +"-"+ nama+Exten;
                     fi.write( file ) ;
                     //dh.setFile(Name,Exten);
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
                     out.println(file);
-                     dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
+                    // dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Player");

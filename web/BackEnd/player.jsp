@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css"/>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/moment.min.js"></script>
+        <script src="../js/bootstrap-table.js"></script>
         <script src="../js/bootstrap-datetimepicker.js"></script>
         <script src="../js/excelexportjs.js"></script>
         <link href="../css/select2.min.css" rel="stylesheet" />
@@ -309,18 +310,18 @@
                                     
                                     <label class="control-label col-sm-2">Jersey Number</label>
                                     <div class="col-sm-3">
-                                    	<input id="no_punggung" type="text" name="no_punggung" class="form-control" >
+                                    	<input id="no_punggung" type="text" name="no_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
                                     </div>                                  
                                 </div>	
                             <div class="form-group">
                                     <label class="control-label col-sm-2" >Height</label>
                                     <div class="col-sm-3">
-                                        <input id="tinggi" type="text" name="tinggi" class="form-control" required/>
+                                        <input id="tinggi" type="text" name="tinggi" maxlength="3" class="form-control" onkeypress="return isNumber(event)" required/>
                                     </div>
                                     
                                     <label class="control-label col-sm-2">Weight</label>
                                     <div class="col-sm-3">
-                                    	<input id="berat" type="text" name="berat" class="form-control" >
+                                    	<input id="berat" type="text" name="berat" maxlength="3" class="form-control" onkeypress="return isNumber(event)" >
                                     </div>                                  
                                 </div>	
                             <div class="form-group">
@@ -331,7 +332,10 @@
                                    
                                     <label class="control-label col-sm-2">Tangan</label>
                                     <div class="col-sm-3">
-                                    	<input id="tangan" type="text" name="tangan" class="form-control"  required>
+                                        <select id="tangan" type="text" name="tangan" class="form-control"  required>
+                                            <option value="kanan">Kanan</option>
+                                            <option value="kiri">Kiri</option>
+                                        </select>
                                     </div>                                  
                                 </div>	
                             
@@ -341,7 +345,10 @@
                                        <input type="file" name="file" id="file" onchange="readURL(this);" required/>
                                    </div> 
                                    <div class="col-sm-3 col-sm-offset-2">
-                                       <img id="preview"/>
+                                       <label class="col-sm-2 control-label">Preview</label>
+                                       <div class="col-sm-3" style="margin-left:100px">
+                                           <img id="preview"/>
+                                       </div>
                                    </div>     
                             </div>
                              </form>                                        
@@ -358,6 +365,32 @@
                                 </div>
 			
                     </div>
+                
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
+                    <hr/>
+                    <center><h2><b>Player List</b></h2></center>
+                    <table id="player" class="table table-condensed table-striped" data-url="../BackEnd/DataPlayer" 
+                           data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]" data-show-refresh="true">
+                        <thead bgcolor="#005960" style="color:white">
+                            <tr style="font-size:18px;">
+                                <th class="noExl" data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="Id_Pemain" data-visible="false"><b><center>Id Pemain</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="Nama_Pemain"><b><center>Nama Pemain</center><b></th>            
+                                <th data-align="center" data-valign="middle" data-field="Tgl"><b><center>Tanggal Lahir</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="Tinggi"><b><center>Tinggi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="Berat"><b><center>Berat</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="Pos"><b><center>Posisi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="Team"><b><center>Team</center><b></th>  
+                                <th data-align="center" data-valign="middle" data-field="No_Punggung"><b><center>No Punggung</center><b></th>
+                                <th class="noExl" data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
+                            </tr>
+                        </thead>                              
+                    </table>          
+                    <div style='margin-top: 60px;'>
+                       ${requestScope.footer}  
+                        </div>
+                </div>    
+                
 		</div>
                 
                     
@@ -455,10 +488,7 @@
                     format: 'YYYY-MM-DD'
             }); 
             $("#reset").click(function(){
-                $('#loading').hide();
-                $("#ok").hide();
-                $("#error").hide();
-                $("#NIM").focus();
+                $("#pemain").focus();
                 $("#pemain").val(null);
                 $("#posisi").val(null);
                 $("#no_punggung").val(null);
@@ -471,6 +501,14 @@
             jQuery('.scrollbar-macosx').scrollbar();                
                      
 	}); 
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
         function readURL(input) {		
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
