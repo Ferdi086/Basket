@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet.BackEnd;
+package Syncode.Basket.Data;
 
 import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 
 /**
  *
  * @author meiiko
  */
-public class CekNick extends HttpServlet {
+public class DataPlayer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,18 +31,14 @@ public class CekNick extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh=new DatabaseHandler();
-        response.setContentType("text/html;charset=UTF-8");
+       DatabaseHandler dh = new DatabaseHandler();
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String nick = request.getParameter("nick");
-        HashMap nt = dh.getNickTeam(nick);
-        Team tm = (Team) nt.get(0);
-        out.println(nt);
-        //if(nt.get){
-          //  out.print("Ok|"+tm.getId());
-        //}else{
-         //   out.print("Error|"+ms.getNama());
-        //}
+        
+        JSONArray ars = dh.getPlayer();
+        
+        out.println(ars);
+        out.flush();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

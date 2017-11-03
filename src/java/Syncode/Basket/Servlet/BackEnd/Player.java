@@ -5,7 +5,7 @@
  */
 package Syncode.Basket.Servlet.BackEnd;
 
-import Object.DatabaseHandler;
+import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -36,12 +36,12 @@ public class Player extends HttpServlet {
             DatabaseHandler dh=new DatabaseHandler();
             HttpSession session = request.getSession(false);
             PrintWriter out = response.getWriter();
-            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           session.removeAttribute("ErrMess");
-            session.removeAttribute("alert");
-            request.setAttribute("ErrMess", ErrMess);
-            request.setAttribute("alert", alert);
+            //String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
+            //String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
+           //session.removeAttribute("ErrMess");
+           // session.removeAttribute("alert");
+            //request.setAttribute("ErrMess", ErrMess);
+           // request.setAttribute("alert", alert);
             
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();

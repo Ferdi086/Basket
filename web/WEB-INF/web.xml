@@ -32,6 +32,10 @@
         <servlet-name>CekNick</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.CekNick</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DataPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Data.DataPlayer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>CekNick</servlet-name>
         <url-pattern>/CekNick</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DataPlayer</servlet-name>
+        <url-pattern>/BackEnd/DataPlayer</url-pattern>
     </servlet-mapping>
     <context-param>
         <description>Location to store uploaded file</description>
