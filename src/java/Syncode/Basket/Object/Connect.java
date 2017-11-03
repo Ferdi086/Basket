@@ -5,70 +5,51 @@
  */
 package Syncode.Basket.Object;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
- * @author Ferdinand
+ * @author meiiko
  */
-public class Connect extends HttpServlet {
+public class Connect {
+   //Insert Porperty
+    private final String prefixUrl="jdbc:jtds:sqlserver://";
+    private final String ID="IT";
+    private final String PASSWORD="Kalbis1234";
+    private final String Classname="net.sourceforge.jtds.jdbc.Driver";
+    private final String Database="BasketApps";
+    private String fixUrl="";
+    protected Connection conn;
+    
+    //Init Adapter
+    public Statement st;
+   //Init Adapter
+    public PreparedStatement ps;
+    public PreparedStatement ps1;
+    public PreparedStatement ps2;
+    public PreparedStatement ps3;
+    public ResultSet rs;
+    public ResultSet rs1;
+    public ResultSet rs2;
+    public ResultSet rs3;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    //Init Connection
+    public Connect(){
+        fixUrl = prefixUrl + "172.16.16.18/" + Database +";instance=Development";
+        connector(fixUrl, ID, PASSWORD);
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    
+    private boolean connector(String URL, String Id, String Password){
+        try{
+            Class.forName(Classname);
+            conn = DriverManager.getConnection(URL,Id,Password);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
