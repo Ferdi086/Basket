@@ -1,29 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>Connect</servlet-name>
-        <servlet-class>Syncode.Basket.Object.Connect</servlet-class>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.Dashboard</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DatabaseHandler</servlet-name>
-        <servlet-class>Syncode.Basket.Handler.DatabaseHandler</servlet-class>
+        <servlet-name>index</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.Index</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Dashboard</servlet-name>
-        <servlet-class>Syncode.Basket.Servlet.Dashboard</servlet-class>
+        <servlet-name>Player</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.Player</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doSelectTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.doSelectTeam</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Team</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.Team</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doInsertPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doInsertTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertTeam</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CekNick</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.CekNick</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Connect</servlet-name>
-        <url-pattern>/Connect</url-pattern>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DatabaseHandler</servlet-name>
-        <url-pattern>/DatabaseHandler</url-pattern>
+        <servlet-name>Player</servlet-name>
+        <url-pattern>/BackEnd/Player</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Dashboard</servlet-name>
-        <url-pattern>/BackEnd/Dashboard</url-pattern>
+        <servlet-name>doSelectTeam</servlet-name>
+        <url-pattern>/doSelectTeam</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Team</servlet-name>
+        <url-pattern>/Team</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doInsertPlayer</servlet-name>
+        <url-pattern>/BackEnd/doInsertPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doInsertTeam</servlet-name>
+        <url-pattern>/doInsertTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CekNick</servlet-name>
+        <url-pattern>/CekNick</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-foto</param-name>
+        <param-value>
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\pemain\
+      </param-value>
+    </context-param>
     <session-config>
         <session-timeout>
             30
