@@ -5,7 +5,7 @@
  */
 package Syncode.Basket.Servlet.BackEnd;
 
-import Object.DatabaseHandler;
+import Syncode.Basket.Object.DatabaseHandler;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
