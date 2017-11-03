@@ -70,30 +70,30 @@
 									}
 								</script>
 						</button>
-						<h1><a href="index.html"><span>Basket</span>Apps</a></h1>
+						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
 					</div>
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class="hvr-underline-from-center active" href="index.html">
+							<li><a class="hvr-underline-from-center active" href="index.jsp">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
 							</li>
-							<li><a class="hvr-underline-from-center active" href="news.html">
+							<li><a class="hvr-underline-from-center active" href="news.jsp">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
-							<li><a href="team.html" class="hvr-underline-from-center">
+							<li><a href="team.jsp" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.html" class="hvr-underline-from-center"> 
+							<li><a href="player.jsp" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
-							<li><a href="gallery.html" class="hvr-underline-from-center">
+							<li><a href="gallery.jsp" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-unchecked"> </span> Gallery</a>
 							</li>
 							<li><a href="#" data-toggle="dropdown"><span data-hover="ShortCodes">
 							<span class="glyphicon glyphicon-stats"> </span> Statistics</span><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="team_stat.html"><span data-hover="Icons">Team Statistics</span></a></li>
-									<li><a href="player_stat.html"><span data-hover="Typograpghy">Player Statistics</span></a></li>
+									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
+									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
 								</ul>
 							</li>		
 							<li>
