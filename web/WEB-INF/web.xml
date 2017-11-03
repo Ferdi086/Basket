@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Dashboard</servlet-name>
-        <url-pattern>/Dashboard</url-pattern>
+        <url-pattern>/BackEnd/Dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
