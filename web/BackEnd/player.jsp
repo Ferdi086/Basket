@@ -284,7 +284,7 @@
                                     <div class="col-sm-3">
                                         <input id="pemain" type="text" name="pemain" class="form-control" required/>
                                     </div>
-                                   
+                                 
                                     <label class="control-label col-sm-2">Team</label>
                                     <div class="col-sm-3">
                                         <select  name="team" class="form-control" id="team">
@@ -306,7 +306,7 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                   
+                                    
                                     <label class="control-label col-sm-2">Jersey Number</label>
                                     <div class="col-sm-3">
                                     	<input id="no_punggung" type="text" name="no_punggung" class="form-control" >
@@ -317,7 +317,7 @@
                                     <div class="col-sm-3">
                                         <input id="tinggi" type="text" name="tinggi" class="form-control" required/>
                                     </div>
-                                   
+                                    
                                     <label class="control-label col-sm-2">Weight</label>
                                     <div class="col-sm-3">
                                     	<input id="berat" type="text" name="berat" class="form-control" >
@@ -453,18 +453,20 @@
             });
             $('#tgl').datetimepicker({
                     format: 'YYYY-MM-DD'
-            });
+            }); 
             $("#reset").click(function(){
                 $('#loading').hide();
                 $("#ok").hide();
                 $("#error").hide();
                 $("#NIM").focus();
-                $("#NIM").val(null);
-                $("#Name").val(null);
-                $("#No_visitor").val(null);
-                $("#datepicker").val(null);
-                $("#timepicker").val(null);
-                $("#ket").val(null);
+                $("#pemain").val(null);
+                $("#posisi").val(null);
+                $("#no_punggung").val(null);
+                $("#tinggi").val(null);
+                $("#berat").val(null);
+                $("#tgl").val(null);
+                $("#tangan").val(null);
+                $("#file").val(null);
             });    
             jQuery('.scrollbar-macosx').scrollbar();                
                      

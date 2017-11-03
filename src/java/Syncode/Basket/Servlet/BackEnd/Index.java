@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet;
+package Syncode.Basket.Servlet.BackEnd;
 
-import Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author meiiko
  */
-public class CekNick extends HttpServlet {
+public class Index extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,18 +29,7 @@ public class CekNick extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh=new DatabaseHandler();
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String nick = request.getParameter("nick");
-        HashMap nt = dh.getNickTeam(nick);
-        Team tm = (Team) nt.get(0);
-        out.println(nt);
-        //if(nt.get){
-          //  out.print("Ok|"+tm.getId());
-        //}else{
-         //   out.print("Error|"+ms.getNama());
-        //}
+       request.getRequestDispatcher("/BackEnd/index.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

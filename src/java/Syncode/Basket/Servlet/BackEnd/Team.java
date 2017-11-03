@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet;
+package Syncode.Basket.Servlet.BackEnd;
 
-import Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author meiiko
  */
-public class doInsertTeam extends HttpServlet {
+public class Team extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,24 +30,17 @@ public class doInsertTeam extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DatabaseHandler dh = new DatabaseHandler();
-        HttpSession session = request.getSession(true);
-        PrintWriter out = response.getWriter();
-        
-        String id_team =request.getParameter("nick");
-        String nama = request.getParameter("nama_team");
-        String logo = request.getParameter("logo");
-        
-        boolean a=dh.setMsTeam(id_team, nama, logo);
-        if(a){
-            //session.setAttribute("ErrMess","Data Berhasil Disimpan");
-            //session.setAttribute("alert", "alert-success");
-            response.sendRedirect("Team");
-        }
-        else{
-            //session.setAttribute("ErrMess","Data Gagal Disimpan");
-            //session.setAttribute("alert", "alert-danger");
-            response.sendRedirect("Team");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Team</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Team at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

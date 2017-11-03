@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet;
+package Syncode.Basket.Servlet.BackEnd;
 
 import Object.DatabaseHandler;
 import java.io.File;

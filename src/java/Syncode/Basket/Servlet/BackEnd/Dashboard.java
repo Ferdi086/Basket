@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet;
+package Syncode.Basket.Servlet.BackEnd;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author meiiko
+ * @author Ferdinand
  */
-public class Team extends HttpServlet {
+public class Dashboard extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class Team extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Team</title>");            
+            out.println("<title>Servlet Dashboard</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Team at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Dashboard at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
