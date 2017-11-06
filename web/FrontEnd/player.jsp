@@ -204,60 +204,106 @@
 					<h4>Point Guard</h4>
 					<p>177 cm</p>
 				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp">
+					<div class="hovereffect">
+						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<div class="overlay">
+							<h6>Yo Sua</h6>
+						</div>
+					</div>
+					</a>
+					<h4>Point Guard</h4>
+					<p>177 cm</p>
+				</div>
 				<div class="clearfix"> </div>
 			</div>
 
-			<div class="wthree_team_grids">
-				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.jsp">
-					<div class="hovereffect">
-						<img src="images/player/1.png" alt=" " class="img-responsive" />
-						<div class="overlay">
-							<h6>Yo Sua</h6>
-						</div>
-					</div>
-					</a>
-					<h4>Point Guard</h4>
-					<p>177 cm</p>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.jsp">
-					<div class="hovereffect">
-						<img src="images/player/1.png" alt=" " class="img-responsive" />
-						<div class="overlay">
-							<h6>Yo Sua</h6>
-						</div>
-					</div>
-					</a>
-					<h4>Point Guard</h4>
-					<p>177 cm</p>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.jsp">
-					<div class="hovereffect">
-						<img src="images/player/1.png" alt=" " class="img-responsive" />
-						<div class="overlay">
-							<h6>Yo Sua</h6>
-						</div>
-					</div>
-					</a>
-					<h4>Point Guard</h4>
-					<p>177 cm</p>
-				</div>
-				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.jsp">
-					<div class="hovereffect">
-						<img src="images/player/1.png" alt=" " class="img-responsive" />
-						<div class="overlay">
-							<h6>Yo Sua</h6>
-						</div>
-					</div>
-					</a>
-					<h4>Point Guard</h4>
-					<p>177 cm</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+			
 		</div>
 	</div>
 
