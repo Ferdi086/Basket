@@ -90,11 +90,11 @@ public class DatabaseHandler extends Connect {
         JSONArray hm = new JSONArray();
         try{
             int i = 1;
-            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,c.Nama_Team,a.No_Punggung from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team=c.ID_Team"; 
+            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,c.Nama_Team,a.No_Punggung,a.Foto from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team=c.ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                ObjPlayer obj = new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                ObjPlayer obj = new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
                 hm.put(obj.toJson());
             }
         }catch (SQLException ex) {

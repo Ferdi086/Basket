@@ -13,18 +13,17 @@
         <script src="../js/jquery.min.js"></script>
         <script src="../js/jquery.table2excel.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.css">
-        <link rel="stylesheet" href="../css/bootstrap-table.css"> 
+        <link rel="stylesheet" href="../css/bootstrap-table.css">
         <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css"/>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/moment.min.js"></script>
         <script src="../js/bootstrap-table.js"></script>
+        <script src="../js/moment.min.js"></script>
         <script src="../js/bootstrap-datetimepicker.js"></script>
         <script src="../js/excelexportjs.js"></script>
         <link href="../css/select2.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="../css/scrollbar.css">
         <script src="../js/select2.min.js"></script>   
         <script src="../js/jquery.scrollbar.min.js"></script>
-               
         <style>
 		body{
                     overflow:hidden;
@@ -301,7 +300,7 @@
                                     <label class="control-label col-sm-2" >Position</label>
                                     <div class="col-sm-3">
                                        <select name="posisi" class="form-control" id="posisi">
-                                            <option value=""> Choose One Team </option>
+                                            <option value=""> Choose One Position </option>
                                             <c:forEach var="item" items="${requestScope.posisi}">
                                                 <option value="${item.value.kd_pos}"> ${item.value.kd_pos} - ${item.value.nama_pos} </option>
                                             </c:forEach>
@@ -344,12 +343,11 @@
                                    <div class="col-sm-3">
                                        <input type="file" name="file" id="file" onchange="readURL(this);" required/>
                                    </div> 
-                                   <div class="col-sm-3 col-sm-offset-2">
-                                       <label class="col-sm-2 control-label">Preview</label>
-                                       <div class="col-sm-3" style="margin-left:100px">
-                                           <img id="preview"/>
-                                       </div>
-                                   </div>     
+                                   <label class="col-sm-2 control-label">Preview</label>
+                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
+                                        <img id="preview" style="margin-left:-15px"/>
+                                    </div>
+                                   
                             </div>
                              </form>                                        
 				</div>	     
@@ -373,7 +371,7 @@
                            data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]" data-show-refresh="true">
                         <thead bgcolor="#005960" style="color:white">
                             <tr style="font-size:18px;">
-                                <th class="noExl" data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
                                 <th data-align="center" data-valign="middle" data-field="Id_Pemain" data-visible="false"><b><center>Id Pemain</center><b></th>
                                 <th data-align="center" data-valign="middle" data-field="Nama_Pemain"><b><center>Nama Pemain</center><b></th>            
                                 <th data-align="center" data-valign="middle" data-field="Tgl"><b><center>Tanggal Lahir</center><b></th>
@@ -382,7 +380,8 @@
                                 <th data-align="center" data-valign="middle" data-field="Pos"><b><center>Posisi</center></b></th>
                                 <th data-align="center" data-valign="middle" data-field="Team"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle" data-field="No_Punggung"><b><center>No Punggung</center><b></th>
-                                <th class="noExl" data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="Foto" data-visible="false"><b><center>Foto</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
                             </tr>
                         </thead>                              
                     </table>          
@@ -434,7 +433,118 @@
         </div>
     </div>
     <!-- End Modal Validasi Input-->
-        
+     <!-- Modal Update -->
+    <div class="modal" id="updatemodal" role="dialog">
+        <div class="modal-dialog"  style="margin-top:118px;width:70%">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><center>Perubahan Data Pemain</center></h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="doUpdatePlayer" id="formUpdate">
+                        <div class="form-group e">
+                            <input type="text" id="updateid_pemain" name="id_pemain"/>
+                            <label class="control-label col-sm-2 col-sm-offset-1" for="pemain">Nama Pemain :</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="pemain" id="updatepemain" class="form-control" required>
+                            </div>
+                            <label class="control-label col-sm-2" for="Team">Team</label>
+                            <div class="col-sm-3">
+                              <select  name="team" class="form-control" id="updateteam">
+                                <option value=""> Choose One Team </option>
+                                <c:forEach var="item" items="${requestScope.team}">
+                                    <option value="${item.value.id}"> ${item.value.id} - ${item.value.team} </option>
+                                </c:forEach>
+                             </select>
+                            </div>
+                        </div>
+                        <div class="form-group e">
+                                    <label class="control-label col-sm-2 col-sm-offset-1">Position</label>
+                                    <div class="col-sm-3">
+                                       <select name="posisi" class="form-control" id="updateposisi">
+                                            <option value=""> Choose One Position </option>
+                                            <c:forEach var="item" items="${requestScope.posisi}">
+                                                <option value="${item.value.kd_pos}"> ${item.value.kd_pos} - ${item.value.nama_pos} </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    
+                                    <label class="control-label col-sm-2">Jersey Number</label>
+                                    <div class="col-sm-3">
+                                    	<input id="updateno_punggung" type="text" name="no_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
+                                    </div>                                  
+                                </div>	
+                            <div class="form-group e">
+                                    <label class="control-label col-sm-2 col-sm-offset-1">Height</label>
+                                    <div class="col-sm-3">
+                                        <input id="updatetinggi" type="text" name="tinggi" maxlength="3" class="form-control" onkeypress="return isNumber(event)" required/>
+                                    </div>
+                                    
+                                    <label class="control-label col-sm-2">Weight</label>
+                                    <div class="col-sm-3">
+                                    	<input id="updateberat" type="text" name="berat" maxlength="3" class="form-control" onkeypress="return isNumber(event)" >
+                                    </div>                                  
+                                </div>	
+                            <div class="form-group e">
+                                    <label class="control-label col-sm-2 col-sm-offset-1">Tanggal Lahir</label>
+                                    <div class="col-sm-3">
+                                        <input id="updatetgl" type="text" name="tgl" class="form-control" placeholder="YYYY-MM-DD" required/>
+                                    </div>
+                                   
+                                    <label class="control-label col-sm-2">Tangan</label>
+                                    <div class="col-sm-3">
+                                        <select id="updatetangan" type="text" name="tangan" class="form-control"  required>
+                                            <option value="Kanan">Kanan</option>
+                                            <option value="Kiri">Kiri</option>
+                                        </select>
+                                    </div>                                  
+                                </div>	
+                            
+                            <div class="form-group ">
+                                   <label class="control-label col-sm-2 col-sm-offset-1">Foto</label>
+                                   <div class="col-sm-3">
+                                       <input type="file" name="file" id="updatefile" onchange="readURL(this);" required/>
+                                   </div> 
+                                   <label class="col-sm-2 control-label">Preview</label>
+                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
+                                        <img id="updatepreview" style="margin-left:-15px"/>
+                                    </div>    
+                            </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#KonfirmasiUpdate"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Update -->
+<!-- Modal Konfirmasi Update-->
+    <div id="KonfirmasiUpdate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ID_Guest"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="ubah()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Update-->    
     </body>
     <script>
         function cekInput(){           
@@ -467,6 +577,20 @@
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
             }           
+        }
+        function update(id,nama,team,posisi,no,tinggi,berat,tgl,tangan,foto){
+            $("#updateid_pemain").val(id);
+            $('#updatepemain').val(nama);
+            $('#updateteam').val(team);
+            $('#updateposisi').val(posisi);
+            $('#updateno_punggung').val(no);
+            $('#updatetinggi').val(tinggi);  
+            $('#updateberat').val(berat);  
+            $('#updatetgl').val(tgl);  
+            $('#updatetangan').val(tangan);  
+            $('#updatepreview').attr('src',"../img/pemain/"+foto);  
+           
+          
         }
         $(document).ready(function(){ 
            // $('table.package').highchartTable();
@@ -515,7 +639,19 @@
 			reader.onload = function (e) {
 			$('#preview')
 				.attr('src', e.target.result)
-				.width(130)
+				.width(135)
+				.height(140);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+        function readURL(input) {		
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+			$('#updatepreview')
+				.attr('src', e.target.result)
+				.width(135)
 				.height(140);
 			};
 			reader.readAsDataURL(input.files[0]);
