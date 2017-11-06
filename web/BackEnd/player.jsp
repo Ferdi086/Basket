@@ -505,7 +505,7 @@
                             <div class="form-group ">
                                    <label class="control-label col-sm-2 col-sm-offset-1">Foto</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="file" id="updatefile" onchange="readURL(this);" required/>
+                                       <input type="file" name="file" id="updatefile" onchange="readURLUpdate(this);" required/>
                                    </div> 
                                    <label class="col-sm-2 control-label">Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
@@ -581,13 +581,13 @@
         function update(id,nama,team,posisi,no,tinggi,berat,tgl,tangan,foto){
             $("#updateid_pemain").val(id);
             $('#updatepemain').val(nama);
-            $('#updateteam').val(team);
-            $('#updateposisi').val(posisi);
+            $('#updateteam').val(team).change();
+            $('#updateposisi').val(posisi).change();
             $('#updateno_punggung').val(no);
             $('#updatetinggi').val(tinggi);  
             $('#updateberat').val(berat);  
             $('#updatetgl').val(tgl);  
-            $('#updatetangan').val(tangan);  
+            $('#updatetangan').val(tangan).change();  
             $('#updatepreview').attr('src',"../img/pemain/"+foto);  
            
           
@@ -645,7 +645,7 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-        function readURL(input) {		
+        function readURLUpdate(input) {		
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function (e) {
