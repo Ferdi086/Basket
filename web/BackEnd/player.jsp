@@ -443,16 +443,16 @@
                     <h3 class="modal-title"><center>Perubahan Data Pemain</center></h3>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="doUpdatePlayer" id="formUpdate">
+                    <form class="form-horizontal" method="post" action="doUpdatePlayer" id="formUpdate" enctype = "multipart/form-data" >
                         <div class="form-group e">
-                            <input type="text" id="updateid_pemain" name="id_pemain"/>
+                            <input type="text" id="updateid_pemain" name="uid_pemain"/>
                             <label class="control-label col-sm-2 col-sm-offset-1" for="pemain">Nama Pemain :</label>
                             <div class="col-sm-3">
-                                <input type="text" name="pemain" id="updatepemain" class="form-control" required>
+                                <input type="text" name="upemain" id="updatepemain" class="form-control" required>
                             </div>
                             <label class="control-label col-sm-2" for="Team">Team</label>
                             <div class="col-sm-3">
-                              <select  name="team" class="form-control" id="updateteam">
+                              <select  name="uteam" class="form-control" id="updateteam">
                                 <option value=""> Choose One Team </option>
                                 <c:forEach var="item" items="${requestScope.team}">
                                     <option value="${item.value.id}"> ${item.value.id} - ${item.value.team} </option>
@@ -463,7 +463,7 @@
                         <div class="form-group e">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Position</label>
                                     <div class="col-sm-3">
-                                       <select name="posisi" class="form-control" id="updateposisi">
+                                       <select name="uposisi" class="form-control" id="updateposisi">
                                             <option value=""> Choose One Position </option>
                                             <c:forEach var="item" items="${requestScope.posisi}">
                                                 <option value="${item.value.kd_pos}"> ${item.value.kd_pos} - ${item.value.nama_pos} </option>
@@ -473,30 +473,30 @@
                                     
                                     <label class="control-label col-sm-2">Jersey Number</label>
                                     <div class="col-sm-3">
-                                    	<input id="updateno_punggung" type="text" name="no_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
+                                    	<input id="updateno_punggung" type="text" name="uno_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
                                     </div>                                  
                                 </div>	
                             <div class="form-group e">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Height</label>
                                     <div class="col-sm-3">
-                                        <input id="updatetinggi" type="text" name="tinggi" maxlength="3" class="form-control" onkeypress="return isNumber(event)" required/>
+                                        <input id="updatetinggi" type="text" name="utinggi" maxlength="3" class="form-control" onkeypress="return isNumber(event)" required/>
                                     </div>
                                     
                                     <label class="control-label col-sm-2">Weight</label>
                                     <div class="col-sm-3">
-                                    	<input id="updateberat" type="text" name="berat" maxlength="3" class="form-control" onkeypress="return isNumber(event)" >
+                                    	<input id="updateberat" type="text" name="uberat" maxlength="3" class="form-control" onkeypress="return isNumber(event)" >
                                     </div>                                  
                                 </div>	
                         
                             <div class="form-group e">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Tanggal Lahir</label>
                                     <div class="col-sm-3">
-                                        <input id="updatetgl" type="text" name="tgl" class="form-control" placeholder="YYYY-MM-DD" required/>
+                                        <input id="updatetgl" type="text" name="utgl" class="form-control" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                    
                                     <label class="control-label col-sm-2">Tangan</label>
                                     <div class="col-sm-3">
-                                        <select id="updatetangan" type="text" name="tangan" class="form-control"  required>
+                                        <select id="updatetangan" type="text" name="utangan" class="form-control"  required>
                                             <option value="Kanan">Kanan</option>
                                             <option value="Kiri">Kiri</option>
                                         </select>
@@ -586,10 +586,10 @@
                 return false;
             }else if($('#updateberat').val()===""){
                 return false;
-            }else if($('#updatetangan').val()===""){
-                return false;
-            }else if($('#updatefile').val()===""){
-                return false;
+            //}//else if($('#updatetangan').val()===""){
+                //return false;
+           // }else if($('#updatefile').val()===""){
+              //  return false;
             }else{
                 return true;
             }
@@ -610,10 +610,10 @@
                 $('#ValidasiInput').modal('show'); 
             }  
         }
-        function update(id,nama,team,posisi,no,tinggi,berat,tgl,tangan,foto){
+        function update(id,nama,id_team,posisi,no,tinggi,berat,tgl,tangan,foto){
             $("#updateid_pemain").val(id);
             $('#updatepemain').val(nama);
-            $('#updateteam').val(team).change();
+            $('#updateteam').val(id_team).change();
             $('#updateposisi').val(posisi).change();
             $('#updateno_punggung').val(no);
             $('#updatetinggi').val(tinggi);  

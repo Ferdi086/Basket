@@ -25,8 +25,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author meiiko
  */
-public class doInsertPlayer extends HttpServlet {
-          private boolean isMultipart;
+public class doUpdatePlayer extends HttpServlet {
+        private boolean isMultipart;
           private String filePath;
           private File file ;
           private String[] extList = {"JPG","JPEG","PNG","GIF"};
@@ -39,19 +39,20 @@ public class doInsertPlayer extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public void init( ){
+          public void init( ){
       // Get the file location where it would be stored.
       filePath = getServletContext().getInitParameter("file-upload-foto"); 
    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter(); 
         DatabaseHandler dh = new DatabaseHandler();
-        HttpSession session = request.getSession(false);
+       HttpSession session = request.getSession(true);
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
-                   
-      //awal upload    
+        PrintWriter out = response.getWriter();
+             //nama,tgl,tinggi,berat,pos,id_team,no,foto, String id_pemain
+         
+        //awal upload    
       isMultipart = ServletFileUpload.isMultipartContent(request);
       response.setContentType("text/html");
        
@@ -88,25 +89,13 @@ public class doInsertPlayer extends HttpServlet {
                String nama = namaitem.getString().trim();
                FileItem id_teamitem = (FileItem) fileItems.get(1);
                String id_team = id_teamitem.getString().trim();
-               FileItem positem = (FileItem) fileItems.get(2);
-               String pos = positem.getString().trim();
-               FileItem noitem = (FileItem) fileItems.get(3);
-               String no = noitem.getString().trim();
-               FileItem tinggiitem = (FileItem) fileItems.get(4);
-               String tinggi = tinggiitem.getString().trim();
-               FileItem beratitem = (FileItem) fileItems.get(5);
-               String berat = beratitem.getString().trim();
-               FileItem tglitem = (FileItem) fileItems.get(6);
-               String tgl = tglitem.getString().trim();
-               FileItem tanganitem = (FileItem) fileItems.get(7);
-               String tangan = tanganitem.getString().trim();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                //String contentType = fi.getContentType();
                //boolean isInMemory = fi.isInMemory();
                //long sizeInBytes = fi.getSize();
-               
-               if(Arrays.asList(extList).contains(ext.toUpperCase())){
+               out.println("nama = "+nama);
+            if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
                        file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
@@ -121,24 +110,28 @@ public class doInsertPlayer extends HttpServlet {
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
                     out.println(file);
-                    //dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
-                    session.setAttribute("ErrMess","Your data successfully recorded");
-                    session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Player");
-               }
-               else {
-                        session.setAttribute("ErrMess","Your data failed to be recorded");
-                        session.setAttribute("alert", "alert-danger");
-                        response.sendRedirect("Player");
-                    }
-             }
-          }
-         } catch(Exception ex) {
+             
+      // boolean a=dh.setUpdatePemain(nama,tgl,tinggi,berat,pos,id_team,no,file,id_pemain);
+        session.setAttribute("ErrMess","Perubahan Data Berhasil Disimpan");
+        session.setAttribute("alert", "alert-success");
+        //response.sendRedirect("Player");
+        //out.println(a);
+        out.println("berhasil");
+        //out.println(query);
+      }
+      else{
+        session.setAttribute("ErrMess","Perubahan Data Gagal Disimpan");
+        session.setAttribute("alert", "alert-danger");
+       // response.sendRedirect("Player");
+       //out.println(a);
+       out.println("gagal");
+      }
+     }
+            }
+            } catch(Exception ex) {
             System.out.println(ex);
          }
-        
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

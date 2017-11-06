@@ -23,6 +23,7 @@ public class ObjPlayer {
     private String No_Punggung="";
     private String Tangan="";
     private String Foto="";
+    private String Id_Team="";
     private int No=0;
     
     private JSONObject json = new JSONObject();
@@ -30,7 +31,7 @@ public class ObjPlayer {
     public ObjPlayer() {
     }
 
-    public ObjPlayer(int No,String Id_Pemain, String Nama_Pemain, String Tgl, String Tinggi, String Berat, String Pos, String Team, String No_Punggung, String Foto) {
+    public ObjPlayer(int No,String Id_Pemain, String Nama_Pemain, String Tgl, String Tinggi, String Berat, String Pos, String Id_Team, String Team, String No_Punggung, String Foto) {
         this.Id_Pemain = Id_Pemain;
         this.Nama_Pemain = Nama_Pemain;
         this.Tgl = Tgl;
@@ -41,12 +42,9 @@ public class ObjPlayer {
         this.No_Punggung = No_Punggung;
         this.No=No;
         this.Foto=Foto;
+        this.Id_Team=Id_Team;
     }
-
-  
-     
-    
-      
+       
     public JSONObject toJson(){ 
          json.put("No",No);
          json.put("Id_Pemain",Id_Pemain);
@@ -55,12 +53,12 @@ public class ObjPlayer {
          json.put("Tinggi", Tinggi);
          json.put("Berat", Berat);
          json.put("Pos", Pos);
-         json.put("Team", Team);
+         json.put("Team", Id_Team +"--"+ Team);
          json.put("No_Punggung", No_Punggung);
          json.put("Foto",Foto);
          //json.put("Tangan", Tangan);
          json.put("action","<button class=\"btn btn-warning button\" data-target=\"#updatemodal\" "
-                 + "onclick =\"update('"+Id_Pemain+"','"+Nama_Pemain+"','"+Team+"','"+Pos+"','"+No_Punggung+"','"+Tinggi+"',"
+                 + "onclick =\"update('"+Id_Pemain+"','"+Nama_Pemain+"','"+Id_Team+"','"+Pos+"','"+No_Punggung+"','"+Tinggi+"',"
                     + "'"+Berat+"','"+Tgl+"','"+Tangan+"','"+Foto+"');\""
                     + " data-toggle=\"modal\"><span class=\"glyphicon glyphicon-edit\">"
                     + "</span></button>");

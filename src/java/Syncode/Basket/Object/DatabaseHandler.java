@@ -86,15 +86,26 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
+    public boolean setUpdatePemain(String nama, String tgl, String tinggi, String berat, String pos, String id_team, String no, String foto, String id_pemain){
+        try {
+                String query = "update MsPemain set Nama_Pemain='"+nama+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
+                ps = conn.prepareStatement(query);
+                ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
     public JSONArray getPlayer(){
         JSONArray hm = new JSONArray();
         try{
             int i = 1;
-            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,c.Nama_Team,a.No_Punggung,a.Foto from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team=c.ID_Team"; 
+            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team=c.ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                ObjPlayer obj = new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                ObjPlayer obj = new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
                 hm.put(obj.toJson());
             }
         }catch (SQLException ex) {
