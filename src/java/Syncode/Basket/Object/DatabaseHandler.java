@@ -14,15 +14,32 @@ import org.json.JSONArray;
  * @author meiiko
  */
 public class DatabaseHandler extends Connect {
-     public HashMap getTeam(){
+    public HashMap getTeam(){
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Logo from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Logo,Gambar from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    
+    public HashMap getTeamDetail(String id){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Team,Nama_Team,Logo,Gambar from MsTeam where ID_Team='"+id+"'"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
               
             }
         } catch (SQLException ex) {

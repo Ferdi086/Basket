@@ -13,15 +13,25 @@ public class Team {
     private String id;
     private String Team;
     private String Logo;
+    private String Gambar;
     
 public Team(){
 }
    
-public Team(String id, String Team, String Logo) {
+public Team(String id, String Team, String Logo, String Gambar) {
     this.id = id;
     this.Team = Team;
     this.Logo = Logo;
+    this.Gambar = Gambar;
 }
+
+    public String getGambar() {
+        return Gambar;
+    }
+
+    public void setGambar(String Gambar) {
+        this.Gambar = Gambar;
+    }
 
     public String getId() {
         return id;

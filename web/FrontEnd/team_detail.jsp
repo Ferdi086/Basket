@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!--
 	Author: W3layouts
 	Author URL: http://w3layouts.com
@@ -71,7 +74,7 @@ h2 span {
 							<li><a class="hvr-underline-from-center active" href="news.jsp">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
-							<li><a href="team.jsp" class="hvr-underline-from-center">
+							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
 							<li><a href="player.jsp" class="hvr-underline-from-center"> 
@@ -95,22 +98,25 @@ h2 span {
 					<div class="clearfix"> </div>	
 		</nav>
 </div>
+<c:forEach var = "item" items = "${requestScope.team}">
 <div class="row">
 	<div class="col-lg-3 col-lg-offset-2 col-md-4 col-sm-5 col-xs-5 team_logo">
-		<img src="images/team/bima.png"/>
+		<img src="../img/Team/${item.value.logo}"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
-		<h3>BIMA PERKASA JOGJA</h3>
+		<h3>${item.value.team}</h3>
 	</div>
 </div>
 <center>
 	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12">
-		<img src="images/team/team_bima.jpg" class="img-responsive" />
+		<img src="images/team/${item.value.gambar}" class="img-responsive" />
 	</div>
 </center>
+
 <div class="col-lg-12 team_stats">
-	<h3> BIMA PERKASA JOGJA STATISTICS <span class="glyphicon glyphicon-stats"> </span></h3>
+	<h3> ${item.value.team} STATISTICS <span class="glyphicon glyphicon-stats"> </span></h3>
 </div>
+</c:forEach>
 <div class="row team_stats2">
 	<div class="col-lg-3 col-md-5 col-sm-5 top_point">
 		<h4>TOP POINTS</h4>

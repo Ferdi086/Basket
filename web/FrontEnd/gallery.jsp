@@ -64,7 +64,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<li><a class="hvr-underline-from-center active" href="news.jsp">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
-							<li><a href="team.jsp" class="hvr-underline-from-center">
+							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
 							<li><a href="player.jsp" class="hvr-underline-from-center"> 

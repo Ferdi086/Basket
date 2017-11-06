@@ -60,7 +60,7 @@
 							<li><a class="hvr-underline-from-center active" href="news.jsp">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
-							<li><a href="team.jsp" class="hvr-underline-from-center">
+							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
 							<li><a href="player.jsp" class="hvr-underline-from-center"> 
@@ -97,7 +97,7 @@
 				<div class="caption">
 					<div class="blur"></div>
 					<div class="caption-text">
-						<h1><a href="team_detail.jsp?ID=${item.value.id}"><c:out value = "${item.value.team}"/></a></h1>
+						<h1><a href="TeamDetails?ID_N=${item.value.id}"><c:out value = "${item.value.team}"/></a></h1>
 					</div>
 				</div>
                             </li>

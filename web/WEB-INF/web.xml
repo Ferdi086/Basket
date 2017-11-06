@@ -48,6 +48,10 @@
         <servlet-name>DataPlayer</servlet-name>
         <servlet-class>Syncode.Basket.Data.DataPlayer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamDetails</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.TeamDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -98,6 +102,10 @@
     <servlet-mapping>
         <servlet-name>Teams</servlet-name>
         <url-pattern>/FrontEnd/Teams</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamDetails</servlet-name>
+        <url-pattern>/FrontEnd/TeamDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
