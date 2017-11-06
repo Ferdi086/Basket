@@ -487,6 +487,7 @@
                                     	<input id="updateberat" type="text" name="berat" maxlength="3" class="form-control" onkeypress="return isNumber(event)" >
                                     </div>                                  
                                 </div>	
+                        
                             <div class="form-group e">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Tanggal Lahir</label>
                                     <div class="col-sm-3">
@@ -570,6 +571,29 @@
                 return true;
             }
         }
+        function cekEdit(){                        
+            if($('#updateid_pemain').val()===""){                
+                return false;
+            }else if($('#updatepemain').val()===""){
+                return false;
+            }else if($('#updateteam').val()===""){
+                return false;
+            }else if($('#updateposisi').val()===""){
+                return false;
+            }else if($('#updateno_punggung').val()===""){
+                return false;
+            }else if($('#updatetinggi').val()===""){
+                return false;
+            }else if($('#updateberat').val()===""){
+                return false;
+            }else if($('#updatetangan').val()===""){
+                return false;
+            }else if($('#updatefile').val()===""){
+                return false;
+            }else{
+                return true;
+            }
+        }
         function input(){
             if(cekInput()){
                 $('#inputplayer').submit();
@@ -577,6 +601,14 @@
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
             }           
+        }
+         function ubah(){
+            if(cekEdit()){ 
+                $('#formUpdate').submit();
+            }else{
+                $('#KonfirmasiUpdate').modal('hide');
+                $('#ValidasiInput').modal('show'); 
+            }  
         }
         function update(id,nama,team,posisi,no,tinggi,berat,tgl,tangan,foto){
             $("#updateid_pemain").val(id);
@@ -589,8 +621,6 @@
             $('#updatetgl').val(tgl);  
             $('#updatetangan').val(tangan).change();  
             $('#updatepreview').attr('src',"../img/pemain/"+foto);  
-           
-          
         }
         $(document).ready(function(){ 
            // $('table.package').highchartTable();
