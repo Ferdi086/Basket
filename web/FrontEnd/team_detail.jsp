@@ -99,7 +99,7 @@ h2 span {
 		</nav>
 </div>
 <c:forEach var = "item" items = "${requestScope.team}">
-<div class="row">
+<div class="row" style="margin-top:10px;margin-bottom:10px;">
 	<div class="col-lg-3 col-lg-offset-2 col-md-4 col-sm-5 col-xs-5 team_logo">
 		<img src="../img/Team/${item.value.logo}"/>
 	</div>
@@ -108,8 +108,8 @@ h2 span {
 	</div>
 </div>
 <center>
-	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12">
-		<img src="images/team/${item.value.gambar}" class="img-responsive" />
+	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+		<img src="images/team/${item.value.gambar}" class="img-responsive" width="200px" height="200px"/>
 	</div>
 </center>
 
