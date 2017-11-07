@@ -34,9 +34,11 @@ public class TeamDetails extends HttpServlet {
          DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
         String ID = request.getParameter("ID_N");
-        HashMap tr = dh.getTeamDetail(ID);    
+        HashMap tr = dh.getTeamDetail(ID); 
+        HashMap tr1 = dh.getPlayers(ID);
         request.setAttribute("team",tr);
-        //out.print(tr);
+        request.setAttribute("player",tr1);
+        //out.print(tr1);
         request.getRequestDispatcher("team_detail.jsp").forward(request, response);
     }
 

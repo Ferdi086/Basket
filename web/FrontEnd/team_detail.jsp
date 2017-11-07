@@ -366,20 +366,22 @@ h2 span {
 		<h2>
 			<span>ROSTER</span>
 		</h2>
-			<div class="wthree_team_grids">
-				<div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.html">
+			<div class="wthree_team_grids">                                
+                                <c:forEach var = "item" items = "${requestScope.player}">
+                                <div class="col-md-3 wthree_team_grid">
+					<a href="player_detail.jsp?ID_P=${item.value.idPemain}">
 					<div class="hovereffect">
-						<img src="../img/Players/BPJ-Gjio.jpg" alt=" " class="img-responsive" width="400" height="400"/>
+						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>
 						<div class="overlay">
-							<h6>Yo Sua</h6>
+                                                    <h6>${item.value.namaPemain}</h6>
 						</div>
 					</div>
 					</a>
-					<h4>Point Guard</h4>
-					<p>177 cm</p>
+					<h4>${item.value.namaPos}</h4>
+					<p>${item.value.tinggi} cm</p>
 				</div>
-				
+                                </c:forEach>
+                                
 				<div class="clearfix"> </div>
 			</div>
 		</div>
