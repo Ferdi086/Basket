@@ -129,8 +129,7 @@ public class DatabaseHandler extends Connect {
                     ps = conn.prepareStatement(query);
                 }
                 ps.executeUpdate();  
-                return true;
-          
+                return true;            
         } catch (SQLException ex) {
             return false;   
         }         
@@ -139,7 +138,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team='"+ID+"' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            String query = "select a.ID_Pemain, a.Nama_Pemain, Convert(varchar(50), a.Tgl_Lahir,106), a.Tinggi, a.Berat, a.KD_Pos, b.Nama_Posisi, a.Id_Team, c.Nama_Team, a.No_Punggung, a.Foto, c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team='"+ID+"' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
