@@ -91,8 +91,7 @@ public class DatabaseHandler extends Connect {
                 String query = "update MsPemain set Nama_Pemain='"+nama+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
-                return true;
-            
+                return true;            
         } catch (SQLException ex) {
             return false;   
         }         
