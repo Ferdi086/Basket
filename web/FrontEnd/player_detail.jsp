@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!--
 	Author: W3layouts
 	Author URL: http://w3layouts.com
@@ -89,24 +92,27 @@
 				</nav>
 </div>
 
+
 <div class="row det_player">
+    <c:forEach var = "item" items = "${requestScope.player}">
 	<div class="team" id="team">
 			<div class="wthree_team_grids">
 				<div class="col-md-3 wthree_team_grid foto_p">
 					<div class="hovereffect">
-						<img src="images/player/1.png" alt=" " class="img-responsive" />
+						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>
 					</div>
 				</div>
 			</div>
 	</div>
 	<div class="col-lg-4 nama_p">
-		<h1>YO SUA</h1><br>
-		<h3 style="color:white">Center Forward</h3>
-		<a href="#" style="color:black"><h3><img src="images/team/bima.png"/>Bima Perkasa Jogja</h3></a>
-		<h4><span>Birthdate</span>  : 08 October 1995</h4>
-		<h4><span>Height</span> : 177 cm</h4>
-		<h4><span>Weight</span> : 73 kg</h4>
+		<h1>${item.value.namaPemain}</h1><br>
+		<h3 style="color:white">${item.value.namaPos}</h3>
+		<a href="#" style="color:black"><h3><img src="../img/Team/${item.value.logo}"/>${item.value.team}</h3></a>
+		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>
+		<h4><span>Height</span> : ${item.value.tinggi} cm</h4>
+		<h4><span>Weight</span> : ${item.value.berat} kg</h4>
 	</div>
+    </c:forEach>
 	<div class="col-lg-4 stat_p">
 		<h3><span class="glyphicon glyphicon-expand"></span>  IBL PLAYOFF 2017</h3>
 		<table class="tb_p">
@@ -135,6 +141,8 @@
 		</table>
 	</div>
 </div>
+
+
 <div class="game_stats">
 	<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#home">  <b>STATS</b></a></li>
