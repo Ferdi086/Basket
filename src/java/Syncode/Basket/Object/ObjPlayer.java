@@ -25,6 +25,7 @@ public class ObjPlayer {
     private String Tangan="";
     private String Foto="";
     private String IdTeam="";
+    private String Logo="";
     private int No=0;
     
     private JSONObject json = new JSONObject();
@@ -32,7 +33,7 @@ public class ObjPlayer {
     public ObjPlayer() {
     }
 
-    public ObjPlayer(int No,String IdPemain, String NamaPemain, String Tgl, String Tinggi, String Berat, String Pos, String NamaPos, String IdTeam, String Team, String NoPunggung, String Foto) {
+    public ObjPlayer(int No,String IdPemain, String NamaPemain, String Tgl, String Tinggi, String Berat, String Pos, String NamaPos, String IdTeam, String Team, String NoPunggung, String Foto, String Logo) {
         this.IdPemain = IdPemain;
         this.NamaPemain = NamaPemain;
         this.Tgl = Tgl;
@@ -45,6 +46,15 @@ public class ObjPlayer {
         this.No=No;
         this.Foto=Foto;
         this.IdTeam=IdTeam;
+        this.Logo = Logo;
+    }
+
+    public String getLogo() {
+        return Logo;
+    }
+
+    public void setLogo(String Logo) {
+        this.Logo = Logo;
     }
 
     public String getIdPemain() {

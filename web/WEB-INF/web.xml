@@ -56,6 +56,10 @@
         <servlet-name>doUpdatePlayer</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doUpdatePlayer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlayerDetails</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayerDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -114,6 +118,10 @@
     <servlet-mapping>
         <servlet-name>doUpdatePlayer</servlet-name>
         <url-pattern>/BackEnd/doUpdatePlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayerDetails</servlet-name>
+        <url-pattern>/FrontEnd/PlayerDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

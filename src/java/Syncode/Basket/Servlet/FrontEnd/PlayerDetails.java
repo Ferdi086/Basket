@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ferdinand
  */
-public class TeamDetails extends HttpServlet {
+public class PlayerDetails extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,13 +33,11 @@ public class TeamDetails extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("ID_N");
-        HashMap tr = dh.getTeamDetail(ID); 
-        HashMap tr1 = dh.getPlayers(ID);
-        request.setAttribute("team",tr);
-        request.setAttribute("player",tr1);
-        //out.print(tr1);
-        request.getRequestDispatcher("team_detail.jsp").forward(request, response);
+        String ID = request.getParameter("ID_P");
+        HashMap tr = dh.getPlayersDetails(ID);
+        request.setAttribute("player",tr);
+        //out.print(tr);
+        request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

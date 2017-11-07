@@ -369,7 +369,7 @@ h2 span {
 			<div class="wthree_team_grids">                                
                                 <c:forEach var = "item" items = "${requestScope.player}">
                                 <div class="col-md-3 wthree_team_grid">
-					<a href="player_detail.jsp?ID_P=${item.value.idPemain}">
+					<a href="PlayerDetails?ID_P=${item.value.idPemain}">
 					<div class="hovereffect">
 						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>
 						<div class="overlay">
