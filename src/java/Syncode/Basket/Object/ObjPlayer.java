@@ -48,6 +48,10 @@ public class ObjPlayer {
         this.IdTeam=IdTeam;
         this.Logo = Logo;
     }
+    public ObjPlayer(String IdPemain, String NamaPemain){
+        this.IdPemain = IdPemain;
+        this.NamaPemain = NamaPemain;
+    }
 
     public String getLogo() {
         return Logo;

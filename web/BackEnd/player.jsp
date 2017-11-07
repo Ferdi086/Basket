@@ -372,7 +372,7 @@
                         <thead bgcolor="#005960" style="color:white">
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
-                                <th data-align="center" data-valign="middle" data-field="Id_Pemain" data-visible="false"><b><center>Id Pemain</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="Id_Pemain" ><b><center>Id Pemain</center><b></th>
                                 <th data-align="center" data-valign="middle" data-field="Nama_Pemain"><b><center>Nama Pemain</center><b></th>            
                                 <th data-align="center" data-valign="middle" data-field="Tgl"><b><center>Tanggal Lahir</center><b></th>
                                 <th data-align="center" data-valign="middle" data-field="Tinggi"><b><center>Tinggi</center></b></th>
@@ -380,7 +380,7 @@
                                 <th data-align="center" data-valign="middle" data-field="Pos"><b><center>Posisi</center></b></th>
                                 <th data-align="center" data-valign="middle" data-field="Team"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle" data-field="No_Punggung"><b><center>No Punggung</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="Foto" data-visible="false"><b><center>Foto</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="Foto" ><b><center>Foto</center><b></th>
                                 <th data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
                             </tr>
                         </thead>                              
@@ -610,8 +610,9 @@
                 $('#ValidasiInput').modal('show'); 
             }  
         }
-        function update(id,nama,id_team,posisi,no,tinggi,berat,tgl,tangan,foto){
-            $("#updateid_pemain").val(id);
+        function update(id,nama,id_team,posisi,no,tinggi,berat,tgl,tangan,foto){     
+        $("#updateid_pemain").val(id);
+        $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
             $('#updatepemain').val(nama);
             $('#updateteam').val(id_team).change();
             $('#updateposisi').val(posisi).change();
@@ -620,7 +621,7 @@
             $('#updateberat').val(berat);  
             $('#updatetgl').val(tgl);  
             $('#updatetangan').val(tangan).change();  
-            $('#updatepreview').attr('src',"../img/pemain/"+foto);  
+             
         }
         $(document).ready(function(){ 
            // $('table.package').highchartTable();
