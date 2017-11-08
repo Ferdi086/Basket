@@ -85,17 +85,28 @@ color:black;
 }
 
 /* Player.html */
-.se_team select{
+.se_team select, .se_pos select{
 	font-size:16px;
 	padding:7px;
-}
-.se_team input{
-	font-size:16px;
-	padding:4px;
 }
 .se_team{
 	margin-top:2%;
 	margin-left:8%;
+}
+.se_pos{
+	margin-top:2%;
+	margin-left:10%;
+}
+.se_name{
+	margin-top:2%;
+	margin-left:6%;
+}
+.se_name .form-control{
+    height:36px !important;
+    font-size:15px;
+}
+.se_name .input-lg{
+    padding: 5px 16px;
 }
 .abc table tr td {
 	padding:4px !important;

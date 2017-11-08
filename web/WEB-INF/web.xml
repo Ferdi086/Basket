@@ -60,6 +60,22 @@
         <servlet-name>PlayerDetails</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayerDetails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlayersByName</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByName</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersByTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByTeam</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersByPos</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByPos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersByNameLike</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByNameLike</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -122,6 +138,22 @@
     <servlet-mapping>
         <servlet-name>PlayerDetails</servlet-name>
         <url-pattern>/FrontEnd/PlayerDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByName</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByName</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByTeam</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByPos</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByPos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByNameLike</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByNameLike</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

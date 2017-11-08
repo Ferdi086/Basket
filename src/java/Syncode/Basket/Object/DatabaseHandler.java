@@ -143,6 +143,66 @@ public class DatabaseHandler extends Connect {
         }
         return hm;
     }
+    public HashMap getPlayersByName(String Abc){
+        HashMap tr = new HashMap();
+        try{
+            int i = 1;
+            String query = "select a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.Nama_Pemain like '"+Abc+"%' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++,new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
+    public HashMap getPlayersFront(String ID){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select a.ID_Pemain, a.Nama_Pemain, a.Tinggi, b.Nama_Posisi, a.Foto from MsPemain a, MsPosisi b where a.ID_Team = '"+ID+"' AND a.KD_Pos = b.KD_Pos";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjPlayerFront(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
+    public HashMap getPlayersFront2(String KD_pos){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select a.ID_Pemain, a.Nama_Pemain, a.Tinggi, b.Nama_Posisi, a.Foto from MsPemain a, MsPosisi b where a.KD_Pos = '"+KD_pos+"' AND a.KD_Pos = b.KD_Pos";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjPlayerFront(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
+    public HashMap getPlayersFront3(String Nama_pem){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select a.ID_Pemain, a.Nama_Pemain, a.Tinggi, b.Nama_Posisi, a.Foto from MsPemain a, MsPosisi b where a.Nama_Pemain Like '%"+Nama_pem+"%' AND a.KD_Pos = b.KD_Pos";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjPlayerFront(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
     /*public HashMap getNickTeam(String nick){
         HashMap tr = new HashMap();
         try {      

@@ -37,6 +37,19 @@
 	.team{
 		padding-top:0;
 	}
+        .punggung{
+            background-image: url('../img/jersey2.png');
+            background-size:cover;
+            min-width: 70px;
+            min-height:80px;
+            color:white;
+            text-align:center;
+            margin-right:10%;
+        }
+        .punggung h2{
+            margin-top: 40%;
+            margin-left: 15%;
+        }
 </style>
 </head>
 <body>
@@ -54,7 +67,7 @@
 									function myFunction(x) {
 									    x.classList.toggle("change");
 									}
-								</script>
+                                                        </script>
 						</button>
 						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
 					</div>
@@ -70,7 +83,7 @@
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.jsp" class="hvr-underline-from-center"> 
+							<li><a href="Players" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
 							<li><a href="gallery.html" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-unchecked"> </span> Gallery</a>
@@ -105,7 +118,16 @@
 			</div>
 	</div>
 	<div class="col-lg-4 nama_p">
-		<h1>${item.value.namaPemain}</h1><br>
+                 <div class="pull-right punggung">
+                     <h2>
+                         <c:if test = "${item.value.noPunggung == NULL}">
+                             ?
+                         </c:if>
+                         ${item.value.noPunggung}
+                     </h2>
+                </div>
+		<h1>${item.value.namaPemain}</h1>
+                <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
 		<a href="#" style="color:black"><h3><img src="../img/Team/${item.value.logo}"/>${item.value.team}</h3></a>
 		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>

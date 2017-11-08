@@ -99,45 +99,28 @@
 <div class="row">
 	<div class="col-lg-2 se_team">
 	  <form>		
-	  	<select name='' class='form-group' id="sel_team">
-			<option value=''> ------------ Select a Team ------------ </option>
-			<option value='BPJ'>  BIMA PERKASA JOGJA </option>
-			<option value='GRB'>  BANK BJB GARUDA BANDUNG </option>
-			<option value='CLS'>  CLS KNIGHTS SURABAYA </option>
-			<option value='HTS'>  HANGTUAH SUMSEL </option>
-			<option value='JSB'>  JNE SILIWANGI BANDUNG </option>
-			<option value='NSH'>  NSH JAKARTA </option>
-			<option value='PCF'>  PACIFIC CAESAR SURABAYA </option>
-			<option value='PJE'>  PELITA JAYA </option>
-			<option value='SMP'>  SATRIA MUDA PERTAMINA JAKARTA </option>
-			<option value='SWS'>  SATYA WACANA SALATIGA </option>
-			<option value='ASP'>  W88.NEWS ASPAC JAKARTA </option>
+	  	<select name='' class='form-group' >
+			<option value=''>  Select a Team </option>
+			<option value=''>  Bima Perkasa Jogja </option>
+			<option value=''>  Satya Wacana Salatiga </option>
+			<option value=''>  NSH </option>
 		</select>
 	  </form> 
 	</div>
-	<div class="col-lg-2 se_pos">
+	<div class="col-lg-2 se_team">
 	  <form>		
-	  	<select name='' class='form-group' id="sel_pos">
-			<option value=''> ------ Select a Position ------ </option>
-			<option value='C'>  CENTER </option>
-			<option value='PF'>  POWER FORWARD </option>
-			<option value='PG'>  POINT GUARD </option>
-			<option value='SF'>  SMALL FORWARD </option>
-			<option value='SG'>  SHOOTING GUARD </option>
-			<option value='G/F'>  UNKNOWN </option>
+	  	<select name='' class='form-group' >
+			<option value=''>  Select a Position </option>
+			<option value=''>  CF </option>
+			<option value=''>  PG </option>
+			<option value=''>  CENTER </option>
 		</select>
 	  </form>
 	</div>
-	<div class="col-lg-3 se_name">
+	<div class="col-lg-3 se_team">
 	  <form>		
-	  	<div class="input-group">
-		      <input type="text" class="form-control input-lg input_n" placeholder="Search by Name">
-		      <span class="input-group-btn cari_n">
-		        <button class="btn btn-success" type="button" style="height:36px"> 
-		       		 <span class="glyphicon glyphicon-search"></span>
-		        </button>
-		      </span>
-		    </div>
+	  	<input type="text" placeholder="Search a player" class="form-group">
+	  <button class="btn btn-success form-group"><span class="glyphicon glyphicon-search"></span></button>
 	  </form>
 	</div>
 </div>
@@ -174,7 +157,7 @@
 </table>
 </div>
 <div class="team" id="team">
-		<div class="container unik">
+		<div class="container">
 			<div class="wthree_team_grids">
                             <c:forEach var = "item" items = "${requestScope.player}">
 				<div class="col-md-3 wthree_team_grid">
@@ -207,59 +190,6 @@
        var x = $('.ab').html();
        //alert(x);
        $('#'+x).css({"background-color": "lightgrey"});
-    });
-    //  ajax dropdown team 
-    $('#sel_team').change(function(){
-        $('.wthree_team_grids').remove();
-        var id = $(this).val();
-        $.ajax({
-            type : 'POST',
-            url : 'PlayersByTeam',
-            data: {
-                'id_team': id
-            },
-            beforeSend: function(){
-            },
-            success: function(data){
-                $('.unik').append(data);      
-            }
-        });
-    });
-    //  ajax dropdown posisi 
-    $('#sel_pos').change(function(){
-        $('.wthree_team_grids').remove();
-        var id = $(this).val();
-        $.ajax({
-            type : 'POST',
-            url : 'PlayersByPos',
-            data: {
-                'kd_pos': id
-            },
-            beforeSend: function(){
-            },
-            success: function(data){
-                $('.unik').append(data);      
-            }
-        });
-    });
-    $('.cari_n').click(function(){
-       $('.wthree_team_grids').remove();
-        var id = $('.input_n').val();
-        $.ajax({
-            type : 'POST',
-            url : 'PlayersByNameLike',
-            data: {
-                'Nama_pem': id
-            },
-            beforeSend: function(){
-            },
-            success: function(data){
-                $('.unik').append(data);      
-            }
-        }); 
-    });
-    $('.input_n').click(function(){
-       $(this).val(null); 
     });
 </script>
 </body>
