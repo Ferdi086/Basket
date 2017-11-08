@@ -86,7 +86,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Team</servlet-name>
-        <url-pattern>/Team</url-pattern>
+        <url-pattern>/BackEnd/Team</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>doInsertPlayer</servlet-name>
@@ -94,7 +94,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>doInsertTeam</servlet-name>
-        <url-pattern>/doInsertTeam</url-pattern>
+        <url-pattern>/BackEnd/doInsertTeam</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CekNick</servlet-name>

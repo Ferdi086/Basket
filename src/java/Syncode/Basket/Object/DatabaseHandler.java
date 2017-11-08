@@ -107,9 +107,9 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
-    public boolean setMsTeam(String nick, String nama_team, String logo){
+    public boolean setMsTeam(String nick, String nama_team, String logo, String gambar_team){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team)values('"+nick+"','"+nama_team+"','"+logo+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+logo+"','"+gambar_team+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;

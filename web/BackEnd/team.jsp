@@ -248,8 +248,8 @@
                     <span class='text' id="Book">Statistic<span class="caret"></span></span>
                     </div>
                     <ul class=”dropdown-menu” id="sub">
-                        <li><a href="Statistic_Pemain">Player</a></li>
-                        <li><a href="Statistic_Team">Team</a></li> 
+                        <li><a href="StatisticPlayer">Player</a></li>
+                        <li><a href="StatisticTeam">Team</a></li> 
                     </ul>
                 </li> 
                 <li class="btn-menu">
@@ -265,7 +265,7 @@
                     <div class="form">
                     <center><h2 style="margin-bottom:40px;"><b>Player</b></h2></center>
            
-			<form class="form-horizontal" method="post" action="doInsertTeam" id="formInput">
+			<form class="form-horizontal" method="post" action="doInsertTeam" id="formInput" enctype = "multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team Name</label>
                                     <div class="col-sm-3">
