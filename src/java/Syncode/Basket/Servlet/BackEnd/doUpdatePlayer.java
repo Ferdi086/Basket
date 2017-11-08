@@ -50,6 +50,8 @@ public class doUpdatePlayer extends HttpServlet {
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         PrintWriter out = response.getWriter();
+        String nama = request.getParameter("upemain");
+        out.println(nama);
              //nama,tgl,tinggi,berat,pos,id_team,no,foto, String id_pemain
          
         //awal upload    
@@ -65,6 +67,7 @@ public class doUpdatePlayer extends HttpServlet {
          out.println("<p>No file uploaded</p>"); 
          out.println("</body>");
          out.println("</html>");
+           
          return;
       }
         
@@ -81,12 +84,12 @@ public class doUpdatePlayer extends HttpServlet {
         String foto = "";
        // int u = 1;
          while ( i.hasNext () ) {
-                  
+              
             FileItem fi = (FileItem)i.next();
             if ( !fi.isFormField () ) {
                // Get the uploaded file parameters
                FileItem namaitem = (FileItem) fileItems.get(0);
-               String nama = namaitem.getString().trim();
+               //String nama = namaitem.getString().trim();
                FileItem id_teamitem = (FileItem) fileItems.get(1);
                String id_team = id_teamitem.getString().trim();
                String fileName = fi.getName();
@@ -94,7 +97,8 @@ public class doUpdatePlayer extends HttpServlet {
                //String contentType = fi.getContentType();
                //boolean isInMemory = fi.isInMemory();
                //long sizeInBytes = fi.getSize();
-               out.println("nama = "+nama);
+               out.println("nama = "+id_team);
+               
             if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
@@ -127,9 +131,11 @@ public class doUpdatePlayer extends HttpServlet {
        out.println("gagal");
       }
      }
-            }
+          }
             } catch(Exception ex) {
             System.out.println(ex);
+            out.println("nama =sss");
+            //out.println(nama);
          }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

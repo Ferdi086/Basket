@@ -76,6 +76,18 @@
         <servlet-name>PlayersByNameLike</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByNameLike</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StatistikPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.StatistikPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doSelectPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doSelectPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doInsertStatikPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertStatikPlayer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -112,7 +124,14 @@
         <description>Location to store uploaded file</description>
         <param-name>file-upload-foto</param-name>
         <param-value>
-         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\pemain\
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Players\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-excel</param-name>
+        <param-value>
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\Statistik\Players\
       </param-value>
     </context-param>
     <servlet-mapping>
@@ -154,6 +173,18 @@
     <servlet-mapping>
         <servlet-name>PlayersByNameLike</servlet-name>
         <url-pattern>/FrontEnd/PlayersByNameLike</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StatistikPlayer</servlet-name>
+        <url-pattern>/BackEnd/StatistikPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doSelectPlayer</servlet-name>
+        <url-pattern>/BackEnd/doSelectPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doInsertStatikPlayer</servlet-name>
+        <url-pattern>/BackEnd/doInsertStatikPlayer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
