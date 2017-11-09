@@ -326,6 +326,7 @@
 								<tr class="tr_general">
 									<th>MATCH</th>
 									<th>W/L</th>
+                                                                        <th>MIN</th>
 									<th>FGM</th>
 									<th>FGA</th>
 									<th>FG%</th>

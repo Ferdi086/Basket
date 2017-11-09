@@ -44,6 +44,7 @@ public class PlayersBySeason extends HttpServlet {
             out.println("   <tr class=\"tr_general\">");
             out.println("                                               <th>MATCH</th>" +
 "									<th>W/L</th>" +
+"									<th>MIN</th>" +
 "									<th>FGM</th>" +
 "									<th>FGA</th>" +
 "									<th>FG%</th>" +
@@ -76,6 +77,7 @@ public class PlayersBySeason extends HttpServlet {
                 out.println("       <td>"+pl.getMIN()+"</td>");
                 out.println("       <td>"+pl.getFGM()+"</td>");
                 out.println("       <td>"+pl.getFGA()+"</td>");
+                out.println("       <td>"+pl.getFG()+"</td>");
                 out.println("       <td>"+pl.getPM2()+"</td>");
                 out.println("       <td>"+pl.getPA2()+"</td>");
                 out.println("       <td>"+pl.getP2()+"</td>");
