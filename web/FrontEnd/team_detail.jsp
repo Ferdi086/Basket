@@ -109,7 +109,7 @@ h2 span {
 </div>
 <center>
 	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-		<img src="images/team/${item.value.gambar}" class="img-responsive" width="200px" height="200px"/>
+		<img src="../img/Team/${item.value.gambar}" class="img-responsive" width="200px" height="200px"/>
 	</div>
 </center>
 

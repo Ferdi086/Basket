@@ -88,6 +88,10 @@
         <servlet-name>doInsertStatikPlayer</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertStatikPlayer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlayersBySeason</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersBySeason</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -185,6 +189,10 @@
     <servlet-mapping>
         <servlet-name>doInsertStatikPlayer</servlet-name>
         <url-pattern>/BackEnd/doInsertStatikPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersBySeason</servlet-name>
+        <url-pattern>/FrontEnd/PlayersBySeason</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

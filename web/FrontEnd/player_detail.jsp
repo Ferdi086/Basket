@@ -310,24 +310,22 @@
 					
 						<div style='margin-top:10px'>
 						  <form>
+                                                        <input type="text" value="${requestScope.id_pem}" class="hidden id_hide"/>
 							<label class='form-group'>Search By Season : </label>
-							<select name='kat_lok' class='form-group' id='lok'>
-								<option value=''>IBL REGULAR SEASON 2017</option>
-								<option value=''>IBL REGULAR SEASON 2015 - 2016</option>
-								<option value=''>CHAMPIONSHIP PRESEASON 2015</option>
-								<option value=''>IBL PRESEASON 2015</option>
+							<select name='' class='form-group' id='se_season'>
+                                                            <option value=""> ------- Choose One ------- </option>
+                                                            <c:forEach var="item" items="${requestScope.player_gl}">
+								<option value='${item.value.id_m}'>${item.value.nama_m}</option>
+                                                            </c:forEach>
 							</select>
 						  </form>
 						</div>
 
-						<div class="tbl_general table-responsive">
-							<table class="table table-bordered table-striped">
+						<div class="tbl_general table-responsive bungkus_season">
+							<table class="table table-bordered table-striped tb_season">
 								<tr class="tr_general">
-									<th>NO</th>
-									<th>PLAYER</th>
-									<th>Pos</th>
-									<th>GP</th>
-									<th>MIN</th>
+									<th>MATCH</th>
+									<th>W/L</th>
 									<th>FGM</th>
 									<th>FGA</th>
 									<th>FG%</th>
@@ -347,36 +345,9 @@
 									<th>TO</th>
 									<th>ST</th>
 									<th>BL</th>
+									<th>PF</th>
 									<th>EF</th>
 									<th>PTS</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Rizky Alfian</td>
-									<td>SF</td>
-									<td>5</td>
-									<td>5.94</td>
-									<td>0.60</td>
-									<td>1.80</td>
-									<td>33%</td>
-									<td>0.60</td>
-									<td>1.20</td>
-									<td>50%</td>
-									<td>0.00</td>
-									<td>0.60</td>
-									<td>0%</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>60%</td>
-									<td>0.40</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>0.20</td>
-									<td>0.80</td>
-									<td>0.20</td>
-									<td>0.00</td>
-									<td>6.00</td>
-									<td>1.80</td>
 								</tr>
 							</table>
 						</div>
@@ -389,6 +360,25 @@
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
-
+        <script>
+            $('#se_season').change(function(){
+                $('.tb_season').remove();
+                var id_m = $(this).val();
+                var id_p = $('.id_hide').val();
+                $.ajax({
+                    type : 'POST',
+                    url : 'PlayersBySeason',
+                    data: {
+                        'id_m': id_m,
+                        'id_p': id_p
+                    },
+                    beforeSend: function(){
+                    },
+                    success: function(data){
+                        $('.bungkus_season').append(data);      
+                    }
+                });
+            });
+        </script>
 </body>
 </html>

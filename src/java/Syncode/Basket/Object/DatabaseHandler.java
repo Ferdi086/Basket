@@ -307,6 +307,38 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getPlayerDetailGL(String id_p){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select ID_Musim,ID_Pemain,Nama_Musim from( " +
+                            "	select distinct a.ID_Musim,a.Nama_Musim, b.ID_Pemain, c.Nama_Pemain from MsMusim a, TrGameLogs b, MsPemain c where a.ID_Musim = b.ID_Musim and b.ID_Pemain="+id_p+" and b.ID_Pemain = c.ID_Pemain " +
+                            ")a order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new PlayerDetailGL(rs.getString(1), rs.getString(2), rs.getString(3)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
+    public HashMap getPlayerDetailGLogs(String id_p, String id_m){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select Match,WL,[MIN],FGM,FGA,FG,2PM,2PA,2P,3PM,3PA,3P,FTM,FTA,FT,[OR],DR,TR,[AS],[TO],ST,BL,PF,EF,PTS from TrGameLogs where ID_Musim = "+id_m+" and ID_Pemain = "+id_p+"";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new PlayerDetailGLogs(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
     /*public HashMap getNickTeam(String nick){
         HashMap tr = new HashMap();
         try {      
