@@ -356,4 +356,27 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }*/
+    public HashMap getTopPoint(String id_team){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query =  "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS" +
+                                "from" +
+                                "(" +
+                                    "select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS]" +
+                                    "from TrGameLogs a, MsPemain b, MsMusim c" +
+                                    "where a.ID_Team = '"+id_team+"' and a.ID_Musim = 6 and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim" +
+                                ") a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team" +
+                            "order by PTS DESC"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new ObjPlayer(rs.getString(1), rs.getString(2)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
 }
