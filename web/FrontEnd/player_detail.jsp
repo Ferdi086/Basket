@@ -172,7 +172,7 @@
   	</ul>
 				
 				  <div class="tab-content">
-					<div id="home" class="tab-pane fade in active">
+					<div class="tab-pane fade in active">
 						<h3 style="margin:3% 0">REGULAR</h3>
 						<div class="tbl_general table-responsive">
 							<table class="table table-bordered table-striped">
@@ -204,34 +204,37 @@
 									<th>EF</th>
 									<th>PTS</th>
 								</tr>
+                                                                
+                                                                <c:forEach var="item" items="${requestScope.player_stat}">
 								<tr>
-									<td>1</td>
-									<td>YO SUA</td>
-									<td>SF</td>
-									<td>5</td>
-									<td>5.94</td>
-									<td>0.60</td>
-									<td>1.80</td>
-									<td>33%</td>
-									<td>0.60</td>
-									<td>1.20</td>
-									<td>50%</td>
-									<td>0.00</td>
-									<td>0.60</td>
-									<td>0%</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>60%</td>
-									<td>0.40</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>0.20</td>
-									<td>0.80</td>
-									<td>0.20</td>
-									<td>0.00</td>
-									<td>6.00</td>
-									<td>1.80</td>
+									<td>${item.value.period}</td>
+									<td>${item.value.id_team}</td>
+									<td>${item.value.GP}</td>
+									<td>${item.value.MIN}</td>
+									<td>${item.value.FGM}</td>
+									<td>${item.value.FGA}</td>
+									<td>${item.value.FG}</td>
+									<td>${item.value.PM2}</td>
+									<td>${item.value.PA2}</td>
+									<td>${item.value.p2}</td>
+									<td>${item.value.PM3}</td>
+									<td>${item.value.PA3}</td>
+									<td>${item.value.p3}</td>
+									<td>${item.value.FTM}</td>
+									<td>${item.value.FTA}</td>
+									<td>${item.value.FT}</td>
+									<td>${item.value.o_R}</td>
+									<td>${item.value.DR}</td>
+									<td>${item.value.TR}</td>
+									<td>${item.value.a_S}</td>
+									<td>${item.value.t_O}</td>
+									<td>${item.value.ST}</td>
+									<td>${item.value.BL}</td>
+									<td>${item.value.PF}</td>
+									<td>${item.value.EF}</td>
+									<td>${item.value.PTS}</td>
 								</tr>
+                                                                </c:forEach>
 							</table>
 						</div>
 						

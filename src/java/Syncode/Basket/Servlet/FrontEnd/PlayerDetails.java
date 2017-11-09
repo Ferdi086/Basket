@@ -35,8 +35,10 @@ public class PlayerDetails extends HttpServlet {
         PrintWriter out = response.getWriter();
         String ID = request.getParameter("ID_P");
         HashMap tr = dh.getPlayersDetails(ID);
+        HashMap tra = dh.getPlayerDetailStat(ID);
         request.setAttribute("player",tr);
-        //out.print(tr);
+        request.setAttribute("player_stat",tra);
+        //out.print(tra);
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }
 

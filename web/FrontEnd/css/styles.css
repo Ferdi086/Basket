@@ -190,7 +190,7 @@ color:black;
 }
 .game_stats{
 	margin: 3% auto;
-	padding: 0 5%;
+	padding: 0 3%;
 }
 .game_stats select{
 	font-size:15px;
@@ -229,4 +229,7 @@ color:black;
 .a_det_isi{
 	text-align: justify;
 	font-size:16px;
+}
+.tbl_general tr td, .tbl_general tr th{
+    font-size:1em !important;
 }
