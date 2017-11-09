@@ -167,78 +167,145 @@
 
 <div class="game_stats">
 	<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#home">  <b>STATS</b></a></li>
+					<li class="active"><a data-toggle="tab" href="#menu01">  <b>STATS</b></a></li>
 					<li><a data-toggle="tab" href="#menu1">  <b>GAMELOG</b></a></li>
   	</ul>
 				
 				  <div class="tab-content">
-					<div class="tab-pane fade in active">
-						<h3 style="margin:3% 0">REGULAR</h3>
-						<div class="tbl_general table-responsive">
-							<table class="table table-bordered table-striped">
-								<tr class="tr_general">
-									<th>YEAR</th>
-									<th>TEAM</th>
-									<th>GP</th>
-									<th>MIN</th>
-									<th>FGM</th>
-									<th>FGA</th>
-									<th>FG%</th>
-									<th>2PM</th>
-									<th>2PA</th>
-									<th>2P%</th>
-									<th>3PM</th>
-									<th>3PA</th>
-									<th>3P%</th>
-									<th>FTM</th>
-									<th>FTA</th>
-									<th>FT%</th>
-									<th>OR</th>
-									<th>DR</th>
-									<th>TR</th>
-									<th>AS</th>
-									<th>TO</th>
-									<th>ST</th>
-									<th>BL</th>
-									<th>PF</th>
-									<th>EF</th>
-									<th>PTS</th>
-								</tr>
-                                                                
-                                                                <c:forEach var="item" items="${requestScope.player_stat}">
-								<tr>
-									<td>${item.value.period}</td>
-									<td>${item.value.id_team}</td>
-									<td>${item.value.GP}</td>
-									<td>${item.value.MIN}</td>
-									<td>${item.value.FGM}</td>
-									<td>${item.value.FGA}</td>
-									<td>${item.value.FG}</td>
-									<td>${item.value.PM2}</td>
-									<td>${item.value.PA2}</td>
-									<td>${item.value.p2}</td>
-									<td>${item.value.PM3}</td>
-									<td>${item.value.PA3}</td>
-									<td>${item.value.p3}</td>
-									<td>${item.value.FTM}</td>
-									<td>${item.value.FTA}</td>
-									<td>${item.value.FT}</td>
-									<td>${item.value.o_R}</td>
-									<td>${item.value.DR}</td>
-									<td>${item.value.TR}</td>
-									<td>${item.value.a_S}</td>
-									<td>${item.value.t_O}</td>
-									<td>${item.value.ST}</td>
-									<td>${item.value.BL}</td>
-									<td>${item.value.PF}</td>
-									<td>${item.value.EF}</td>
-									<td>${item.value.PTS}</td>
-								</tr>
-                                                                </c:forEach>
-							</table>
-						</div>
+					<div id="menu01" class="tab-pane fade in active">
+                                            
+                                                    <h3 style="margin:3% 0 1% 0">REGULAR</h3>
+                                                    <div class="tbl_general table-responsive">
+                                                            <table class="table table-bordered table-striped">
+                                                                    <tr class="tr_general">
+                                                                            <th>YEAR</th>
+                                                                            <th>TEAM</th>
+                                                                            <th>GP</th>
+                                                                            <th>MIN</th>
+                                                                            <th>FGM</th>
+                                                                            <th>FGA</th>
+                                                                            <th>FG%</th>
+                                                                            <th>2PM</th>
+                                                                            <th>2PA</th>
+                                                                            <th>2P%</th>
+                                                                            <th>3PM</th>
+                                                                            <th>3PA</th>
+                                                                            <th>3P%</th>
+                                                                            <th>FTM</th>
+                                                                            <th>FTA</th>
+                                                                            <th>FT%</th>
+                                                                            <th>OR</th>
+                                                                            <th>DR</th>
+                                                                            <th>TR</th>
+                                                                            <th>AS</th>
+                                                                            <th>TO</th>
+                                                                            <th>ST</th>
+                                                                            <th>BL</th>
+                                                                            <th>PF</th>
+                                                                            <th>EF</th>
+                                                                            <th>PTS</th>
+                                                                    </tr>
+
+                                                                    <c:forEach var="item" items="${requestScope.player_stat}">
+                                                                    <tr>
+                                                                            <td>${item.value.period}</td>
+                                                                            <td>${item.value.id_team}</td>
+                                                                            <td>${item.value.GP}</td>
+                                                                            <td>${item.value.MIN}</td>
+                                                                            <td>${item.value.FGM}</td>
+                                                                            <td>${item.value.FGA}</td>
+                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.PM2}</td>
+                                                                            <td>${item.value.PA2}</td>
+                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.PM3}</td>
+                                                                            <td>${item.value.PA3}</td>
+                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.FTM}</td>
+                                                                            <td>${item.value.FTA}</td>
+                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.o_R}</td>
+                                                                            <td>${item.value.DR}</td>
+                                                                            <td>${item.value.TR}</td>
+                                                                            <td>${item.value.a_S}</td>
+                                                                            <td>${item.value.t_O}</td>
+                                                                            <td>${item.value.ST}</td>
+                                                                            <td>${item.value.BL}</td>
+                                                                            <td>${item.value.PF}</td>
+                                                                            <td>${item.value.EF}</td>
+                                                                            <td>${item.value.PTS}</td>
+                                                                    </tr>
+                                                                    </c:forEach>
+                                                            </table>
+                                                    </div>
+                                                    
+                                                    <h3 style="margin:3% 0 1% 0">PLAYOFF</h3>
+                                                    <div class="tbl_general table-responsive">
+                                                            <table class="table table-bordered table-striped">
+                                                                    <tr class="tr_general">
+                                                                            <th>YEAR</th>
+                                                                            <th>TEAM</th>
+                                                                            <th>GP</th>
+                                                                            <th>MIN</th>
+                                                                            <th>FGM</th>
+                                                                            <th>FGA</th>
+                                                                            <th>FG%</th>
+                                                                            <th>2PM</th>
+                                                                            <th>2PA</th>
+                                                                            <th>2P%</th>
+                                                                            <th>3PM</th>
+                                                                            <th>3PA</th>
+                                                                            <th>3P%</th>
+                                                                            <th>FTM</th>
+                                                                            <th>FTA</th>
+                                                                            <th>FT%</th>
+                                                                            <th>OR</th>
+                                                                            <th>DR</th>
+                                                                            <th>TR</th>
+                                                                            <th>AS</th>
+                                                                            <th>TO</th>
+                                                                            <th>ST</th>
+                                                                            <th>BL</th>
+                                                                            <th>PF</th>
+                                                                            <th>EF</th>
+                                                                            <th>PTS</th>
+                                                                    </tr>
+
+                                                                    <c:forEach var="item" items="${requestScope.player_stat2}">
+                                                                    <tr>
+                                                                            <td>${item.value.period}</td>
+                                                                            <td>${item.value.id_team}</td>
+                                                                            <td>${item.value.GP}</td>
+                                                                            <td>${item.value.MIN}</td>
+                                                                            <td>${item.value.FGM}</td>
+                                                                            <td>${item.value.FGA}</td>
+                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.PM2}</td>
+                                                                            <td>${item.value.PA2}</td>
+                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.PM3}</td>
+                                                                            <td>${item.value.PA3}</td>
+                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.FTM}</td>
+                                                                            <td>${item.value.FTA}</td>
+                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.o_R}</td>
+                                                                            <td>${item.value.DR}</td>
+                                                                            <td>${item.value.TR}</td>
+                                                                            <td>${item.value.a_S}</td>
+                                                                            <td>${item.value.t_O}</td>
+                                                                            <td>${item.value.ST}</td>
+                                                                            <td>${item.value.BL}</td>
+                                                                            <td>${item.value.PF}</td>
+                                                                            <td>${item.value.EF}</td>
+                                                                            <td>${item.value.PTS}</td>
+                                                                    </tr>
+                                                                    </c:forEach>
+                                                            </table>
+                                                    </div>
 						
 					</div>
+                                      
 					<div id="menu1" class="tab-pane fade">
 					
 						<div style='margin-top:10px'>
