@@ -36,9 +36,15 @@ public class TeamDetails extends HttpServlet {
         String ID = request.getParameter("ID_N");
         HashMap tr = dh.getTeamDetail(ID); 
         HashMap tr1 = dh.getPlayers(ID);
+        HashMap tr2 = dh.getTopPoint(ID);
+        HashMap tr3 = dh.getTopAssist(ID);
+        HashMap tr4 = dh.getTopRebound(ID);
         request.setAttribute("team",tr);
         request.setAttribute("player",tr1);
-        //out.print(tr1);
+        request.setAttribute("tp",tr2);
+        request.setAttribute("ta",tr3);
+        request.setAttribute("tr",tr4);
+        //out.print(tr2);
         request.getRequestDispatcher("team_detail.jsp").forward(request, response);
     }
 
