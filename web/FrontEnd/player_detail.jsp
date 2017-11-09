@@ -177,9 +177,8 @@
 						<div class="tbl_general table-responsive">
 							<table class="table table-bordered table-striped">
 								<tr class="tr_general">
-									<th>NO</th>
-									<th>PLAYER</th>
-									<th>Pos</th>
+									<th>YEAR</th>
+									<th>TEAM</th>
 									<th>GP</th>
 									<th>MIN</th>
 									<th>FGM</th>
@@ -201,6 +200,7 @@
 									<th>TO</th>
 									<th>ST</th>
 									<th>BL</th>
+									<th>PF</th>
 									<th>EF</th>
 									<th>PTS</th>
 								</tr>
