@@ -45,10 +45,12 @@ public class Player extends HttpServlet {
             
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();
-          //out.println(pos);
+            HashMap pl = dh.getPlayer();
+            out.println(pl);
+            request.setAttribute("player", pl);
             request.setAttribute("team",tm);
             request.setAttribute("posisi",pos);
-                    request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
+            //request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
                   
     }
 

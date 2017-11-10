@@ -247,17 +247,17 @@
                 <li> 
                     <a href="Team" >
 			<img class="icon" src="../img/package.png">
-			<span class='text'>Team</span>
+			<span class="text">Team</span>
                     </a>
                 </li> 
-                <li class=”dropdown”>
+                <li class="dropdown">
                     <div class="hv">
-                    <a href="Statistic" class=”dropdown-toggle” data-toggle=”dropdown”><img class="icon" src="../img/Book-Open.png"></a>
-                    <span class='text' id="Book">Statistic<span class="caret"></span></span>
+                    <a href="Statistic" class="dropdown-toggle" data-toggle="dropdown"><img class="icon" src="../img/Book-Open.png"></a>
+                    <span class="text" id="Book">Statistic<span class="caret"></span></span>
                     </div>
-                    <ul class=”dropdown-menu” id="sub">
-                        <li><a href="StatisticPlayer">Player</a></li>
-                        <li><a href="StatisticTeam">Team</a></li> 
+                    <ul class="dropdown-menu" id="sub">
+                        <li><a href="StatistikPlayer">Player</a></li>
+                        <li><a href="StatistikTeam">Team</a></li> 
                     </ul>
                 </li> 
                 <li class="btn-menu">
@@ -290,7 +290,7 @@
                                         <select  name="team" class="form-control" id="team">
                                             <option value=""> Choose One Team </option>
                                             <c:forEach var="item" items="${requestScope.team}">
-                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.team} </option>
+                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.nama_team} </option>
                                             </c:forEach>
                                         </select>
                                     </div>                                  
@@ -367,26 +367,45 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-url="../BackEnd/DataPlayer" 
-                           data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]" data-show-refresh="true">
-                        <thead bgcolor="#005960" style="color:white">
+                    <table id="player" class="table table-condensed table-striped">
+                        <thead>
                             <tr style="font-size:18px;">
-                                <th data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
-                                <th data-align="center" data-valign="middle" data-field="Id_Pemain" ><b><center>Id Pemain</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="Nama_Pemain"><b><center>Nama Pemain</center><b></th>            
-                                <th data-align="center" data-valign="middle" data-field="Tgl"><b><center>Tanggal Lahir</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="Tinggi"><b><center>Tinggi</center></b></th>
-                                <th data-align="center" data-valign="middle" data-field="Berat"><b><center>Berat</center></b></th>
-                                <th data-align="center" data-valign="middle" data-field="Pos"><b><center>Posisi</center></b></th>
-                                <th data-align="center" data-valign="middle" data-field="Team"><b><center>Team</center><b></th>  
-                                <th data-align="center" data-valign="middle" data-field="No_Punggung"><b><center>No Punggung</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="Foto" ><b><center>Foto</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Nama Pemain</center><b></th>            
+                                <th data-align="center" data-valign="middle"><b><center>Tanggal Lahir</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Tinggi</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Berat</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Posisi</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Team</center><b></th>  
+                                <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Logo</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
-                        </thead>                              
-                    </table>          
+                            </thead>
+                             
+                            <c:forEach var="item" varStatus="loopCounter" items="${requestScope.player}">
+                                    <tr>
+                                    <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.idpemain}</td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.namapemain} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.tgl} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.tinggi} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.berat} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.pos} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.namaPos} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.id_Team} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.team} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.noPunggung} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.logo} </td>
+                                    <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${item.value.foto}" width="80px" height="80px"/> </td>
+                                    <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></button></td>
+                                    </tr>
+                            </c:forEach>
+                    </table>        
                     <div style='margin-top: 60px;'>
-                       ${requestScope.footer}  
+                        ${requestScope.player}
                         </div>
                 </div>    
                 

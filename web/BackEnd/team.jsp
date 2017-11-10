@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -286,7 +287,7 @@
                                    
                                     <label class="control-label col-sm-2">Team NickName</label>
                                     <div class="col-sm-3">
-                                        <input id="nick" type="text" name="nick"  class="form-control" required/>
+                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required/>
                                     </div>                                  
                                 </div>	
                             <div class="form-group">
@@ -325,18 +326,35 @@
                     </div>
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
-                    <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-url="../BackEnd/DataPlayer" 
-                           data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]" data-show-refresh="true">
-                        <thead bgcolor="#005960" style="color:white">
+                    <center><h2><b>Team List</b></h2></center>
+                    <table id="player" class="table table-striped">
+                        <thead>
                             <tr style="font-size:18px;">
-                                <th data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
-                                <th data-align="center" data-valign="middle" data-field="Nick" ><b><center>NickName Team</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="Nama_Team"><b><center>Nama Team</center><b></th>            
-                                <th data-align="center" data-valign="middle" data-field="Logo"><b><center>Logo</center><b></th>
-                                <th data-align="center" data-valign="middle" data-field="Foto"><b><center>Team</center></b></th>
-                                 <th data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
+                                <th><b><center>No</center></b></th>
+                                <th><b><center>ID Team</center><b></th>
+                                <th><b><center>Nama Team</center><b></th>            
+                                <th><b><center>Logo</center><b></th>
+                                <th><b><center>Team</center></b></th>
+                                <th><b><center>Action</center></b></th>
                             </tr>
+                                
+                                <c:forEach var="item" varStatus="loopCounter" items="${requestScope.Team}">
+                                     <c:set var="id" value="${item.value.id}"/>
+                                    <c:set var="nama_team" value="${item.value.nama_team}"/>
+                                    <c:set var="logo" value="${item.value.logo}"/>
+                                    <c:set var="gambar" value="${item.value.gambar}"/>
+                                    <tr>
+                                    <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.id}</td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.nama_team} </td>
+                                    <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${item.value.logo}" width="80px" height="80px"/> </td>
+                                    <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${item.value.gambar}" width="80px" height="80px"/> </td>
+                                    <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
+                                           role="button" onclick="Update('${id}','${nama_team}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
+                                           <c:if test="" > <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal">Disable</button>  </c:if> </td>
+                                    </tr>
+                                </c:forEach>
+                                    
                         </thead>                              
                     </table>          
                     <div style='margin-top: 60px;'>
@@ -385,6 +403,104 @@
         </div>
     </div>
     <!-- End Modal Validasi Input-->
+    
+    <!-- Modal Update -->
+    <div class="modal" id="updateModal" role="dialog">
+        <div class="modal-dialog" style="margin-top:118px;width:75%" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><center>Form Perubahan Team</center></h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="doUpdateTeam" id="formUpdate" enctype="multipart/form-data">
+                        <div class="form-group ">
+                            <label class="control-label col-sm-2">Id Team</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="id" id="UpdateId" class="form-control">
+                            </div>  
+                            <label class="control-label col-sm-2">Nama Team</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="nama" id="UpdateNama" class="form-control">
+                            </div>  
+                        </div>
+                        <div class="form-group">
+                                   <label class="control-label col-sm-2">Team's Logo</label>
+                                   <div class="col-sm-3">
+                                       <input id="UpdateLogo" type="file" name="logo"  onchange="readlogoupdate(this);" required/>
+                                   </div>
+                                   <label class="control-label col-sm-2">Team's Foto</label>
+                                   <div class="col-sm-3">
+                                       <input id="UpdateFoto" type="file" name="foto"  onchange="readfotoupdate(this);" required/>
+                                   </div>
+                            </div>	
+                            <div class="form-group">
+                                   <label class="col-sm-2 control-label">Preview Logo</label>
+                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
+                                        <img id="previewlogoupdate" style="margin-left:-15px"/>
+                                    </div>
+                                   <label class="col-sm-2 col-sm-offset-1 control-label">Preview Foto</label>
+                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
+                                        <img id="previewfotoupdate" style="margin-left:-15px"/>
+                                    </div>
+                            </div>
+                    </form>
+                    <script>
+                        
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#KonfirmasiUpdate"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Update -->
+    <!-- Modal Konfirmasi Update-->
+    <div id="KonfirmasiUpdate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ID_Team"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="ubah()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Update-->	
+    <!-- Modal Konfirmasi Nonaktif-->
+    <div id="KonfirmasiNonaktif" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation Nonactive</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ID_Team"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="nonaktif()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Nonaktif-->	
     </body>
     <script>
         $(document).ready(function(){ 
@@ -446,6 +562,15 @@
                 }
             });
         });
+        function cekUpdate(){           
+            if($('#UpdateId').val()===""){   
+                return false;
+            }else if($('#UpdateNama').val()===""){
+                return false;
+            }else{
+                return true;
+            }
+        }
         function cekInput(){           
             if($('#nama').val()===""){   
                 return false;
@@ -467,6 +592,20 @@
                 $('#ValidasiInput').modal('show');     
             }           
         }
+        function ubah(){
+            if(cekUpdate()){ 
+                $('#formUpdate').submit();
+            }else{
+                $('#KonfirmasiUpdate').modal('hide');
+                $('#ValidasiInput').modal('show'); 
+            }  
+        }
+        function Update(id,nama_team,logo,gambar){
+            $('#UpdateId').val(id);
+            $('#UpdateNama').val(nama_team);
+            $('#previewlogoupdate').attr('src',"../img/Team/Logo/"+logo).width(135).height(140);
+            $('#previewfotoupdate').attr('src',"../img/Team/Foto/"+gambar).width(135).height(140);  
+        }
         function readlogo(input) {		
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -484,6 +623,30 @@
 			var reader = new FileReader();
 			reader.onload = function (e) {
 			$('#previewfoto')
+				.attr('src', e.target.result)
+				.width(135)
+				.height(140);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+        function readlogoupdate(input) {		
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+			$('#previewlogoupdate')
+				.attr('src', e.target.result)
+				.width(135)
+				.height(140);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+        function readfotoupdate(input) {		
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+			$('#previewfotoupdate')
 				.attr('src', e.target.result)
 				.width(135)
 				.height(140);

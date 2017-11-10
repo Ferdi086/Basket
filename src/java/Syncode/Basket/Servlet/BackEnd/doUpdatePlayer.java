@@ -29,7 +29,7 @@ public class doUpdatePlayer extends HttpServlet {
         private boolean isMultipart;
           private String filePath;
           private File file ;
-          private String[] extList = {"JPG","JPEG","PNG","GIF"};
+          private String[] extList = {"JPG","PNG"};
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

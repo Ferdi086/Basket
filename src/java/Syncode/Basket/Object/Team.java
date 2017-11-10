@@ -5,30 +5,32 @@
  */
 package Syncode.Basket.Object;
 
-import org.json.JSONObject;
+
 
 /**
  *
  * @author meiiko
  */
 public class Team {
-    private String Nick;
-    private String Nama_Team;
-    private String Logo;
-    private String Gambar;
-    private int No=0;
-    private JSONObject json = new JSONObject();
+    private String id;
+    private String nama_team;
+    private String logo;
+    private String gambar;
+    private String flagactive;
+   // private int No=0;
+    //private JSONObject json = new JSONObject();
 public Team(){
 }
    
-public Team(int No, String Nick, String Nama_Team, String Logo, String Gambar) {
-    this.Nick = Nick;
-    this.Nama_Team = Nama_Team;
-    this.Logo = Logo;
-    this.Gambar = Gambar;
-    this.No=No;
+public Team(String id, String nama_team, String logo, String gambar, String flagactive) {
+    this.id = id;
+    this.nama_team = nama_team;
+    this.logo = logo;
+    this.gambar = gambar;
+    this.flagactive=flagactive;
+    //this.No=No;
 }
-    public JSONObject toJson(){ 
+    /*public JSONObject toJson(){ 
          json.put("No",No);
          json.put("Nick",Nick);
          json.put("Nama_Team",Nama_Team);
@@ -44,47 +46,55 @@ public Team(int No, String Nick, String Nama_Team, String Logo, String Gambar) {
     public JSONObject getJson(){
         return json;
     }
-
+*/
     public String getNick() {
-        return Nick;
+        return id;
     }
 
     public void setNick(String Nick) {
-        this.Nick = Nick;
+        this.id = id;
     }
 
-    public String getNama_Team() {
-        return Nama_Team;
+    public String getId() {
+        return id;
     }
 
-    public void setNama_Team(String Nama_Team) {
-        this.Nama_Team = Nama_Team;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNama_team() {
+        return nama_team;
+    }
+
+    public void setNama_team(String nama_team) {
+        this.nama_team = nama_team;
     }
 
     public String getLogo() {
-        return Logo;
+        return logo;
     }
 
-    public void setLogo(String Logo) {
-        this.Logo = Logo;
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public String getGambar() {
-        return Gambar;
+        return gambar;
     }
 
-    public void setGambar(String Gambar) {
-        this.Gambar = Gambar;
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
     }
 
-    public int getNo() {
-        return No;
+    public String getFlagactive() {
+        return flagactive;
     }
 
-    public void setNo(int No) {
-        this.No = No;
+    public void setFlagactive(String flagactive) {
+        this.flagactive = flagactive;
     }
+
     
-   
-    
+
 }
