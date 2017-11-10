@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjPlayerFront;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ferdinand
+ * @author Yuga
  */
-public class PlayerDetails extends HttpServlet {
+public class PlayersByTeam extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,20 +32,35 @@ public class PlayerDetails extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("ID_P");
-        HashMap tr = dh.getPlayersDetails(ID);
-        HashMap tra = dh.getPlayerDetailStat(ID);
-        HashMap trb = dh.getPlayerDetailStat2(ID);
-        HashMap trc = dh.getPlayerDetailGL(ID);
-        request.setAttribute("player",tr);
-        request.setAttribute("player_stat",tra);
-        request.setAttribute("player_stat2",trb);
-        request.setAttribute("player_gl",trc);
-        request.setAttribute("id_pem",ID);
-        //out.print(tra);
-        request.getRequestDispatcher("player_detail.jsp").forward(request, response);
+        String id_team = request.getParameter("id_team")==null?"0":request.getParameter("id_team");
+        DatabaseHandler db=new DatabaseHandler();
+        String idd = "BPJ";
+        HashMap tr = db.getPlayersFront(id_team);
+        
+        response.setContentType("text/html;charset=UTF-8");
+            out.print("<div class='wthree_team_grids'>");
+            for(int i=0; i<tr.size();i++){
+                ObjPlayerFront pl = (ObjPlayerFront) tr.get(i);
+            out.println("   <div class=\"col-md-3 wthree_team_grid\">");
+            out.println("   <a href=\"PlayerDetails?ID_P="+pl.getIdPemain()+"\">");
+            out.println("   <div class=\"hovereffect\">");
+            out.println("       <img src=\"../img/Players/"+pl.getFoto()+"\" alt=\" \" class=\"img-responsive\" />");
+            out.println("       <div class=\"overlay\">");
+            out.println("           <h6>"+pl.getNamaPemain()+"</h6>");
+            out.println("       </div>");
+            out.println("   </a>");
+            out.println("   </div>");
+            out.println("   <h4>"+pl.getNamaPos()+"</h4>");
+            out.println("   <p>"+pl.getTinggi()+" cm</p>");
+            out.println("   </div>");
+            out.println("");
+            out.println("");
+            out.println("");
+            out.println("");
+            }
+            out.println("</div>");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

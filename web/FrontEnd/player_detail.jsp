@@ -37,6 +37,19 @@
 	.team{
 		padding-top:0;
 	}
+        .punggung{
+            background-image: url('../img/jersey2.png');
+            background-size:cover;
+            min-width: 70px;
+            min-height:80px;
+            color:white;
+            text-align:center;
+            margin-right:10%;
+        }
+        .punggung h2{
+            margin-top: 40%;
+            margin-left: 15%;
+        }
 </style>
 </head>
 <body>
@@ -54,7 +67,7 @@
 									function myFunction(x) {
 									    x.classList.toggle("change");
 									}
-								</script>
+                                                        </script>
 						</button>
 						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
 					</div>
@@ -70,7 +83,7 @@
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.jsp" class="hvr-underline-from-center"> 
+							<li><a href="Players" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
 							<li><a href="gallery.html" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-unchecked"> </span> Gallery</a>
@@ -105,7 +118,16 @@
 			</div>
 	</div>
 	<div class="col-lg-4 nama_p">
-		<h1>${item.value.namaPemain}</h1><br>
+                 <div class="pull-right punggung">
+                     <h2>
+                         <c:if test = "${item.value.noPunggung == NULL}">
+                             ?
+                         </c:if>
+                         ${item.value.noPunggung}
+                     </h2>
+                </div>
+		<h1>${item.value.namaPemain}</h1>
+                <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
 		<a href="#" style="color:black"><h3><img src="../img/Team/${item.value.logo}"/>${item.value.team}</h3></a>
 		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>
@@ -145,97 +167,166 @@
 
 <div class="game_stats">
 	<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#home">  <b>STATS</b></a></li>
+					<li class="active"><a data-toggle="tab" href="#menu01">  <b>STATS</b></a></li>
 					<li><a data-toggle="tab" href="#menu1">  <b>GAMELOG</b></a></li>
   	</ul>
 				
 				  <div class="tab-content">
-					<div id="home" class="tab-pane fade in active">
-						<h3 style="margin:3% 0">REGULAR</h3>
-						<div class="tbl_general table-responsive">
-							<table class="table table-bordered table-striped">
-								<tr class="tr_general">
-									<th>NO</th>
-									<th>PLAYER</th>
-									<th>Pos</th>
-									<th>GP</th>
-									<th>MIN</th>
-									<th>FGM</th>
-									<th>FGA</th>
-									<th>FG%</th>
-									<th>2PM</th>
-									<th>2PA</th>
-									<th>2P%</th>
-									<th>3PM</th>
-									<th>3PA</th>
-									<th>3P%</th>
-									<th>FTM</th>
-									<th>FTA</th>
-									<th>FT%</th>
-									<th>OR</th>
-									<th>DR</th>
-									<th>TR</th>
-									<th>AS</th>
-									<th>TO</th>
-									<th>ST</th>
-									<th>BL</th>
-									<th>EF</th>
-									<th>PTS</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>YO SUA</td>
-									<td>SF</td>
-									<td>5</td>
-									<td>5.94</td>
-									<td>0.60</td>
-									<td>1.80</td>
-									<td>33%</td>
-									<td>0.60</td>
-									<td>1.20</td>
-									<td>50%</td>
-									<td>0.00</td>
-									<td>0.60</td>
-									<td>0%</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>60%</td>
-									<td>0.40</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>0.20</td>
-									<td>0.80</td>
-									<td>0.20</td>
-									<td>0.00</td>
-									<td>6.00</td>
-									<td>1.80</td>
-								</tr>
-							</table>
-						</div>
+					<div id="menu01" class="tab-pane fade in active">
+                                            
+                                                    <h3 style="margin:3% 0 1% 0">REGULAR</h3>
+                                                    <div class="tbl_general table-responsive">
+                                                            <table class="table table-bordered table-striped">
+                                                                    <tr class="tr_general">
+                                                                            <th>YEAR</th>
+                                                                            <th>TEAM</th>
+                                                                            <th>GP</th>
+                                                                            <th>MIN</th>
+                                                                            <th>FGM</th>
+                                                                            <th>FGA</th>
+                                                                            <th>FG%</th>
+                                                                            <th>2PM</th>
+                                                                            <th>2PA</th>
+                                                                            <th>2P%</th>
+                                                                            <th>3PM</th>
+                                                                            <th>3PA</th>
+                                                                            <th>3P%</th>
+                                                                            <th>FTM</th>
+                                                                            <th>FTA</th>
+                                                                            <th>FT%</th>
+                                                                            <th>OR</th>
+                                                                            <th>DR</th>
+                                                                            <th>TR</th>
+                                                                            <th>AS</th>
+                                                                            <th>TO</th>
+                                                                            <th>ST</th>
+                                                                            <th>BL</th>
+                                                                            <th>PF</th>
+                                                                            <th>EF</th>
+                                                                            <th>PTS</th>
+                                                                    </tr>
+
+                                                                    <c:forEach var="item" items="${requestScope.player_stat}">
+                                                                    <tr>
+                                                                            <td>${item.value.period}</td>
+                                                                            <td>${item.value.id_team}</td>
+                                                                            <td>${item.value.GP}</td>
+                                                                            <td>${item.value.MIN}</td>
+                                                                            <td>${item.value.FGM}</td>
+                                                                            <td>${item.value.FGA}</td>
+                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.PM2}</td>
+                                                                            <td>${item.value.PA2}</td>
+                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.PM3}</td>
+                                                                            <td>${item.value.PA3}</td>
+                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.FTM}</td>
+                                                                            <td>${item.value.FTA}</td>
+                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.o_R}</td>
+                                                                            <td>${item.value.DR}</td>
+                                                                            <td>${item.value.TR}</td>
+                                                                            <td>${item.value.a_S}</td>
+                                                                            <td>${item.value.t_O}</td>
+                                                                            <td>${item.value.ST}</td>
+                                                                            <td>${item.value.BL}</td>
+                                                                            <td>${item.value.PF}</td>
+                                                                            <td>${item.value.EF}</td>
+                                                                            <td>${item.value.PTS}</td>
+                                                                    </tr>
+                                                                    </c:forEach>
+                                                            </table>
+                                                    </div>
+                                                    
+                                                    <h3 style="margin:3% 0 1% 0">PLAYOFF</h3>
+                                                    <div class="tbl_general table-responsive">
+                                                            <table class="table table-bordered table-striped">
+                                                                    <tr class="tr_general">
+                                                                            <th>YEAR</th>
+                                                                            <th>TEAM</th>
+                                                                            <th>GP</th>
+                                                                            <th>MIN</th>
+                                                                            <th>FGM</th>
+                                                                            <th>FGA</th>
+                                                                            <th>FG%</th>
+                                                                            <th>2PM</th>
+                                                                            <th>2PA</th>
+                                                                            <th>2P%</th>
+                                                                            <th>3PM</th>
+                                                                            <th>3PA</th>
+                                                                            <th>3P%</th>
+                                                                            <th>FTM</th>
+                                                                            <th>FTA</th>
+                                                                            <th>FT%</th>
+                                                                            <th>OR</th>
+                                                                            <th>DR</th>
+                                                                            <th>TR</th>
+                                                                            <th>AS</th>
+                                                                            <th>TO</th>
+                                                                            <th>ST</th>
+                                                                            <th>BL</th>
+                                                                            <th>PF</th>
+                                                                            <th>EF</th>
+                                                                            <th>PTS</th>
+                                                                    </tr>
+
+                                                                    <c:forEach var="item" items="${requestScope.player_stat2}">
+                                                                    <tr>
+                                                                            <td>${item.value.period}</td>
+                                                                            <td>${item.value.id_team}</td>
+                                                                            <td>${item.value.GP}</td>
+                                                                            <td>${item.value.MIN}</td>
+                                                                            <td>${item.value.FGM}</td>
+                                                                            <td>${item.value.FGA}</td>
+                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.PM2}</td>
+                                                                            <td>${item.value.PA2}</td>
+                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.PM3}</td>
+                                                                            <td>${item.value.PA3}</td>
+                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.FTM}</td>
+                                                                            <td>${item.value.FTA}</td>
+                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.o_R}</td>
+                                                                            <td>${item.value.DR}</td>
+                                                                            <td>${item.value.TR}</td>
+                                                                            <td>${item.value.a_S}</td>
+                                                                            <td>${item.value.t_O}</td>
+                                                                            <td>${item.value.ST}</td>
+                                                                            <td>${item.value.BL}</td>
+                                                                            <td>${item.value.PF}</td>
+                                                                            <td>${item.value.EF}</td>
+                                                                            <td>${item.value.PTS}</td>
+                                                                    </tr>
+                                                                    </c:forEach>
+                                                            </table>
+                                                    </div>
 						
 					</div>
+                                      
 					<div id="menu1" class="tab-pane fade">
 					
 						<div style='margin-top:10px'>
 						  <form>
+                                                        <input type="text" value="${requestScope.id_pem}" class="hidden id_hide"/>
 							<label class='form-group'>Search By Season : </label>
-							<select name='kat_lok' class='form-group' id='lok'>
-								<option value=''>IBL REGULAR SEASON 2017</option>
-								<option value=''>IBL REGULAR SEASON 2015 - 2016</option>
-								<option value=''>CHAMPIONSHIP PRESEASON 2015</option>
-								<option value=''>IBL PRESEASON 2015</option>
+							<select name='' class='form-group' id='se_season'>
+                                                            <option value=""> ------- Choose One ------- </option>
+                                                            <c:forEach var="item" items="${requestScope.player_gl}">
+								<option value='${item.value.id_m}'>${item.value.nama_m}</option>
+                                                            </c:forEach>
 							</select>
 						  </form>
 						</div>
 
-						<div class="tbl_general table-responsive">
-							<table class="table table-bordered table-striped">
+						<div class="tbl_general table-responsive bungkus_season">
+							<table class="table table-bordered table-striped tb_season">
 								<tr class="tr_general">
-									<th>NO</th>
-									<th>PLAYER</th>
-									<th>Pos</th>
-									<th>GP</th>
-									<th>MIN</th>
+									<th>MATCH</th>
+									<th>W/L</th>
+                                                                        <th>MIN</th>
 									<th>FGM</th>
 									<th>FGA</th>
 									<th>FG%</th>
@@ -255,36 +346,9 @@
 									<th>TO</th>
 									<th>ST</th>
 									<th>BL</th>
+									<th>PF</th>
 									<th>EF</th>
 									<th>PTS</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Rizky Alfian</td>
-									<td>SF</td>
-									<td>5</td>
-									<td>5.94</td>
-									<td>0.60</td>
-									<td>1.80</td>
-									<td>33%</td>
-									<td>0.60</td>
-									<td>1.20</td>
-									<td>50%</td>
-									<td>0.00</td>
-									<td>0.60</td>
-									<td>0%</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>60%</td>
-									<td>0.40</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>0.20</td>
-									<td>0.80</td>
-									<td>0.20</td>
-									<td>0.00</td>
-									<td>6.00</td>
-									<td>1.80</td>
 								</tr>
 							</table>
 						</div>
@@ -297,6 +361,25 @@
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
-
+        <script>
+            $('#se_season').change(function(){
+                $('.tb_season').remove();
+                var id_m = $(this).val();
+                var id_p = $('.id_hide').val();
+                $.ajax({
+                    type : 'POST',
+                    url : 'PlayersBySeason',
+                    data: {
+                        'id_m': id_m,
+                        'id_p': id_p
+                    },
+                    beforeSend: function(){
+                    },
+                    success: function(data){
+                        $('.bungkus_season').append(data);      
+                    }
+                });
+            });
+        </script>
 </body>
 </html>

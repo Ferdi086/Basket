@@ -5,8 +5,10 @@
  */
 package Syncode.Basket.Servlet.FrontEnd;
 
+import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,11 @@ public class Players extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DatabaseHandler dh = new DatabaseHandler();
+        String a = "A";
+        HashMap tr = dh.getPlayersByName(a);
+        request.setAttribute("player", tr);
+        request.setAttribute("abc",a);
         request.getRequestDispatcher("player.jsp").forward(request, response);
     }
 

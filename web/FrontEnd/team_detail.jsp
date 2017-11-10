@@ -109,7 +109,7 @@ h2 span {
 </div>
 <center>
 	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-		<img src="images/team/${item.value.gambar}" class="img-responsive" width="200px" height="200px"/>
+		<img src="../img/Team/${item.value.gambar}" class="img-responsive" width="200px" height="200px"/>
 	</div>
 </center>
 
@@ -120,84 +120,55 @@ h2 span {
 <div class="row team_stats2">
 	<div class="col-lg-3 col-md-5 col-sm-5 top_point">
 		<h4>TOP POINTS</h4>
+                <c:forEach var = "item" items = "${requestScope.tp}">
 		<div class="kotak_team">
 			<div class="kotak_team_isi">
-				<img src="images/team2.jpg" class="img-circle"/>
+				<img src="../img/Players/${item.value.foto}" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi">
-				<h5>David Beckam</h5>
-				<p>CF</p>
+				<h5>${item.value.namaPemain}</h5>
+				<p>${item.value.pos}</p>
 			</div>
 			<div class="kotak_team_isi pull-right">
-				<h5 style="margin:3px 4px 0 0">25.55</h5>
+				<h5 style="margin:3px 4px 0 0">${item.value.point}</h5>
 			</div>
 		</div>
-		<div class="kotak_team">
-			<div class="kotak_team_isi">
-				<img src="images/team2.jpg" class="img-circle"/>
-			</div>
-			<div class="kotak_team_isi">
-				<h5>David Beckam</h5>
-				<p>CF</p>
-			</div>
-			<div class="kotak_team_isi pull-right">
-				<h5 style="margin:3px 4px 0 0">25.55</h5>
-			</div>
-		</div>
+                </c:forEach>
+		
 	</div>
 	<div class="col-lg-3 col-md-5 col-sm-5 top_point">
 		<h4>TOP ASSISTS</h4>
+		<c:forEach var = "item" items = "${requestScope.ta}">
 		<div class="kotak_team">
 			<div class="kotak_team_isi">
-				<img src="images/team2.jpg" class="img-circle"/>
+				<img src="../img/Players/${item.value.foto}" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi">
-				<h5>David Beckam</h5>
-				<p>CF</p>
+				<h5>${item.value.namaPemain}</h5>
+				<p>${item.value.pos}</p>
 			</div>
 			<div class="kotak_team_isi pull-right">
-				<h5 style="margin:3px 4px 0 0">25.55</h5>
+				<h5 style="margin:3px 4px 0 0">${item.value.point}</h5>
 			</div>
 		</div>
-		<div class="kotak_team">
-			<div class="kotak_team_isi">
-				<img src="images/team2.jpg" class="img-circle"/>
-			</div>
-			<div class="kotak_team_isi">
-				<h5>David Beckam</h5>
-				<p>CF</p>
-			</div>
-			<div class="kotak_team_isi pull-right">
-				<h5 style="margin:3px 4px 0 0">25.55</h5>
-			</div>
-		</div>
+                </c:forEach>
 	</div>
 	<div class="col-lg-3 col-md-5 col-sm-5 top_point">
 		<h4>TOP REBOUNDS</h4>
+		<c:forEach var = "item" items = "${requestScope.tr}">
 		<div class="kotak_team">
 			<div class="kotak_team_isi">
-				<img src="images/team2.jpg" class="img-circle"/>
+				<img src="../img/Players/${item.value.foto}" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi">
-				<h5>David Beckam</h5>
-				<p>CF</p>
+				<h5>${item.value.namaPemain}</h5>
+				<p>${item.value.pos}</p>
 			</div>
 			<div class="kotak_team_isi pull-right">
-				<h5 style="margin:3px 4px 0 0">25.55</h5>
+				<h5 style="margin:3px 4px 0 0">${item.value.point}</h5>
 			</div>
 		</div>
-		<div class="kotak_team">
-			<div class="kotak_team_isi">
-				<img src="images/team2.jpg" class="img-circle"/>
-			</div>
-			<div class="kotak_team_isi">
-				<h5>David Beckam</h5>
-				<p>CF</p>
-			</div>
-			<div class="kotak_team_isi pull-right">
-				<h5 style="margin:3px 4px 0 0">25.55</h5>
-			</div>
-		</div>
+                </c:forEach>
 	</div>
 </div>
 <div class="general_stats">

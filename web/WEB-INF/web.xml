@@ -65,6 +65,22 @@
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayerDetails</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>PlayersByName</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByName</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersByTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByTeam</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersByPos</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByPos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersByNameLike</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersByNameLike</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>StatistikPlayer</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.StatistikPlayer</servlet-class>
     </servlet>
@@ -75,6 +91,10 @@
     <servlet>
         <servlet-name>doInsertStatikPlayer</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertStatikPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayersBySeason</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersBySeason</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Musim</servlet-name>
@@ -169,6 +189,22 @@
         <url-pattern>/FrontEnd/PlayerDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>PlayersByName</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByName</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByTeam</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByPos</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByPos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayersByNameLike</servlet-name>
+        <url-pattern>/FrontEnd/PlayersByNameLike</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>StatistikPlayer</servlet-name>
         <url-pattern>/BackEnd/StatistikPlayer</url-pattern>
     </servlet-mapping>
@@ -181,6 +217,10 @@
         <url-pattern>/BackEnd/doInsertStatikPlayer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>PlayersBySeason</servlet-name>
+        <url-pattern>/FrontEnd/PlayersBySeason</url-pattern>
+    </servlet-mapping> 
+    <servlet-mapping>   
         <servlet-name>Musim</servlet-name>
         <url-pattern>/BackEnd/Musim</url-pattern>
     </servlet-mapping>

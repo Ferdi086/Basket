@@ -2569,6 +2569,13 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
 	.icon-box {
 		padding: 8px 0px;
 	}
+        .se_team{
+            margin-top: 2% !important;
+        }
+        .se_team, .se_name , .se_pos{
+            margin-left: 5% !important;
+            margin-right: 10% !important;
+        }
 }
 @media(max-width: 1050px){
 	.navbar-header h1 a {
