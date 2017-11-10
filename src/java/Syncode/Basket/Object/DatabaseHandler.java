@@ -22,7 +22,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+              tr.put(j++,new Team(++j,rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
               
             }
         } catch (SQLException ex) {
@@ -71,7 +71,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+              tr.put(j++,new Team(++j,rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
               
             }
         } catch (SQLException ex) {
@@ -97,7 +97,7 @@ public class DatabaseHandler extends Connect {
     }
     public boolean setMsPemain (String name,String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto){
         try {         
-                String query = "INSERT INTO MsPemain1 (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+id_team+"',"
+                String query = "INSERT INTO MsPemain (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+id_team+"',"
                         + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
@@ -107,6 +107,7 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
+    
     public boolean setMsTeam(String nick, String nama_team, String logo, String gambar_team){
         try {         
                 String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+logo+"','"+gambar_team+"')";
@@ -184,6 +185,22 @@ public class DatabaseHandler extends Connect {
             rs = ps.executeQuery();
             while(rs.next()){
                 ObjPlayer obj = new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12));
+                hm.put(obj.toJson());
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return hm;
+    }
+    public JSONArray getDataTeam(){
+        JSONArray hm = new JSONArray();
+        try{
+            int i = 1;
+            String query = "select ID_Team,Nama_Team,Logo,Gambar from MsTeam"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Team obj = new Team(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 hm.put(obj.toJson());
             }
         }catch (SQLException ex) {

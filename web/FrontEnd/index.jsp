@@ -279,7 +279,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-5 col-sm-6">
-				<img src="../img/Team/PJE.png"/>
+				<img src="../img/Logo/PJE.png"/>
 				<div class="progress progress-striped active">
 				  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
 				  </div>
@@ -287,7 +287,7 @@
 				<h3>45</h3>
 			</div>
 			<div class="col-md-5 col-md-offset-2 col-sm-6">
-				<img src="../img/Team/SWS.png"/>
+				<img src="../img/Logo/SWS.png"/>
 				<div class="progress progress-striped active">
 				  <div class="progress-bar"  role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
 				  </div>

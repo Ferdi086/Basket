@@ -49,6 +49,10 @@
         <servlet-class>Syncode.Basket.Data.DataPlayer</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DataTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Data.DataTeam</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TeamDetails</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.TeamDetails</servlet-class>
     </servlet>
@@ -71,6 +75,10 @@
     <servlet>
         <servlet-name>doInsertStatikPlayer</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertStatikPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Musim</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.Musim</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
@@ -104,6 +112,10 @@
         <servlet-name>DataPlayer</servlet-name>
         <url-pattern>/BackEnd/DataPlayer</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DataTeam</servlet-name>
+        <url-pattern>/BackEnd/DataTeam</url-pattern>
+    </servlet-mapping>
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload-foto</param-name>
@@ -116,6 +128,20 @@
         <param-name>file-upload-excel</param-name>
         <param-value>
          C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\Statistik\Players\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-foto-logo</param-name>
+        <param-value>
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Team\Logo\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-foto-team</param-name>
+        <param-value>
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Team\Foto\
       </param-value>
     </context-param>
     <servlet-mapping>
@@ -153,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>doInsertStatikPlayer</servlet-name>
         <url-pattern>/BackEnd/doInsertStatikPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Musim</servlet-name>
+        <url-pattern>/BackEnd/Musim</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

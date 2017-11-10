@@ -198,8 +198,15 @@
                 #sub li{
                     margin-bottom:10%;
                 }
-                
-                    
+                .msg{
+                        padding: 0;
+                        border-radius:0;
+                        margin-bottom: 0;
+                        text-align: center;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor:pointer;
+                }
                 .hv:hover{
                     opacity:0.6;
                     cursor:pointer;
@@ -259,30 +266,49 @@
             </ul>
         </div>
 	<div style="height:49px;"></div>
+        <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
+        <script>
+            $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
+            $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
+        </script> 
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Player</b></h2></center>
+                    <center><h2 style="margin-bottom:40px;"><b>Team</b></h2></center>
            
-			<form class="form-horizontal" method="post" action="doInsertTeam" id="formInput" enctype = "multipart/form-data">
+			<form class="form-horizontal" method="post" action="doInsertTeam" id="InputTeam" enctype = "multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team Name</label>
                                     <div class="col-sm-3">
-                                        <input id="pemain" type="text" name="nama_team" class="form-control" required/>
+                                        <input id="nama" type="text" name="nama_team" class="form-control" required/>
                                     </div>
                                    
                                     <label class="control-label col-sm-2">Team NickName</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="nick" id="nick" class="form-control" required/>
+                                        <input id="nick" type="text" name="nick"  class="form-control" required/>
                                     </div>                                  
                                 </div>	
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Team's Logo</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="logo" required/>
+                                       <input id="logo" type="file" name="logo" multiple onchange="readlogo(this);" required/>
+                                   </div>
+                                   <label class="control-label col-sm-2">Team's Foto</label>
+                                   <div class="col-sm-3">
+                                       <input id="foto" type="file" name="foto"  onchange="readfoto(this);" required/>
                                    </div>
                             </div>	
+                            <div class="form-group">
+                                   <label class="col-sm-2 control-label">Preview Logo</label>
+                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
+                                        <img id="previewlogo" style="margin-left:-15px"/>
+                                    </div>
+                                   <label class="col-sm-2 col-sm-offset-1 control-label">Preview Foto</label>
+                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
+                                        <img id="previewfoto" style="margin-left:-15px"/>
+                                    </div>
+                            </div>
                             </form>                                        
 				</div>	     
                                 <br/>
@@ -297,11 +323,68 @@
                                 </div>
 			
                     </div>
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
+                    <hr/>
+                    <center><h2><b>Player List</b></h2></center>
+                    <table id="player" class="table table-condensed table-striped" data-url="../BackEnd/DataPlayer" 
+                           data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]" data-show-refresh="true">
+                        <thead bgcolor="#005960" style="color:white">
+                            <tr style="font-size:18px;">
+                                <th data-align="center" data-valign="middle" data-field="No"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle" data-field="Nick" ><b><center>NickName Team</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="Nama_Team"><b><center>Nama Team</center><b></th>            
+                                <th data-align="center" data-valign="middle" data-field="Logo"><b><center>Logo</center><b></th>
+                                <th data-align="center" data-valign="middle" data-field="Foto"><b><center>Team</center></b></th>
+                                 <th data-align="center" data-valign="middle" data-field="action"><b><center>Action</center></b></th>
+                            </tr>
+                        </thead>                              
+                    </table>          
+                    <div style='margin-top: 60px;'>
+                       ${requestScope.footer}  
+                        </div>
+                </div>    
 		</div>
                 
                     
             </div>
-        
+        <!-- Modal Konfirmasi Input-->
+    <div id="KonfirmasiInput" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="input()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Input-->
+    
+    <!-- Modal Validasi Input-->
+    <div id="ValidasiInput" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size:24px;color:red;font-weight:bold;text-align:center;">Please Complete All of Your Field First!</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" data-dismiss="modal" aria-hidden="true">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Validasi Input-->
     </body>
     <script>
         $(document).ready(function(){ 
@@ -363,6 +446,51 @@
                 }
             });
         });
+        function cekInput(){           
+            if($('#nama').val()===""){   
+                return false;
+            }else if($('#nick').val()===""){
+                return false;
+            }else if($('#logo').val()===""){
+                return false;
+            }else if($('#foto').val()===""){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        function input(){
+            if(cekInput()){
+                $('#InputTeam').submit();
+            }else{                
+                $('#KonfirmasiInput').modal('hide');
+                $('#ValidasiInput').modal('show');     
+            }           
+        }
+        function readlogo(input) {		
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+			$('#previewlogo')
+				.attr('src', e.target.result)
+				.width(135)
+				.height(140);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+        function readfoto(input) {		
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+			$('#previewfoto')
+				.attr('src', e.target.result)
+				.width(135)
+				.height(140);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
     </script>
 </html>
 

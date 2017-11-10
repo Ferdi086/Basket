@@ -28,8 +28,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class doInsertTeam extends HttpServlet {
           private boolean isMultipart;
           private String filePath;
+          private String filePath2;
           private File file ;
-          private String[] extList = {"JPG","JPEG","PNG","GIF"};
+          private String[] extList = {"jpg","jpeg","png"};
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +42,8 @@ public class doInsertTeam extends HttpServlet {
      */
         public void init( ){
     // Get the file location where it would be stored.
-    filePath = getServletContext().getInitParameter("file-upload-foto-team"); 
+    filePath = getServletContext().getInitParameter("file-upload-foto-team");
+    filePath2 = getServletContext().getInitParameter("file-upload-foto-logo");
    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,7 +80,7 @@ public class doInsertTeam extends HttpServlet {
         String ext = "";
         String keterangan = "";
         String Exten = "";
-        String foto = "";
+         int ini ;
        // int u = 1;
          while ( i.hasNext () ) {
                   
@@ -87,37 +89,38 @@ public class doInsertTeam extends HttpServlet {
                // Get the uploaded file parameters
                FileItem namaitem = (FileItem) fileItems.get(0);
                String nama = namaitem.getString().trim();
-               FileItem id_teamitem = (FileItem) fileItems.get(1);
-               String id_team = id_teamitem.getString().trim();
-               FileItem positem = (FileItem) fileItems.get(2);
-               String pos = positem.getString().trim();
+               FileItem nickitem = (FileItem) fileItems.get(1);
+               String nick = nickitem.getString().trim();
+               String FieldName = fi.getFieldName();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
-               //String contentType = fi.getContentType();
-               //boolean isInMemory = fi.isInMemory();
-               //long sizeInBytes = fi.getSize();
-               
-               if(Arrays.asList(extList).contains(ext.toUpperCase())){
-                    // Write the file
-                    if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
-                    } else {
-                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
-                    }
-                    
-                    Exten="."+ ext;
-                    foto = id_team +"-"+ nama+Exten;
-                    fi.write( file ) ;
-                    //dh.setFile(Name,Exten);
-                     //akhir upload
-                    //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
-                    out.println(file);
-                     //boolean a=dh.setMsTeam(id_team, nama, logo ,team);
-                    //dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
+               Exten="."+ ext;
+               if(Arrays.asList(extList).contains(ext.toLowerCase())) {
+                     if(FieldName.equals("logo")){
+                            if( fileName.lastIndexOf("\\") >= 0 ) {
+                                 file = new File( filePath + "team" +"-"+ nick+Exten) ;
+                           } else {
+                              file = new File( filePath + "team" +"-"+ nick+Exten) ;
+                          }
+                     }
+                     else if(FieldName.equals("foto")){
+                            if( fileName.lastIndexOf("\\") >= 0 ) {
+                                file = new File( filePath2 + nick+Exten) ;
+                              } else {
+                                file = new File( filePath2 + nick+Exten) ;
+                              }
+                     }
+                    String foto = "team" +"_"+nick+Exten;
+                    String logo = nick+Exten;
+                    fi.write( file );
+                    String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama+"','"+logo+"','"+foto+"')";
+                    out.println(query);
+                    boolean a=dh.setMsTeam(nick,nama,logo,foto);  
+                    out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Team");
-               }
+            }
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");
                         session.setAttribute("alert", "alert-danger");

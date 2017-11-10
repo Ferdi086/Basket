@@ -249,7 +249,7 @@
                     <span class='text' id="Book">Statistic<span class="caret"></span></span>
                     </div>
                     <ul class=”dropdown-menu” id="sub">
-                        <li><a href="StatisticPlayer">Player</a></li>
+                        <li><a href="StatistikPlayer">Player</a></li>
                         <li><a href="StatisticTeam">Team</a></li> 
                     </ul>
                 </li> 

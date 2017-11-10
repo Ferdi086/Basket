@@ -52,6 +52,31 @@ public class ObjPlayer {
         this.IdPemain = IdPemain;
         this.NamaPemain = NamaPemain;
     }
+    
+    public JSONObject toJson(){ 
+         json.put("No",No);
+         json.put("Id_Pemain",IdPemain);
+         json.put("Nama_Pemain", NamaPemain);
+         json.put("Tgl",Tgl);
+         json.put("Tinggi", Tinggi);
+         json.put("Berat", Berat);
+         json.put("Pos", Pos);
+         json.put("Team", IdTeam +"--"+ Team);
+         json.put("No_Punggung", NoPunggung);
+         json.put("Foto",Foto);
+         //json.put("Tangan", Tangan);
+         json.put("action","<button class=\"btn btn-warning button\" data-target=\"#updatemodal\" "
+                 + "onclick =\"update('"+IdPemain+"','"+NamaPemain+"','"+IdTeam+"','"+Pos+"','"+NoPunggung+"','"+Tinggi+"',"
+                    + "'"+Berat+"','"+Tgl+"','"+Tangan+"','"+Foto+"');\""
+                    + " data-toggle=\"modal\"><span class=\"glyphicon glyphicon-edit\">"
+                    + "</span></button>");
+           
+         return json;
+    }
+    public JSONObject getJson(){
+        return json;
+    }
+
 
     public String getLogo() {
         return Logo;
@@ -167,30 +192,7 @@ public class ObjPlayer {
 
     
        
-    public JSONObject toJson(){ 
-         json.put("No",No);
-         json.put("Id_Pemain",IdPemain);
-         json.put("Nama_Pemain", NamaPemain);
-         json.put("Tgl",Tgl);
-         json.put("Tinggi", Tinggi);
-         json.put("Berat", Berat);
-         json.put("Pos", Pos);
-         json.put("Team", IdTeam +"--"+ Team);
-         json.put("No_Punggung", NoPunggung);
-         json.put("Foto",Foto);
-         //json.put("Tangan", Tangan);
-         json.put("action","<button class=\"btn btn-warning button\" data-target=\"#updatemodal\" "
-                 + "onclick =\"update('"+IdPemain+"','"+NamaPemain+"','"+IdTeam+"','"+Pos+"','"+NoPunggung+"','"+Tinggi+"',"
-                    + "'"+Berat+"','"+Tgl+"','"+Tangan+"','"+Foto+"');\""
-                    + " data-toggle=\"modal\"><span class=\"glyphicon glyphicon-edit\">"
-                    + "</span></button>");
-           
-         return json;
-    }
-    public JSONObject getJson(){
-        return json;
-    }
-
+    
    
 
     

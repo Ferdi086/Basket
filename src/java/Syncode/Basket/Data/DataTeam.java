@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet.BackEnd;
+package Syncode.Basket.Data;
 
+import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.json.JSONArray;
 
 /**
  *
  * @author meiiko
  */
-public class Team extends HttpServlet {
+public class DataTeam extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +31,14 @@ public class Team extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession(true);
-       String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-       String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-       session.removeAttribute("ErrMess");
-       session.removeAttribute("alert");
-       request.setAttribute("ErrMess", ErrMess);
-       request.setAttribute("alert", alert);
-       request.getRequestDispatcher("/BackEnd/team.jsp").forward(request,response);
+       DatabaseHandler dh = new DatabaseHandler();
+        response.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        JSONArray ars = dh.getDataTeam();
+        
+        out.println(ars);
+        out.flush();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
