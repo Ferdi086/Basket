@@ -67,7 +67,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Logo,Gambar from MsTeam where ID_Team='"+id+"'"; 
+            String query = "select ID_Team,Nama_Team,Logo,Gambar,Flag_active from MsTeam where ID_Team='"+id+"'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
