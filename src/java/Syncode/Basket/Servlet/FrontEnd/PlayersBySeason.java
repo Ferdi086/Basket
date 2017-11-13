@@ -44,6 +44,7 @@ public class PlayersBySeason extends HttpServlet {
             out.println("   <tr class=\"tr_general\">");
             out.println("                                               <th>MATCH</th>" +
 "									<th>W/L</th>" +
+"                                                                       <th>MIN</th>" +                       
 "									<th>FGM</th>" +
 "									<th>FGA</th>" +
 "									<th>FG%</th>" +
