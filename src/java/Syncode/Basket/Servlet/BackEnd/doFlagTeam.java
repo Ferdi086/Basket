@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author meiiko
  */
-public class Player extends HttpServlet {
-        
+public class doFlagTeam extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,28 +30,32 @@ public class Player extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(true);
-            PrintWriter out = response.getWriter();
-            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           session.removeAttribute("ErrMess");
-            session.removeAttribute("alert");
-            request.setAttribute("ErrMess", ErrMess);
-            request.setAttribute("alert", alert);
-            
-            HashMap tm = dh.getTeam();
-            HashMap pos = dh.getPosisi();
-            HashMap pl = dh.getPlayer();
-            out.println(pl);
-            request.setAttribute("player", pl);
-            request.setAttribute("team",tm);
-            request.setAttribute("posisi",pos);
-            request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
-                  
+        DatabaseHandler dh = new DatabaseHandler();
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
+        String ID_Team = request.getParameter("ID_T");
+        String Flag = request.getParameter("Flag");
+        if(Flag.equals("Y")){
+            dh.setNonaktifTeam(ID_Team);
+            session.setAttribute("ErrMess","Your data successfully recorded");
+            session.setAttribute("alert", "alert-success");
+            response.sendRedirect("Team");
+        }
+        else if(Flag.equals("N")){
+            dh.setAktifTeam(ID_Team);
+            session.setAttribute("ErrMess","Your data successfully recorded");
+            session.setAttribute("alert", "alert-success");
+            response.sendRedirect("Team");
+        }
+        else{
+           session.setAttribute("ErrMess","Your data failed to be recorded");
+           session.setAttribute("alert", "alert-danger");
+           response.sendRedirect("Team");
+        }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

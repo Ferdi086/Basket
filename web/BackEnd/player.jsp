@@ -371,7 +371,7 @@
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle"><b><center>No</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>
+                                <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Nama Pemain</center><b></th>            
                                 <th data-align="center" data-valign="middle"><b><center>Tanggal Lahir</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Tinggi</center></b></th>
@@ -380,25 +380,38 @@
                                 <th data-align="center" data-valign="middle"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Logo</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
                             </thead>
                              
                             <c:forEach var="item" varStatus="loopCounter" items="${requestScope.player}">
+                                <c:set var="idPemain" value="${item.value.idPemain}"/>
+                                    <c:set var="namaPemain" value="${item.value.namaPemain}"/>
+                                    <c:set var="tgl" value="${item.value.tgl}"/>
+                                    <c:set var="tinggi" value="${item.value.tinggi}"/>
+                                    <c:set var="berat" value="${item.value.berat}" />
+                                    <c:set var="pos" value="${item.value.pos}"/>
+                                    <c:set var="namaPos" value="${item.value.namaPos}"/>
+                                    <c:set var="idTeam" value="${item.value.idTeam}"/>
+                                    <c:set var="team" value="${item.value.team}" />
+                                    <c:set var="noPunggung" value="${item.value.noPunggung}"/>
+                                    <c:set var="logo" value="${item.value.logo}"/>
+                                    <c:set var="tinggi" value="${item.value.tinggi}"/>
+                                    <c:set var="foto" value="${item.value.foto}" />
+                                    <c:set var="flagactive" value="${item.value.flagactive}" />
+                                   
                                     <tr>
                                     <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.idpemain}</td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.namapemain} </td>
+                                    <!--<td style="vertical-align: middle;text-align: center"> ${item.value.idPemain}</td>-->
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.namaPemain} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.tgl} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.tinggi} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.berat} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.pos} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.namaPos} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.id_Team} </td>
+                                    <td style="vertical-align: middle;text-align: center"> ${item.value.idTeam} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.team} </td>
                                     <td style="vertical-align: middle;text-align: center"> ${item.value.noPunggung} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.logo} </td>
                                     <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${item.value.foto}" width="80px" height="80px"/> </td>
                                     <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></button></td>
                                     </tr>

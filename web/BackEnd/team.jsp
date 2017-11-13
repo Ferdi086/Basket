@@ -339,22 +339,32 @@
                             </tr>
                                 
                                 <c:forEach var="item" varStatus="loopCounter" items="${requestScope.Team}">
-                                     <c:set var="id" value="${item.value.id}"/>
+                                    <c:set var="id" value="${item.value.id}"/>
                                     <c:set var="nama_team" value="${item.value.nama_team}"/>
                                     <c:set var="logo" value="${item.value.logo}"/>
                                     <c:set var="gambar" value="${item.value.gambar}"/>
+                                    <c:set var="flagactive" value="${item.value.flagactive}" />
                                     <tr>
-                                    <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.id}</td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.nama_team} </td>
-                                    <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${item.value.logo}" width="80px" height="80px"/> </td>
-                                    <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${item.value.gambar}" width="80px" height="80px"/> </td>
-                                    <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
-                                           role="button" onclick="Update('${id}','${nama_team}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
-                                           <c:if test="" > <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal">Disable</button>  </c:if> </td>
+                                        <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
+                                        <td style="vertical-align: middle;text-align: center"> ${id}</td>
+                                        <td style="vertical-align: middle;text-align: center"> ${nama_team} </td>
+                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" width="80px" height="80px"/> </td>
+                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" width="80px" height="80px"/> </td>
+                                        <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
+                                               role="button" onclick="Update('${id}','${nama_team}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
+                                                <c:choose>
+                                                     <c:when test="${flagactive=='Y'}">
+                                                         <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${id}','${flagactive}')" >Disable</button>
+                                                         <br />
+                                                     </c:when>   
+                                                     <c:when test="${flagactive=='N'}">
+                                                         <button class="btn" data-target="#KonfirmasiAktif" data-toggle="modal" onclick="flagaktif('${id}','${flagactive}')" >Enable</button>
+                                                     <br />
+                                                     </c:when>  
+                                                 </c:choose>
+                                                 </c:forEach>
+                                        </td>
                                     </tr>
-                                </c:forEach>
-                                    dada
                         </thead>                              
                     </table>          
                     <div style='margin-top: 60px;'>
@@ -490,8 +500,11 @@
                     <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation Nonactive</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="ID_Team"/>
+                    <form action="../BackEnd/doFlagTeam" method="post" id="formnon">
+                    <input type="text" name="ID_T" id="ID_T1"/>
+                    <input type="text" name="Flag"id="Flag1"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal" onclick="nonaktif()">Yes</button>
@@ -500,7 +513,30 @@
             </div>
         </div>
     </div>
-    <!-- End Modal Konfirmasi Nonaktif-->	
+    <!-- End Modal Konfirmasi Nonaktif-->
+    <!-- Modal Konfirmasi Aktif-->
+    <div id="KonfirmasiAktif" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation Active</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="../BackEnd/doFlagTeam" method="post" id="formaktif">
+                    <input type="text" name="ID_T" id="ID_T"/>
+                    <input type="text" name="Flag" id="Flag"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="aktif()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Aktif-->
     </body>
     <script>
         $(document).ready(function(){ 
@@ -600,6 +636,34 @@
                 $('#ValidasiInput').modal('show'); 
             }  
         }
+        function aktif(){
+            var ID_Team = $("#ID_T").val();
+             if(ID_Team === "" ){
+                $('#KonfirmasiAktif').modal('hide');
+                $('#ValidasiInput').modal('show'); 
+               
+            }else{
+                 $('#formaktif').submit();
+            }
+        }
+        function nonaktif(){
+            var ID_Team = $("#ID_T1").val();
+             if(ID_Team === "" ){
+                $('#KonfirmasiNonaktif').modal('hide');
+                $('#ValidasiInput').modal('show'); 
+               
+            }else{
+                 $('#formnon').submit();
+            }
+        }
+        function flagaktif(ID_Team,Flag){
+                $('#ID_T').val(ID_Team);
+                $('#Flag').val(Flag);
+            }
+        function flagnonaktif(ID_Team,Flag){
+                $('#ID_T1').val(ID_Team);
+                $('#Flag1').val(Flag);
+            }
         function Update(id,nama_team,logo,gambar){
             $('#UpdateId').val(id);
             $('#UpdateNama').val(nama_team);
