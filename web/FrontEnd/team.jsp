@@ -93,7 +93,7 @@
 		<ul class="caption-style-2">                        
                         <c:forEach var = "item" items = "${requestScope.team}">
                             <li>
-				<a href="team_detail.jsp?ID=${item.value.id}"><img src="../img/Team/${item.value.logo}" alt="" width="200px" height="200px"></a>
+				<a href="team_detail.jsp?ID=${item.value.id}"><img src="../img/Team/Logo/${item.value.logo}" alt="" width="200px" height="200px"></a>
 				<div class="caption">
 					<div class="blur"></div>
 					<div class="caption-text">

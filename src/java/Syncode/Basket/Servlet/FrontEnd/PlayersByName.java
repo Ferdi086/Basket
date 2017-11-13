@@ -31,11 +31,13 @@ public class PlayersByName extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         DatabaseHandler dh = new DatabaseHandler();
         String a = request.getParameter("Name");
         HashMap tr = dh.getPlayersByName(a);
         request.setAttribute("player", tr);
-        request.setAttribute("abc",a);
+        request.setAttribute("abc", a);
+        //out.print(a);
         request.getRequestDispatcher("player.jsp").forward(request, response);
     }
 

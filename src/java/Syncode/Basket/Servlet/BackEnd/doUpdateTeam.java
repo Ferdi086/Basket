@@ -25,8 +25,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author meiiko
  */
-public class doInsertTeam extends HttpServlet {
-          private boolean isMultipart;
+public class doUpdateTeam extends HttpServlet {
+        private boolean isMultipart;
           private String filePath;
           private String filePath2;
           private File file ;
@@ -50,7 +50,7 @@ public class doInsertTeam extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         DatabaseHandler dh = new DatabaseHandler();
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
                    
@@ -69,67 +69,90 @@ public class doInsertTeam extends HttpServlet {
          out.println("</html>");
          return;
       }
-        
       try { 
          // Parse the request to get file items.
          List fileItems = upload.parseRequest(request);
+         //Iterator ia = fileItems.listIterator(3);
+         //FileItem fia = (FileItem) ia.next();
+         //out.println(fia);
 	
          // Process the uploaded file items
          Iterator i = fileItems.iterator();
-        String Name = "";
-        String ext = "";
-        String keterangan = "";
+           
+        String nick = "";
+        String nama = "";
+        String logo = "";
+        String foto ="";
         String Exten = "";
-         int ini ;
-       // int u = 1;
+        String ext ="";
+        int u = 1;
          while ( i.hasNext () ) {
-                  
+            out.println(u);
+            u++;
             FileItem fi = (FileItem)i.next();
+            //out.println("why 2 = "+ar);
             if ( !fi.isFormField () ) {
                // Get the uploaded file parameters
-               FileItem namaitem = (FileItem) fileItems.get(0);
-               String nama = namaitem.getString().trim();
-               FileItem nickitem = (FileItem) fileItems.get(1);
-               String nick = nickitem.getString().trim();
+               FileItem namaitem = (FileItem) fileItems.get(1);
+               nama = namaitem.getString().trim();
+               FileItem nickitem = (FileItem) fileItems.get(0);
+               nick = nickitem.getString();
                String FieldName = fi.getFieldName();
-               String fileName = fi.getName();
-               ext = fileName.split("\\.")[1];
+               String fileName = fi.getName()==""?"kosong":fi.getName();
+               ext = fileName.split("\\.")[0]=="kosong"?"ini ext kosong":fileName.split("\\.")[1];
+               out.println(ext);
                Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
-                     if(FieldName.equals("logo")){
+                     if(FieldName.equals("foto")){
+                         out.println("<br/>iniFoto" + nick + Exten);
                             if( fileName.lastIndexOf("\\") >= 0 ) {
                                  file = new File( filePath + "team" +"-"+ nick+Exten) ;
                            } else {
                               file = new File( filePath + "team" +"-"+ nick+Exten) ;
                           }
                      }
-                     else if(FieldName.equals("foto")){
+                     else if(FieldName.equals("logo")){
+                         
                             if( fileName.lastIndexOf("\\") >= 0 ) {
                                 file = new File( filePath2 + nick+Exten) ;
                               } else {
                                 file = new File( filePath2 + nick+Exten) ;
                               }
                      }
-                    String foto = "team" +"_"+nick+Exten;
-                    String logo = nick+Exten;
+                    foto = "team" +"_"+nick+Exten;
+                    logo = nick+Exten;
+                    //out.println(foto + logo);
                     fi.write( file );
-                    String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama+"','"+logo+"','"+foto+"')";
-                    out.println(query);
-                    boolean a=dh.setMsTeam(nick,nama,logo,foto);  
-                    out.println(a);
+                    String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama+"',Logo='"+logo+"',Gambar='"+foto+"' where ID_Team='"+nick+"'";
+                    out.println("query 2 ="+query+"<br/>");
+                    boolean a=dh.setUpdateMsTeam(nick,nama,logo,foto);
+                    //out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Team");
+                    //response.sendRedirect("Team");
+                   
             }
                else {
-                        session.setAttribute("ErrMess","Your data failed to be recorded");
-                        session.setAttribute("alert", "alert-danger");
-                        response.sendRedirect("Team");
+                       
                     }
              }
+            else {
+               FileItem nickitem = (FileItem) fileItems.get(0);
+               nick = nickitem.getString().trim();
+               FileItem namaitem = (FileItem) fileItems.get(1);
+               nama = namaitem.getString().trim();
+               String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama+"',Logo='"+logo+"',Gambar='"+foto+"'where ID_Team='"+nick+"'";
+               boolean a=dh.setUpdateMsTeam(nick,nama,logo,foto);
+               //out.println(a);
+               out.println("query 1 ="+query+"<br/>");
+                 
+            }
           }
+            session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                response.sendRedirect("Team");
          } catch(Exception ex) {
-            System.out.println(ex);
+             out.println(ex);
          }
     }
 

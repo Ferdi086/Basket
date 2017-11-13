@@ -94,9 +94,6 @@
 									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
 									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
 								</ul>
-							</li>	
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
 							</li>
 						</ul>
 					</div>
@@ -129,20 +126,21 @@
 		<h1>${item.value.namaPemain}</h1>
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
-		<a href="#" style="color:black"><h3><img src="../img/Team/${item.value.logo}"/>${item.value.team}</h3></a>
+		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
 		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>
 		<h4><span>Height</span> : ${item.value.tinggi} cm</h4>
 		<h4><span>Weight</span> : ${item.value.berat} kg</h4>
 	</div>
     </c:forEach>
 	<div class="col-lg-4 stat_p">
-		<h3><span class="glyphicon glyphicon-expand"></span>  IBL PLAYOFF 2017</h3>
+            <c:forEach var="item" items="${requestScope.ppg}">
+		<h3><span class="glyphicon glyphicon-expand"></span>  ${item.value.nama} </h3>
 		<table class="tb_p">
 			<tr>
 				<td class="tb_h"><h3>PPG</h3></td>
 			</tr>
 			<tr>
-				<td><h1>5.25</h1></td>
+				<td><h1>${item.value.ppg}</h1></td>
 			</tr>
 		</table>
 		<table class="tb_p">
@@ -150,7 +148,7 @@
 				<td class="tb_h"><h3>APG</h3></td>
 			</tr>
 			<tr>
-				<td><h1>1.5</h1></td>
+				<td><h1>${item.value.apg}</h1></td>
 			</tr>
 		</table>
 		<table class="tb_p">
@@ -158,9 +156,10 @@
 				<td class="tb_h"><h3>RPG</h3></td>
 			</tr>
 			<tr>
-				<td><h1>3.5</h1></td>
+				<td><h1>${item.value.rpg}</h1></td>
 			</tr>
 		</table>
+            </c:forEach>
 	</div>
 </div>
 
@@ -326,7 +325,7 @@
 								<tr class="tr_general">
 									<th>MATCH</th>
 									<th>W/L</th>
-									<th>MIN</th>
+                                                                        <th>MIN</th>
 									<th>FGM</th>
 									<th>FGA</th>
 									<th>FG%</th>
@@ -356,6 +355,14 @@
 					</div>
 				</div>
 </div>
+                                                        
+<footer>
+        <div class="copyright">
+                <div class="container">
+                        <p>© 2017 Transporters. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                </div>
+        </div>
+</footer>
 <!-- js-scripts -->					
 <!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

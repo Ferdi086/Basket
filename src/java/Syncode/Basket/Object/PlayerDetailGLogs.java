@@ -10,7 +10,6 @@ package Syncode.Basket.Object;
  * @author Yuga
  */
 public class PlayerDetailGLogs {
-    private int no = 0;
     private String match = "";
     private String wl = "";
     private String MIN = "";
@@ -40,8 +39,8 @@ public class PlayerDetailGLogs {
     public PlayerDetailGLogs() {
     }
 
-    public PlayerDetailGLogs(int no, String match, String wl, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS) {
-        this.no = no;
+    public PlayerDetailGLogs(String match, String wl, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS) {
+       
         this.match = match;
         this.wl = wl;
         this.MIN = MIN;
@@ -68,15 +67,7 @@ public class PlayerDetailGLogs {
         this.EF = EF;
         this.PTS = PTS;
     }
-
-    public int getNo() {
-        return no;
-    }
-
-    public void setNo(int no) {
-        this.no = no;
-    }
-
+    
     public String getMatch() {
         return match;
     }

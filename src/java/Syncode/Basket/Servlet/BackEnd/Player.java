@@ -34,21 +34,23 @@ public class Player extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession(true);
             PrintWriter out = response.getWriter();
-            //String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            //String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           //session.removeAttribute("ErrMess");
-           // session.removeAttribute("alert");
-            //request.setAttribute("ErrMess", ErrMess);
-           // request.setAttribute("alert", alert);
+            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
+            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
+           session.removeAttribute("ErrMess");
+            session.removeAttribute("alert");
+            request.setAttribute("ErrMess", ErrMess);
+            request.setAttribute("alert", alert);
             
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();
-          // out.println(pos);
+            HashMap pl = dh.getPlayer();
+            out.println(pl);
+            request.setAttribute("player", pl);
             request.setAttribute("team",tm);
             request.setAttribute("posisi",pos);
-                    request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
+            //request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
                   
     }
 

@@ -1,11 +1,10 @@
 <%-- 
-    Document   : StatistikPlayer
-    Created on : Nov 7, 2017, 2:19:26 PM
+    Document   : musim
+    Created on : Nov 10, 2017, 10:34:44 AM
     Author     : meiiko
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -249,10 +248,16 @@
                     <span class='text' id="Book">Statistic<span class="caret"></span></span>
                     </div>
                     <ul class=”dropdown-menu” id="sub">
-                        <li><a href="StatistikPlayer">Player</a></li>
+                        <li><a href="StatisticPlayer">Player</a></li>
                         <li><a href="StatisticTeam">Team</a></li> 
                     </ul>
                 </li> 
+                <li> 
+                    <a href="musim" >
+			<img class="icon" src="../img/package.png">
+			<span class='text'>Musim</span>
+                    </a>
+                </li>
                 <li class="btn-menu">
                     <button id="togglebutton"><span class="glyphicon glyphicon-th-list"></span></button>
                     <label class='text txt-toggle' id="cursor">Menu</label>
@@ -264,40 +269,29 @@
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Statistic Pemain</b></h2></center>
-                    <form class="form-horizontal" method="post" action="doInsertStatikPlayer" id="formInput" enctype="multipart/form-data">
+                    <center><h2 style="margin-bottom:40px;"><b>Player</b></h2></center>
+           
+			<form class="form-horizontal" method="post" action="doInsertTeam" id="InputTeam" enctype = "multipart/form-data">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2 " >Team</label>
+                                    <label class="control-label col-sm-2 " >Nama Musim</label>
                                     <div class="col-sm-3">
-                                        <select name="team" class="form-control" id="team">
-                                            <option value=""> Choose One Team </option>
-                                            <c:forEach var="item" items="${requestScope.team}">
-                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.team} </option>
-                                              </c:forEach>
-                                        </select>
+                                        <input id="musim" type="text" name="musim" class="form-control" required/>
                                     </div>
                                    
-                                    <label class="control-label col-sm-2">Nama Pemain</label>
-                                    <div class="col-sm-3">
-                                        <select name="pemain" id="pemain" class=" form-control">
-                                        </select>
-                                    </div>                                  
+                                                                     
                                 </div>	
                             <div class="form-group">
-                                   <label class="control-label col-sm-2">Import File Excel</label>
+                                    <label class="control-label col-sm-2">Tahun Awal</label>
+                                    <div class="col-sm-3">
+                                        <input id="awal" type="text" name="awal"  class="form-control" required/>
+                                    </div> 
+                                   <label class="control-label col-sm-2">Tahun Akhir</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="excel" required/>
+                                       <input id="akhir" type="text" name="akhir" required/>
                                    </div>
-                                   <label class="control-label col-sm-2">Musim</label>
-                                   <div class="col-sm-3">
-                                      <select name="musim" class="form-control" id="musim">
-                                            <option value=""> Choose One Musim </option>
-                                            <c:forEach var="item" items="${requestScope.musim}">
-                                                <option value="${item.value.id_musim}">${item.value.nama_musim} </option>
-                                              </c:forEach>
-                                        </select>
-                                   </div>
+                                   
                             </div>	
+                            
                             </form>                                        
 				</div>	     
                                 <br/>
@@ -355,16 +349,48 @@
     </div>
     <!-- End Modal Validasi Input-->
     </body>
-    
     <script>
+        $(document).ready(function(){ 
+            $("#loading").hide();
+            $("#ok").hide();
+            $("#error").hide();
+             $('#togglebutton').click(function() {
+		$('.text').toggle(300);
+                $('#sub').hide();
+            }); 
+            $('.txt-toggle').click(function() {
+		$('.text').toggle(300);
+                $('#sub').hide();
+            }); 
+            $('#Book').click(function(){
+               $('#sub').toggle(300);               
+            });
+            $('#awal').datetimepicker({
+                    format: 'YYYY'
+                });
+            $('#akhir').datetimepicker({
+                    format: 'YYYY',
+                    useCurrent: false
+                }); 
+            
+        $("#awal").on("dp.change", function (e) {
+            $('#akhir').data("DateTimePicker").minDate(e.date);
+        });
+        $("#akhir").on("dp.change", function (e) {
+            $('#awal').data("DateTimePicker").maxDate(e.date);
+        });
+            jQuery('.scrollbar-macosx').scrollbar();                
+                     
+	});    
+        
         function cekInput(){           
-            if($('#team').val()===""){   
+            if($('#nama').val()===""){   
                 return false;
-            }else if($('#pemain').val()===""){
+            }else if($('#nick').val()===""){
                 return false;
-            }else if($('#excel').val()===""){
+            }else if($('#logo').val()===""){
                 return false;
-            }else if($('#musim').val()===""){
+            }else if($('#foto').val()===""){
                 return false;
             }else{
                 return true;
@@ -372,38 +398,14 @@
         }
         function input(){
             if(cekInput()){
-                $('#formInput').submit();
+                $('#InputTeam').submit();
             }else{                
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
             }           
         }
-        
-            $('#team').change(function () {
-            var id = $(this).val();
-            //alert(id); 
-            $.ajax({
-                type: 'POST',
-                url: 'doSelectPlayer',
-                data: {
-                    'bagian': 1,
-                    'category': id
-                },
-                beforeSend: function(){
-                    $('#loading').show();
-                },
-                complete: function(){
-                    $('#loading').hide();
-                },
-                success: function (data) {
-                    $('#pemain').html(data);         
-                }
-            });
-
-        });
-
+     
     </script>
 </html>
-
 
 

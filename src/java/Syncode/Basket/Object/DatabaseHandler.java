@@ -18,11 +18,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Logo,Gambar from MsTeam"; 
+            String query = "select * from MsTeam where Flag_active='Y'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -71,7 +71,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -97,7 +97,7 @@ public class DatabaseHandler extends Connect {
     }
     public boolean setMsPemain (String name,String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto){
         try {         
-                String query = "INSERT INTO MsPemain1 (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+id_team+"',"
+                String query = "INSERT INTO MsPemain (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+id_team+"',"
                         + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
@@ -107,11 +107,36 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
-    public boolean setMsTeam(String nick, String nama_team, String logo){
+    
+    public boolean setMsTeam(String nick, String nama_team, String logo, String gambar_team){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team)values('"+nick+"','"+nama_team+"','"+logo+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+logo+"','"+gambar_team+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+    public boolean setUpdateMsTeam(String nick, String nama_team, String logo, String gambar_team){
+        try {         
+            
+                String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
+                ps = conn.prepareStatement(query);
+            
+               ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+    public boolean setNonaktifTeam(String nick){
+        try {        
+                    String query = "update MsTeam set Flag_active='N' where ID_Team='"+nick+"'";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
                 return true;
             
         } catch (SQLException ex) {
@@ -121,7 +146,7 @@ public class DatabaseHandler extends Connect {
     public boolean setUpdatePemain(String nama, String tgl, String tinggi, String berat, String pos, String id_team, String no, String foto, String id_pemain){
         try {
                 if(foto==null){ 
-                    String query = "update MsPemain set Nama_Pemain='"+nama+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", where Id_Pemain='"+ id_pemain +"'";
+                    String query = "update MsPemain set Nama_Pemain='"+nama+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+" where Id_Pemain='"+ id_pemain +"'";
                     ps = conn.prepareStatement(query);
                 }
                 else{
@@ -138,7 +163,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select a.ID_Pemain, a.Nama_Pemain, Convert(varchar(50), a.Tgl_Lahir,106), a.Tinggi, a.Berat, a.KD_Pos, b.Nama_Posisi, a.Id_Team, c.Nama_Team, a.No_Punggung, a.Foto, c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team='"+ID+"' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            String query = "select a.ID_Pemain, a.Nama_Pemain, Convert(varchar(50), a.Tgl_Lahir,106), a.Tinggi, a.Berat, a.KD_Pos, b.Nama_Posisi, a.Id_Team, c.Nama_Team, a.No_Punggung, a.Foto, c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.ID_Team='"+ID+"' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team AND a.Flag_active='y'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -164,7 +189,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select a.ID_Pemain,a.Nama_Pemain,CAST(DAY(a.Tgl_Lahir) AS VARCHAR(2)) + ' ' + DATENAME(MM, a.Tgl_Lahir) + ' ' + CAST(YEAR(a.Tgl_Lahir) AS VARCHAR(4)) AS [DD Month YYYY],a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.ID_Pemain='"+ID+"' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            String query = "select a.ID_Pemain,a.Nama_Pemain,CAST(DAY(a.Tgl_Lahir) AS VARCHAR(2)) + ' ' + DATENAME(MM, a.Tgl_Lahir) + ' ' + CAST(YEAR(a.Tgl_Lahir) AS VARCHAR(4)) AS [DD Month YYYY],a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.ID_Pemain='"+ID+"' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -175,21 +200,21 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public JSONArray getPlayer(){
-        JSONArray hm = new JSONArray();
+    
+    public HashMap getPlayer(){
+        HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team AND a.Flag_active='y'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                ObjPlayer obj = new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12));
-                hm.put(obj.toJson());
+                tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
             }
         }catch (SQLException ex) {
                 
         }
-        return hm;
+        return tr;
     }
     public HashMap getPlayersByName(String Abc){
         HashMap tr = new HashMap();
@@ -332,28 +357,125 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new PlayerDetailGLogs(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25)));
+                tr.put(i++, new PlayerDetailGLogs(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25)));
             }
         }catch (SQLException ex) {
                 
         }
         return tr;
     }
-    /*public HashMap getNickTeam(String nick){
+    public HashMap getTopPoint(String id_team){
         HashMap tr = new HashMap();
         try {      
-            int j=0;
-            String query = "select Id_Team from MsTeam WHERE ID_Mahasiswa = '"+nick+"'"; 
+            int i=0;
+            String query = "select TOP 1 ID_Musim from(" +
+                            "select distinct a.ID_Musim,a.Nama_Musim, b.ID_Team from MsMusim a, TrGameLogs b where a.ID_Musim = b.ID_Musim and b.ID_Team='"+id_team+"'" +
+                        ")a order by a.ID_Musim desc";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            if(rs.next()){                
-                tr.put(j++,new Team(rs.getString(1),rs.getString(2), true));              
-            }else{
-                tr.put(j++,new Team("","", false));    
+            if(rs.next()){                  
+                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                                    " from " +
+                                    " (" +
+                                        " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+                                        " from TrGameLogs a, MsPemain b, MsMusim c " +
+                                        " where a.ID_Team = '"+id_team+"' and a.ID_Musim = '"+rs.getString(1)+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
+                                    " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
+                                " order by PTS DESC"; 
+                ps1 = conn.prepareStatement(query1);
+                rs1 = ps1.executeQuery();
+                while(rs1.next()){
+                    tr.put(i++,new ObjTopPoint(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
+                }         
+                 
             }
         } catch (SQLException ex) {
             
         }
         return tr;
-    }*/
+    }
+    public HashMap getTopAssist(String id_team){
+        HashMap tr = new HashMap();
+        try {      
+            int i=0;
+            String query = "select TOP 1 ID_Musim from(" +
+                            "select distinct a.ID_Musim,a.Nama_Musim, b.ID_Team from MsMusim a, TrGameLogs b where a.ID_Musim = b.ID_Musim and b.ID_Team='"+id_team+"'" +
+                        ")a order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if(rs.next()){                  
+                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S " +
+                                    " from " +
+                                    " (" +
+                                        " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+                                        " from TrGameLogs a, MsPemain b, MsMusim c " +
+                                        " where a.ID_Team = '"+id_team+"' and a.ID_Musim = '"+rs.getString(1)+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
+                                    " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
+                                " order by A_S DESC"; 
+                ps1 = conn.prepareStatement(query1);
+                rs1 = ps1.executeQuery();
+                while(rs1.next()){
+                    tr.put(i++,new ObjTopAssist(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
+                }         
+                 
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getTopRebound(String id_team){
+        HashMap tr = new HashMap();
+        try {      
+            int i=0;
+            String query = "select TOP 1 ID_Musim from(" +
+                            "select distinct a.ID_Musim,a.Nama_Musim, b.ID_Team from MsMusim a, TrGameLogs b where a.ID_Musim = b.ID_Musim and b.ID_Team='"+id_team+"'" +
+                        ")a order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if(rs.next()){                  
+                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[TR]) as decimal(10,2)) as TR " +
+                                    " from " +
+                                    " (" +
+                                        " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+                                        " from TrGameLogs a, MsPemain b, MsMusim c " +
+                                        " where a.ID_Team = '"+id_team+"' and a.ID_Musim = '"+rs.getString(1)+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
+                                    " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
+                                " order by TR DESC"; 
+                ps1 = conn.prepareStatement(query1);
+                rs1 = ps1.executeQuery();
+                while(rs1.next()){
+                    tr.put(i++,new ObjTopRebound(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
+                }         
+                 
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getPpgApgRpg(String id_p){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select top 1 Nama_Musim,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG" +
+                            "	from " +
+                            "	( " +
+                            "		select c.ID_Musim,Nama_Musim,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS]  " +
+                            "		from TrGameLogs a, MsPemain b, MsMusim c " +
+                            "		where a.ID_Pemain='"+id_p+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
+                            " " +
+                            "	) a group by Nama_Musim,a.Nama_Pemain,a.KD_Pos,a.ID_Team,a.ID_Musim " +
+                            " " +
+                            "order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new PlayerPpgApgRpg(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
 }

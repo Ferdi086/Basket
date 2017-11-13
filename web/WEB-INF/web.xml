@@ -49,6 +49,10 @@
         <servlet-class>Syncode.Basket.Data.DataPlayer</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DataTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Data.DataTeam</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TeamDetails</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.TeamDetails</servlet-class>
     </servlet>
@@ -92,6 +96,14 @@
         <servlet-name>PlayersBySeason</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersBySeason</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Musim</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.Musim</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUpdateTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doUpdateTeam</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -106,7 +118,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Team</servlet-name>
-        <url-pattern>/Team</url-pattern>
+        <url-pattern>/BackEnd/Team</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>doInsertPlayer</servlet-name>
@@ -114,7 +126,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>doInsertTeam</servlet-name>
-        <url-pattern>/doInsertTeam</url-pattern>
+        <url-pattern>/BackEnd/doInsertTeam</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CekNick</servlet-name>
@@ -123,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>DataPlayer</servlet-name>
         <url-pattern>/BackEnd/DataPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DataTeam</servlet-name>
+        <url-pattern>/BackEnd/DataTeam</url-pattern>
     </servlet-mapping>
     <context-param>
         <description>Location to store uploaded file</description>
@@ -136,6 +152,20 @@
         <param-name>file-upload-excel</param-name>
         <param-value>
          C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\Statistik\Players\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-foto-logo</param-name>
+        <param-value>
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Team\Logo\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-foto-team</param-name>
+        <param-value>
+         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Team\Foto\
       </param-value>
     </context-param>
     <servlet-mapping>
@@ -193,6 +223,14 @@
     <servlet-mapping>
         <servlet-name>PlayersBySeason</servlet-name>
         <url-pattern>/FrontEnd/PlayersBySeason</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Musim</servlet-name>
+        <url-pattern>/BackEnd/Musim</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUpdateTeam</servlet-name>
+        <url-pattern>/BackEnd/doUpdateTeam</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

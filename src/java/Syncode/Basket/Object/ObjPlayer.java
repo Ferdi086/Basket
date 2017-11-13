@@ -13,148 +13,160 @@ import org.json.JSONObject;
  * @author meiiko
  */
 public class ObjPlayer {
-    private String IdPemain="";
-    private String NamaPemain ="";
-    private String Tgl="";
-    private String Tinggi="";
-    private String Berat="";
-    private String Pos="";
-    private String NamaPos="";
-    private String Team="";
-    private String NoPunggung="";
-    private String Tangan="";
-    private String Foto="";
-    private String IdTeam="";
-    private String Logo="";
-    private int No=0;
-    
-    private JSONObject json = new JSONObject();
-
+    private String idPemain="";
+    private String namaPemain ="";
+    private String tgl="";
+    private String tinggi="";
+    private String berat="";
+    private String pos="";
+    private String namaPos="";
+    private String team="";
+    private String noPunggung="";
+    private String tangan="";
+    private String foto="";
+    private String idTeam="";
+    private String logo="";
+    private int No;
+   
     public ObjPlayer() {
     }
 
-    public ObjPlayer(int No,String IdPemain, String NamaPemain, String Tgl, String Tinggi, String Berat, String Pos, String NamaPos, String IdTeam, String Team, String NoPunggung, String Foto, String Logo) {
-        this.IdPemain = IdPemain;
-        this.NamaPemain = NamaPemain;
-        this.Tgl = Tgl;
-        this.Tinggi = Tinggi;
-        this.Berat = Berat;
-        this.Pos = Pos;
-        this.NamaPos = NamaPos;
-        this.Team = Team;
-        this.NoPunggung = NoPunggung;
+    public ObjPlayer(int No,String idPemain, String namaPemain, String tgl, String tinggi, String berat, String pos, String namaPos, String idTeam, String team, String noPunggung, String foto, String logo) {
+        this.idPemain = idPemain;
+        this.namaPemain = namaPemain;
+        this.tgl = tgl;
+        this.tinggi = tinggi;
+        this.berat = berat;
+        this.pos = pos;
+        this.namaPos = namaPos;
+        this.team = team;
+        this.noPunggung = noPunggung;
+        this.foto=foto;
+        this.idTeam=idTeam;
+        this.logo=logo;
         this.No=No;
-        this.Foto=Foto;
-        this.IdTeam=IdTeam;
-        this.Logo = Logo;
+    }
+    public ObjPlayer(String idPemain, String namaPemain, String tgl, String tinggi, String berat, String pos, String namaPos, String idTeam, String team, String noPunggung, String foto, String logo) {
+        this.idPemain = idPemain;
+        this.namaPemain = namaPemain;
+        this.tgl = tgl;
+        this.tinggi = tinggi;
+        this.berat = berat;
+        this.pos = pos;
+        this.namaPos = namaPos;
+        this.team = team;
+        this.noPunggung = noPunggung;
+        this.foto=foto;
+        this.idTeam=idTeam;
+        this.logo=logo;
     }
     public ObjPlayer(String IdPemain, String NamaPemain){
-        this.IdPemain = IdPemain;
-        this.NamaPemain = NamaPemain;
-    }
-
-    public String getLogo() {
-        return Logo;
-    }
-
-    public void setLogo(String Logo) {
-        this.Logo = Logo;
+        this.idPemain = IdPemain;
+        this.namaPemain = NamaPemain;
     }
 
     public String getIdPemain() {
-        return IdPemain;
+        return idPemain;
     }
-
-    public void setIdPemain(String IdPemain) {
-        this.IdPemain = IdPemain;
+    
+    public void setIdPemain(String idPemain) {
+        this.idPemain = idPemain;
     }
 
     public String getNamaPemain() {
-        return NamaPemain;
+        return namaPemain;
     }
 
-    public void setNamaPemain(String NamaPemain) {
-        this.NamaPemain = NamaPemain;
+    public void setNamaPemain(String namaPemain) {
+        this.namaPemain = namaPemain;
     }
 
     public String getTgl() {
-        return Tgl;
+        return tgl;
     }
 
-    public void setTgl(String Tgl) {
-        this.Tgl = Tgl;
+    public void setTgl(String tgl) {
+        this.tgl = tgl;
     }
 
     public String getTinggi() {
-        return Tinggi;
+        return tinggi;
     }
 
-    public void setTinggi(String Tinggi) {
-        this.Tinggi = Tinggi;
+    public void setTinggi(String tinggi) {
+        this.tinggi = tinggi;
     }
 
     public String getBerat() {
-        return Berat;
+        return berat;
     }
 
-    public void setBerat(String Berat) {
-        this.Berat = Berat;
+    public void setBerat(String berat) {
+        this.berat = berat;
     }
 
     public String getPos() {
-        return Pos;
+        return pos;
     }
 
-    public void setPos(String Pos) {
-        this.Pos = Pos;
+    public void setPos(String pos) {
+        this.pos = pos;
     }
 
     public String getNamaPos() {
-        return NamaPos;
+        return namaPos;
     }
 
-    public void setNamaPos(String NamaPos) {
-        this.NamaPos = NamaPos;
+    public void setNamaPos(String namaPos) {
+        this.namaPos = namaPos;
     }
 
     public String getTeam() {
-        return Team;
+        return team;
     }
 
-    public void setTeam(String Team) {
-        this.Team = Team;
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public String getNoPunggung() {
-        return NoPunggung;
+        return noPunggung;
     }
 
-    public void setNoPunggung(String NoPunggung) {
-        this.NoPunggung = NoPunggung;
+    public void setNoPunggung(String noPunggung) {
+        this.noPunggung = noPunggung;
     }
 
     public String getTangan() {
-        return Tangan;
+        return tangan;
     }
 
-    public void setTangan(String Tangan) {
-        this.Tangan = Tangan;
+    public void setTangan(String tangan) {
+        this.tangan = tangan;
     }
 
     public String getFoto() {
-        return Foto;
+        return foto;
     }
 
-    public void setFoto(String Foto) {
-        this.Foto = Foto;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getIdTeam() {
-        return IdTeam;
+        return idTeam;
     }
 
-    public void setIdTeam(String IdTeam) {
-        this.IdTeam = IdTeam;
+    public void setIdTeam(String idTeam) {
+        this.idTeam = idTeam;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public int getNo() {
@@ -164,33 +176,10 @@ public class ObjPlayer {
     public void setNo(int No) {
         this.No = No;
     }
-
+    
     
        
-    public JSONObject toJson(){ 
-         json.put("No",No);
-         json.put("Id_Pemain",IdPemain);
-         json.put("Nama_Pemain", NamaPemain);
-         json.put("Tgl",Tgl);
-         json.put("Tinggi", Tinggi);
-         json.put("Berat", Berat);
-         json.put("Pos", Pos);
-         json.put("Team", IdTeam +"--"+ Team);
-         json.put("No_Punggung", NoPunggung);
-         json.put("Foto",Foto);
-         //json.put("Tangan", Tangan);
-         json.put("action","<button class=\"btn btn-warning button\" data-target=\"#updatemodal\" "
-                 + "onclick =\"update('"+IdPemain+"','"+NamaPemain+"','"+IdTeam+"','"+Pos+"','"+NoPunggung+"','"+Tinggi+"',"
-                    + "'"+Berat+"','"+Tgl+"','"+Tangan+"','"+Foto+"');\""
-                    + " data-toggle=\"modal\"><span class=\"glyphicon glyphicon-edit\">"
-                    + "</span></button>");
-           
-         return json;
-    }
-    public JSONObject getJson(){
-        return json;
-    }
-
+    
    
 
     
