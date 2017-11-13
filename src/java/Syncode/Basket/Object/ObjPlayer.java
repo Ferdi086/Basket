@@ -162,6 +162,14 @@ public class ObjPlayer {
     public void setNo(int No) {
         this.No = No;
     }
+
+    public String getFlagactive() {
+        return flagactive;
+    }
+
+    public void setFlagactive(String flagactive) {
+        this.flagactive = flagactive;
+    }
     
     
        

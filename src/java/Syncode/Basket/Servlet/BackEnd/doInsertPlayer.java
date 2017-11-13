@@ -121,7 +121,7 @@ public class doInsertPlayer extends HttpServlet {
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
                     out.println(file);
-                    //dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
+                    dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Player");
