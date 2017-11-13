@@ -467,4 +467,28 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getPpgApgRpg(String id_p){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "select top 1 Nama_Musim,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG" +
+                            "	from " +
+                            "	( " +
+                            "		select c.ID_Musim,Nama_Musim,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS]  " +
+                            "		from TrGameLogs a, MsPemain b, MsMusim c " +
+                            "		where a.ID_Pemain='"+id_p+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
+                            " " +
+                            "	) a group by Nama_Musim,a.Nama_Pemain,a.KD_Pos,a.ID_Team,a.ID_Musim " +
+                            " " +
+                            "order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new PlayerPpgApgRpg(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
 }

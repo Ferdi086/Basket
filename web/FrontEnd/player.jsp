@@ -83,9 +83,6 @@
 									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
 								</ul>
 							</li>	
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
-							</li>
 						</ul>
 					</div>
 
@@ -144,32 +141,32 @@
 <div class="abc table-responsive">
 <table class="table col-lg-offset-1">
 	<tr>
-		<td id="A"><h3><a href="PlayersByName?Name=A">A</a></h3></td>
-		<td id="B"><h3><a href="PlayersByName?Name=B">B</a></h3></td>
-		<td id="C"><h3><a href="PlayersByName?Name=C">C</a></h3></td>
-		<td id="D"><h3><a href="PlayersByName?Name=D">D</a></h3></td>
-		<td id="E"><h3><a href="PlayersByName?Name=E">E</a></h3></td>
-		<td id="F"><h3><a href="PlayersByName?Name=F">F</a></h3></td>
-		<td id="G"><h3><a href="PlayersByName?Name=G">G</a></h3></td>
-		<td id="H"><h3><a href="PlayersByName?Name=H">H</a></h3></td>
-		<td id="I"><h3><a href="PlayersByName?Name=I">I</a></h3></td>
-		<td id="J"><h3><a href="PlayersByName?Name=J">J</a></h3></td>
-		<td id="K"><h3><a href="PlayersByName?Name=K">K</a></h3></td>
-		<td id="L"><h3><a href="PlayersByName?Name=L">L</a></h3></td>
-		<td id="M"><h3><a href="PlayersByName?Name=M">M</a></h3></td>
-		<td id="N"><h3><a href="PlayersByName?Name=N">N</a></h3></td>
-		<td id="O"><h3><a href="PlayersByName?Name=O">O</a></h3></td>
-		<td id="P"><h3><a href="PlayersByName?Name=P">P</a></h3></td>
-		<td id="Q"><h3><a href="PlayersByName?Name=Q">Q</a></h3></td>
-		<td id="R"><h3><a href="PlayersByName?Name=R">R</a></h3></td>
-		<td id="S"><h3><a href="PlayersByName?Name=S">S</a></h3></td>
-		<td id="T"><h3><a href="PlayersByName?Name=T">T</a></h3></td>
-		<td id="U"><h3><a href="PlayersByName?Name=U">U</a></h3></td>
-		<td id="V"><h3><a href="PlayersByName?Name=V">V</a></h3></td>
-		<td id="W"><h3><a href="PlayersByName?Name=W">W</a></h3></td>
-		<td id="X"><h3><a href="PlayersByName?Name=X">X</a></h3></td>
-		<td id="Y"><h3><a href="PlayersByName?Name=Y">Y</a></h3></td>
-		<td id="Z"><h3><a href="PlayersByName?Name=Z">Z</a></h3></td>
+		<td id="A" onclick="playname('A')"><h3><a href="#">A</a></h3></td>
+		<td id="B" onclick="playname('B')"><h3><a href="#">B</a></h3></td>
+		<td id="C" onclick="playname('C')"><h3><a href="#">C</a></h3></td>
+		<td id="D" onclick="playname('D')"><h3><a href="#">D</a></h3></td>
+		<td id="E" onclick="playname('E')"><h3><a href="#">E</a></h3></td>
+		<td id="F" onclick="playname('F')"><h3><a href="#">F</a></h3></td>
+		<td id="G" onclick="playname('G')"><h3><a href="#">G</a></h3></td>
+		<td id="H" onclick="playname('H')"><h3><a href="#">H</a></h3></td>
+		<td id="I" onclick="playname('I')"><h3><a href="#">I</a></h3></td>
+		<td id="J" onclick="playname('J')"><h3><a href="#">J</a></h3></td>
+		<td id="K" onclick="playname('K')"><h3><a href="#">K</a></h3></td>
+		<td id="L" onclick="playname('L')"><h3><a href="#">L</a></h3></td>
+		<td id="M" onclick="playname('M')"><h3><a href="#">M</a></h3></td>
+		<td id="N" onclick="playname('N')"><h3><a href="#">N</a></h3></td>
+		<td id="O" onclick="playname('O')"><h3><a href="#">O</a></h3></td>
+		<td id="P" onclick="playname('P')"><h3><a href="#">P</a></h3></td>
+		<td id="Q" onclick="playname('Q')"><h3><a href="#">Q</a></h3></td>
+		<td id="R" onclick="playname('R')"><h3><a href="#">R</a></h3></td>
+		<td id="S" onclick="playname('S')"><h3><a href="#">S</a></h3></td>
+		<td id="T" onclick="playname('T')"><h3><a href="#">T</a></h3></td>
+		<td id="U" onclick="playname('U')"><h3><a href="#">U</a></h3></td>
+		<td id="V" onclick="playname('V')"><h3><a href="#">V</a></h3></td>
+		<td id="W" onclick="playname('W')"><h3><a href="#">W</a></h3></td>
+		<td id="X" onclick="playname('X')"><h3><a href="#">X</a></h3></td>
+		<td id="Y" onclick="playname('Y')"><h3><a href="#">Y</a></h3></td>
+		<td id="Z" onclick="playname('Z')"><h3><a href="#">Z</a></h3></td>
 	</tr>
 </table>
 </div>
@@ -178,14 +175,14 @@
 			<div class="wthree_team_grids">
                             <c:forEach var = "item" items = "${requestScope.player}">
 				<div class="col-md-3 wthree_team_grid">
-					<a href="PlayerDetails?ID_P=${item.value.idPemain}">
-						<div class="hovereffect">
-						<img src="../img/Players/${item.value.foto}" alt=" " class="img-responsive" />
-						<div class="overlay">
-							<h6>${item.value.namaPemain}</h6>
-						</div>
-					</a>
+					
+                                        <div class="hovereffect" onclick="playdetail(${item.value.idPemain})">
+                                            <img src="../img/Players/${item.value.foto}" alt=" " class="img-responsive" />
+                                            <div class="overlay">
+                                                    <h6>${item.value.namaPemain}</h6>
+                                            </div>
 					</div>
+                                            
 					<h4>${item.value.namaPos}</h4>
 					<p>${item.value.tinggi} cm</p>
 				</div>
@@ -196,6 +193,14 @@
 		</div>
 	</div>
     <h1 class='ab hidden'>${requestScope.abc}</h1>
+    
+    <footer>
+            <div class="copyright">
+                    <div class="container">
+                            <p>© 2017 Transporters. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                    </div>
+            </div>
+    </footer>
 <!-- js-scripts -->
 <!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -261,6 +266,33 @@
     $('.input_n').click(function(){
        $(this).val(null); 
     });
+</script>
+<script>
+    // Function pindah page with jquery
+    function playdetail(id){
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "PlayerDetails");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "ID_P");
+        hiddenField.setAttribute("value", id);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+  }
+    function playname(huruf){
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "PlayersByName");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "Name");
+        hiddenField.setAttribute("value", huruf);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+    }
 </script>
 </body>
 </html>

@@ -95,10 +95,7 @@
 									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
 									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
 								</ul>
-							</li>		
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
-							</li>
+							</li>	
 						</ul>
 					</div>
 
@@ -279,7 +276,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-5 col-sm-6">
-				<img src="../img/Logo/PJE.png"/>
+				<img src="../img/Team/Logo/PJE.png"/>
 				<div class="progress progress-striped active">
 				  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
 				  </div>
@@ -287,7 +284,7 @@
 				<h3>45</h3>
 			</div>
 			<div class="col-md-5 col-md-offset-2 col-sm-6">
-				<img src="../img/Logo/SWS.png"/>
+				<img src="../img/Team/Logo/SWS.png"/>
 				<div class="progress progress-striped active">
 				  <div class="progress-bar"  role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
 				  </div>
@@ -425,61 +422,6 @@
 
 <!-- footer -->
 	<footer>
-		<div class="agileits-w3layouts-footer">
-			<div class="container">
-				<div class="col-md-6 w3-agile-grid">
-					<h5>About Us</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipis cingelit. Aenean bibendum urna non nisi orn, condimentum iaculis ipsum blandit. Duis vulputate metus nec luctus.</p>
-					<div class="footer-agileinfo-social">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-rss"></i></a></li>
-							<li><a href="#"><i class="fa fa-vk"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-md-6 w3-agile-grid">
-					<h5>Address</h5>
-					<div class="w3-address">
-						<div class="w3-address-grid">
-							<div class="w3-address-left">
-								<i class="fa fa-phone" aria-hidden="true"></i>
-							</div>
-							<div class="w3-address-right">
-								<h6>Phone Number</h6>
-								<p>+0(12) 444 262 399</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="w3-address-grid">
-							<div class="w3-address-left">
-								<i class="fa fa-envelope" aria-hidden="true"></i>
-							</div>
-							<div class="w3-address-right">
-								<h6>Email Address</h6>
-								<p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="w3-address-grid">
-							<div class="w3-address-left">
-								<i class="fa fa-map-marker" aria-hidden="true"></i>
-							</div>
-							<div class="w3-address-right">
-								<h6>Location</h6>
-								<p> SE10 8JQ, Greenwich Road, London. 
-								Telephone : +0(12) 444 262 399
-								</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
 		<div class="copyright">
 			<div class="container">
 				<p>© 2017 Transporters. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
