@@ -288,6 +288,8 @@
             $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
             $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
         </script> 
+        
+        
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
