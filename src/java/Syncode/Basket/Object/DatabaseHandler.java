@@ -583,4 +583,22 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    
+    public HashMap getTeamSeason(String id_team){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "SELECT ID_Musim,Nama_Musim from(" +
+                            "	select distinct a.ID_Musim,a.Nama_Musim FROM MsMusim a, TrGameLogs b, MsTeam c where a.ID_Musim = b.ID_Musim and b.ID_Team = c.ID_Team and b.ID_Team = '"+id_team+"' " +
+                            ")a order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjTeamSeason(rs.getString(1), rs.getString(2)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
 }

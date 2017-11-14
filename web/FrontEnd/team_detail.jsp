@@ -184,10 +184,9 @@ h2 span {
 						  <form>
 							<label class='form-group'>Search By Season : </label>
 							<select name='kat_lok' class='form-group' id='lok'>
-								<option value=''>IBL REGULAR SEASON 2017</option>
-								<option value=''>IBL REGULAR SEASON 2015 - 2016</option>
-								<option value=''>CHAMPIONSHIP PRESEASON 2015</option>
-								<option value=''>IBL PRESEASON 2015</option>
+                                                            <c:forEach var="item" items="${requestScope.ss}">
+								<option value='${item.value.id_musim}'>${item.value.nama_m}</option>								
+                                                            </c:forEach>
 							</select>
 						  </form>
 						</div>
@@ -260,10 +259,9 @@ h2 span {
 						  <form>
 							<label class='form-group'>Search By Season : </label>
 							<select name='kat_lok' class='form-group' id='lok'>
-								<option value=''>IBL REGULAR SEASON 2017</option>
-								<option value=''>IBL REGULAR SEASON 2015 - 2016</option>
-								<option value=''>CHAMPIONSHIP PRESEASON 2015</option>
-								<option value=''>IBL PRESEASON 2015</option>
+                                                            <c:forEach var="item" items="${requestScope.ss}">
+								<option value='${item.value.id_musim}'>${item.value.nama_m}</option>								
+                                                            </c:forEach>
 							</select>
 						  </form>
 						</div>
