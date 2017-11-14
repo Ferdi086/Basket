@@ -271,7 +271,7 @@ HSSFSheet sheet = workbook.getSheetAt(0);
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
-                   //response.sendRedirect("StatistikPlayer");
+                   response.sendRedirect("StatistikPlayer");
                }
             }
             else{
