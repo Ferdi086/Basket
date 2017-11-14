@@ -12,10 +12,24 @@ package Syncode.Basket.Object;
 public class Musim {
     private String id_musim;
     private String nama_musim;
-
+    private String jenis_musim;
+    private String tgl_awal;
+    private String tgl_akhir;
+    
+    public Musim(){
+    }
     public Musim(String id_musim, String nama_musim) {
         this.id_musim = id_musim;
         this.nama_musim = nama_musim;
+    }
+   
+    
+    public Musim(String id_musim, String nama_musim, String jenis_musim, String tgl_awal, String tgl_akhir) {
+        this.id_musim = id_musim;
+        this.nama_musim = nama_musim;
+        this.jenis_musim = jenis_musim;
+        this.tgl_awal = tgl_awal;
+        this.tgl_akhir = tgl_akhir;
     }
 
     public String getId_musim() {
@@ -32,6 +46,30 @@ public class Musim {
 
     public void setNama_musim(String nama_musim) {
         this.nama_musim = nama_musim;
+    }
+
+    public String getJenis_musim() {
+        return jenis_musim;
+    }
+
+    public void setJenis_musim(String jenis_musim) {
+        this.jenis_musim = jenis_musim;
+    }
+
+    public String getTgl_awal() {
+        return tgl_awal;
+    }
+
+    public void setTgl_awal(String tgl_awal) {
+        this.tgl_awal = tgl_awal;
+    }
+
+    public String getTgl_akhir() {
+        return tgl_akhir;
+    }
+
+    public void setTgl_akhir(String tgl_akhir) {
+        this.tgl_akhir = tgl_akhir;
     }
     
     

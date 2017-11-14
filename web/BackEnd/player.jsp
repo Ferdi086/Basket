@@ -381,18 +381,18 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
-                                <th data-align="center" data-valign="middle"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Nama Pemain</center><b></th>            
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Nama Pemain</center><b></th>            
                                 <th data-align="center" data-valign="middle"><b><center>Tanggal Lahir</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Tinggi</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Berat</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Posisi</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Team</center><b></th>  
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Tinggi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Berat</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Posisi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>

@@ -329,7 +329,8 @@
                                    </div>
                             </div>	
                             </form>   
-                    <button><a href="DownloadTemplate">Download Template</a></button>
+                       <button onclick="DownloadTemplate()">Download Template</button>
+                
 				</div>	     
                                 <br/>
                                 <div class="form-group">
@@ -409,7 +410,9 @@
                 $('#ValidasiInput').modal('show');     
             }           
         }
-        
+        function DownloadTemplate(){
+                       location.href="DownloadTemplate"
+        }
             $('#team').change(function () {
             var id = $(this).val();
             //alert(id); 

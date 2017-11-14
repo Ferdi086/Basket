@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -199,6 +200,15 @@
                     margin-bottom:10%;
                 }
                 
+                .msg{
+                        padding: 0;
+                        border-radius:0;
+                        margin-bottom: 0;
+                        text-align: center;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor:pointer;
+                }
                     
                 .hv:hover{
                     opacity:0.6;
@@ -265,17 +275,31 @@
             </ul>
         </div>
 	<div style="height:49px;"></div>
+        <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
+        <script>
+            $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
+            $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
+        </script> 
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
                     <center><h2 style="margin-bottom:40px;"><b>Player</b></h2></center>
            
-			<form class="form-horizontal" method="post" action="doInsertTeam" id="InputTeam" enctype = "multipart/form-data">
+			<form class="form-horizontal" method="post" action="doInsertMusim" id="InputMusim">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Nama Musim</label>
                                     <div class="col-sm-3">
                                         <input id="musim" type="text" name="musim" class="form-control" required/>
+                                    </div>
+                                    <label class="control-label col-sm-2 " >Jenis Musim</label>
+                                    <div class="col-sm-3" >
+                                        <select id="jenis"  name="jenis" class="form-control" required>
+                                            <option value=""> Choose Season </option>
+                                            <option value="PRESEASON"> PREASEASON </option>
+                                            <option value="REGULAR"> REGULAR </option>
+                                            <option value="PLAYOFF"> PLAYOFF </option>
+                                        </select>
                                     </div>
                                    
                                                                      
@@ -287,7 +311,7 @@
                                     </div> 
                                    <label class="control-label col-sm-2">Tahun Akhir</label>
                                    <div class="col-sm-3">
-                                       <input id="akhir" type="text" name="akhir" required/>
+                                       <input id="akhir" type="text" name="akhir" class="form-control" required/>
                                    </div>
                                    
                             </div>	
@@ -386,11 +410,11 @@
         function cekInput(){           
             if($('#nama').val()===""){   
                 return false;
-            }else if($('#nick').val()===""){
+            }else if($('#jenis').val()===""){
                 return false;
-            }else if($('#logo').val()===""){
+            }else if($('#awal').val()===""){
                 return false;
-            }else if($('#foto').val()===""){
+            }else if($('#akhir').val()===""){
                 return false;
             }else{
                 return true;
@@ -398,7 +422,7 @@
         }
         function input(){
             if(cekInput()){
-                $('#InputTeam').submit();
+                $('#InputMusim').submit();
             }else{                
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
