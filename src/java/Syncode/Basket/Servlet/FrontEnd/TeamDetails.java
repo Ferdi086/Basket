@@ -33,7 +33,7 @@ public class TeamDetails extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("ID_N");
+        String ID = request.getParameter("ID_T");
         HashMap tr = dh.getTeamDetail(ID); 
         HashMap tr1 = dh.getPlayers(ID);
         HashMap tr2 = dh.getTopPoint(ID);

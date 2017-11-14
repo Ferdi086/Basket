@@ -70,6 +70,34 @@ public class PlayerDetailStats {
         this.no = no;
         this.id_team = id_team;
     }
+    
+    public PlayerDetailStats(int no, String GP, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS) {
+        this.GP = GP;
+        this.MIN = MIN;
+        this.FGM = FGM;
+        this.FGA = FGA;
+        this.FG = FG;
+        this.PM2 = PM2;
+        this.PA2 = PA2;
+        this.P2 = P2;
+        this.PM3 = PM3;
+        this.PA3 = PA3;
+        this.P3 = P3;
+        this.FTM = FTM;
+        this.FTA = FTA;
+        this.FT = FT;
+        this.O_R = O_R;
+        this.DR = DR;
+        this.TR = TR;
+        this.A_S = A_S;
+        this.T_O = T_O;
+        this.ST = ST;
+        this.BL = BL;
+        this.PF = PF;
+        this.EF = EF;
+        this.PTS = PTS;
+        this.no = no;
+    }
 
     public String getPeriod() {
         return Period;

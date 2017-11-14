@@ -88,18 +88,18 @@
 <center>
 		<h2 style="margin-top:2%"><span>ALL TEAMS</span></h2>
 
-
 <div class="container-a2">
 		<ul class="caption-style-2">                        
                         <c:forEach var = "item" items = "${requestScope.team}">
-                            <li>
-				<a href="team_detail.jsp?ID=${item.value.id}"><img src="../img/Team/Logo/${item.value.logo}" alt="${item.value.id}" width="200px" height="200px"></a>
+                            <li >                                
+				<a onclick="teamdetail('${item.value.id}')"><img src="../img/Team/Logo/${item.value.logo}" alt="${item.value.id}" width="200px" height="200px" ></a>
 				<div class="caption">
 					<div class="blur"></div>
-					<div class="caption-text">
-						<h1><a href="TeamDetails?ID_N=${item.value.id}"><c:out value = "${item.value.nama_team}"/></a></h1>
+					<div class="caption-text"  onclick="teamdetail('${item.value.id}')">
+						<h1><a><c:out value = "${item.value.nama_team}"/></a></h1>
 					</div>
 				</div>
+                                
                             </li>
                         </c:forEach>
                         
@@ -111,7 +111,22 @@
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
-
+<script>
+    function teamdetail(id){
+        
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "TeamDetails");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "ID_T");
+        hiddenField.setAttribute("value", id);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+        
+    }
+</script>
 
 
 

@@ -280,7 +280,7 @@
         form.appendChild(hiddenField);
         document.body.appendChild(form);
         form.submit();
-  }
+    }
     function playname(huruf){
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
