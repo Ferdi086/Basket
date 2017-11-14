@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author meiiko
  */
 public class DownloadTemplate extends HttpServlet {
-
+    private String filePath;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,18 +36,21 @@ public class DownloadTemplate extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+    public void init( ){
+      // Get the file location where it would be stored.
+      filePath = getServletContext().getInitParameter("file-upload-excel"); 
+   }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String Path = getServletContext().getInitParameter("file-upload");
-        File directory = new File(Path);
+         //String Path = getServletContext().getInitParameter("file-upload");
+        File directory = new File(filePath);
         
       
       		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String filename = "4-Rodmundus Ray.xls";
-		String filepath = "e:\\";
+		String filepath = filePath;
 		response.setContentType("APPLICATION/OCTET-STREAM");
 		response.setHeader("Content-Disposition", "attachment; filename=\""
 				+ filename + "\"");
@@ -65,7 +68,7 @@ public class DownloadTemplate extends HttpServlet {
 		}
 		fileInputStream.close();
 		out.close();
-	}
+	
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

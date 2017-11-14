@@ -254,7 +254,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DownloadTemplate</servlet-name>
-        <url-pattern>/DownloadTemplate</url-pattern>
+        <url-pattern>/BackEnd/DownloadTemplate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
