@@ -341,7 +341,7 @@
                             <div class="form-group">
                                    <label class="control-label col-sm-2" >Foto</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="file" id="file" onchange="readURL(this);" required/>
+                                       <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" onchange="readURL(this);" required/>
                                    </div> 
                                    <label class="col-sm-2 control-label">Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
@@ -372,6 +372,7 @@
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle"><b><center>No</center></b></th>
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
+                                <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Nama Pemain</center><b></th>            
                                 <th data-align="center" data-valign="middle"><b><center>Tanggal Lahir</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Tinggi</center></b></th>
@@ -379,46 +380,40 @@
                                 <th data-align="center" data-valign="middle"><b><center>Posisi</center></b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
-                            </thead>
-                             
+                            </thead>      
                             <c:forEach var="item" varStatus="loopCounter" items="${requestScope.player}">
                                 <c:set var="idPemain" value="${item.value.idPemain}"/>
-                                    <c:set var="namaPemain" value="${item.value.namaPemain}"/>
-                                    <c:set var="tgl" value="${item.value.tgl}"/>
-                                    <c:set var="tinggi" value="${item.value.tinggi}"/>
-                                    <c:set var="berat" value="${item.value.berat}" />
-                                    <c:set var="pos" value="${item.value.pos}"/>
-                                    <c:set var="namaPos" value="${item.value.namaPos}"/>
-                                    <c:set var="idTeam" value="${item.value.idTeam}"/>
-                                    <c:set var="team" value="${item.value.team}" />
-                                    <c:set var="noPunggung" value="${item.value.noPunggung}"/>
-                                    <c:set var="logo" value="${item.value.logo}"/>
-                                    <c:set var="tinggi" value="${item.value.tinggi}"/>
-                                    <c:set var="foto" value="${item.value.foto}" />
-                                    <c:set var="flagactive" value="${item.value.flagactive}" />
-                                   
-                                    <tr>
-                                    <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                    <!--<td style="vertical-align: middle;text-align: center"> ${item.value.idPemain}</td>-->
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.namaPemain} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.tgl} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.tinggi} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.berat} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.pos} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.namaPos} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.idTeam} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.team} </td>
-                                    <td style="vertical-align: middle;text-align: center"> ${item.value.noPunggung} </td>
-                                    <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${item.value.foto}" width="80px" height="80px"/> </td>
-                                    <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span></button></td>
-                                    </tr>
+                                <c:set var="namaPemain" value="${item.value.namaPemain}"/>
+                                <c:set var="tgl" value="${item.value.tgl}"/>
+                                <c:set var="tinggi" value="${item.value.tinggi}"/>
+                                <c:set var="foto" value="${item.value.foto}" />
+                                <c:set var="berat" value="${item.value.berat}" />
+                                <c:set var="pos" value="${item.value.pos}"/>
+                                <c:set var="namaPos" value="${item.value.namaPos}"/>
+                                <c:set var="idTeam" value="${item.value.idTeam}"/>
+                                <c:set var="team" value="${item.value.team}" />
+                                <c:set var="noPunggung" value="${item.value.noPunggung}"/>
+                                <c:set var="flagactive" value="${item.value.flagactive}" />
+                            <tr>
+                                <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
+                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${foto}" width="80px" height="80px"/> </td>
+                                <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${tgl} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${tinggi} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${berat} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${pos} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${idTeam} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
+                                <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"
+                                                                                      onclick="Update('${idPemain}','${namaPemain}','${tgl}','${tinggi}','${foto}','${berat}','${pos}'
+                                                                                       ,'${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            </tr>                                                 
                             </c:forEach>
                     </table>        
                     <div style='margin-top: 60px;'>
-                        ${requestScope.player}
+                        
                         </div>
                 </div>    
                 
@@ -477,7 +472,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="doUpdatePlayer" id="formUpdate" enctype = "multipart/form-data" >
                         <div class="form-group e">
-                            <input type="text" id="updateid_pemain" name="uid_pemain"/>
+                            <input type="hidden" id="updateid_pemain" name="uid_pemain"/>
                             <label class="control-label col-sm-2 col-sm-offset-1" for="pemain">Nama Pemain :</label>
                             <div class="col-sm-3">
                                 <input type="text" name="upemain" id="updatepemain" class="form-control" required>
@@ -487,7 +482,7 @@
                               <select  name="uteam" class="form-control" id="updateteam">
                                 <option value=""> Choose One Team </option>
                                 <c:forEach var="item" items="${requestScope.team}">
-                                    <option value="${item.value.id}"> ${item.value.id} - ${item.value.team} </option>
+                                    <option value="${item.value.id}"> ${item.value.id} - ${item.value.nama_team} </option>
                                 </c:forEach>
                              </select>
                             </div>
@@ -505,7 +500,7 @@
                                     
                                     <label class="control-label col-sm-2">Jersey Number</label>
                                     <div class="col-sm-3">
-                                    	<input id="updateno_punggung" type="text" name="uno_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
+                                    	<input id="updateno" type="text" name="uno_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
                                     </div>                                  
                                 </div>	
                             <div class="form-group e">
@@ -526,19 +521,13 @@
                                         <input id="updatetgl" type="text" name="utgl" class="form-control" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                    
-                                    <label class="control-label col-sm-2">Tangan</label>
-                                    <div class="col-sm-3">
-                                        <select id="updatetangan" type="text" name="utangan" class="form-control"  required>
-                                            <option value="Kanan">Kanan</option>
-                                            <option value="Kiri">Kiri</option>
-                                        </select>
-                                    </div>                                  
-                                </div>	
+                                                              
+                            </div>	
                             
                             <div class="form-group ">
                                    <label class="control-label col-sm-2 col-sm-offset-1">Foto</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="file" id="updatefile" onchange="readURLUpdate(this);" required/>
+                                       <input type="file" name="fileupdate" id="updatefile" accept=".jpg, .jpeg, .png" onchange="readURLUpdate(this);" required/>
                                    </div> 
                                    <label class="col-sm-2 control-label">Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
@@ -612,7 +601,7 @@
                 return false;
             }else if($('#updateposisi').val()===""){
                 return false;
-            }else if($('#updateno_punggung').val()===""){
+            }else if($('#updateno').val()===""){
                 return false;
             }else if($('#updatetinggi').val()===""){
                 return false;
@@ -641,19 +630,17 @@
                 $('#KonfirmasiUpdate').modal('hide');
                 $('#ValidasiInput').modal('show'); 
             }  
-        }
-        function update(id,nama,id_team,posisi,no,tinggi,berat,tgl,tangan,foto){     
-        $("#updateid_pemain").val(id);
+        }    
+        function Update(idPemain,namaPemain,tgl,tinggi,foto,berat,pos,idTeam,noPunggung){     
+        $("#updateid_pemain").val(idPemain);
         $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
-            $('#updatepemain').val(nama);
-            $('#updateteam').val(id_team).change();
-            $('#updateposisi').val(posisi).change();
-            $('#updateno_punggung').val(no);
+            $('#updatepemain').val(namaPemain);
+            $('#updateteam').val(idTeam);
+            $('#updateposisi').val(pos);
+            $('#updateno').val(noPunggung);
             $('#updatetinggi').val(tinggi);  
             $('#updateberat').val(berat);  
             $('#updatetgl').val(tgl);  
-            $('#updatetangan').val(tangan).change();  
-             
         }
         $(document).ready(function(){ 
            // $('table.package').highchartTable();

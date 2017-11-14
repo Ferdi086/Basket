@@ -29,7 +29,7 @@ public class doUpdatePlayer extends HttpServlet {
         private boolean isMultipart;
           private String filePath;
           private File file ;
-          private String[] extList = {"JPG","PNG"};
+          private String[] extList = {"jpg","jpeg","png"};
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,19 +42,17 @@ public class doUpdatePlayer extends HttpServlet {
           public void init( ){
       // Get the file location where it would be stored.
       filePath = getServletContext().getInitParameter("file-upload-foto"); 
-   }
+   }  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         DatabaseHandler dh = new DatabaseHandler();
-       HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
-        PrintWriter out = response.getWriter();
-        String nama = request.getParameter("upemain");
-        out.println(nama);
-             //nama,tgl,tinggi,berat,pos,id_team,no,foto, String id_pemain
-         
-        //awal upload    
+                   
+      //awal upload    
       isMultipart = ServletFileUpload.isMultipartContent(request);
       response.setContentType("text/html");
        
@@ -67,75 +65,118 @@ public class doUpdatePlayer extends HttpServlet {
          out.println("<p>No file uploaded</p>"); 
          out.println("</body>");
          out.println("</html>");
-           
          return;
       }
-        
       try { 
          // Parse the request to get file items.
          List fileItems = upload.parseRequest(request);
+         //Iterator ia = fileItems.listIterator(3);
+         //FileItem fia = (FileItem) ia.next();
+         //out.println(fia);
 	
          // Process the uploaded file items
          Iterator i = fileItems.iterator();
-        String Name = "";
-        String ext = "";
-        String keterangan = "";
+           
+        String idpemain = "";
+        String nama_pemain = "";
+        String tgl = "";
+        String foto ="";
+        String tinggi = "";
+        String berat = "";
+        String pos ="";
+        String idTeam = "";
+        String noPunggung = "";
         String Exten = "";
-        String foto = "";
-       // int u = 1;
+        String ext ="";
+        int u = 1;
          while ( i.hasNext () ) {
-              
+            out.println(u);
+            u++;
             FileItem fi = (FileItem)i.next();
+            //out.println("why 2 = "+ar);
             if ( !fi.isFormField () ) {
                // Get the uploaded file parameters
-               FileItem namaitem = (FileItem) fileItems.get(0);
-               //String nama = namaitem.getString().trim();
-               FileItem id_teamitem = (FileItem) fileItems.get(1);
-               String id_team = id_teamitem.getString().trim();
-               String fileName = fi.getName();
-               ext = fileName.split("\\.")[1];
-               //String contentType = fi.getContentType();
-               //boolean isInMemory = fi.isInMemory();
-               //long sizeInBytes = fi.getSize();
-               out.println("nama = "+id_team);
-               
-            if(Arrays.asList(extList).contains(ext.toUpperCase())){
-                    // Write the file
-                    if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
+              FileItem idpemainitem = (FileItem) fileItems.get(0);
+               idpemain = idpemainitem.getString();
+               FileItem nama_pemain_item = (FileItem) fileItems.get(1);
+               nama_pemain = nama_pemain_item.getString().trim();
+               FileItem idTeamitem = (FileItem) fileItems.get(2);
+               idTeam = idTeamitem.getString().trim();
+               FileItem positem = (FileItem) fileItems.get(3);
+               pos = positem.getString().trim();
+               FileItem noPunggungitem = (FileItem) fileItems.get(4);
+               noPunggung = noPunggungitem.getString().trim();
+               FileItem tinggiitem = (FileItem) fileItems.get(5);
+               tinggi = tinggiitem.getString().trim();
+               FileItem beratitem = (FileItem) fileItems.get(6);
+               berat = beratitem.getString().trim();
+               FileItem tglitem = (FileItem) fileItems.get(7);
+               tgl = tglitem.getString().trim();
+               String FieldName = fi.getFieldName();
+               String fileName = fi.getName()==""?"kosong":fi.getName();
+               ext = fileName.split("\\.")[0]=="kosong"?"ini ext kosong":fileName.split("\\.")[1];
+               out.println(ext);
+               //out.println(idpemain + nama_pemain + tgl + tinggi + berat + pos + idTeam + noPunggung);
+               Exten="."+ ext;
+               if(Arrays.asList(extList).contains(ext.toLowerCase())) {
+                     if(FieldName.equals("fileupdate")){
+                         out.println("<br/>iniFoto" + nama_pemain + Exten);
+                           if( fileName.lastIndexOf("\\") >= 1 ) {
+                       file = new File( filePath + idTeam +"-"+ nama_pemain+"."+ ext) ;
                     } else {
-                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
+                       file = new File( filePath + idTeam +"-"+ nama_pemain+"."+ ext) ;
                     }
                     
+                    
+                     }
                     Exten="."+ ext;
-                    foto = id_team +"-"+ nama+Exten;
+                    foto = idTeam +"-"+ nama_pemain+Exten;
+                    out.println("ini foto "+foto);
                     fi.write( file ) ;
-                    //dh.setFile(Name,Exten);
-                     //akhir upload
-                    //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
-                    out.println(file);
-             
-      // boolean a=dh.setUpdatePemain(nama,tgl,tinggi,berat,pos,id_team,no,file,id_pemain);
-        session.setAttribute("ErrMess","Perubahan Data Berhasil Disimpan");
-        session.setAttribute("alert", "alert-success");
-        //response.sendRedirect("Player");
-        //out.println(a);
-        out.println("berhasil");
-        //out.println(query);
-      }
-      else{
-        session.setAttribute("ErrMess","Perubahan Data Gagal Disimpan");
-        session.setAttribute("alert", "alert-danger");
-       // response.sendRedirect("Player");
-       //out.println(a);
-       out.println("gagal");
-      }
-     }
+                    String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                    boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
+                    out.println("query 2 ="+query+"<br/>");
+                    out.println(a);
+                    session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                    //response.sendRedirect("Team");
+                   
+            }
+               else {
+                       
+                    }
+             }
+            else {
+               FileItem idpemainitem = (FileItem) fileItems.get(0);
+               idpemain = idpemainitem.getString();
+               FileItem nama_pemain_item = (FileItem) fileItems.get(1);
+               nama_pemain = nama_pemain_item.getString().trim();
+               FileItem idTeamitem = (FileItem) fileItems.get(2);
+               idTeam = idTeamitem.getString().trim();
+               FileItem positem = (FileItem) fileItems.get(3);
+               pos = positem.getString().trim();
+               FileItem noPunggungitem = (FileItem) fileItems.get(4);
+               noPunggung = noPunggungitem.getString().trim();
+               FileItem tinggiitem = (FileItem) fileItems.get(5);
+               tinggi = tinggiitem.getString().trim();
+               FileItem beratitem = (FileItem) fileItems.get(6);
+               berat = beratitem.getString().trim();
+               FileItem tglitem = (FileItem) fileItems.get(7);
+               tgl = tglitem.getString().trim();
+               
+              out.println("tgl= "+tinggi);
+               
+               String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", where Id_Pemain='"+ idpemain +"'";
+                   boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
+               out.println("query 1 ="+query+"<br/>");
+                out.println(a);
+            }
           }
-            } catch(Exception ex) {
-            System.out.println(ex);
-            out.println("nama =sss");
-            //out.println(nama);
+            session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                //response.sendRedirect("Player");
+         } catch(Exception ex) {
+             //out.println(ex);
          }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
