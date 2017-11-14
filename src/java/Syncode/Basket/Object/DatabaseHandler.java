@@ -50,11 +50,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Musim,Nama_Musim from MsMusim"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir from MsMusim"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Musim(rs.getString(1), rs.getString(2)));
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -62,7 +62,17 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    
+    public boolean setMusim(String nama, String awal, String akhir, String jenis){
+        try {        
+                    String query = "insert into MsMusim (Nama_Musim,Tahun_Awal,Tahun_Akhir,Jenis) values ('"+nama+"','"+awal+"','"+akhir+"','"+jenis+"')";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
     public HashMap getTeamDetail(String id){
         HashMap tr = new HashMap();
         try {      
@@ -176,6 +186,7 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
+     
     public boolean setUpdatePemain(String nama, String tgl, String tinggi, String berat, String pos, String id_team, String no, String foto, String id_pemain){
         String query="";
         try {       

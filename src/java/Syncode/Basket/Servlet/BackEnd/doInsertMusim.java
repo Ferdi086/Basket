@@ -8,7 +8,6 @@ package Syncode.Basket.Servlet.BackEnd;
 import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author meiiko
  */
-public class Musim extends HttpServlet {
+public class doInsertMusim extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,19 +31,25 @@ public class Musim extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(true);
-            PrintWriter out = response.getWriter();
-            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-            session.removeAttribute("ErrMess");
-            session.removeAttribute("alert");
-            request.setAttribute("ErrMess", ErrMess);
-            request.setAttribute("alert", alert);
-            
-            HashMap ms = dh.getMusim();
-            request.setAttribute("musim",ms);
-        request.getRequestDispatcher("/BackEnd/musim.jsp").forward(request,response);
+        DatabaseHandler dh = new DatabaseHandler();
+        HttpSession session = request.getSession(true);
+        PrintWriter out = response.getWriter();
+        String nama = request.getParameter("musim");
+        String jenis = request.getParameter("jenis");
+        String awal = request.getParameter("awal");
+        String akhir = request.getParameter("akhir");
+        boolean a=dh.setMusim(nama, awal, akhir, jenis);
+             if(a){
+                    session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                    response.sendRedirect("Musim");
+                  }
+             else {
+                    session.setAttribute("ErrMess","Your data failed to be recorded");
+                    session.setAttribute("alert", "alert-danger");
+                    response.sendRedirect("Musim");
+        
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
