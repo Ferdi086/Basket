@@ -154,6 +154,28 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
+     public boolean setNonaktifPlayer(String id){
+        try {        
+                    String query = "update MsPemain set Flag_active='N' where ID_Pemain='"+id+"'";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+     public boolean setAktifPlayer(String id){
+        try {        
+                    String query = "update MsPemain set Flag_active='Y' where ID_Pemain='"+id+"'";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
     public boolean setUpdatePemain(String nama, String tgl, String tinggi, String berat, String pos, String id_team, String no, String foto, String id_pemain){
         String query="";
         try {       

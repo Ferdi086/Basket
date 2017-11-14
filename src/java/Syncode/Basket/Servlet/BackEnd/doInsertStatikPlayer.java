@@ -39,7 +39,8 @@ public class doInsertStatikPlayer extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */    private String filePath;
+     */ 
+    private String filePath;
  private boolean isMultipart;
  private File file ;
  private String[] extList = {"XLSX","XLS"};
@@ -75,7 +76,7 @@ public class doInsertStatikPlayer extends HttpServlet {
          out.println("</html>");
          return;
       }
-    HttpSession session = request.getSession(false);
+    HttpSession session = request.getSession(true);
       DiskFileItemFactory factory = new DiskFileItemFactory();
        ServletFileUpload upload = new ServletFileUpload(factory);
    DatabaseHandler dh = new DatabaseHandler();
@@ -106,14 +107,16 @@ public class doInsertStatikPlayer extends HttpServlet {
                String namasplit = nama.split("\\-")[1];
                String id_pemain = nama.split("\\-")[0];
                FileItem musimitem = (FileItem) fileItems.get(3);
-               String musim = musimitem.getString().trim();
+               String musim = musimitem.getString();
+               String nama_musim =musim.split("\\-")[1];
+               String id_musim =musim.split("\\-")[0];
                String fieldName = fi.getFieldName();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                String contentType = fi.getContentType();
                boolean isInMemory = fi.isInMemory();
                long sizeInBytes = fi.getSize();
-            out.println("nama = "+nama);
+            out.println("nama = "+nama_musim);
             out.println("namasplit = "+namasplit);
             out.println("team = "+id_team);
             out.println("musim = "+musim);
@@ -121,13 +124,13 @@ public class doInsertStatikPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 0 ) {
-                       file = new File( filePath + id_team + musim +namasplit +"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
                     } else {
-                       file = new File( filePath + id_team + musim +namasplit +"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
                     }
                     
                     Exten="."+ ext;
-                    namafile = id_team + musim + namasplit + Exten;
+                    namafile = id_team +"-"+ nama_musim +"-"+namasplit + Exten;
                     
                     fi.write( file ) ;
                     //dh.setFile(Name,Exten);
@@ -241,10 +244,10 @@ HSSFSheet sheet = workbook.getSheetAt(0);
            // String snama=std.getNama();
            // String sumur=std.getUmur();
                String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
-                    + "values('"+ musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
+                    + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
            
           out.println(query);
-           boolean a =dh.setStatikPemain(musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
+           boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
              if(a == true ){
                  out.println("berhasil");
              }
@@ -261,18 +264,14 @@ HSSFSheet sheet = workbook.getSheetAt(0);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("StatistikPlayer");
-                    //request.getRequestDispatcher("excel").forward(request, response);
-                   try{
-                   Thread.sleep(2*1000);
-            } catch (InterruptedException ex) {
-               // Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    
+                   
                    
                }
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
-                   response.sendRedirect("StatistikPlayer");
+                   //response.sendRedirect("StatistikPlayer");
                }
             }
             else{

@@ -6,20 +6,26 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author meiiko
  */
-public class StatistikPlayer extends HttpServlet {
+public class DownloadTemplate extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,23 +36,36 @@ public class StatistikPlayer extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(true);
-            PrintWriter out = response.getWriter();
-            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           session.removeAttribute("ErrMess");
-            session.removeAttribute("alert");
-           request.setAttribute("ErrMess", ErrMess);
-           request.setAttribute("alert", alert);
-            
-            HashMap tm = dh.getTeam();
-            HashMap ms = dh.getMusim();
-            request.setAttribute("team",tm);
-            request.setAttribute("musim", ms);
-            request.getRequestDispatcher("/BackEnd/StatistikPlayer.jsp").forward(request,response);
+         String Path = getServletContext().getInitParameter("file-upload");
+        File directory = new File(Path);
+        
+      
+      		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String filename = "4-Rodmundus Ray.xls";
+		String filepath = "e:\\";
+		response.setContentType("APPLICATION/OCTET-STREAM");
+		response.setHeader("Content-Disposition", "attachment; filename=\""
+				+ filename + "\"");
+ 
+		// use inline if you want to view the content in browser, helpful for
+		// pdf file
+		// response.setHeader("Content-Disposition","inline; filename=\"" +
+		// filename + "\"");
+		FileInputStream fileInputStream = new FileInputStream(filepath
+				+ filename);
+ 
+		int i;
+		while ((i = fileInputStream.read()) != -1) {
+			out.write(i);
+		}
+		fileInputStream.close();
+		out.close();
+	}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -88,4 +107,5 @@ public class StatistikPlayer extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+     
 }

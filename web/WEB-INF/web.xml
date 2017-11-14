@@ -108,6 +108,14 @@
         <servlet-name>doFlagTeam</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doFlagTeam</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doFlagPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doFlagPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadTemplate</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.DownloadTemplate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -239,6 +247,14 @@
     <servlet-mapping>
         <servlet-name>doFlagTeam</servlet-name>
         <url-pattern>/BackEnd/doFlagTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doFlagPlayer</servlet-name>
+        <url-pattern>/BackEnd/doFlagPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadTemplate</servlet-name>
+        <url-pattern>/DownloadTemplate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
