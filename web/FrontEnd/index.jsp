@@ -108,7 +108,7 @@
 	<div class="callbacks_container">
 		<ul class="rslides" id="slider">
 			<li>
-				<div class="w3layouts-banner-top w3layouts-banner-top1">
+				<div class="w3layouts-banner-top w3layouts-banner-top1" style="background: url('images/bgx2.jpeg') no-repeat 0px 0px;">
 					<div class="banner-dott">
 					<div class="container">
 						<div class="slider-info">

@@ -126,7 +126,7 @@
 		<h1>${item.value.namaPemain}</h1>
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
-		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
+		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/CLS.png"/>${item.value.team}</h3></a>
 		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>
 		<h4><span>Height</span> : ${item.value.tinggi} cm</h4>
 		<h4><span>Weight</span> : ${item.value.berat} kg</h4>

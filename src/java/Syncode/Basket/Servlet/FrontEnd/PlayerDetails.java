@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjPlayer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class PlayerDetails extends HttpServlet {
         request.setAttribute("player_gl",trc);
         request.setAttribute("id_pem",ID);
         request.setAttribute("ppg",ppg);
-        //out.print(ID);
+        
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }
 
