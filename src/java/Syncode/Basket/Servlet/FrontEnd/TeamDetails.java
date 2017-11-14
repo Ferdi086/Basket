@@ -39,12 +39,13 @@ public class TeamDetails extends HttpServlet {
         HashMap tr2 = dh.getTopPoint(ID);
         HashMap tr3 = dh.getTopAssist(ID);
         HashMap tr4 = dh.getTopRebound(ID);
+        HashMap Season = dh.getTeamSeason(ID);
         request.setAttribute("team",tr);
         request.setAttribute("player",tr1);
         request.setAttribute("tp",tr2);
         request.setAttribute("ta",tr3);
         request.setAttribute("tr",tr4);
-        //out.print(tr2);
+        request.setAttribute("ss",Season);
         request.getRequestDispatcher("team_detail.jsp").forward(request, response);
     }
 
