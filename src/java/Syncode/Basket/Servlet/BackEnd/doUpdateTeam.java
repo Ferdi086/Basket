@@ -150,7 +150,7 @@ public class doUpdateTeam extends HttpServlet {
           }
             session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                //response.sendRedirect("Team");
+                response.sendRedirect("Team");
          } catch(Exception ex) {
              out.println(ex);
          }

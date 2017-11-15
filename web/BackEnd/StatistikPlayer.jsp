@@ -316,7 +316,7 @@
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Import File Excel</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="excel" accept=".xls" required/>
+                                       <input type="file" name="excel" accept=".xlsx" required/>
                                    </div>
                                    <label class="control-label col-sm-2">Musim</label>
                                    <div class="col-sm-3">

@@ -21,9 +21,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -43,7 +43,7 @@ public class doInsertStatikPlayer extends HttpServlet {
     private String filePath;
  private boolean isMultipart;
  private File file ;
- private String[] extList = {"XLSX","XLS"};
+ private String[] extList = {"xlsx"};
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -80,7 +80,7 @@ public class doInsertStatikPlayer extends HttpServlet {
       DiskFileItemFactory factory = new DiskFileItemFactory();
        ServletFileUpload upload = new ServletFileUpload(factory);
    DatabaseHandler dh = new DatabaseHandler();
-
+   out.println("lala");
 
         try { 
          // Parse the request to get file items.
@@ -121,7 +121,7 @@ public class doInsertStatikPlayer extends HttpServlet {
             out.println("team = "+id_team);
             out.println("musim = "+musim);
             out.println("id pemain = "+id_pemain);
-               if(Arrays.asList(extList).contains(ext.toUpperCase())){
+               if(Arrays.asList(extList).contains(ext.toLowerCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 0 ) {
                        file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
@@ -143,9 +143,9 @@ public class doInsertStatikPlayer extends HttpServlet {
 File file=new File(filePath +namafile);
 FileInputStream fin = new FileInputStream(file);
 //Get the workbook instance for XLS file
-HSSFWorkbook workbook = new HSSFWorkbook(fin);
+XSSFWorkbook workbook = new XSSFWorkbook(fin);
 //Get first sheet from the workbook
-HSSFSheet sheet = workbook.getSheetAt(0);
+XSSFSheet sheet = workbook.getSheetAt(0);
     //Iterate through each rows from first sheet
  Row row;
  int trow = sheet.getLastRowNum();
@@ -266,11 +266,13 @@ HSSFSheet sheet = workbook.getSheetAt(0);
             }
             else{
                 Name = fi.getString();
+                out.println("masuk ke sini");
             }
+            out.println("masuk ke sini 1");
          }
           //response.sendRedirect("excel");
          } catch(Exception ex) {
-            System.out.println(ex);
+            out.println(ex);
          }
     }
 

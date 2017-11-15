@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="../css/bootstrap-table.css"> 
         <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css"/>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap-table.js"></script>
         <script src="../js/moment.min.js"></script>
         <script src="../js/bootstrap-datetimepicker.js"></script>
         <script src="../js/excelexportjs.js"></script>
@@ -307,21 +308,21 @@
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Team's Logo</label>
                                    <div class="col-sm-3">
-                                       <input id="logo" type="file" name="logo" multiple onchange="readlogo(this);" required/>
+                                       <input id="logo" type="file" name="logo" accept=".jpg, .jpeg, .png" onchange="readlogo(this);" required/>
                                    </div>
                                    <label class="control-label col-sm-2">Team's Foto</label>
                                    <div class="col-sm-3">
-                                       <input id="foto" type="file" name="foto"  onchange="readfoto(this);" required/>
+                                       <input id="foto" type="file" name="foto" accept=".jpg, .jpeg, .png" onchange="readfoto(this);" required/>
                                    </div>
                             </div>	
                             <div class="form-group">
                                    <label class="col-sm-2 control-label">Preview Logo</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewlogo" style="margin-left:-15px"/>
+                                        <img id="previewlogo" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
                                     </div>
                                    <label class="col-sm-2 col-sm-offset-1 control-label">Preview Foto</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewfoto" style="margin-left:-15px"/>
+                                        <img id="previewfoto" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
                                     </div>
                             </div>
                             </form>                                        
@@ -341,17 +342,17 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
                     <center><h2><b>Team List</b></h2></center>
-                    <table id="player" class="table table-striped">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true" data-show-refresh="true">
                         <thead>
                             <tr style="font-size:18px;">
-                                <th><b><center>No</center></b></th>
-                                <th><b><center>ID Team</center><b></th>
-                                <th><b><center>Nama Team</center><b></th>            
-                                <th><b><center>Logo</center><b></th>
-                                <th><b><center>Team</center></b></th>
-                                <th><b><center>Action</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>ID Team</center><b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Nama Team</center><b></th>            
+                                <th data-align="center" data-valign="middle"><b><center>Logo</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Team</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
-                                
+                        </thead>      
                                 <c:forEach var="item" varStatus="loopCounter" items="${requestScope.Team}">
                                     <c:set var="id" value="${item.value.id}"/>
                                     <c:set var="nama_team" value="${item.value.nama_team}"/>
@@ -379,7 +380,7 @@
                                                  </c:forEach>
                                         </td>
                                     </tr>
-                        </thead>                              
+                                                   
                     </table>          
                     <div style='margin-top: 60px;'>
                        ${requestScope.footer}  
@@ -515,8 +516,8 @@
                 </div>
                 <div class="modal-body">
                     <form action="../BackEnd/doFlagTeam" method="post" id="formnon">
-                    <input type="text" name="ID_T" id="ID_T1"/>
-                    <input type="text" name="Flag"id="Flag1"/>
+                    <input type="hidden" name="ID_T" id="ID_T1"/>
+                    <input type="hidden" name="Flag"id="Flag1"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                     </form>
                 </div>
@@ -538,8 +539,8 @@
                 </div>
                 <div class="modal-body">
                     <form action="../BackEnd/doFlagTeam" method="post" id="formaktif">
-                    <input type="text" name="ID_T" id="ID_T"/>
-                    <input type="text" name="Flag" id="Flag"/>
+                    <input type="hidden" name="ID_T" id="ID_T"/>
+                    <input type="hidden" name="Flag" id="Flag"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                     </form>
                 </div>
@@ -554,9 +555,9 @@
     </body>
     <script>
         $(document).ready(function(){ 
-            $("#loading").hide();
-            $("#ok").hide();
-            $("#error").hide();
+            //$("#loading").hide();
+            //$("#ok").hide();
+            //$("#error").hide();
              $('#togglebutton').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
@@ -571,47 +572,18 @@
             $('#tgl').datetimepicker({
                     format: 'YYYY-MM-DD'
                 });
-            jQuery('.scrollbar-macosx').scrollbar();                
-                     
+            jQuery('.scrollbar-macosx').scrollbar();
+            
+            $("#reset").click(function(){
+                $("#nama").focus();
+                $("#nama").val(null);
+                $("#nick").val(null);
+                $("#logo").val(null);
+                $("#foto").val(null);
+                $("#previewlogo").attr('src',"../img/nopic.png");
+                $("#previewfoto").attr('src',"../img/nopic.png");
+            });         
 	});    
-        $('#nick').change(function () {
-            var nick = $(this).val();
-            $.ajax({
-                type: 'POST',
-                url: 'ceknick',
-                data: {
-                    'NIM': nim
-                },
-                beforeSend: function(){
-                    $('#loading').show();
-                    $("#ok").hide();
-                    $("#error").hide();
-                },
-                complete: function(){
-                    $('#loading').hide();
-                },
-                success: function (data) {
-                    var result= data.split('|');
-                    var val = result[0];
-                    var nama = result[1];
-                    if(val=="Ok"){      
-                        $('#loading').hide();
-                        $("#error").hide();
-                        $("#Name").val(nama);
-                        $("#ok").show();  
-                    }else{
-                        $('#loading').hide();
-                        $("#ok").hide();
-                        alert("NIM Tidak Terdaftar!");
-                        $("#NIM").val("");
-                        $("#Name").val("");
-                        $("#error").show();                        
-                        $("#NIM").focus();
-                        $("#error").fadeTo(5000, 0);
-                    }
-                }
-            });
-        });
         function cekUpdate(){           
             if($('#UpdateId').val()===""){   
                 return false;
