@@ -343,7 +343,7 @@
                                         <input id="tgl" type="text" name="tgl" class="form-control" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                    
-                                    <label class="control-label col-sm-2">Tangan</label>
+                                    <label class="control-label col-sm-2">Posisi Tangan</label>
                                     <div class="col-sm-3">
                                         <select id="tangan" type="text" name="tangan" class="form-control"  required>
                                             <option value="kanan">Kanan</option>
@@ -359,9 +359,9 @@
                                    </div> 
                                    <label class="col-sm-2 control-label">Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="preview" style="margin-left:-15px"/>
+                                        <img id="preview" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
                                     </div>
-                                   
+                                  
                             </div>
                              </form>                                        
 				</div>	     
@@ -378,10 +378,10 @@
 			
                     </div>
                 
-                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;margin-top: 20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-pagination="true">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true" data-show-refresh="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
@@ -396,7 +396,7 @@
                                 <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
-                            </thead>      
+                        </thead>      
                             <c:forEach var="item" varStatus="loopCounter" items="${requestScope.player}">
                                 <c:set var="idPemain" value="${item.value.idPemain}"/>
                                 <c:set var="namaPemain" value="${item.value.namaPemain}"/>
@@ -412,11 +412,11 @@
                                 <c:set var="flagactive" value="${item.value.flagactive}" />
                             <tr>
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${foto}" width="80px" height="80px"/> </td>
+                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}" width="80px" height="80px"/> </td>
                                 <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${tgl} </td>
-                                <td style="vertical-align: middle;text-align: center"> ${tinggi} </td>
-                                <td style="vertical-align: middle;text-align: center"> ${berat} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${tinggi} cm </td>
+                                <td style="vertical-align: middle;text-align: center"> ${berat} kg </td>
                                 <td style="vertical-align: middle;text-align: center"> ${pos} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${idTeam} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
@@ -580,7 +580,7 @@
                     <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="ID_Guest"/>
+                    <input type="hidden" id="ID_Pe"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                 </div>
                 <div class="modal-footer">
@@ -601,8 +601,8 @@
                 </div>
                 <div class="modal-body">
                     <form action="../BackEnd/doFlagPlayer" method="post" id="formnon">
-                    <input type="text" name="ID_P" id="ID_P1"/>
-                    <input type="text" name="Flag"id="Flag1"/>
+                    <input type="hidden" name="ID_P" id="ID_P1"/>
+                    <input type="hidden" name="Flag"id="Flag1"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                     </form>
                 </div>
@@ -624,8 +624,8 @@
                 </div>
                 <div class="modal-body">
                     <form action="../BackEnd/doFlagPlayer" method="post" id="formaktif">
-                    <input type="text" name="ID_P" id="ID_P"/>
-                    <input type="text" name="Flag" id="Flag"/>
+                    <input type="hidden" name="ID_P" id="ID_P"/>
+                    <input type="hidden" name="Flag" id="Flag"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                     </form>
                 </div>
@@ -762,12 +762,14 @@
             $("#reset").click(function(){
                 $("#pemain").focus();
                 $("#pemain").val(null);
+                $("#team").val(null);
                 $("#posisi").val(null);
                 $("#no_punggung").val(null);
                 $("#tinggi").val(null);
                 $("#berat").val(null);
                 $("#tgl").val(null);
                 $("#tangan").val(null);
+                $("#preview").attr('src',"../img/nopic.png");
                 $("#file").val(null);
             });    
             jQuery('.scrollbar-macosx').scrollbar();                

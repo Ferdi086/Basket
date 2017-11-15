@@ -5,18 +5,11 @@
  */
 package Syncode.Basket.Servlet.BackEnd;
 
-import Syncode.Basket.Object.DatabaseHandler;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,13 +36,11 @@ public class DownloadTemplate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          //String Path = getServletContext().getInitParameter("file-upload");
-        File directory = new File(filePath);
-        
-      
+       
       		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String filename = "4-Rodmundus Ray.xls";
+		String filename = "Template Statistik Player.xlsx";
 		String filepath = filePath;
 		response.setContentType("APPLICATION/OCTET-STREAM");
 		response.setHeader("Content-Disposition", "attachment; filename=\""

@@ -141,10 +141,19 @@ public class DatabaseHandler extends Connect {
     }
     public boolean setUpdateMsTeam(String nick, String nama_team, String logo, String gambar_team){
         try {         
-            
-                String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
-                ps = conn.prepareStatement(query);
-            
+                if(logo.equals("") && gambar_team.equals("")){
+                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"' where ID_Team='"+nick+"'";
+                     ps = conn.prepareStatement(query);
+                }else if(logo.equals("")){
+                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Gambar='"+gambar_team+"' where ID_Team='"+nick+"'";
+                     ps = conn.prepareStatement(query);
+                }else if(gambar_team.equals("")){
+                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
+                     ps = conn.prepareStatement(query);
+                }else{
+                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
+                     ps = conn.prepareStatement(query);
+                 }
                ps.executeUpdate();  
                 return true;
             
