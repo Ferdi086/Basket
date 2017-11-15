@@ -7,7 +7,6 @@ package Syncode.Basket.Object;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import org.json.JSONArray;
 
 /**
  *
@@ -65,6 +64,17 @@ public class DatabaseHandler extends Connect {
     public boolean setMusim(String nama, String awal, String akhir, String jenis){
         try {        
                     String query = "insert into MsMusim (Nama_Musim,Tahun_Awal,Tahun_Akhir,Jenis) values ('"+nama+"','"+awal+"','"+akhir+"','"+jenis+"')";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+    public boolean setUpdateMusim(String id,String nama, String awal, String akhir, String jenis){
+        try {        
+                    String query = "Update MsMusim set Nama_Musim='"+nama+"',Tahun_Awal='"+awal+"',Tahun_Akhir='"+akhir+"',Jenis='"+jenis+"' where ID_Musim='"+id+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;

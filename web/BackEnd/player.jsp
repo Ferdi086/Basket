@@ -438,9 +438,7 @@
                             </tr>                                                 
                             </c:forEach>
                     </table>        
-                    <div style='margin-top: 60px;'>
-                        
-                        </div>
+                  
                 </div>    
                 
 		</div>
