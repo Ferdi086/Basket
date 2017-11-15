@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!--
 	Author: W3layouts
 	Author URL: http://w3layouts.com
@@ -73,9 +76,6 @@
 									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
 								</ul>
 							</li>	
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
-							</li>
 						</ul>
 					</div>
 
@@ -87,45 +87,21 @@
 		<h2 style="margin-top:2%"><span>NEWS</span></h2>
 </center>
 <div class="container-fluid artikel">
+    <c:forEach var="item" items="${requestScope.nl}">
 	<div class="row a_box">
-		<div class="col-md-3 col-sm-5 a_gbr">
-			<a href=""><img src="images/news/1.jpg" class="img-responive"/></a>
+		<div class="col-md-3 col-sm-5 a_gbr" onclick="detail(${item.value.id})">
+			<a href=""><img src="images/news/${item.value.foto}" class="img-responive"/></a>
 		</div>
 		<div class="col-lg-6 col-md-7 col-sm-7 a_jud">
-			<h3><a href="#">Kevin Durant dan Stephen Curry Selamatkan Muka Golden State Warriors</a></h3><br>
-			<p class="a_tgl"><span class="glyphicon glyphicon-calendar"> </span>  11 November 2017</p>
-			<p>Hampir kalah atau tepatnya hampir malu di rumah sendiri. Itulah yang terjadi saat Golden State Warriors menjamu tamunya Toronto Raptors, Rabu malam waktu...</p>
-			<div class="w3ls-button pull-right">
+                        <h3 onclick="detail(${item.value.id})"><a href="#">${item.value.judul}</a></h3><br>
+			<p class="a_tgl"><span class="glyphicon glyphicon-calendar"> </span>  ${item.value.tgl}</p>
+			<p>${item.value.desk}...</p>
+			<div class="w3ls-button pull-right" onclick="detail(${item.value.id})">
 				<a href="#">Read More</a>
 			</div>
 		</div>
 	</div>
-	<div class="row a_box">
-		<div class="col-md-3 col-sm-5 a_gbr">
-			<a href=""><img src="images/news/1.jpg" class="img-responive"/></a>
-		</div>
-		<div class="col-lg-6 col-md-7 col-sm-7 a_jud">
-			<h3><a href="#">Kevin Durant dan Stephen Curry Selamatkan Muka Golden State Warriors</a></h3><br>
-			<p class="a_tgl"><span class="glyphicon glyphicon-calendar"> </span>  11 November 2017</p>
-			<p>Hampir kalah atau tepatnya hampir malu di rumah sendiri. Itulah yang terjadi saat Golden State Warriors menjamu tamunya Toronto Raptors, Rabu malam waktu...</p>
-			<div class="w3ls-button pull-right">
-				<a href="#">Read More</a>
-			</div>
-		</div>
-	</div>
-	<div class="row a_box">
-		<div class="col-md-3 col-sm-5 a_gbr">
-			<a href=""><img src="images/news/1.jpg" class="img-responive"/></a>
-		</div>
-		<div class="col-lg-6 col-md-7 col-sm-7 a_jud">
-			<h3><a href="#">Kevin Durant dan Stephen Curry Selamatkan Muka Golden State Warriors</a></h3><br>
-			<p class="a_tgl"><span class="glyphicon glyphicon-calendar"> </span>  11 November 2017</p>
-			<p>Hampir kalah atau tepatnya hampir malu di rumah sendiri. Itulah yang terjadi saat Golden State Warriors menjamu tamunya Toronto Raptors, Rabu malam waktu...</p>
-			<div class="w3ls-button pull-right">
-				<a href="#">Read More</a>
-			</div>
-		</div>
-	</div>
+    </c:forEach>
 </div>
 <!-- js-scripts -->					
 <!-- js -->
@@ -133,7 +109,12 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
 
-
+<script>
+    function detail(id){
+        alert(id);
+    }
+    
+</script>
 
 
 

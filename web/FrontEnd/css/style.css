@@ -3329,3 +3329,40 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
 	}
 }}
 /*--//responsive--*/
+
+/*-- index --*/
+.bungkus{
+    margin: 2%;
+}
+.kiri{
+    background-color:white;
+    border : 2px solid #ffcc00;
+    padding: 0 !important;
+    margin-top:2%;
+}
+.kiri_form{
+    background-color: white; 
+    max-width:510px;
+    padding:3%;
+    border:2px solid #23B684;
+    margin:2% 0 ;
+}
+.kiri_jud{
+    background-color:black;
+    color:white;
+    padding:10px;
+}
+.foto_wrap{
+    margin: 1% auto;    
+}
+.foto_pl{
+    max-height: 94px;
+    max-width: 70px;   
+}
+.kiri_btn{
+    margin-top:3%;
+    width:100px;
+    font-size:18px;
+    background-color:#23B684;
+    color:white;
+}
