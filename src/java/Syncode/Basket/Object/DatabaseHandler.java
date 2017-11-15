@@ -366,7 +366,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "select Match,WL,[MIN],FGM,FGA,FG,2PM,2PA,2P,3PM,3PA,3P,FTM,FTA,FT,[OR],DR,TR,[AS],[TO],ST,BL,PF,EF,PTS from TrGameLogs where ID_Musim = "+id_m+" and ID_Pemain = "+id_p+"";
+            String query = "select Match,WL,[MIN],FGM,FGA,FG,[2PM],[2PA],[2P],[3PM],[3PA],[3P],FTM,FTA,FT,[OR],DR,TR,[AS],[TO],ST,BL,PF,EF,PTS from TrGameLogs where ID_Musim = "+id_m+" and ID_Pemain = "+id_p+"";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -491,4 +491,21 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getNewsList(){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = " select Id_News, Judul, DATENAME(MONTH, Tanggal) " +
+"         + RIGHT(CONVERT(VARCHAR(12), Tanggal, 107), 9) AS tgl, LEFT(CONVERT(VARCHAR(153),Deskripsi),153)as deskripsi, Foto from TrNews where Flag_active = 'Y' order by Tanggal desc ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjNews(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
+    
 }

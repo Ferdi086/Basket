@@ -108,6 +108,10 @@
         <servlet-name>doFlagTeam</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doFlagTeam</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>News</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.News</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>doFlagTeam</servlet-name>
         <url-pattern>/BackEnd/doFlagTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>News</servlet-name>
+        <url-pattern>/FrontEnd/News</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
