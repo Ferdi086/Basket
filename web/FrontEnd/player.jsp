@@ -52,10 +52,10 @@
 								<div class="bar3"></div>
 							</div>
 							<script>
-									function myFunction(x) {
-									    x.classList.toggle("change");
-									}
-								</script>
+                                                                function myFunction(x) {
+                                                                    x.classList.toggle("change");
+                                                                }
+                                                        </script>
 						</button>
 						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
 					</div>
