@@ -5,5 +5,5 @@
 --%>
 
 <%
-    response.sendRedirect("FrontEnd");
+    response.sendRedirect("FrontEnd/Home");
 %>
