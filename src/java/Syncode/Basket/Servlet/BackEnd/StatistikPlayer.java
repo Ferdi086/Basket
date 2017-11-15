@@ -33,24 +33,20 @@ public class StatistikPlayer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession(true);
             PrintWriter out = response.getWriter();
-            //String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            //String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           //session.removeAttribute("ErrMess");
-           // session.removeAttribute("alert");
-            //request.setAttribute("ErrMess", ErrMess);
-           // request.setAttribute("alert", alert);
+            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
+            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
+           session.removeAttribute("ErrMess");
+            session.removeAttribute("alert");
+           request.setAttribute("ErrMess", ErrMess);
+           request.setAttribute("alert", alert);
             
             HashMap tm = dh.getTeam();
             HashMap ms = dh.getMusim();
-            //HashMap pos = dh.getPosisi();
-          // out.println(pos);
             request.setAttribute("team",tm);
             request.setAttribute("musim", ms);
-            //out.println(tm);
-            //request.setAttribute("posisi",pos);
-                    request.getRequestDispatcher("/BackEnd/StatistikPlayer.jsp").forward(request,response);
+            request.getRequestDispatcher("/BackEnd/StatistikPlayer.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -250,15 +250,29 @@
 			<span class="text">Team</span>
                     </a>
                 </li> 
-                <li class="dropdown">
-                    <div class="hv">
-                    <a href="Statistic" class="dropdown-toggle" data-toggle="dropdown"><img class="icon" src="../img/Book-Open.png"></a>
-                    <span class="text" id="Book">Statistic<span class="caret"></span></span>
-                    </div>
-                    <ul class="dropdown-menu" id="sub">
-                        <li><a href="StatistikPlayer">Player</a></li>
-                        <li><a href="StatistikTeam">Team</a></li> 
-                    </ul>
+                <li> 
+                    <a href="StatistikPlayer" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Statistik Player</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="News" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">News</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="Gallery" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Gallery</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="Musim" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Musim</span>
+                    </a>
                 </li> 
                 <li class="btn-menu">
                     <button id="togglebutton"><span class="glyphicon glyphicon-th-list"></span></button>
@@ -367,18 +381,18 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
-                                <th data-align="center" data-valign="middle"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Nama Pemain</center><b></th>            
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Nama Pemain</center><b></th>            
                                 <th data-align="center" data-valign="middle"><b><center>Tanggal Lahir</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Tinggi</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Berat</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Posisi</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Team</center><b></th>  
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Tinggi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Berat</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Posisi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
@@ -408,13 +422,23 @@
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
                                 <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"
                                                                                       onclick="Update('${idPemain}','${namaPemain}','${tgl}','${tinggi}','${foto}','${berat}','${pos}'
-                                                                                       ,'${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button></td>
+                                                                                       ,'${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
+                                                                                       <c:choose>
+                                                                                            <c:when test="${flagactive=='Y'}">
+                                                                                                <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
+                                                                                                <br />
+                                                                                            </c:when>   
+                                                                                            <c:when test="${flagactive=='N'}">
+                                                                                                <button class="btn" data-target="#KonfirmasiAktif" data-toggle="modal" onclick="flagaktif('${idPemain}','${flagactive}')" >Enable</button>
+                                                                                            <br />
+                                                                                            </c:when>  
+                                                                                       </c:choose>
+                                                
+                                </td>
                             </tr>                                                 
                             </c:forEach>
                     </table>        
-                    <div style='margin-top: 60px;'>
-                        
-                        </div>
+                  
                 </div>    
                 
 		</div>
@@ -566,7 +590,53 @@
             </div>
         </div>
     </div>
-    <!-- End Modal Konfirmasi Update-->    
+    <!-- End Modal Konfirmasi Update--> 
+    <!-- Modal Konfirmasi Nonaktif-->
+    <div id="KonfirmasiNonaktif" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation Nonactive</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="../BackEnd/doFlagPlayer" method="post" id="formnon">
+                    <input type="text" name="ID_P" id="ID_P1"/>
+                    <input type="text" name="Flag"id="Flag1"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="nonaktif()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Nonaktif-->
+    <!-- Modal Konfirmasi Aktif-->
+    <div id="KonfirmasiAktif" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation Active</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="../BackEnd/doFlagPlayer" method="post" id="formaktif">
+                    <input type="text" name="ID_P" id="ID_P"/>
+                    <input type="text" name="Flag" id="Flag"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="aktif()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Aktif-->
     </body>
     <script>
         function cekInput(){           
@@ -642,6 +712,34 @@
             $('#updateberat').val(berat);  
             $('#updatetgl').val(tgl);  
         }
+        function aktif(){
+            var ID_Team = $("#ID_P").val();
+             if(ID_Team === "" ){
+                $('#KonfirmasiAktif').modal('hide');
+                $('#ValidasiInput').modal('show'); 
+               
+            }else{
+                 $('#formaktif').submit();
+            }
+        }
+        function nonaktif(){
+            var ID_Team = $("#ID_P1").val();
+             if(ID_Team === "" ){
+                $('#KonfirmasiNonaktif').modal('hide');
+                $('#ValidasiInput').modal('show'); 
+               
+            }else{
+                 $('#formnon').submit();
+            }
+        }
+        function flagaktif(ID_Pemain,Flag){
+                $('#ID_P').val(ID_Pemain);
+                $('#Flag').val(Flag);
+            }
+        function flagnonaktif(ID_Pemain,Flag){
+                $('#ID_P1').val(ID_Pemain);
+                $('#Flag1').val(Flag);
+            }
         $(document).ready(function(){ 
            // $('table.package').highchartTable();
            // $('table.IdCard').highchartTable();

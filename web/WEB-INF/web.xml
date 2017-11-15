@@ -109,6 +109,22 @@
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doFlagTeam</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>doFlagPlayer</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doFlagPlayer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadTemplate</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.DownloadTemplate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doInsertMusim</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertMusim</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUpdateMusim</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doUpdateMusim</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>News</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.News</servlet-class>
     </servlet>
@@ -152,28 +168,28 @@
         <description>Location to store uploaded file</description>
         <param-name>file-upload-foto</param-name>
         <param-value>
-         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Players\
+         D:\Netbeans\Basket\web\img\Players\
       </param-value>
     </context-param>
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload-excel</param-name>
         <param-value>
-         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\Statistik\Players\
+         D:\Netbeans\Basket\web\Statistik\Players\
       </param-value>
     </context-param>
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload-foto-logo</param-name>
         <param-value>
-         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Team\Logo\
+         D:\Netbeans\Basket\web\img\Team\Logo\
       </param-value>
     </context-param>
     <context-param>
         <description>Location to store uploaded file</description>
         <param-name>file-upload-foto-team</param-name>
         <param-value>
-         C:\Users\meiiko\Documents\NetBeansProjects\Basket\web\img\Team\Foto\
+         D:\Netbeans\Basket\web\img\Team\Foto\
       </param-value>
     </context-param>
     <servlet-mapping>
@@ -247,6 +263,22 @@
     <servlet-mapping>
         <servlet-name>News</servlet-name>
         <url-pattern>/FrontEnd/News</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doFlagPlayer</servlet-name>
+        <url-pattern>/BackEnd/doFlagPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadTemplate</servlet-name>
+        <url-pattern>/BackEnd/DownloadTemplate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doInsertMusim</servlet-name>
+        <url-pattern>/BackEnd/doInsertMusim</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUpdateMusim</servlet-name>
+        <url-pattern>/BackEnd/doUpdateMusim</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

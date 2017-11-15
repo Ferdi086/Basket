@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,6 +17,7 @@
         <link rel="stylesheet" href="../css/bootstrap-table.css"> 
         <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css"/>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap-table.js"></script>
         <script src="../js/moment.min.js"></script>
         <script src="../js/bootstrap-datetimepicker.js"></script>
         <script src="../js/excelexportjs.js"></script>
@@ -199,6 +201,15 @@
                     margin-bottom:10%;
                 }
                 
+                .msg{
+                        padding: 0;
+                        border-radius:0;
+                        margin-bottom: 0;
+                        text-align: center;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor:pointer;
+                }
                     
                 .hv:hover{
                     opacity:0.6;
@@ -265,20 +276,32 @@
             </ul>
         </div>
 	<div style="height:49px;"></div>
+        <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
+        <script>
+            $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
+            $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
+        </script> 
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Player</b></h2></center>
+                    <center><h2 style="margin-bottom:40px;"><b>Musim</b></h2></center>
            
-			<form class="form-horizontal" method="post" action="doInsertTeam" id="InputTeam" enctype = "multipart/form-data">
+			<form class="form-horizontal" method="post" action="doInsertMusim" id="InputMusim">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Nama Musim</label>
                                     <div class="col-sm-3">
                                         <input id="musim" type="text" name="musim" class="form-control" required/>
                                     </div>
-                                   
-                                                                     
+                                    <label class="control-label col-sm-2 " >Jenis Musim</label>
+                                    <div class="col-sm-3" >
+                                        <select id="jenis"  name="jenis" class="form-control" required>
+                                            <option value=""> Choose Season </option>
+                                            <option value="PRESEASON"> PREASEASON </option>
+                                            <option value="REGULAR"> REGULAR </option>
+                                            <option value="PLAYOFF"> PLAYOFF </option>
+                                        </select>
+                                    </div>                               
                                 </div>	
                             <div class="form-group">
                                     <label class="control-label col-sm-2">Tahun Awal</label>
@@ -287,9 +310,8 @@
                                     </div> 
                                    <label class="control-label col-sm-2">Tahun Akhir</label>
                                    <div class="col-sm-3">
-                                       <input id="akhir" type="text" name="akhir" required/>
+                                       <input id="akhir" type="text" name="akhir" class="form-control" required/>
                                    </div>
-                                   
                             </div>	
                             
                             </form>                                        
@@ -306,6 +328,41 @@
                                 </div>
 			
                     </div>
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
+                    <hr/>
+                    <center><h2><b>Musim List</b></h2></center>
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-pagination="true">
+                        <thead>
+                            <tr style="font-size:18px;">
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
+                                <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
+                                <th data-align="center" data-valign="middle"><b><center>Nama Musim</center><b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Jenis Musim</center><b></th>            
+                                <th data-align="center" data-valign="middle"><b><center>Periode</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
+                            </tr>
+                            </thead>      
+                            <c:forEach var="item" varStatus="loopCounter" items="${requestScope.musim}">
+                                <c:set var="idMusim" value="${item.value.id_musim}"/>
+                                <c:set var="namaMusim" value="${item.value.nama_musim}"/>
+                                <c:set var="jenisMusim" value="${item.value.jenis_musim}"/>
+                                <c:set var="awal" value="${item.value.tgl_awal}"/>
+                                <c:set var="akhir" value="${item.value.tgl_akhir}" />
+                               
+                            <tr>
+                                <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
+                                <td style="vertical-align: middle;text-align: center"> ${namaMusim} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${jenisMusim} </td>
+                                <td style="vertical-align: middle;text-align: center"> ${awal}-${akhir} </td>
+                                <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"
+                                                      onclick="Update('${idMusim}','${namaMusim}','${jenisMusim}','${awal}','${akhir}')"><span class="glyphicon glyphicon-edit"></span></button>
+                                                   
+                                </td>
+                            </tr>                                                 
+                            </c:forEach>
+                    </table>        
+                  
+                </div> 
 		</div>
                 
                     
@@ -348,12 +405,80 @@
         </div>
     </div>
     <!-- End Modal Validasi Input-->
+     <!-- Modal Update -->
+    <div class="modal" id="updatemodal" role="dialog">
+        <div class="modal-dialog"  style="margin-top:118px;width:70%">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"><center>Perubahan Data Pemain</center></h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="doUpdateMusim" id="formUpdate">
+                        <div class="form-group">
+                                    <label class="control-label col-sm-2 " >Nama Musim</label>
+                                    <div class="col-sm-3">
+                                        <input id="Uid" type="text" name="id" class="form-control" required/>
+                                        <input id="Umusim" type="text" name="musim" class="form-control" required/>
+                                    </div>
+                                    <label class="control-label col-sm-2 " >Jenis Musim</label>
+                                    <div class="col-sm-3" >
+                                        <select id="Ujenis"  name="jenis" class="form-control" required>
+                                            <option value=""> Choose Season </option>
+                                            <option value="PRESEASON"> PREASEASON </option>
+                                            <option value="REGULAR"> REGULAR </option>
+                                            <option value="PLAYOFF"> PLAYOFF </option>
+                                        </select>
+                                    </div>                               
+                                </div>	
+                            <div class="form-group">
+                                    <label class="control-label col-sm-2">Tahun Awal</label>
+                                    <div class="col-sm-3">
+                                        <input id="Uawal" type="text" name="awal"  class="form-control" required/>
+                                    </div> 
+                                   <label class="control-label col-sm-2">Tahun Akhir</label>
+                                   <div class="col-sm-3">
+                                       <input id="Uakhir" type="text" name="akhir" class="form-control" required/>
+                                   </div>
+                            </div>
+                        
+                    </form>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#KonfirmasiUpdate"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Update -->
+    <!-- Modal Konfirmasi Update-->
+    <div id="KonfirmasiUpdate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-size:30px;text-align:center;">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ID_Guest"/>
+                        <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="update()">Yes</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Konfirmasi Update--> 
     </body>
     <script>
         $(document).ready(function(){ 
-            $("#loading").hide();
-            $("#ok").hide();
-            $("#error").hide();
              $('#togglebutton').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
@@ -384,13 +509,28 @@
 	});    
         
         function cekInput(){           
-            if($('#nama').val()===""){   
+            if($('#musim').val()===""){   
                 return false;
-            }else if($('#nick').val()===""){
+            }else if($('#jenis').val()===""){
                 return false;
-            }else if($('#logo').val()===""){
+            }else if($('#awal').val()===""){
                 return false;
-            }else if($('#foto').val()===""){
+            }else if($('#akhir').val()===""){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        function cekUpdate(){           
+            if($('#Uid').val()===""){   
+                return false;
+            }else if($('#Umusim').val()===""){   
+                return false;
+            }else if($('#Ujenis').val()===""){
+                return false;
+            }else if($('#Uawal').val()===""){
+                return false;
+            }else if($('#Uakhir').val()===""){
                 return false;
             }else{
                 return true;
@@ -398,13 +538,27 @@
         }
         function input(){
             if(cekInput()){
-                $('#InputTeam').submit();
+                $('#InputMusim').submit();
             }else{                
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
             }           
         }
-     
+        function update(){
+            if(cekUpdate()){
+                $('#formUpdate').submit();
+            }else{                
+                $('#KonfirmasiInput').modal('hide');
+                $('#ValidasiInput').modal('show');     
+            }           
+        }
+        function Update(idMusim,namaMusim,jenisMusim,awal,akhir){
+            $('#Uid').val(idMusim);
+            $('#Umusim').val(namaMusim);
+            $('#Ujenis').val(jenisMusim);
+            $('#Uawal').val(awal);
+            $('#Uakhir').val(akhir);
+        }
     </script>
 </html>
 

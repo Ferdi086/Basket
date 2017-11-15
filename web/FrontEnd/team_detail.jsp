@@ -184,10 +184,9 @@ h2 span {
 						  <form>
 							<label class='form-group'>Search By Season : </label>
 							<select name='kat_lok' class='form-group' id='lok'>
-								<option value=''>IBL REGULAR SEASON 2017</option>
-								<option value=''>IBL REGULAR SEASON 2015 - 2016</option>
-								<option value=''>CHAMPIONSHIP PRESEASON 2015</option>
-								<option value=''>IBL PRESEASON 2015</option>
+                                                            <c:forEach var="item" items="${requestScope.ss}">
+								<option value='${item.value.id_musim}'>${item.value.nama_m}</option>								
+                                                            </c:forEach>
 							</select>
 						  </form>
 						</div>
@@ -260,10 +259,9 @@ h2 span {
 						  <form>
 							<label class='form-group'>Search By Season : </label>
 							<select name='kat_lok' class='form-group' id='lok'>
-								<option value=''>IBL REGULAR SEASON 2017</option>
-								<option value=''>IBL REGULAR SEASON 2015 - 2016</option>
-								<option value=''>CHAMPIONSHIP PRESEASON 2015</option>
-								<option value=''>IBL PRESEASON 2015</option>
+                                                            <c:forEach var="item" items="${requestScope.ss}">
+								<option value='${item.value.id_musim}'>${item.value.nama_m}</option>								
+                                                            </c:forEach>
 							</select>
 						  </form>
 						</div>
@@ -340,14 +338,12 @@ h2 span {
 			<div class="wthree_team_grids">                                
                                 <c:forEach var = "item" items = "${requestScope.player}">
                                 <div class="col-md-3 wthree_team_grid">
-					<a href="PlayerDetails?ID_P=${item.value.idPemain}">
-					<div class="hovereffect">
+					<div class="hovereffect" onclick="playdetail(${item.value.idPemain})">
 						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>
 						<div class="overlay">
                                                     <h6>${item.value.namaPemain}</h6>
 						</div>
 					</div>
-					</a>
 					<h4>${item.value.namaPos}</h4>
 					<p>${item.value.tinggi} cm</p>
 				</div>
@@ -364,9 +360,20 @@ h2 span {
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
-
-
-
+<script>
+    function playdetail(id){
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "PlayerDetails");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "ID_P");
+        hiddenField.setAttribute("value", id);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 
 
 <!-- //js-scripts -->

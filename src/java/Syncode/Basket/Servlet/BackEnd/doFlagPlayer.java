@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Syncode.Basket.Servlet.FrontEnd;
+package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ferdinand
+ * @author meiiko
  */
-public class TeamDetails extends HttpServlet {
+public class doFlagPlayer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,20 +33,27 @@ public class TeamDetails extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("ID_T");
-        HashMap tr = dh.getTeamDetail(ID); 
-        HashMap tr1 = dh.getPlayers(ID);
-        HashMap tr2 = dh.getTopPoint(ID);
-        HashMap tr3 = dh.getTopAssist(ID);
-        HashMap tr4 = dh.getTopRebound(ID);
-        HashMap Season = dh.getTeamSeason(ID);
-        request.setAttribute("team",tr);
-        request.setAttribute("player",tr1);
-        request.setAttribute("tp",tr2);
-        request.setAttribute("ta",tr3);
-        request.setAttribute("tr",tr4);
-        request.setAttribute("ss",Season);
-        request.getRequestDispatcher("team_detail.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        String ID_Player = request.getParameter("ID_P");
+        String Flag = request.getParameter("Flag");
+        if(Flag.equals("Y")){
+            dh.setNonaktifPlayer(ID_Player);
+            session.setAttribute("ErrMess","Your data successfully recorded");
+            session.setAttribute("alert", "alert-success");
+            response.sendRedirect("Player");
+            
+        }
+        else if(Flag.equals("N")){
+            dh.setAktifPlayer(ID_Player);
+            session.setAttribute("ErrMess","Your data successfully recorded");
+            session.setAttribute("alert", "alert-success");
+            response.sendRedirect("Player");
+        }
+        else{
+           session.setAttribute("ErrMess","Your data failed to be recorded");
+           session.setAttribute("alert", "alert-danger");
+            response.sendRedirect("Player");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -235,6 +235,35 @@
                                                                             <td>${item.value.PTS}</td>
                                                                     </tr>
                                                                     </c:forEach>
+                                                                    <c:forEach var="item" items="${requestScope.player_stat_sum}">
+                                                                    <tr>
+                                                                            <td colspan="2"></td>
+                                                                            <td>${item.value.GP}</td>
+                                                                            <td>${item.value.MIN}</td>
+                                                                            <td>${item.value.FGM}</td>
+                                                                            <td>${item.value.FGA}</td>
+                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.PM2}</td>
+                                                                            <td>${item.value.PA2}</td>
+                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.PM3}</td>
+                                                                            <td>${item.value.PA3}</td>
+                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.FTM}</td>
+                                                                            <td>${item.value.FTA}</td>
+                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.o_R}</td>
+                                                                            <td>${item.value.DR}</td>
+                                                                            <td>${item.value.TR}</td>
+                                                                            <td>${item.value.a_S}</td>
+                                                                            <td>${item.value.t_O}</td>
+                                                                            <td>${item.value.ST}</td>
+                                                                            <td>${item.value.BL}</td>
+                                                                            <td>${item.value.PF}</td>
+                                                                            <td>${item.value.EF}</td>
+                                                                            <td>${item.value.PTS}</td>
+                                                                    </tr>                                                                    
+                                                                    </c:forEach>
                                                             </table>
                                                     </div>
                                                     
@@ -299,6 +328,35 @@
                                                                             <td>${item.value.EF}</td>
                                                                             <td>${item.value.PTS}</td>
                                                                     </tr>
+                                                                    </c:forEach>
+                                                                    <c:forEach var="item" items="${requestScope.player_stat2_sum}">
+                                                                    <tr>
+                                                                            <td colspan="2"></td>
+                                                                            <td>${item.value.GP}</td>
+                                                                            <td>${item.value.MIN}</td>
+                                                                            <td>${item.value.FGM}</td>
+                                                                            <td>${item.value.FGA}</td>
+                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.PM2}</td>
+                                                                            <td>${item.value.PA2}</td>
+                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.PM3}</td>
+                                                                            <td>${item.value.PA3}</td>
+                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.FTM}</td>
+                                                                            <td>${item.value.FTA}</td>
+                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.o_R}</td>
+                                                                            <td>${item.value.DR}</td>
+                                                                            <td>${item.value.TR}</td>
+                                                                            <td>${item.value.a_S}</td>
+                                                                            <td>${item.value.t_O}</td>
+                                                                            <td>${item.value.ST}</td>
+                                                                            <td>${item.value.BL}</td>
+                                                                            <td>${item.value.PF}</td>
+                                                                            <td>${item.value.EF}</td>
+                                                                            <td>${item.value.PTS}</td>
+                                                                    </tr>                                                                    
                                                                     </c:forEach>
                                                             </table>
                                                     </div>

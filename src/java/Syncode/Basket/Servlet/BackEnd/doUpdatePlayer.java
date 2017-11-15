@@ -174,7 +174,7 @@ public class doUpdatePlayer extends HttpServlet {
           }
             session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                //response.sendRedirect("Player");
+                response.sendRedirect("Player");
          } catch(Exception ex) {
              //out.println(ex);
          }

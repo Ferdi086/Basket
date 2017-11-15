@@ -200,6 +200,15 @@
                     margin-bottom:10%;
                 }
                 
+                .msg{
+                        padding: 0;
+                        border-radius:0;
+                        margin-bottom: 0;
+                        text-align: center;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor:pointer;
+                }
                     
                 .hv:hover{
                     opacity:0.6;
@@ -243,16 +252,30 @@
 			<span class='text'>Team</span>
                     </a>
                 </li> 
-                <li class=”dropdown”>
-                    <div class="hv">
-                    <a href="Statistic" class=”dropdown-toggle” data-toggle=”dropdown”><img class="icon" src="../img/Book-Open.png"></a>
-                    <span class='text' id="Book">Statistic<span class="caret"></span></span>
-                    </div>
-                    <ul class=”dropdown-menu” id="sub">
-                        <li><a href="StatistikPlayer">Player</a></li>
-                        <li><a href="StatisticTeam">Team</a></li> 
-                    </ul>
+                <li> 
+                    <a href="StatistikPlayer" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Statistik Player</span>
+                    </a>
                 </li> 
+                <li> 
+                    <a href="News" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">News</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="Gallery" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Gallery</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="Musim" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Musim</span>
+                    </a>
+                </li>
                 <li class="btn-menu">
                     <button id="togglebutton"><span class="glyphicon glyphicon-th-list"></span></button>
                     <label class='text txt-toggle' id="cursor">Menu</label>
@@ -260,6 +283,13 @@
             </ul>
         </div>
 	<div style="height:49px;"></div>
+        <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
+        <script>
+            $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
+            $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
+        </script> 
+        
+        
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
@@ -272,7 +302,7 @@
                                         <select name="team" class="form-control" id="team">
                                             <option value=""> Choose One Team </option>
                                             <c:forEach var="item" items="${requestScope.team}">
-                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.team} </option>
+                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.nama_team} </option>
                                               </c:forEach>
                                         </select>
                                     </div>
@@ -286,19 +316,21 @@
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Import File Excel</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="excel" required/>
+                                       <input type="file" name="excel" accept=".xls" required/>
                                    </div>
                                    <label class="control-label col-sm-2">Musim</label>
                                    <div class="col-sm-3">
                                       <select name="musim" class="form-control" id="musim">
                                             <option value=""> Choose One Musim </option>
                                             <c:forEach var="item" items="${requestScope.musim}">
-                                                <option value="${item.value.id_musim}">${item.value.nama_musim} </option>
+                                                <option value="${item.value.id_musim}-${item.value.nama_musim}">${item.value.nama_musim} </option>
                                               </c:forEach>
                                         </select>
                                    </div>
                             </div>	
-                            </form>                                        
+                            </form>   
+                       <button onclick="DownloadTemplate()">Download Template</button>
+                
 				</div>	     
                                 <br/>
                                 <div class="form-group">
@@ -378,7 +410,9 @@
                 $('#ValidasiInput').modal('show');     
             }           
         }
-        
+        function DownloadTemplate(){
+                       location.href="DownloadTemplate"
+        }
             $('#team').change(function () {
             var id = $(this).val();
             //alert(id); 

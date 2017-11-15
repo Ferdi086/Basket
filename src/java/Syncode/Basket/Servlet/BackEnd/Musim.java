@@ -5,12 +5,15 @@
  */
 package Syncode.Basket.Servlet.BackEnd;
 
+import Syncode.Basket.Object.DatabaseHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,6 +32,18 @@ public class Musim extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DatabaseHandler dh=new DatabaseHandler();
+            HttpSession session = request.getSession(true);
+            PrintWriter out = response.getWriter();
+            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
+            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
+            session.removeAttribute("ErrMess");
+            session.removeAttribute("alert");
+            request.setAttribute("ErrMess", ErrMess);
+            request.setAttribute("alert", alert);
+            
+            HashMap ms = dh.getMusim();
+            request.setAttribute("musim",ms);
         request.getRequestDispatcher("/BackEnd/musim.jsp").forward(request,response);
     }
 
