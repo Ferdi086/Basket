@@ -213,16 +213,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.FG}%</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.p2}%</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.p3}%</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.FT}%</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -242,16 +242,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.FG}%</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.p2}%</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.p3}%</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.FT}%</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -307,16 +307,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.FG}%</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.p2}%</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.p3}%</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.FT}%</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -336,16 +336,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}</td>
+                                                                            <td>${item.value.FG}%</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}</td>
+                                                                            <td>${item.value.p2}%</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}</td>
+                                                                            <td>${item.value.p3}%</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}</td>
+                                                                            <td>${item.value.FT}%</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
