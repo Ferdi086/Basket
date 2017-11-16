@@ -117,27 +117,22 @@
     <div class='row bungkus'>
         <p><b>BasketBall Statistics</b> for IBL(Indonesian Basketball League)</p>
         
-        <div class='col-md-5 kiri'>
+        <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
                 <h4>Every Player</h4>
             </div>
             <center>
-                <div class='foto_wrap' style="padding-left:50px;padding-right: 50px;">
+                <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1}">
                         <img src='../img/Players/${item.value.foto}' class="foto_pl" >
                     </c:forEach>
-                        <img src='../img/Players/BPJ-Tertius.jpg' class="foto_pl" >
-                        <img src='../img/Players/BPJ-Tertius.jpg' class="foto_pl" >
-                        <img src='../img/Players/BPJ-Tertius.jpg' class="foto_pl" >
-                        <img src='../img/Players/BPJ-Tertius.jpg' class="foto_pl" >
-                        <img src='../img/Players/BPJ-Tertius.jpg' class="foto_pl" >
                 </div>
                 <div class="kiri_form">
                 <form>		
                     <select name='' class="form-group" id="sel_team">
                             <option value=''> ------------ Select a Team ------------ </option>
                             <c:forEach var="item" items="${requestScope.team}">
-                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.nama_team} </option>
+                                <option value="${item.value.id}"> ${item.value.nama_team} </option>
                             </c:forEach>
                     </select>
                     <select id="sel_plyr" name=''>
@@ -149,7 +144,7 @@
             </center>
         </div>
         
-        <div class="col-md-6 kanan">
+        <div class="col-lg-5 col-md-12-sm-12 kanan">
             <div class="kanan_jud">
                 <h4>Every Team</h4>
             </div>
@@ -287,7 +282,32 @@
                     </tr>
                 </table>
             </div>
-            <div
+        </div>
+        <div class='col-lg-3 col-md-12 pojok'>
+            <div class='pojok_jud'>
+                <h4>Others News</h4>
+            </div>
+            <div id='sea'>
+                <h4>2017-2018 IBL Season</h4>
+                <a href='season.jsp'>2017-2018 IBL Regular Schedule</a>
+            </div>
+            <div id='tren'>
+                <h4>Trending Player Pages</h4>
+                <a href='#'>Ferdinand Sinaga</a>,
+                <a href='#'>Ferdinand Sinaga</a>,
+                <a href='#'>Ferdinand Sinaga</a>,
+                <a href='#'>Ferdinand Sinaga</a>
+            </div>
+            <div id='pojok_news'>
+                <h4>Recent News</h4>
+                <ul class='pjk'>
+                    <li> <a href='#'>Berita 1</a> </li>
+                    <li> <a href='#'>Berita 2</a> </li>
+                    <li> <a href='#'>Berita 3</a> </li>
+                    <li> <a href='#'>Berita 4</a> </li>
+                    <li> <a href='#'>Berita 5</a> </li>
+                </ul>
+            </div>
         </div>
     </div>
 

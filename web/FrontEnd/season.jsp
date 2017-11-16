@@ -55,27 +55,17 @@
 							<li><a class="hvr-underline-from-center active" href="index.jsp">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
 							</li>
-							<li><a class="hvr-underline-from-center active" href="news.jsp">
-							<span class="glyphicon glyphicon-comment"> </span> News</a>
-							</li>
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
 							<li><a href="player.jsp" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
-							<li><a href="gallery.jsp" class="hvr-underline-from-center">
-							<span class="glyphicon glyphicon-unchecked"> </span> Gallery</a>
-							</li>
 							<li><a href="#" data-toggle="dropdown"><span data-hover="ShortCodes">
 							<span class="glyphicon glyphicon-stats"> </span> Statistics</span><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
-									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
-								</ul>
+                                                                </ul>
 							</li>	
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
-							</li>
 						</ul>
 					</div>
 
@@ -84,8 +74,24 @@
 </div>
 
 <center>
-		<h2 style="margin-top:2%"><span>PLAYER DETAIL</span></h2>
+		<h2 style="margin-top:2%"><span>IBL Schedule and Results</span></h2>
 </center>
+                <div class='row tgh center-block'>
+                    <div class='logo_ibl'>
+                     <img src='../img/logo_ibl.jpg' style='max-width:200px'/>
+                    </div>
+                    <div class='dropd'>
+                        <form>		
+                            <select name='' class='form-group' id="sel_pos">
+                                    <option value=''> ------ Select Season ------ </option>
+                                    <option value=''>  IBL REGULAR 2017-2018 </option>
+                            </select>
+                      </form>
+                        <b>PPG Leader : </b> <a href='#'>Ferdinand Sinaga</a><br>
+                        <b>APG Leader : </b> <a href='#'>Ferdinand Sinaga</a><br>
+                        <b>RPG Leader : </b> <a href='#'>Ferdinand Sinaga</a><br>
+                    </div>
+                </div>
 <!-- js-scripts -->					
 <!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

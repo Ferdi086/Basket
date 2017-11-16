@@ -3335,7 +3335,7 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
     margin: 2%;
     margin-top:1%;
 }
-.kiri{
+.kiri, .pojok{
     background-color:white;
     border : 2px solid #ffcc00;
     padding: 0 !important;
@@ -3346,13 +3346,13 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
 }
 .kiri_form{
     background-color: white; 
-    max-width:400px;
+    max-width:305px;
     padding:3%;
     border:2px solid #23B684;
     margin:2% 0 ;
     margin-bottom: 10%;
 }
-.kiri_jud, .kanan_jud{
+.kiri_jud, .kanan_jud , .pojok_jud{
     background-color:black;
     color:white;
     padding:10px;
@@ -3407,4 +3407,26 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
     max-height: 30px;
     margin-right:2%;
     margin-left:1%;
+}
+#sea, #tren, #pojok_news {
+    margin-top: 6%;
+    margin-left: 3%;
+}
+.pjk{
+    list-style-type: none;
+    margin-left: 3%;
+}
+
+
+/*     season      */
+.tgh{
+    max-width:450px;
+    background-color:white;
+    border : 2px solid #ffcc00;
+    padding: 0 !important;
+    margin: 2% auto;  
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.logo_ibl , .dropd{
+    display: inline-block;
 }
