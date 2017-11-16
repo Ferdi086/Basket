@@ -674,10 +674,10 @@ public class DatabaseHandler extends Connect {
                     "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
                     "	from" +
                     "	(" +
-                    "		SELECT b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[FGM],[FGA],[FG],\n" +
-                    "			[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS] \n" +
-                    "		from TrGameLogs a, MsPemain b, MsMusim c, MsTeam d\n" +
-                    "		where a.ID_Musim = '"+id_musim+"' and a.ID_Team = '"+id_team+"' and a.ID_Pemain = b.ID_Pemain and a.ID_Musim=c.ID_Musim and a.ID_Team = d.ID_Team \n" +
+                    "		SELECT b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
+                    "			[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS] " +
+                    "		from TrGameLogs a, MsPemain b, MsMusim c, MsTeam d " +
+                    "		where a.ID_Musim = '"+id_musim+"' and a.ID_Team = '"+id_team+"' and a.ID_Pemain = b.ID_Pemain and a.ID_Musim=c.ID_Musim and a.ID_Team = d.ID_Team " +
                     "	) a group by a.ID_Team,a.Nama_Pemain,a.KD_Pos" +
                     "order by Nama_Pemain";
             ps = conn.prepareStatement(query);
