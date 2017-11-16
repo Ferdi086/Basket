@@ -3333,31 +3333,38 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
 /*-- index --*/
 .bungkus{
     margin: 2%;
+    margin-top:1%;
 }
 .kiri{
     background-color:white;
     border : 2px solid #ffcc00;
     padding: 0 !important;
-    margin-top:2%;
+    margin-top:1%;
+    margin-left:2%;
+    margin-right:2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .kiri_form{
     background-color: white; 
-    max-width:525px;
+    max-width:400px;
     padding:3%;
     border:2px solid #23B684;
     margin:2% 0 ;
+    margin-bottom: 10%;
 }
-.kiri_jud{
+.kiri_jud, .kanan_jud{
     background-color:black;
     color:white;
     padding:10px;
 }
 .foto_wrap{
-    margin: 1% auto;    
+    margin: 3% auto;    
 }
 .foto_pl{
     max-height: 94px;
     max-width: 70px;   
+    margin-left: 2% !important;
+    margin-right: 1% !important;
 }
 .kiri_btn{
     margin-top:3%;
@@ -3365,4 +3372,39 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
     font-size:18px;
     background-color:#23B684;
     color:white;
+}
+.kanan{
+    background-color:white;
+    border : 2px solid #ffcc00;
+    padding: 0 !important;
+    margin-top:1%;  
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.kanan_isi{
+    padding:10px
+}
+.tb_div{
+    margin-top:1%;
+}
+.tb_div > tbody > tr > td{
+    padding:5px !important;
+    text-align:center;
+    font-size: 1em;
+}
+.tb_div > tbody > tr > td > a{
+    color:black !important;
+}
+.tb_div > tbody > tr > td > a:hover{
+    color:#23B684 !important;
+}
+.tb_div > tbody >  tr > th{
+    padding:10px !important;
+    text-align:center;
+    font-size: 1.1em;
+}
+.logo_kcl{
+    max-width: 30px;
+    max-height: 30px;
+    margin-right:2%;
+    margin-left:1%;
 }
