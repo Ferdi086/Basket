@@ -253,20 +253,28 @@
 			<span class='text'>Team</span>
                     </a>
                 </li> 
-                <li class=”dropdown”>
-                    <div class="hv">
-                    <a href="Statistic" class=”dropdown-toggle” data-toggle=”dropdown”><img class="icon" src="../img/Book-Open.png"></a>
-                    <span class='text' id="Book">Statistic<span class="caret"></span></span>
-                    </div>
-                    <ul class=”dropdown-menu” id="sub">
-                        <li><a href="StatisticPlayer">Player</a></li>
-                        <li><a href="StatisticTeam">Team</a></li> 
-                    </ul>
+                <li> 
+                    <a href="StatistikPlayer" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Statistik Player</span>
+                    </a>
                 </li> 
                 <li> 
-                    <a href="musim" >
+                    <a href="News" >
 			<img class="icon" src="../img/package.png">
-			<span class='text'>Musim</span>
+			<span class="text">News</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="Gallery" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Gallery</span>
+                    </a>
+                </li> 
+                <li> 
+                    <a href="Musim" >
+			<img class="icon" src="../img/package.png">
+			<span class="text">Musim</span>
                     </a>
                 </li>
                 <li class="btn-menu">

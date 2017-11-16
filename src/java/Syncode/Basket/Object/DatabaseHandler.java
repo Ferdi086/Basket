@@ -17,11 +17,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Logo,Gambar,Flag_active from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar,Flag_active from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
               
             }
         } catch (SQLException ex) {
@@ -128,9 +128,9 @@ public class DatabaseHandler extends Connect {
         }         
     }
     
-    public boolean setMsTeam(String nick, String nama_team, String logo, String gambar_team){
+    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String gambar_team){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+logo+"','"+gambar_team+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+gambar_team+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;

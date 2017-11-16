@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -97,7 +99,7 @@ public class doInsertStatikPlayer extends HttpServlet {
          while ( i.hasNext () ) {
             FileItem fi = (FileItem)i.next();
             if ( !fi.isFormField () ) {
-                out.println("lala");
+                //out.println("lala");
         
                // Get the uploaded file parameters
                FileItem id_teamitem = (FileItem) fileItems.get(0);
@@ -116,11 +118,11 @@ public class doInsertStatikPlayer extends HttpServlet {
                String contentType = fi.getContentType();
                boolean isInMemory = fi.isInMemory();
                long sizeInBytes = fi.getSize();
-            out.println("nama = "+nama_musim);
-            out.println("namasplit = "+namasplit);
-            out.println("team = "+id_team);
-            out.println("musim = "+musim);
-            out.println("id pemain = "+id_pemain);
+            //out.println("nama = "+nama_musim);
+            //out.println("namasplit = "+namasplit);
+            //out.println("team = "+id_team);
+            //out.println("musim = "+musim);
+            //out.println("id pemain = "+id_pemain);
                if(Arrays.asList(extList).contains(ext.toLowerCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 0 ) {
@@ -138,22 +140,23 @@ public class doInsertStatikPlayer extends HttpServlet {
                     
                     //awal import
               //   String filename = request.getParameter("file");
-                out.println("nama upload= "+fileName);
-                out.println("nama file= "+namafile);
-File file=new File(filePath +namafile);
-FileInputStream fin = new FileInputStream(file);
-//Get the workbook instance for XLS file
-XSSFWorkbook workbook = new XSSFWorkbook(fin);
-//Get first sheet from the workbook
-XSSFSheet sheet = workbook.getSheetAt(0);
-    //Iterate through each rows from first sheet
- Row row;
- int trow = sheet.getLastRowNum();
-  String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
-    //out.println("row = "+trow);
-        for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
-            row = (Row) sheet.getRow(t);//sheet number
-           			if( row.getCell(0)!=null) { 
+                //out.println("nama upload= "+fileName);
+                out.println("ke upload filenya = "+namafile);
+                File file1=new File(filePath +namafile);
+                FileInputStream fin = new FileInputStream(file1);
+                out.println(fin);
+                //Get the workbook instance for XLS file
+                XSSFWorkbook workbook = new XSSFWorkbook(fin);
+                //Get first sheet from the workbook
+                XSSFSheet sheet = workbook.getSheetAt(0);
+                    //Iterate through each rows from first sheet
+                 Row row;
+                 int trow = sheet.getLastRowNum();
+                  String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
+                    //out.println("row = "+trow);
+                        for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
+                            row = (Row) sheet.getRow(t);//sheet number
+           			if( row.getCell(0)!=null) {
                                     date = row.getCell(0).toString();
                                 } 
 				if( row.getCell(1)!=null) { 
@@ -232,18 +235,21 @@ XSSFSheet sheet = workbook.getSheetAt(0);
                                     pts= row.getCell(25).toString();
                                 }
                               String ba = sheet.getSheetName();
-                             
-	         String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
-                    + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
-           
-          out.println(query);
-           boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
-             if(a == true ){
-                 out.println("berhasil");
-             }
-             else{
-                 out.println("gagal");
-             }
+                     if (date!="" && match!="" && wl!="" && mins!="" && fgm!="" && fga!="" && fgp!="" && twopm!="" && twopa!="" && twopp!="" && tripm!="" && tripa!="" && 
+                         tripp!="" && ftm!="" && fta!="" && ftp!="" && ors!="" && dr!="" && tr!="" && ass!="" && tos!="" && st!="" && bl!="" && pf!="" && ef!="" && pts!=""){        
+                            
+                         String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
+                               + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
+
+                                out.println(query);
+                                 boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
+                                   if(a == true ){
+                                       out.println("berhasil");
+                                   }
+                                   else{
+                                       out.println("gagal");
+                                   }
+                        }
            //  out.println("sheet = "+sheet.getLastRowNum());
           //  out.println(sno+" "+snama+" "+sumur);
 	    
@@ -266,9 +272,8 @@ XSSFSheet sheet = workbook.getSheetAt(0);
             }
             else{
                 Name = fi.getString();
-                out.println("masuk ke sini");
+                out.println("masuk ke sini jika bukan excel<br/>");
             }
-            out.println("masuk ke sini 1");
          }
           //response.sendRedirect("excel");
          } catch(Exception ex) {

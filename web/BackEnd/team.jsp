@@ -306,6 +306,18 @@
                                     </div>                                  
                                 </div>	
                             <div class="form-group">
+                                    <label class="control-label col-sm-2 " >Divisi</label>
+                                    <div class="col-sm-3">
+                                        <select id="divisi" name="divisi" class="form-control" required>
+                                            <option value="">Choose one divisi</option>
+                                            <option value="P">Putih</option>
+                                            <option value="M">Merah</option>
+                                        </select>
+                                    </div>
+                                   
+                                                                  
+                                </div>	
+                            <div class="form-group">
                                    <label class="control-label col-sm-2">Team's Logo</label>
                                    <div class="col-sm-3">
                                        <input id="logo" type="file" name="logo" accept=".jpg, .jpeg, .png" onchange="readlogo(this);" required/>
@@ -348,6 +360,7 @@
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
                                 <th data-align="center" data-valign="middle"><b><center>ID Team</center><b></th>
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Nama Team</center><b></th>            
+                                <!--<th data-align="center" data-valign="middle"><b><center>Divisi</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Logo</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Team</center></b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
@@ -363,6 +376,7 @@
                                         <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
                                         <td style="vertical-align: middle;text-align: center"> ${id}</td>
                                         <td style="vertical-align: middle;text-align: center"> ${nama_team} </td>
+                                        <!--<td style="vertical-align: middle;text-align: center"> ${divisi} </td>-->
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 

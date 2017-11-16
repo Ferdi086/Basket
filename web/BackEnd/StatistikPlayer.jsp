@@ -294,7 +294,7 @@
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Statistic Pemain</b></h2></center>
+                    <center><h2 style="margin-bottom:40px;"><b>Statistik Pemain</b></h2></center>
                     <form class="form-horizontal" method="post" action="doInsertStatikPlayer" id="formInput" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team</label>
@@ -316,7 +316,7 @@
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Import File Excel</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="excel" accept=".xlsx" required/>
+                                       <input id="file" type="file" name="excel" accept=".xlsx" required/>
                                    </div>
                                    <label class="control-label col-sm-2">Musim</label>
                                    <div class="col-sm-3">
@@ -327,9 +327,15 @@
                                               </c:forEach>
                                         </select>
                                    </div>
-                            </div>	
+                            </div>
+                            <div class="form-group">
+                                       <label class="control-label col-sm-2">Template Excel</label>
+                                       <div class="col-sm-3">
+                                           <img onclick="DownloadTemplate()" src="../img/download.png" height="30px" width="30px" style="cursor:pointer">
+                                       </div>
+                            </div>
                             </form>   
-                       <button onclick="DownloadTemplate()">Download Template</button>
+                    
                 
 				</div>	     
                                 <br/>
@@ -389,6 +395,16 @@
     </body>
     
     <script>
+        $(document).ready(function(){
+            $("#reset").click(function(){
+                $("#team").focus();
+                $("#team").val(null);
+                $("#pemain").val(null);
+                $("#file").val(null);
+                $("#musim").val(null);
+            });   
+        });    
+        
         function cekInput(){           
             if($('#team').val()===""){   
                 return false;
