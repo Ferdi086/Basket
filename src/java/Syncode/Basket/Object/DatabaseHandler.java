@@ -281,6 +281,21 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getPlayer14(){
+        HashMap tr = new HashMap();
+        try{
+            int i = 1;
+            String query = "SELECT TOP 15 a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team ORDER BY ID_Pemain"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){     
+                tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
     public HashMap getPlayersByName(String Abc){
         HashMap tr = new HashMap();
         try{
