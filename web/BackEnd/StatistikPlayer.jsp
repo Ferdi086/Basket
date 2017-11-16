@@ -294,7 +294,7 @@
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Statistic Pemain</b></h2></center>
+                    <center><h2 style="margin-bottom:40px;"><b>Players Statistic</b></h2></center>
                     <form class="form-horizontal" method="post" action="doInsertStatikPlayer" id="formInput" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team</label>
@@ -307,7 +307,7 @@
                                         </select>
                                     </div>
                                    
-                                    <label class="control-label col-sm-2">Nama Pemain</label>
+                                    <label class="control-label col-sm-2">Player Name</label>
                                     <div class="col-sm-3">
                                         <select name="pemain" id="pemain" class=" form-control">
                                         </select>
@@ -316,20 +316,26 @@
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Import File Excel</label>
                                    <div class="col-sm-3">
-                                       <input type="file" name="excel" accept=".xlsx" required/>
+                                       <input id="file" type="file" name="excel" accept=".xlsx" required/>
                                    </div>
-                                   <label class="control-label col-sm-2">Musim</label>
+                                   <label class="control-label col-sm-2">Season</label>
                                    <div class="col-sm-3">
                                       <select name="musim" class="form-control" id="musim">
-                                            <option value=""> Choose One Musim </option>
+                                            <option value=""> Choose One Season </option>
                                             <c:forEach var="item" items="${requestScope.musim}">
                                                 <option value="${item.value.id_musim}-${item.value.nama_musim}">${item.value.nama_musim} </option>
                                               </c:forEach>
                                         </select>
                                    </div>
-                            </div>	
+                            </div>
+                            <div class="form-group">
+                                       <label class="control-label col-sm-2">Template Excel</label>
+                                       <div class="col-sm-3">
+                                           <img onclick="DownloadTemplate()" src="../img/download.png" height="60px" width="120px" style="cursor:pointer;">
+                                       </div>
+                            </div>
                             </form>   
-                       <button onclick="DownloadTemplate()">Download Template</button>
+                    
                 
 				</div>	     
                                 <br/>
@@ -389,6 +395,16 @@
     </body>
     
     <script>
+        $(document).ready(function(){
+            $("#reset").click(function(){
+                $("#team").focus();
+                $("#team").val(null);
+                $("#pemain").val(null);
+                $("#file").val(null);
+                $("#musim").val(null);
+            });   
+        });    
+        
         function cekInput(){           
             if($('#team').val()===""){   
                 return false;

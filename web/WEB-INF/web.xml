@@ -154,7 +154,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CekNick</servlet-name>
-        <url-pattern>/CekNick</url-pattern>
+        <url-pattern>/BackEnd/CekNick</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DataPlayer</servlet-name>

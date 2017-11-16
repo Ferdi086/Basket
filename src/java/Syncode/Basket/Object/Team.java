@@ -14,39 +14,27 @@ package Syncode.Basket.Object;
 public class Team {
     private String id;
     private String nama_team;
+    private String divisi;
     private String logo;
     private String gambar;
     private String flagactive;
+   
    // private int No=0;
     //private JSONObject json = new JSONObject();
 public Team(){
 }
-   
-public Team(String id, String nama_team, String logo, String gambar, String flagactive) {
+public Team(String id){
+    this.id = id;
+}   
+public Team(String id, String nama_team, String divisi, String logo, String gambar, String flagactive) {
     this.id = id;
     this.nama_team = nama_team;
+    this.divisi = divisi;
     this.logo = logo;
     this.gambar = gambar;
     this.flagactive=flagactive;
-    //this.No=No;
 }
-    /*public JSONObject toJson(){ 
-         json.put("No",No);
-         json.put("Nick",Nick);
-         json.put("Nama_Team",Nama_Team);
-         json.put("Logo", Logo);
-         json.put("Gambar",Gambar);
-         json.put("action","<button class=\"btn btn-warning button\" data-target=\"#updatemodal\" "
-                 + "onclick =\"update('"+Nick+"','"+Nama_Team+"','"+Logo+"','"+Gambar+"');\""
-                    + " data-toggle=\"modal\"><span class=\"glyphicon glyphicon-edit\">"
-                    + "</span></button>");
-           
-         return json;
-    }
-    public JSONObject getJson(){
-        return json;
-    }
-*/
+    
     public String getNick() {
         return id;
     }

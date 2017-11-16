@@ -17,12 +17,29 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Logo,Gambar,Flag_active from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar,Flag_active from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
               
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getNamaTeam(String ID_Team){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Team from MsTeam where ID_Team='"+ID_Team+"'"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if(rs.next()){                
+              tr.put(j++,new IdTeam(rs.getString(1)));              
+            }else{
+                tr.put(j++,new IdTeam(""));    
             }
         } catch (SQLException ex) {
             
@@ -91,7 +108,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
               
             }
         } catch (SQLException ex) {
@@ -128,9 +145,9 @@ public class DatabaseHandler extends Connect {
         }         
     }
     
-    public boolean setMsTeam(String nick, String nama_team, String logo, String gambar_team){
+    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String gambar_team){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+logo+"','"+gambar_team+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+gambar_team+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;
@@ -360,9 +377,9 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "select a.Periode,a.ID_Team,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG]) as decimal(10,2)) as FG, " +
-                        "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P]) as decimal(10,2)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
-                        "	CAST(AVG(a.[3P]) as decimal(10,2)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT]) as decimal(10,2)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
+            String query = "select a.Periode,a.ID_Team,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG, " +
+                        "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P])*100 as decimal(10,0)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
+                        "	CAST(AVG(a.[3P])*100 as decimal(10,0)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                         "	CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
                         "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
                         "	from " +
@@ -388,9 +405,9 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "SELECT SUM(GP)AS GP, CAST(AVG([MIN]) as decimal(10,2)) as MIN, CAST(AVG([FGM]) as decimal(10,2)) as FGM, CAST(AVG([FGA]) as decimal(10,2)) as FGA, CAST(AVG([FG]) as decimal(10,2)) as FG, " +
-                        "      CAST(AVG([PM2]) as decimal(10,2)) as PM2, CAST(AVG([PA2]) as decimal(10,2)) as PA2, CAST(AVG([P2]) as decimal(10,2)) as P2, CAST(AVG([PM3]) as decimal(10,2)) as PM3, CAST(AVG([PA3]) as decimal(10,2)) as PA3, " +
-                        "      CAST(AVG([P3]) as decimal(10,2)) as P3, CAST(AVG([FTM]) as decimal(10,2)) as FTM, CAST(AVG([FTA]) as decimal(10,2)) as FTA, CAST(AVG([FT]) as decimal(10,2)) as FT, CAST(AVG([O_R]) as decimal(10,2)) as O_R, " +
+            String query = "SELECT SUM(GP)AS GP, CAST(AVG([MIN]) as decimal(10,2)) as MIN, CAST(AVG([FGM]) as decimal(10,2)) as FGM, CAST(AVG([FGA]) as decimal(10,2)) as FGA, CAST(AVG([FG])*100 as decimal(10,0)) as FG, " +
+                        "      CAST(AVG([PM2]) as decimal(10,2)) as PM2, CAST(AVG([PA2]) as decimal(10,2)) as PA2, CAST(AVG([P2])*100 as decimal(10,0)) as P2, CAST(AVG([PM3]) as decimal(10,2)) as PM3, CAST(AVG([PA3]) as decimal(10,2)) as PA3, " +
+                        "      CAST(AVG([P3])*100 as decimal(10,0)) as P3, CAST(AVG([FTM]) as decimal(10,2)) as FTM, CAST(AVG([FTA]) as decimal(10,2)) as FTA, CAST(AVG([FT])*100 as decimal(10,0)) as FT, CAST(AVG([O_R]) as decimal(10,2)) as O_R, " +
                         "      CAST(AVG([DR]) as decimal(10,2)) as DR, CAST(AVG([TR]) as decimal(10,2)) as TR, CAST(AVG([A_S]) as decimal(10,2)) as A_S, CAST(AVG([T_O]) as decimal(10,2)) as T_O, CAST(AVG([ST]) as decimal(10,2)) as ST, " +
                         "      CAST(AVG([BL]) as decimal(10,2)) as BL, CAST(AVG([PF]) as decimal(10,2)) as PF, CAST(AVG([EF]) as decimal(10,2)) as EF, CAST(AVG([PTS]) as decimal(10,2)) as PTS  " +
                         " FROM(" +
@@ -422,9 +439,9 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "select a.Periode,a.ID_Team,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG]) as decimal(10,2)) as FG, " +
-                        "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P]) as decimal(10,2)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
-                        "	CAST(AVG(a.[3P]) as decimal(10,2)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT]) as decimal(10,2)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
+            String query = "select a.Periode,a.ID_Team,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG, " +
+                        "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P])*100 as decimal(10,0)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
+                        "	CAST(AVG(a.[3P])*100 as decimal(10,0)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                         "	CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
                         "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
                         "	from " +
@@ -450,9 +467,9 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "SELECT SUM(GP)AS GP, CAST(AVG([MIN]) as decimal(10,2)) as MIN, CAST(AVG([FGM]) as decimal(10,2)) as FGM, CAST(AVG([FGA]) as decimal(10,2)) as FGA, CAST(AVG([FG]) as decimal(10,2)) as FG, " +
-                        "      CAST(AVG([PM2]) as decimal(10,2)) as PM2, CAST(AVG([PA2]) as decimal(10,2)) as PA2, CAST(AVG([P2]) as decimal(10,2)) as P2, CAST(AVG([PM3]) as decimal(10,2)) as PM3, CAST(AVG([PA3]) as decimal(10,2)) as PA3, " +
-                        "      CAST(AVG([P3]) as decimal(10,2)) as P3, CAST(AVG([FTM]) as decimal(10,2)) as FTM, CAST(AVG([FTA]) as decimal(10,2)) as FTA, CAST(AVG([FT]) as decimal(10,2)) as FT, CAST(AVG([O_R]) as decimal(10,2)) as O_R, " +
+            String query = "SELECT SUM(GP)AS GP, CAST(AVG([MIN]) as decimal(10,2)) as MIN, CAST(AVG([FGM]) as decimal(10,2)) as FGM, CAST(AVG([FGA]) as decimal(10,2)) as FGA, CAST(AVG([FG])*100 as decimal(10,0)) as FG, " +
+                        "      CAST(AVG([PM2]) as decimal(10,2)) as PM2, CAST(AVG([PA2]) as decimal(10,2)) as PA2, CAST(AVG([P2])*100 as decimal(10,0)) as P2, CAST(AVG([PM3]) as decimal(10,2)) as PM3, CAST(AVG([PA3]) as decimal(10,2)) as PA3, " +
+                        "      CAST(AVG([P3])*100 as decimal(10,0)) as P3, CAST(AVG([FTM]) as decimal(10,2)) as FTM, CAST(AVG([FTA]) as decimal(10,2)) as FTA, CAST(AVG([FT])*100 as decimal(10,0)) as FT, CAST(AVG([O_R]) as decimal(10,2)) as O_R, " +
                         "      CAST(AVG([DR]) as decimal(10,2)) as DR, CAST(AVG([TR]) as decimal(10,2)) as TR, CAST(AVG([A_S]) as decimal(10,2)) as A_S, CAST(AVG([T_O]) as decimal(10,2)) as T_O, CAST(AVG([ST]) as decimal(10,2)) as ST, " +
                         "      CAST(AVG([BL]) as decimal(10,2)) as BL, CAST(AVG([PF]) as decimal(10,2)) as PF, CAST(AVG([EF]) as decimal(10,2)) as EF, CAST(AVG([PTS]) as decimal(10,2)) as PTS  " +
                         " FROM(" +
@@ -501,7 +518,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "select Match,WL,[MIN],FGM,FGA,FG,[2PM],[2PA],[2P],[3PM],[3PA],[3P],FTM,FTA,FT,[OR],DR,TR,[AS],[TO],ST,BL,PF,EF,PTS from TrGameLogs where ID_Musim = "+id_m+" and ID_Pemain = "+id_p+"";
+            String query = "select Match,WL,[MIN],FGM,FGA,CAST(FG*100 as decimal(10,0)) as FG,[2PM],[2PA],CAST([2P]*100 as decimal(10,0)) as P2,[3PM],[3PA],CAST([3P]*100 as decimal(10,0)) as P3,FTM,FTA,CAST(FT*100 as decimal(10,0)) as FT,[OR],DR,TR,[AS],[TO],ST,BL,PF,EF,PTS from TrGameLogs where ID_Musim = "+id_m+" and ID_Pemain = "+id_p+"";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -636,6 +653,33 @@ public class DatabaseHandler extends Connect {
             String query = "SELECT ID_Musim,Nama_Musim from(" +
                             "	select distinct a.ID_Musim,a.Nama_Musim FROM MsMusim a, TrGameLogs b, MsTeam c where a.ID_Musim = b.ID_Musim and b.ID_Team = c.ID_Team and b.ID_Team = '"+id_team+"' " +
                             ")a order by a.ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjTeamSeason(rs.getString(1), rs.getString(2)));
+            }
+        }catch (SQLException ex) {
+                
+        }
+        return tr;
+    }
+    public HashMap getGeneralStat(String id_team, String id_musim){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = "SELECT Nama_Pemain,a.KD_Pos,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG, " +
+                    "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P])*100 as decimal(10,0)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
+                    "	CAST(AVG(a.[3P])*100 as decimal(10,0)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
+                    "	CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
+                    "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                    "	from" +
+                    "	(" +
+                    "		SELECT b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
+                    "			[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS] " +
+                    "		from TrGameLogs a, MsPemain b, MsMusim c, MsTeam d " +
+                    "		where a.ID_Musim = '"+id_musim+"' and a.ID_Team = '"+id_team+"' and a.ID_Pemain = b.ID_Pemain and a.ID_Musim=c.ID_Musim and a.ID_Team = d.ID_Team " +
+                    "	) a group by a.ID_Team,a.Nama_Pemain,a.KD_Pos" +
+                    "order by Nama_Pemain";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){

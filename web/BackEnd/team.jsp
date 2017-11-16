@@ -303,7 +303,24 @@
                                     <label class="control-label col-sm-2">Team NickName</label>
                                     <div class="col-sm-3">
                                         <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required/>
-                                    </div>                                  
+                                    </div>  
+                                    <div class="col-sm-1">
+                                        <span id="loading"><img src="../img/loading.gif" width="28px"/></span>
+                                        <span id="ok"><img src="../img/ok.png" width="32px"/></span>
+                                        <span id="error"><img src="../img/error.png" width="32px"/></span>
+                                    </div>
+                                </div>	
+                            <div class="form-group">
+                                    <label class="control-label col-sm-2 " >Division</label>
+                                    <div class="col-sm-3">
+                                        <select id="divisi" name="divisi" class="form-control" required>
+                                            <option value="">Choose one division</option>
+                                            <option value="P">Putih</option>
+                                            <option value="M">Merah</option>
+                                        </select>
+                                    </div>
+                                   
+                                                                  
                                 </div>	
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Team's Logo</label>
@@ -316,11 +333,11 @@
                                    </div>
                             </div>	
                             <div class="form-group">
-                                   <label class="col-sm-2 control-label">Preview Logo</label>
+                                   <label class="col-sm-2 control-label">Preview Team's Logo</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewlogo" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
                                     </div>
-                                   <label class="col-sm-2 col-sm-offset-1 control-label">Preview Foto</label>
+                                   <label class="col-sm-2 col-sm-offset-1 control-label">Preview Team's Foto</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewfoto" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
                                     </div>
@@ -342,14 +359,15 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
                     <center><h2><b>Team List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true" data-show-refresh="true">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
-                                <th data-align="center" data-valign="middle"><b><center>ID Team</center><b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Nama Team</center><b></th>            
+                                <th data-align="center" data-valign="middle"><b><center>Team Nickname</center><b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team Name</center><b></th>            
+                                <!--<th data-align="center" data-valign="middle"><b><center>Divisi</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Logo</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Team</center></b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Team's Foto</center></b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
                         </thead>      
@@ -363,6 +381,7 @@
                                         <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
                                         <td style="vertical-align: middle;text-align: center"> ${id}</td>
                                         <td style="vertical-align: middle;text-align: center"> ${nama_team} </td>
+                                        <!--<td style="vertical-align: middle;text-align: center"> ${divisi} </td>-->
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
@@ -436,16 +455,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title"><center>Form Perubahan Team</center></h3>
+                    <h3 class="modal-title"><center>Change of Team's Data</center></h3>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="doUpdateTeam" id="formUpdate" enctype="multipart/form-data">
                         <div class="form-group ">
-                            <label class="control-label col-sm-2">Id Team</label>
+                            <label class="control-label col-sm-2">Team nickname</label>
                             <div class="col-sm-3">
                                 <input type="text" name="id" id="UpdateId" class="form-control">
-                            </div>  
-                            <label class="control-label col-sm-2">Nama Team</label>
+                            </div>
+                            <div class="col-sm-1">
+                                        <span id="loading"><img src="../img/loading.gif" width="28px"/></span>
+                                        <span id="ok"><img src="../img/ok.png" width="32px"/></span>
+                                        <span id="error"><img src="../img/error.png" width="32px"/></span>
+                                    </div>
+                            <label class="control-label col-sm-2">Team Name</label>
                             <div class="col-sm-3">
                                 <input type="text" name="nama" id="UpdateNama" class="form-control">
                             </div>  
@@ -555,9 +579,9 @@
     </body>
     <script>
         $(document).ready(function(){ 
-            //$("#loading").hide();
-            //$("#ok").hide();
-            //$("#error").hide();
+             $("#loading").hide();
+             $("#ok").hide();
+             $("#error").hide();
              $('#togglebutton').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
@@ -566,9 +590,6 @@
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
-            $('#Book').click(function(){
-               $('#sub').toggle(300);               
-            });
             $('#tgl').datetimepicker({
                     format: 'YYYY-MM-DD'
                 });
@@ -583,7 +604,43 @@
                 $("#previewlogo").attr('src',"../img/nopic.png");
                 $("#previewfoto").attr('src',"../img/nopic.png");
             });         
-	});    
+	});
+        
+          $('#nick').change(function () {
+            var nick = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: 'CekNick',
+                data: {
+                    'nick': nick
+                },
+                beforeSend: function(){
+                    $('#loading').show();
+                    $("#ok").hide();
+                    $("#error").hide();
+                },
+                complete: function(){
+                    $('#loading').hide();
+                },
+                success: function (data) {
+                    var result= data;
+                    if(data=="Ok"){      
+                        $('#loading').hide();
+                        $("#error").hide();
+                        $("#ok").show();  
+                    }else{
+                        $('#loading').hide();
+                        $("#ok").hide();
+                        alert("Nickname sudah ada !");
+                        $("#nick").val("");
+                        $("#error").show();                        
+                        $("#nick").focus();
+                        $("#error").fadeTo(5000, 0);
+                    }
+                }
+            });
+        });
+        
         function cekUpdate(){           
             if($('#UpdateId').val()===""){   
                 return false;

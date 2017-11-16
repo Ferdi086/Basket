@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjTeamSeason;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -40,6 +41,8 @@ public class TeamDetails extends HttpServlet {
         HashMap tr3 = dh.getTopAssist(ID);
         HashMap tr4 = dh.getTopRebound(ID);
         HashMap Season = dh.getTeamSeason(ID);
+        ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
+        request.setAttribute("id_team",ID);
         request.setAttribute("team",tr);
         request.setAttribute("player",tr1);
         request.setAttribute("tp",tr2);

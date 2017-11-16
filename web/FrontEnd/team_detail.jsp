@@ -174,7 +174,7 @@ h2 span {
 <div class="general_stats">
 	<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#home">  <b>GENERAL STATS</b></a></li>
-					<li><a data-toggle="tab" href="#menu1">  <b>ADVANCED</b></a></li>
+					
 				  </ul>
 				
 				  <div class="tab-content">
@@ -182,81 +182,7 @@ h2 span {
 						
 						<div style='margin-top:10px'>
 						  <form>
-							<label class='form-group'>Search By Season : </label>
-							<select name='kat_lok' class='form-group' id='lok'>
-                                                            <c:forEach var="item" items="${requestScope.ss}">
-								<option value='${item.value.id_musim}'>${item.value.nama_m}</option>								
-                                                            </c:forEach>
-							</select>
-						  </form>
-						</div>
-
-						<div class="tbl_general table-responsive">
-							<table class="table table-bordered table-striped">
-								<tr class="tr_general">
-									<th>NO</th>
-									<th>PLAYER</th>
-									<th>Pos</th>
-									<th>GP</th>
-									<th>MIN</th>
-									<th>FGM</th>
-									<th>FGA</th>
-									<th>FG%</th>
-									<th>2PM</th>
-									<th>2PA</th>
-									<th>2P%</th>
-									<th>3PM</th>
-									<th>3PA</th>
-									<th>3P%</th>
-									<th>FTM</th>
-									<th>FTA</th>
-									<th>FT%</th>
-									<th>OR</th>
-									<th>DR</th>
-									<th>TR</th>
-									<th>AS</th>
-									<th>TO</th>
-									<th>ST</th>
-									<th>BL</th>
-									<th>EF</th>
-									<th>PTS</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>Rizky Alfian</td>
-									<td>SF</td>
-									<td>5</td>
-									<td>5.94</td>
-									<td>0.60</td>
-									<td>1.80</td>
-									<td>33%</td>
-									<td>0.60</td>
-									<td>1.20</td>
-									<td>50%</td>
-									<td>0.00</td>
-									<td>0.60</td>
-									<td>0%</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>60%</td>
-									<td>0.40</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>0.20</td>
-									<td>0.80</td>
-									<td>0.20</td>
-									<td>0.00</td>
-									<td>6.00</td>
-									<td>1.80</td>
-								</tr>
-							</table>
-						</div>
-						
-					</div>
-					<div id="menu1" class="tab-pane fade">
-					
-						<div style='margin-top:10px'>
-						  <form>
+                                                        <input type="text" value="${requestScope.id_team}" class="hidden id_hide"/>
 							<label class='form-group'>Search By Season : </label>
 							<select name='kat_lok' class='form-group' id='lok'>
                                                             <c:forEach var="item" items="${requestScope.ss}">
@@ -361,6 +287,27 @@ h2 span {
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
 <script>
+    $('#lok').change(function(){
+        //$('.tb_pemain').remove();
+                var id_m = $(this).val();
+                var id_t = $('.id_hide').val();
+                alert(id_m+", "+id_t);
+                /*
+                $.ajax({
+                    type : 'POST',
+                    url : 'PlayersBySeason',
+                    data: {
+                        'id_m': id_m,
+                        'id_p': id_p
+                    },
+                    beforeSend: function(){
+                    },
+                    success: function(data){
+                        $('.bungkus_season').append(data);      
+                    }
+                });
+                */
+            });
     function playdetail(id){
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
