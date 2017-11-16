@@ -338,16 +338,16 @@
                                     </div>                                  
                                 </div>	
                             <div class="form-group">
-                                    <label class="control-label col-sm-2" >Tanggal Lahir</label>
+                                    <label class="control-label col-sm-2" >Birth Date</label>
                                     <div class="col-sm-3">
                                         <input id="tgl" type="text" name="tgl" class="form-control" placeholder="YYYY-MM-DD" required/>
                                     </div>
                                    
-                                    <label class="control-label col-sm-2">Posisi Tangan</label>
+                                    <label class="control-label col-sm-2">Hand's Position</label>
                                     <div class="col-sm-3">
                                         <select id="tangan" type="text" name="tangan" class="form-control"  required>
-                                            <option value="kanan">Kanan</option>
-                                            <option value="kiri">Kiri</option>
+                                            <option value="kanan">Right</option>
+                                            <option value="kiri">Left</option>
                                         </select>
                                     </div>                                  
                                 </div>	
@@ -381,19 +381,19 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;margin-top: 20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true" data-show-refresh="true">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Nama Pemain</center><b></th>            
-                                <th data-align="center" data-valign="middle"><b><center>Tanggal Lahir</center><b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Tinggi</center></b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Berat</center></b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Posisi</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Players Name</center><b></th>            
+                                <th data-align="center" data-valign="middle"><b><center>Birth Date</center><b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Height</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Weight</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Position</center></b></th>
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team</center><b></th>  
-                                <th data-align="center" data-valign="middle"><b><center>No Punggung</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Jersey Number</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
                         </thead>      
@@ -491,13 +491,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title"><center>Perubahan Data Pemain</center></h3>
+                    <h3 class="modal-title"><center>Change of Players Data</center></h3>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="doUpdatePlayer" id="formUpdate" enctype = "multipart/form-data" >
                         <div class="form-group e">
                             <input type="hidden" id="updateid_pemain" name="uid_pemain"/>
-                            <label class="control-label col-sm-2 col-sm-offset-1" for="pemain">Nama Pemain :</label>
+                            <label class="control-label col-sm-2 col-sm-offset-1" for="pemain">Players Name</label>
                             <div class="col-sm-3">
                                 <input type="text" name="upemain" id="updatepemain" class="form-control" required>
                             </div>
@@ -540,7 +540,7 @@
                                 </div>	
                         
                             <div class="form-group e">
-                                    <label class="control-label col-sm-2 col-sm-offset-1">Tanggal Lahir</label>
+                                    <label class="control-label col-sm-2 col-sm-offset-1">Birth Date</label>
                                     <div class="col-sm-3">
                                         <input id="updatetgl" type="text" name="utgl" class="form-control" placeholder="YYYY-MM-DD" required/>
                                     </div>

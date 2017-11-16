@@ -23,7 +23,9 @@ public class Team {
     //private JSONObject json = new JSONObject();
 public Team(){
 }
-   
+public Team(String id){
+    this.id = id;
+}   
 public Team(String id, String nama_team, String divisi, String logo, String gambar, String flagactive) {
     this.id = id;
     this.nama_team = nama_team;

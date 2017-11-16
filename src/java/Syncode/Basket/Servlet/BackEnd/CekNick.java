@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.IdTeam;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -35,14 +36,16 @@ public class CekNick extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String nick = request.getParameter("nick");
-        HashMap nt = dh.getNickTeam(nick);
-        Team tm = (Team) nt.get(0);
-        out.println(nt);
-        //if(nt.get){
-          //  out.print("Ok|"+tm.getId());
-        //}else{
-         //   out.print("Error|"+ms.getNama());
-        //}
+        HashMap nt = dh.getNamaTeam(nick);
+        IdTeam tm = (IdTeam) nt.get(0);
+       
+        //out.println(nt);
+        //out.println(tm.getId());
+        if(tm.getId().equals(nick)){
+             out.print("Error");
+        }else{
+             out.print("Ok");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

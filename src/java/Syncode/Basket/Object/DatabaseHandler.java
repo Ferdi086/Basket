@@ -29,6 +29,23 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getNamaTeam(String ID_Team){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Team from MsTeam where ID_Team='"+ID_Team+"'"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if(rs.next()){                
+              tr.put(j++,new IdTeam(rs.getString(1)));              
+            }else{
+                tr.put(j++,new IdTeam(""));    
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
     public HashMap getPlayerDetail(String id_team){
         HashMap tr = new HashMap();
         try {      
@@ -91,7 +108,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
               
             }
         } catch (SQLException ex) {

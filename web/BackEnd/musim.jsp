@@ -293,15 +293,15 @@
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Musim</b></h2></center>
+                    <center><h2 style="margin-bottom:40px;"><b>Season</b></h2></center>
            
 			<form class="form-horizontal" method="post" action="doInsertMusim" id="InputMusim">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2 " >Nama Musim</label>
+                                    <label class="control-label col-sm-2 " >Season Name</label>
                                     <div class="col-sm-3">
                                         <input id="musim" type="text" name="musim" class="form-control" required/>
                                     </div>
-                                    <label class="control-label col-sm-2 " >Jenis Musim</label>
+                                    <label class="control-label col-sm-2 " >Season Type</label>
                                     <div class="col-sm-3" >
                                         <select id="jenis"  name="jenis" class="form-control" required>
                                             <option value=""> Choose Season </option>
@@ -312,11 +312,11 @@
                                     </div>                               
                                 </div>	
                             <div class="form-group">
-                                    <label class="control-label col-sm-2">Tahun Awal</label>
+                                    <label class="control-label col-sm-2">Years Begin</label>
                                     <div class="col-sm-3">
                                         <input id="awal" type="text" name="awal"  class="form-control" required/>
                                     </div> 
-                                   <label class="control-label col-sm-2">Tahun Akhir</label>
+                                   <label class="control-label col-sm-2">Years End</label>
                                    <div class="col-sm-3">
                                        <input id="akhir" type="text" name="akhir" class="form-control" required/>
                                    </div>
@@ -338,15 +338,15 @@
                     </div>
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
                     <hr/>
-                    <center><h2><b>Musim List</b></h2></center>
+                    <center><h2><b>Season List</b></h2></center>
                     <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
-                                <th data-align="center" data-valign="middle"><b><center>Nama Musim</center><b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Jenis Musim</center><b></th>            
-                                <th data-align="center" data-valign="middle"><b><center>Periode</center><b></th>
+                                <th data-align="center" data-valign="middle"><b><center>Season Name</center><b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Season Type</center><b></th>            
+                                <th data-align="center" data-valign="middle"><b><center>Period</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
                             </thead>      
@@ -420,17 +420,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title"><center>Perubahan Data Pemain</center></h3>
+                    <h3 class="modal-title"><center>Change of Season's Data</center></h3>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="doUpdateMusim" id="formUpdate">
                         <div class="form-group">
-                                    <label class="control-label col-sm-2 " >Nama Musim</label>
+                                    <label class="control-label col-sm-2 " >Season Name</label>
                                     <div class="col-sm-3">
                                         <input id="Uid" type="text" name="id" class="form-control" required/>
                                         <input id="Umusim" type="text" name="musim" class="form-control" required/>
                                     </div>
-                                    <label class="control-label col-sm-2 " >Jenis Musim</label>
+                                    <label class="control-label col-sm-2 " >Season Type</label>
                                     <div class="col-sm-3" >
                                         <select id="Ujenis"  name="jenis" class="form-control" required>
                                             <option value=""> Choose Season </option>
@@ -441,11 +441,11 @@
                                     </div>                               
                                 </div>	
                             <div class="form-group">
-                                    <label class="control-label col-sm-2">Tahun Awal</label>
+                                    <label class="control-label col-sm-2">Years Begin</label>
                                     <div class="col-sm-3">
                                         <input id="Uawal" type="text" name="awal"  class="form-control" required/>
                                     </div> 
-                                   <label class="control-label col-sm-2">Tahun Akhir</label>
+                                   <label class="control-label col-sm-2">Years End</label>
                                    <div class="col-sm-3">
                                        <input id="Uakhir" type="text" name="akhir" class="form-control" required/>
                                    </div>
@@ -495,9 +495,6 @@
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
-            $('#Book').click(function(){
-               $('#sub').toggle(300);               
-            });
             $('#awal').datetimepicker({
                     format: 'YYYY'
                 });
