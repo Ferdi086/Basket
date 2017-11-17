@@ -129,6 +129,14 @@
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.News</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Season</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.Season</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeasonLeader</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.SeasonLeader</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GeneralStat</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.GeneralStat</servlet-class>
     </servlet>
@@ -283,6 +291,14 @@
     <servlet-mapping>
         <servlet-name>doUpdateMusim</servlet-name>
         <url-pattern>/BackEnd/doUpdateMusim</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Season</servlet-name>
+        <url-pattern>/FrontEnd/Season</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeasonLeader</servlet-name>
+        <url-pattern>/FrontEnd/SeasonLeader</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GeneralStat</servlet-name>

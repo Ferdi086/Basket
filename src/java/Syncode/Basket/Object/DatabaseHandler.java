@@ -66,7 +66,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir from MsMusim"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir from MsMusim where Flag_active = 'Y'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -707,6 +707,73 @@ public class DatabaseHandler extends Connect {
             rs = ps.executeQuery();
             while(rs.next()){
                 tr.put(i++, new ObjNews(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
+    
+    public HashMap getPPGbySeason(String id){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = " select TOP 1 a.ID_Pemain,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+"                                     from " +
+"                                     (" +
+"                                         select Nama_Musim,b.ID_Pemain,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+"                                         from TrGameLogs a, MsPemain b, MsMusim c " +
+"                                         where a.ID_Musim = "+id+" and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
+"                                     ) a group by a.Nama_Pemain,a.ID_Pemain,a.KD_Pos,a.ID_Team " +
+"                                 order by PTS DESC  ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
+    public HashMap getAPGbySeason(String id){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = " select TOP 1 a.ID_Pemain,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[AS]) as decimal(10,2)) as PTS " +
+"                                     from " +
+"                                     (" +
+"                                         select Nama_Musim,b.ID_Pemain,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+"                                         from TrGameLogs a, MsPemain b, MsMusim c " +
+"                                         where a.ID_Musim = "+id+" and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
+"                                     ) a group by a.Nama_Pemain,a.ID_Pemain,a.KD_Pos,a.ID_Team " +
+"                                 order by PTS DESC  ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
+    public HashMap getRPGbySeason(String id){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = " select TOP 1 a.ID_Pemain,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[TR]) as decimal(10,2)) as PTS " +
+"                                     from " +
+"                                     (" +
+"                                         select Nama_Musim,b.ID_Pemain,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+"                                         from TrGameLogs a, MsPemain b, MsMusim c " +
+"                                         where a.ID_Musim = "+id+" and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
+"                                     ) a group by a.Nama_Pemain,a.ID_Pemain,a.KD_Pos,a.ID_Team " +
+"                                 order by PTS DESC  ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
             }
         }catch (SQLException ex){
             

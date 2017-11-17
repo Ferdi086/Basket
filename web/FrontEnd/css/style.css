@@ -3430,3 +3430,10 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
 .logo_ibl , .dropd{
     display: inline-block;
 }
+.dropd{
+    margin-left:1%;
+    margin-top:5%;
+}
+.logo_ibl{
+    margin-top:-3% !important;
+}

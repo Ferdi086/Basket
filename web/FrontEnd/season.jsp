@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!--
 	Author: W3layouts
 	Author URL: http://w3layouts.com
@@ -52,13 +55,13 @@
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class="hvr-underline-from-center active" href="index.jsp">
+							<li><a class="hvr-underline-from-center active" href="Home">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
 							</li>
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.jsp" class="hvr-underline-from-center"> 
+							<li><a href="Players" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
 							<li><a href="#" data-toggle="dropdown"><span data-hover="ShortCodes">
 							<span class="glyphicon glyphicon-stats"> </span> Statistics</span><span class="caret"></span></a>
@@ -78,18 +81,37 @@
 </center>
                 <div class='row tgh center-block'>
                     <div class='logo_ibl'>
-                     <img src='../img/logo_ibl.jpg' style='max-width:200px'/>
+                     <img src='../img/logo_ibl.jpg' style='max-width:150px'/>
                     </div>
                     <div class='dropd'>
                         <form>		
-                            <select name='' class='form-group' id="sel_pos">
+                            <select name='' class='form-group' id="sel_sea">
                                     <option value=''> ------ Select Season ------ </option>
-                                    <option value=''>  IBL REGULAR 2017-2018 </option>
+                                    <c:forEach var='item' items='${requestScope.musim}'>
+                                         <option value='${item.value.id_musim}'> ${item.value.nama_musim}</option>
+                                    </c:forEach>
                             </select>
-                      </form>
-                        <b>PPG Leader : </b> <a href='#'>Ferdinand Sinaga</a><br>
-                        <b>APG Leader : </b> <a href='#'>Ferdinand Sinaga</a><br>
-                        <b>RPG Leader : </b> <a href='#'>Ferdinand Sinaga</a><br>
+                        </form>
+                        <div class='bungkus'>
+                            <div class='leader'>
+                                <b>PPG Leader : </b> 
+                                    <c:forEach var='item' items='${requestScope.ppg}'>
+                                      <a href='#' onclick="playdetail('${item.value.foto}')">${item.value.namaPemain}</a>
+                                    </c:forEach>
+                                <br>
+                                <b>APG Leader : </b> 
+                                    <c:forEach var='item' items='${requestScope.apg}'>
+                                      <a href='#' onclick="playdetail('${item.value.foto}')">${item.value.namaPemain}</a>
+                                    </c:forEach>
+                                  <br>
+                                <b>RPG Leader : </b> 
+                                    <c:forEach var='item' items='${requestScope.rpg}'>
+                                      <a href='#' onclick="playdetail('${item.value.foto}')">${item.value.namaPemain}</a>
+                                    </c:forEach>
+                                <br>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 <!-- js-scripts -->					
@@ -97,7 +119,36 @@
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
-
+<script>
+    function playdetail(id){
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "PlayerDetails");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "ID_P");
+        hiddenField.setAttribute("value", id);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+    }
+    $('#sel_sea').change(function (){
+        $('.leader').remove();
+        var id = $(this).val();
+        $.ajax({
+            type : 'POST',
+            url : 'SeasonLeader',
+            data: {
+                'id_m': id
+            },
+            beforeSend: function(){
+            },
+            success: function(data){
+                $('.bungkus').append(data);      
+            }
+        });
+    });
+</script>
 
 
 
