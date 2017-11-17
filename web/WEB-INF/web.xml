@@ -136,6 +136,10 @@
         <servlet-name>SeasonLeader</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.SeasonLeader</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GeneralStat</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.GeneralStat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -295,6 +299,10 @@
     <servlet-mapping>
         <servlet-name>SeasonLeader</servlet-name>
         <url-pattern>/FrontEnd/SeasonLeader</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralStat</servlet-name>
+        <url-pattern>/FrontEnd/GeneralStat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -509,6 +509,13 @@
         $("#akhir").on("dp.change", function (e) {
             $('#awal').data("DateTimePicker").maxDate(e.date);
         });
+        $("#reset").click(function(){
+                $("#musim").focus();
+                $("#musim").val(null);
+                $("#jenis").val(null);
+                $("#awal").val(null);
+                $("#akhir").val(null);
+            });    
             jQuery('.scrollbar-macosx').scrollbar();                
                      
 	});    

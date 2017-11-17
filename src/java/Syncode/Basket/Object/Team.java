@@ -12,36 +12,16 @@ package Syncode.Basket.Object;
  * @author meiiko
  */
 public class Team {
-    private String id;
-    private String nama_team;
-    private String divisi;
-    private String logo;
-    private String gambar;
-    private String flagactive;
-   
-   // private int No=0;
-    //private JSONObject json = new JSONObject();
-public Team(){
-}
-public Team(String id){
-    this.id = id;
-}   
-public Team(String id, String nama_team, String divisi, String logo, String gambar, String flagactive) {
-    this.id = id;
-    this.nama_team = nama_team;
-    this.divisi = divisi;
-    this.logo = logo;
-    this.gambar = gambar;
-    this.flagactive=flagactive;
-}
-    
-    public String getNick() {
-        return id;
+    private String id="";
+    private String namateam="";
+    private String divisi="";
+    private String logo="";
+    private String gambar="";
+    private String flagactive="";
+
+    public Team() {
     }
 
-    public void setNick(String Nick) {
-        this.id = id;
-    }
 
     public String getId() {
         return id;
@@ -51,12 +31,20 @@ public Team(String id, String nama_team, String divisi, String logo, String gamb
         this.id = id;
     }
 
-    public String getNama_team() {
-        return nama_team;
+    public String getNamateam() {
+        return namateam;
     }
 
-    public void setNama_team(String nama_team) {
-        this.nama_team = nama_team;
+    public void setNamateam(String namateam) {
+        this.namateam = namateam;
+    }
+
+    public String getDivisi() {
+        return divisi;
+    }
+
+    public void setDivisi(String divisi) {
+        this.divisi = divisi;
     }
 
     public String getLogo() {
@@ -75,6 +63,15 @@ public Team(String id, String nama_team, String divisi, String logo, String gamb
         this.gambar = gambar;
     }
 
+    public Team(String id, String namateam, String divisi, String logo, String gambar, String flagactive) {
+        this.id = id;
+        this.namateam = namateam;
+        this.divisi = divisi;
+        this.logo = logo;
+        this.gambar = gambar;
+        this.flagactive = flagactive;
+    }
+
     public String getFlagactive() {
         return flagactive;
     }
@@ -82,6 +79,9 @@ public Team(String id, String nama_team, String divisi, String logo, String gamb
     public void setFlagactive(String flagactive) {
         this.flagactive = flagactive;
     }
+   
+   
+
 
     
 

@@ -6,7 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
-import Syncode.Basket.Object.PlayerDetailGLogs;
+import Syncode.Basket.Object.ObjGeneralStat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Yuga
+ * @author Ferdinand
  */
-public class PlayersBySeason extends HttpServlet {
+public class GeneralStat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,73 +33,83 @@ public class PlayersBySeason extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
-        String id = request.getParameter("id_p");
+        String id = request.getParameter("id_t");
         String id2 = request.getParameter("id_m");
-        HashMap tr = dh.getPlayerDetailGLogs(id,id2);
+        HashMap gs = dh.getGeneralStat(id, id2);
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
+        
         try{
-            
-            out.println("<table class=\"table table-bordered table-striped tb_season\">");
+            out.println("<table class=\"table table-bordered table-striped tb_pemain\">");
             out.println("   <tr class=\"tr_general\">");
-            out.println("                                               <th>MATCH</th>" +
-"									<th>W/L</th>" +
-"                                                                       <th>MIN</th>" +        
+            out.println("                                               <th>NO</th>" +
+                    
+"									<th>PLAYER</th>" +
+"                                                                       <th>POS</th>" +        
+"									<th>GP</th>" +
+"									<th>MIN</th>" +
 "									<th>FGM</th>" +
+                    
 "									<th>FGA</th>" +
 "									<th>FG%</th>" +
 "									<th>2PM</th>" +
 "									<th>2PA</th>" +
 "									<th>2P%</th>" +
+                    
 "									<th>3PM</th>" +
 "									<th>3PA</th>" +
 "									<th>3P%</th>" +
 "									<th>FTM</th>" +
 "									<th>FTA</th>" +
+                    
 "									<th>FT%</th>" +
 "									<th>OR</th>" +
 "									<th>DR</th>" +
 "									<th>TR</th>" +
 "									<th>AS</th>" +
+                    
 "									<th>TO</th>" +
 "									<th>ST</th>" +
-"									<th>BL</th>" +
-"									<th>PF</th>" +
+"                                                                       <th>BL</th>" +
 "									<th>EF</th>" +
-"									<th>PTS</th>");
-out.println(" </tr>");
-            
-            
-            for(int i=0;i<tr.size();i++){
-                PlayerDetailGLogs pl = (PlayerDetailGLogs) tr.get(i);
+"									<th>PTS</th>");    
+            out.println(" </tr>");
+            for(int i=0;i<gs.size();i++){
+                ObjGeneralStat pl = (ObjGeneralStat) gs.get(i);
                 out.println("   <tr>");
-                out.println("       <td>"+pl.getMatch()+"</td>");
-                out.println("       <td>"+pl.getWl()+"</td>");
-                out.println("       <td>"+pl.getMIN()+"</td>");
-                out.println("       <td>"+pl.getFGM()+"</td>");
-                out.println("       <td>"+pl.getFGA()+"</td>");
-                out.println("       <td>"+pl.getFG()+"%</td>");
-                out.println("       <td>"+pl.getPM2()+"</td>");
-                out.println("       <td>"+pl.getPA2()+"</td>");
+                out.println("       <td>"+(i+1)+"</td>");
+                
+                out.println("       <td>"+pl.getNamapemain()+"</td>");
+                out.println("       <td>"+pl.getPos()+"</td>");
+                out.println("       <td>"+pl.getGp()+"</td>");
+                out.println("       <td>"+pl.getMin()+"</td>");
+                out.println("       <td>"+pl.getFgm()+"</td>");
+                
+                out.println("       <td>"+pl.getFga()+"</td>");
+                out.println("       <td>"+pl.getFg()+"%</td>");
+                out.println("       <td>"+pl.getPm2()+"</td>");
+                out.println("       <td>"+pl.getPa2()+"</td>");
                 out.println("       <td>"+pl.getP2()+"%</td>");
-                out.println("       <td>"+pl.getPM3()+"</td>");
-                out.println("       <td>"+pl.getPA3()+"</td>");
+                
+                out.println("       <td>"+pl.getPm3()+"</td>");
+                out.println("       <td>"+pl.getPa3()+"</td>");
                 out.println("       <td>"+pl.getP3()+"%</td>");
-                out.println("       <td>"+pl.getFTM()+"</td>");
-                out.println("       <td>"+pl.getFTA()+"</td>");
-                out.println("       <td>"+pl.getFT()+"%</td>");
-                out.println("       <td>"+pl.getO_R()+"</td>");
-                out.println("       <td>"+pl.getDR()+"</td>");
-                out.println("       <td>"+pl.getTR()+"</td>");
-                out.println("       <td>"+pl.getA_S()+"</td>");
-                out.println("       <td>"+pl.getT_O()+"</td>");
-                out.println("       <td>"+pl.getST()+"</td>");
-                out.println("       <td>"+pl.getBL()+"</td>");
-                out.println("       <td>"+pl.getPF()+"</td>");
-                out.println("       <td>"+pl.getEF()+"</td>");
-                out.println("       <td>"+pl.getPTS()+"</td>");
+                out.println("       <td>"+pl.getFtm()+"</td>");
+                out.println("       <td>"+pl.getFta()+"</td>");
+                
+                out.println("       <td>"+pl.getFt()+"%</td>");
+                out.println("       <td>"+pl.getOr1()+"</td>");
+                out.println("       <td>"+pl.getDr()+"</td>");
+                out.println("       <td>"+pl.getTr()+"</td>");
+                out.println("       <td>"+pl.getAs()+"</td>");
+                
+                out.println("       <td>"+pl.getTo()+"</td>");
+                out.println("       <td>"+pl.getSt()+"</td>");
+                out.println("       <td>"+pl.getBl()+"</td>");
+                out.println("       <td>"+pl.getEf()+"</td>");
+                out.println("       <td>"+pl.getPts()+"</td>");
                 out.println("   </tr>");
-                }
+            }
             out.println("</table>");
         }catch (Exception e){
             
