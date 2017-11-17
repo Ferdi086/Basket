@@ -17,9 +17,11 @@ public class Team {
     private String divisi="";
     private String logo="";
     private String gambar="";
+    private String flagactive="";
 
     public Team() {
     }
+
 
     public String getId() {
         return id;
@@ -61,12 +63,21 @@ public class Team {
         this.gambar = gambar;
     }
 
-    public Team(String id, String namateam, String divisi, String logo, String gambar) {
+    public Team(String id, String namateam, String divisi, String logo, String gambar, String flagactive) {
         this.id = id;
         this.namateam = namateam;
         this.divisi = divisi;
         this.logo = logo;
         this.gambar = gambar;
+        this.flagactive = flagactive;
+    }
+
+    public String getFlagactive() {
+        return flagactive;
+    }
+
+    public void setFlagactive(String flagactive) {
+        this.flagactive = flagactive;
     }
    
    
