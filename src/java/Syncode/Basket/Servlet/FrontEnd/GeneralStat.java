@@ -6,7 +6,6 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
-import Syncode.Basket.Object.ObjTeamSeason;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ferdinand
  */
-public class TeamDetails extends HttpServlet {
+public class GeneralStat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,26 +32,48 @@ public class TeamDetails extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
+        String id = request.getParameter("id_p");
+        String id2 = request.getParameter("id_t");
+        HashMap gs = dh.getGeneralStat(id, id2);
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("ID_T");
-        HashMap tr = dh.getTeamDetail(ID); 
-        HashMap tr1 = dh.getPlayers(ID);
-        HashMap tr2 = dh.getTopPoint(ID);
-        HashMap tr3 = dh.getTopAssist(ID);
-        HashMap tr4 = dh.getTopRebound(ID);
-        HashMap Season = dh.getTeamSeason(ID);
-        ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
-        HashMap gs = dh.getGeneralStat(ID, msm.getId_musim());
-        out.print(tr);
-        request.setAttribute("id_team",ID);
-        request.setAttribute("team",tr);
-        request.setAttribute("player",tr1);
-        request.setAttribute("tp",tr2);
-        request.setAttribute("ta",tr3);
-        request.setAttribute("tr",tr4);
-        request.setAttribute("ss",Season);
-        request.setAttribute("gs",gs);
-        //request.getRequestDispatcher("team_detail.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try{
+            out.println("<table class=\"table table-bordered table-striped tb_pemain\">");
+            out.println("   <tr class=\"tr_general\">");
+            out.println("                                               <th>NO</th>" +
+                    
+"									<th>PLAYER</th>" +
+"                                                                       <th>POS</th>" +        
+"									<th>GP</th>" +
+"									<th>MIN</th>" +
+"									<th>FGM</th>" +
+                    
+"									<th>FGA</th>" +
+"									<th>FG%</th>" +
+"									<th>2PM</th>" +
+"									<th>2PA</th>" +
+"									<th>2P%</th>" +
+                    
+"									<th>3PM</th>" +
+"									<th>3PA</th>" +
+"									<th>3P%</th>" +
+"									<th>FTM</th>" +
+"									<th>FTA</th>" +
+                    
+"									<th>FT%</th>" +
+"									<th>OR</th>" +
+"									<th>DR</th>" +
+"									<th>TR</th>" +
+"									<th>AS</th>" +
+                    
+"									<th>TO</th>" +
+"									<th>ST</th>" +
+"                                                                       <th>BL</th>" +
+"									<th>EF</th>" +
+"									<th>PTS</th>");            
+        }catch (Exception e){
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

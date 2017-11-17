@@ -12,20 +12,17 @@ package Syncode.Basket.Object;
  * @author meiiko
  */
 public class Team {
-    private String id;
-    private String nama_team;
-    private String divisi;
-    private String logo;
-    private String gambar;
-    private String flagactive;
+    private String id="";
+    private String nama_team="";
+    private String divisi="";
+    private String logo="";
+    private String gambar="";
+    private String flagactive="";
    
    // private int No=0;
     //private JSONObject json = new JSONObject();
 public Team(){
 }
-public Team(String id){
-    this.id = id;
-}   
 public Team(String id, String nama_team, String divisi, String logo, String gambar, String flagactive) {
     this.id = id;
     this.nama_team = nama_team;

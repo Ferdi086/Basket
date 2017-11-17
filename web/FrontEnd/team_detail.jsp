@@ -179,64 +179,71 @@ h2 span {
 						  </form>
 						</div>
 
-						<div class="tbl_general table-responsive">
-							<table class="table table-bordered table-striped">
+						<div class="tbl_general table-responsive gs">
+							<table class="table table-bordered table-striped tb_pemain">
 								<tr class="tr_general">
 									<th>NO</th>
+                                                                        
 									<th>PLAYER</th>
-									<th>Pos</th>
+									<th>POS</th>
 									<th>GP</th>
-									<th>MIN</th>
+									<th>MIN</th>                                                                        
 									<th>FGM</th>
+                                                                        
 									<th>FGA</th>
 									<th>FG%</th>
 									<th>2PM</th>
-									<th>2PA</th>
+									<th>2PA</th>                                                                        
 									<th>2P%</th>
+                                                                        
 									<th>3PM</th>
 									<th>3PA</th>
 									<th>3P%</th>
 									<th>FTM</th>
 									<th>FTA</th>
+                                                                        
 									<th>FT%</th>
 									<th>OR</th>
 									<th>DR</th>
 									<th>TR</th>
 									<th>AS</th>
+                                                                        
 									<th>TO</th>
 									<th>ST</th>
 									<th>BL</th>
 									<th>EF</th>
 									<th>PTS</th>
 								</tr>
+                                                                <c:forEach var = "item" varStatus="loopCounter" items = "${requestScope.gs}">
 								<tr>
-									<td>1</td>
-									<td>Rizky Alfian</td>
-									<td>SF</td>
-									<td>5</td>
-									<td>5.94</td>
-									<td>0.60</td>
-									<td>1.80</td>
-									<td>33%</td>
-									<td>0.60</td>
-									<td>1.20</td>
-									<td>50%</td>
-									<td>0.00</td>
-									<td>0.60</td>
-									<td>0%</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>60%</td>
-									<td>0.40</td>
-									<td>0.60</td>
-									<td>1.00</td>
-									<td>0.20</td>
-									<td>0.80</td>
-									<td>0.20</td>
-									<td>0.00</td>
-									<td>6.00</td>
-									<td>1.80</td>
+									<td>${loopCounter.count}</td>
+									<td>${item.value.namapemain}</td>
+									<td>${item.value.pos}</td>
+									<td>${item.value.gp}</td>
+									<td>${item.value.min}</td>
+									<td>${item.value.fgm}</td>
+									<td>${item.value.fga}</td>
+									<td>${item.value.fg}%</td>
+									<td>${item.value.pm2}</td>
+									<td>${item.value.pa2}</td>
+									<td>${item.value.p2}%</td>
+									<td>${item.value.pm3}</td>
+									<td>${item.value.pa3}</td>
+									<td>${item.value.p3}%</td>
+									<td>${item.value.ftm}</td>
+									<td>${item.value.fta}</td>
+									<td>${item.value.ft}%</td>
+									<td>${item.value.or1}</td>
+									<td>${item.value.dr}</td>
+									<td>${item.value.tr}</td>
+									<td>${item.value.as}</td>
+									<td>${item.value.to}</td>
+									<td>${item.value.st}</td>
+									<td>${item.value.bl}</td>
+									<td>${item.value.ef}</td>
+									<td>${item.value.pts}</td>
 								</tr>
+                                                                </c:forEach>
 							</table>
 						</div>
 						
@@ -275,25 +282,24 @@ h2 span {
 <!-- //js -->	
 <script>
     $('#lok').change(function(){
-        //$('.tb_pemain').remove();
+        $('.tb_pemain').remove();
                 var id_m = $(this).val();
                 var id_t = $('.id_hide').val();
-                alert(id_m+", "+id_t);
-                /*
+                //alert(id_m+", "+id_t);                
                 $.ajax({
                     type : 'POST',
-                    url : 'PlayersBySeason',
+                    url : 'GeneralStat',
                     data: {
                         'id_m': id_m,
-                        'id_p': id_p
+                        'id_t': id_t
                     },
                     beforeSend: function(){
                     },
                     success: function(data){
-                        $('.bungkus_season').append(data);      
+                        $('.gs').append(data);      
                     }
                 });
-                */
+                
             });
     function playdetail(id){
         var form = document.createElement("form");

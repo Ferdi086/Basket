@@ -671,19 +671,19 @@ public class DatabaseHandler extends Connect {
                     "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P])*100 as decimal(10,0)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
                     "	CAST(AVG(a.[3P])*100 as decimal(10,0)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                     "	CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
-                    "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
-                    "	from" +
-                    "	(" +
+                    "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                    "	from " +
+                    "	( " +
                     "		SELECT b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
-                    "			[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS] " +
+                    "			[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[EF],[PTS] " +
                     "		from TrGameLogs a, MsPemain b, MsMusim c, MsTeam d " +
                     "		where a.ID_Musim = '"+id_musim+"' and a.ID_Team = '"+id_team+"' and a.ID_Pemain = b.ID_Pemain and a.ID_Musim=c.ID_Musim and a.ID_Team = d.ID_Team " +
-                    "	) a group by a.ID_Team,a.Nama_Pemain,a.KD_Pos" +
+                    "	) a group by a.ID_Team,a.Nama_Pemain,a.KD_Pos " +
                     "order by Nama_Pemain";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new ObjTeamSeason(rs.getString(1), rs.getString(2)));
+                tr.put(i++, new ObjGeneralStat(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getString(20),rs.getString(21),rs.getString(22),rs.getString(23),rs.getString(24),rs.getString(25)));
             }
         }catch (SQLException ex) {
                 
