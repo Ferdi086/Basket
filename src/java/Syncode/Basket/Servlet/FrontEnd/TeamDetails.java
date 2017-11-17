@@ -7,6 +7,7 @@ package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
 import Syncode.Basket.Object.ObjTeamSeason;
+import Syncode.Basket.Object.Team;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -43,7 +44,6 @@ public class TeamDetails extends HttpServlet {
         HashMap Season = dh.getTeamSeason(ID);
         ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
         HashMap gs = dh.getGeneralStat(ID, msm.getId_musim());
-        out.print(tr);
         request.setAttribute("id_team",ID);
         request.setAttribute("team",tr);
         request.setAttribute("player",tr1);
@@ -52,7 +52,7 @@ public class TeamDetails extends HttpServlet {
         request.setAttribute("tr",tr4);
         request.setAttribute("ss",Season);
         request.setAttribute("gs",gs);
-        //request.getRequestDispatcher("team_detail.jsp").forward(request, response);
+        request.getRequestDispatcher("team_detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

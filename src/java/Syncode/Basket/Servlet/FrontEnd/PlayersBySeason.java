@@ -67,6 +67,7 @@ public class PlayersBySeason extends HttpServlet {
 "									<th>PF</th>" +
 "									<th>EF</th>" +
 "									<th>PTS</th>");
+out.println(" </tr>");
             
             
             for(int i=0;i<tr.size();i++){

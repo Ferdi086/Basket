@@ -91,7 +91,7 @@ h2 span {
 		<img src="../img/Team/Logo/${item.value.logo}"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
-		<h3>${item.value.nama_team}</h3>
+		<h3>${item.value.namateam}</h3>
 	</div>
 </div>
 <center>
@@ -101,7 +101,7 @@ h2 span {
 </center>
 
 <div class="col-lg-12 team_stats">
-	<h3> ${item.value.nama_team} STATISTICS <span class="glyphicon glyphicon-stats"> </span></h3>
+	<h3> ${item.value.namateam} STATISTICS <span class="glyphicon glyphicon-stats"> </span></h3>
 </div>
 </c:forEach>
 <div class="row team_stats2">

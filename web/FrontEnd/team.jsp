@@ -83,7 +83,7 @@
 				<div class="caption">
 					<div class="blur"></div>
 					<div class="caption-text"  onclick="teamdetail('${item.value.id}')">
-						<h1><a><c:out value = "${item.value.nama_team}"/></a></h1>
+						<h1><a><c:out value = "${item.value.namateam}"/></a></h1>
 					</div>
 				</div>
                                 
@@ -100,7 +100,6 @@
 <!-- //js -->	
 <script>
     function teamdetail(id){
-        
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
         form.setAttribute("action", "TeamDetails");
@@ -111,7 +110,6 @@
         form.appendChild(hiddenField);
         document.body.appendChild(form);
         form.submit();
-        
     }
 </script>
 

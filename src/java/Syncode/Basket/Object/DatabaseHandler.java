@@ -17,11 +17,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar,Flag_active from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -104,11 +104,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Logo,Gambar,Flag_active from MsTeam where ID_Team='"+id+"'"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar from MsTeam where ID_Team = '"+id+"'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {

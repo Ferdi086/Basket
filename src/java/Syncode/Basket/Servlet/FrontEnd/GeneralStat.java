@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjGeneralStat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -32,11 +33,12 @@ public class GeneralStat extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
-        String id = request.getParameter("id_p");
-        String id2 = request.getParameter("id_t");
+        String id = request.getParameter("id_t");
+        String id2 = request.getParameter("id_m");
         HashMap gs = dh.getGeneralStat(id, id2);
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
+        
         try{
             out.println("<table class=\"table table-bordered table-striped tb_pemain\">");
             out.println("   <tr class=\"tr_general\">");
@@ -70,10 +72,49 @@ public class GeneralStat extends HttpServlet {
 "									<th>ST</th>" +
 "                                                                       <th>BL</th>" +
 "									<th>EF</th>" +
-"									<th>PTS</th>");            
+"									<th>PTS</th>");    
+            out.println(" </tr>");
+            for(int i=0;i<gs.size();i++){
+                ObjGeneralStat pl = (ObjGeneralStat) gs.get(i);
+                out.println("   <tr>");
+                out.println("       <td>"+(i+1)+"</td>");
+                
+                out.println("       <td>"+pl.getNamapemain()+"</td>");
+                out.println("       <td>"+pl.getPos()+"</td>");
+                out.println("       <td>"+pl.getGp()+"</td>");
+                out.println("       <td>"+pl.getMin()+"</td>");
+                out.println("       <td>"+pl.getFgm()+"</td>");
+                
+                out.println("       <td>"+pl.getFga()+"</td>");
+                out.println("       <td>"+pl.getFg()+"%</td>");
+                out.println("       <td>"+pl.getPm2()+"</td>");
+                out.println("       <td>"+pl.getPa2()+"</td>");
+                out.println("       <td>"+pl.getP2()+"%</td>");
+                
+                out.println("       <td>"+pl.getPm3()+"</td>");
+                out.println("       <td>"+pl.getPa3()+"</td>");
+                out.println("       <td>"+pl.getP3()+"%</td>");
+                out.println("       <td>"+pl.getFtm()+"</td>");
+                out.println("       <td>"+pl.getFta()+"</td>");
+                
+                out.println("       <td>"+pl.getFt()+"%</td>");
+                out.println("       <td>"+pl.getOr1()+"</td>");
+                out.println("       <td>"+pl.getDr()+"</td>");
+                out.println("       <td>"+pl.getTr()+"</td>");
+                out.println("       <td>"+pl.getAs()+"</td>");
+                
+                out.println("       <td>"+pl.getTo()+"</td>");
+                out.println("       <td>"+pl.getSt()+"</td>");
+                out.println("       <td>"+pl.getBl()+"</td>");
+                out.println("       <td>"+pl.getEf()+"</td>");
+                out.println("       <td>"+pl.getPts()+"</td>");
+                out.println("   </tr>");
+            }
+            out.println("</table>");
         }catch (Exception e){
             
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
