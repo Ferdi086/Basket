@@ -67,6 +67,7 @@
             margin-bottom: 5px;
             width:300px;
             height:400px;
+            cursor:pointer;
         }
 </style>
 </head>
@@ -120,18 +121,18 @@
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1}">
-                        <img src='../img/Players/${item.value.foto}' class="foto_pl" >
+                        <img src='../img/Players/${item.value.foto}' class="foto_pl" onclick="playerdetail('${item.value.idPemain}')">
                     </c:forEach>
                 </div>
                 <div class="kiri_form">
-                <form>		
+                <form id="Pl_kiri" method="post" action="PlayerDetails">		
                     <select name='' class="form-group" id="sel_team">
                             <option value=''> ------------ Select a Team ------------ </option>
                             <c:forEach var="item" items="${requestScope.team}">
                                 <option value="${item.value.id}"> ${item.value.namateam} </option>
                             </c:forEach>
                     </select>
-                    <select id="sel_plyr" name=''>
+                    <select id="sel_plyr" name='ID_P'>
                             <option value=''> ------------ Select a Player ------------ </option>
                     </select><br>
                     <button class="kiri_btn"> Go </button>

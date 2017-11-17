@@ -35,15 +35,20 @@ public class PlayerDetails extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
         String ID = request.getParameter("ID_P");
-        //String ID = "17";
+        if(ID.contains("-")){
+            String part[] = ID.split("\\-");
+            ID = part[0];
+        }
         HashMap tr = dh.getPlayersDetails(ID);
+        //ObjPlayer x = (ObjPlayer) tr.get(0);
+        //out.print(x.getFoto());
         HashMap tra = dh.getPlayerDetailStat(ID);
         HashMap tras = dh.getSumPlayerDetailStat(ID);
         HashMap trb = dh.getPlayerDetailStat2(ID);
         HashMap trbs = dh.getSumPlayerDetailStat2(ID);
         HashMap trc = dh.getPlayerDetailGL(ID);
         HashMap ppg = dh.getPpgApgRpg(ID);
-        //out.print(tras);
+        
         request.setAttribute("player",tr);
         request.setAttribute("player_stat",tra);
         request.setAttribute("player_stat_sum",tras);
