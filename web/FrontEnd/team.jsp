@@ -65,19 +65,6 @@
 							</li>
 							<li><a href="player.jsp" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
-							<li><a href="gallery.jsp" class="hvr-underline-from-center">
-							<span class="glyphicon glyphicon-unchecked"> </span> Gallery</a>
-							</li>
-							<li><a href="#" data-toggle="dropdown"><span data-hover="ShortCodes">
-							<span class="glyphicon glyphicon-stats"> </span> Statistics</span><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
-									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
-								</ul>
-							</li>	
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
-							</li>
 						</ul>
 					</div>
 

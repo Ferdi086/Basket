@@ -92,21 +92,17 @@
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class="hvr-underline-from-center active" href="Home">
+							<li><a class="hvr-underline-from-center active" href="index.jsp">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
+							</li>
+							<li><a class="hvr-underline-from-center active" href="news.jsp">
+							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
 							<li><a href="player.jsp" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
-							<li><a href="#" data-toggle="dropdown"><span data-hover="ShortCodes">
-							<span class="glyphicon glyphicon-stats"> </span> Statistics</span><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
-									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
-								</ul>
-							</li>	
 						</ul>
 					</div>
 
