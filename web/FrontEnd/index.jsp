@@ -289,7 +289,7 @@
             </div>
             <div id='sea'>
                 <h4>2017-2018 IBL Season</h4>
-                <a href='season.jsp'>2017-2018 IBL Regular Schedule</a>
+                <a href='Season'>2017-2018 IBL Regular Schedule</a>
             </div>
             <div id='tren'>
                 <h4>Trending Player Pages</h4>
