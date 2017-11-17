@@ -553,6 +553,8 @@ public class DatabaseHandler extends Connect {
                     tr.put(i++,new ObjTopPoint(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
                 }         
                  
+            }else{
+                tr.put(i++,new ObjTopPoint(i++, "nopic.png", "", "", "0.0"));
             }
         } catch (SQLException ex) {
             
@@ -581,8 +583,9 @@ public class DatabaseHandler extends Connect {
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
                     tr.put(i++,new ObjTopAssist(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
-                }         
-                 
+                } 
+            }else{
+                tr.put(i++,new ObjTopAssist(i++, "nopic.png", "", "", "0.0"));
             }
         } catch (SQLException ex) {
             
@@ -611,8 +614,9 @@ public class DatabaseHandler extends Connect {
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
                     tr.put(i++,new ObjTopRebound(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
-                }         
-                 
+                }    
+            }else{
+                tr.put(i++,new ObjTopRebound(i++, "nopic.png", "", "", "0.0"));
             }
         } catch (SQLException ex) {
             
@@ -657,6 +661,9 @@ public class DatabaseHandler extends Connect {
             rs = ps.executeQuery();
             while(rs.next()){
                 tr.put(i++, new ObjTeamSeason(rs.getString(1), rs.getString(2)));
+            }
+            if(!rs.next()){
+                tr.put(i++, new ObjTeamSeason("", ""));
             }
         }catch (SQLException ex) {
                 
