@@ -99,7 +99,7 @@
 			<div class="wthree_team_grids">
 				<div class="col-md-3 wthree_team_grid foto_p">
 					<div class="hovereffect">
-						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>
+                                            <img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>						
 					</div>
 				</div>
 			</div>
