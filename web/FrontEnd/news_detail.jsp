@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!--
 	Author: W3layouts
 	Author URL: http://w3layouts.com
@@ -59,35 +62,22 @@
 									}
 								</script>
 						</button>
-						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
+						<h1><a href="Home"><span>Basket</span>Apps</a></h1>
 					</div>
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class="hvr-underline-from-center active" href="index.jsp">
+							<li><a class="hvr-underline-from-center active" href="Home">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
 							</li>
-							<li><a class="hvr-underline-from-center active" href="news.jsp">
+							<li><a class="hvr-underline-from-center active" href="News">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.jsp" class="hvr-underline-from-center"> 
+							<li><a href="Players" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
-							<li><a href="gallery.jsp" class="hvr-underline-from-center">
-							<span class="glyphicon glyphicon-unchecked"> </span> Gallery</a>
-							</li>
-							<li><a href="#" data-toggle="dropdown"><span data-hover="ShortCodes">
-							<span class="glyphicon glyphicon-stats"> </span> Statistics</span><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="team_stat.jsp"><span data-hover="Icons">Team Statistics</span></a></li>
-									<li><a href="player_stat.jsp"><span data-hover="Typograpghy">Player Statistics</span></a></li>
-								</ul>
-							</li>	
-							<li>
-							<a href="#" id='search_ic' ><span data-toggle="modal" data-target=".search-modal" class="glyphicon glyphicon-search"></span></a>
-							</li>
 						</ul>
 					</div>
 
@@ -97,26 +87,17 @@
 
 	
 	<div class="col-lg-12 col-md-12 a_detail">
-	<center>
-		<h2>Kevin Durant dan Stephen Curry Selamatkan Muka Golden State Warriors</h2>
-		<p class="a_det_tgl"> 11 November 2017</p>
-		<img src="images/news/1.jpg"><br>
-	</center>
-		<div class="col-lg-10 col-lg-offset-1 a_det_isi">
-		<p>
-			Hampir kalah atau tepatnya hampir malu di rumah sendiri. Itulah yang terjadi saat Golden State Warriors menjamu tamunya Toronto Raptors, Rabu malam waktu setempat. Warriors menyia-nyiakan keunggulan cukup besar di awal laga. Raptors mampu menyamakan kedudukan di pertengahan kuarter keempat. Beruntung, Kevin Durant dan Stephen Curry bisa menyelamatkan Warriors dari kekalahan. Mereka akhirnya menang 117-112.<br><br>
-
-			Raptors datang dengan gagah berani. Meski di awal, mereka dihajar habis-habisan. Raptors tertinggal 53-61 di paruh pertama. Tapi kondisi tersebut tak berpengaruh pada Raptors. Mereka terus berusaha mengejar ketertinggalan.<br><br>
-
-			Usaha tersebut berhasil. Warriors melemah di awal kuarter keempat. Di sisa tujuh menit laga, Raptors menyamakan kedudukan menjadi 99-99 lewat layup Delon Wright. Sejak saat itu, kedua tim terlibat persaingan sengit.<br><br>
-
-			Lagi-lagi, Warriors harus berterima kasih pada Durant dan Curry. Di sisa satu menit terakhir, keduanya sama-sama mencetak tembakan tiga angka. Momentum tersebut yang membuat Raptor akhirnya menyerah 117-112. Curry mencetak 30 poin di laga ini, sedangkan Durant menyumbang 29 poin. Lalu Klay Thompson menambahkan 22 poin.<br><br>
-
-			Meski menang, tapi Raptors memberikan pelajaran berharga bagi Warriors. Kepala pelatih Warriors, Steve Kerr menyatakan bahwa timnya harus waspada sepanjang pertandingan. Mereka tidak boleh lengah selama 48 menit pertandingan.<br><br>
-
-			“Saya pikir membangun tim harus dari semua aspek termasuk mental dan fisik. Mental kami buruk dan saya hanya bisa memainkan strategi saja, bukan mengatur mental pemain saya,” kata Kerr. “Eksekusi kami tidak cukup baik. Kurasa masalah kami saat ini ada di mental bermain.”
-		</p>
-		</div>
+            <c:forEach var="item" items="${requestScope.news}">
+               <center>
+                        <h2>${item.value.judul}</h2>
+                        <p class="a_det_tgl"> ${item.value.tgl}</p>
+                        <img src="images/news/${item.value.foto}"><br>
+                </center>
+                        <div class="col-lg-10 col-lg-offset-1 a_det_isi">
+                        <p>${item.value.desk}</p>
+                        </div> 
+            </c:forEach>
+	
 	</div>
 	<section class="blog" id="blog">
 	<div class="container">

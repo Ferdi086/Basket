@@ -3412,9 +3412,15 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
     margin-top: 6%;
     margin-left: 3%;
 }
+#pojok_news{
+    margin-bottom: 6%;
+}
 .pjk{
     list-style-type: none;
-    margin-left: 3%;
+}
+.pjk li{
+    margin-bottom:2%;
+    font-size:16px;
 }
 
 

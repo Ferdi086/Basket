@@ -87,21 +87,21 @@
 									}
 								</script>
 						</button>
-						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
+						<h1><a href="Home"><span>Basket</span>Apps</a></h1>
 					</div>
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class="hvr-underline-from-center active" href="index.jsp">
+							<li><a class="hvr-underline-from-center active" href="Home">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
 							</li>
-							<li><a class="hvr-underline-from-center active" href="news.jsp">
+							<li><a class="hvr-underline-from-center active" href="News">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.jsp" class="hvr-underline-from-center"> 
+							<li><a href="Players" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
 						</ul>
 					</div>
@@ -128,7 +128,7 @@
                     <select name='' class="form-group" id="sel_team">
                             <option value=''> ------------ Select a Team ------------ </option>
                             <c:forEach var="item" items="${requestScope.team}">
-                                <option value="${item.value.id}"> ${item.value.nama_team} </option>
+                                <option value="${item.value.id}"> ${item.value.namateam} </option>
                             </c:forEach>
                     </select>
                     <select id="sel_plyr" name=''>
@@ -289,19 +289,16 @@
             </div>
             <div id='tren'>
                 <h4>Trending Player Pages</h4>
-                <a href='#'>Ferdinand Sinaga</a>,
-                <a href='#'>Ferdinand Sinaga</a>,
-                <a href='#'>Ferdinand Sinaga</a>,
-                <a href='#'>Ferdinand Sinaga</a>
+                <c:forEach var='item' items='${requestScope.tren}'>
+                    <a href='#' onclick='playdetail(${item.value.foto})'>${item.value.namaPemain}</a>,
+                </c:forEach>
             </div>
             <div id='pojok_news'>
                 <h4>Recent News</h4>
                 <ul class='pjk'>
-                    <li> <a href='#'>Berita 1</a> </li>
-                    <li> <a href='#'>Berita 2</a> </li>
-                    <li> <a href='#'>Berita 3</a> </li>
-                    <li> <a href='#'>Berita 4</a> </li>
-                    <li> <a href='#'>Berita 5</a> </li>
+                    <c:forEach var="item" items="${requestScope.news}">
+                         <li> <a href='#' onclick="detail(${item.value.id})">${item.value.judul}</a> </li>
+                    </c:forEach>
                 </ul>
             </div>
         </div>
@@ -335,6 +332,30 @@
                     }
                 });
             });
+            function detail(id){
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "NewsDetails");
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "id_n");
+                hiddenField.setAttribute("value", id);
+                form.appendChild(hiddenField);
+                document.body.appendChild(form);
+                form.submit();
+            }
+            function playdetail(id){
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "PlayerDetails");
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "ID_P");
+                hiddenField.setAttribute("value", id);
+                form.appendChild(hiddenField);
+                document.body.appendChild(form);
+                form.submit();
+            }
         </script>
 <!-- //js-scripts -->
 </body>

@@ -49,21 +49,21 @@
 									}
 								</script>
 						</button>
-						<h1><a href="index.jsp"><span>Basket</span>Apps</a></h1>
+						<h1><a href="Home"><span>Basket</span>Apps</a></h1>
 					</div>
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class="hvr-underline-from-center active" href="index.jsp">
+							<li><a class="hvr-underline-from-center active" href="Home">
 							<span class="glyphicon glyphicon-home"> </span> Home</a>
 							</li>
-							<li><a class="hvr-underline-from-center active" href="news.jsp">
+							<li><a class="hvr-underline-from-center active" href="News">
 							<span class="glyphicon glyphicon-comment"> </span> News</a>
 							</li>
 							<li><a href="Teams" class="hvr-underline-from-center">
 							<span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 							</li>
-							<li><a href="player.jsp" class="hvr-underline-from-center"> 
+							<li><a href="Players" class="hvr-underline-from-center"> 
 							<span class="glyphicon glyphicon-user"> </span> Players</a></li>
 						</ul>
 					</div>

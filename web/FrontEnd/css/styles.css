@@ -201,8 +201,10 @@ color:black;
 .a_box{
 	margin: 1% 0 2% 5%;
 }
-.a_gbr img{
+.a_gbr img, .a_detail img{
+        width:100%;
 	max-width: 300px !important;
+        max-height: 170px !important;
 }
 .a_tgl {
 	color:grey;
