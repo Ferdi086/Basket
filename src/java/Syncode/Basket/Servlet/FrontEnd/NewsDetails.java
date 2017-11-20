@@ -35,6 +35,8 @@ public class NewsDetails extends HttpServlet {
         String id = request.getParameter("id_n");
         HashMap tr = dh.getNews(id);
         request.setAttribute("news",tr);
+        HashMap tra = dh.getNewsList();
+        request.setAttribute("nl", tra);
         request.getRequestDispatcher("news_detail.jsp").forward(request, response);
     }
 

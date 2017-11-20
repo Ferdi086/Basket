@@ -80,7 +80,7 @@
     <c:forEach var="item" items="${requestScope.nl}">
 	<div class="row a_box">
 		<div class="col-md-3 col-sm-5 a_gbr" onclick="detail(${item.value.id})">
-			<a href=""><img src="images/news/${item.value.foto}" class="img-responive"/></a>
+			<a href="#" onclick="detail(${item.value.id})"><img src="images/news/${item.value.foto}" class="img-responive"/></a>
 		</div>
 		<div class="col-lg-6 col-md-7 col-sm-7 a_jud">
                         <h3 onclick="detail(${item.value.id})"><a href="#">${item.value.judul}</a></h3><br>

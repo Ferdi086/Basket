@@ -819,6 +819,51 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getKlasemen(){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = " select a.ID_Musim,a.Nama_Team,a.ID_Team,a.TotalGame,a.TotalWin,a.TotalGame-a.TotalWin as TotalLost,b.Point,a.Logo  from " +
+                            "( " +
+                            "	select a.ID_Musim,a.Nama_Team,a.Logo,a.ID_Team,a.TotalGame,  " +
+                            "	CASE  " +
+                            "	WHEN b.TotalWin IS NOT NULL THEN TotalWin " +
+                            "	ELSE '0' " +
+                            "	END AS TotalWin " +
+                            "	 " +
+                            "	from " +
+                            "	( " +
+                            "		select a.ID_Musim,b.Nama_Team,a.ID_Team,COUNT(a.WL) as TotalGame, b.Logo " +
+                            "		from TrGameLogs a, MsTeam b where a.ID_Team = b.ID_Team " +
+                            "		group by a.ID_Musim,a.ID_Team,b.Nama_Team,b.Logo " +
+                            "	) a LEFT JOIN " +
+                            "	( " +
+                            "		select ID_Musim,ID_Team,COUNT(WL) as TotalWin " +
+                            "		from TrGameLogs " +
+                            "		where WL='W' " +
+                            "		group by ID_Musim,ID_Team " +
+                            "		 " +
+                            "	) b " +
+                            "	ON a.ID_Musim=b.ID_Musim and a.ID_Team=b.ID_Team " +
+                            ") a, " +
+                            "( " +
+                            "	select top 1 a.ID_Musim,a.ID_Team,Sum(a.PTS)  as Point " +
+                            "	from TrGameLogs a, MsMusim b where b.Jenis = 'REGULAR' " +
+                            "	group by a.ID_Musim,a.ID_Team order by a.ID_Musim desc " +
+                            ") b " +
+                            "Where a.ID_Musim=b.ID_Musim " +
+                            "and a.ID_Team=b.ID_Team " +
+                            "order by a.ID_Musim ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjKlasemen(i++, rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
     
     
 }

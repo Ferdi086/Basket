@@ -111,6 +111,26 @@
                         
                     </div>
                 </div>
+                <div class="col-sm-12-md-12 tbl_schedule center-block">
+                    <center>
+                    <table class="table table-bordered tb_div table-responsive" style="max-width: 1000px">
+                        <tr>
+                            <th>Date</th>
+                            <th>Team 1</th>
+                            <th>PTS</th>
+                            <th>Team 2</th>
+                            <th>PTS</th>
+                        </tr>
+                        <tr>
+                            <td>11 November 2017</td>
+                            <td><a href='#'><img src='../img/Team/Logo/CLS.png' class='logo_kcl'>CLS Knight</a></td>
+                            <td>90</td>
+                            <td><a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a></td>
+                            <td>80</td>
+                        </tr>
+                    </table>
+                    </center>
+                </div>
 <!-- js-scripts -->					
 <!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

@@ -105,33 +105,17 @@
 			<h3><span>Post</span></h3>
 		</div>
 		<div class="blog-grids">
-		<div class="col-md-4 blog-grid">
-			<a href="#" data-toggle="modal" data-target="#myModal"><img src="images/news/1.jpg" alt="" /></a>
-			<h5>June 10,2017</h5>
-			<h4><a href="#" data-toggle="modal" data-target="#myModal">Kevin Durant dan Stephen Curry Selamatkan Muka Golden State Warriors</a></h4>
-			<p> Hampir kalah atau tepatnya hampir malu di rumah sendiri. Itulah yang terjadi saat...</p>
-			<div class="readmore-w3">
-				<a class="readmore" href="#" data-toggle="modal" data-target="#myModal">Read More</a>
-			</div>
-		</div>
-		<div class="col-md-4 blog-grid">
-			<a href="#" data-toggle="modal" data-target="#myModal"><img src="images/news/2.jpeg" alt="" /></a>
-			<h5>June 17,2017</h5>
-			<h4><a href="#" data-toggle="modal" data-target="#myModal">Arki Dikania Wisnu, Pemain Basket Termahal di IBL 2017-2018</a></h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipi scingelit. Vestibulum orci justo, vehicula vel sapien et, feugiat tristique.</p>
-			<div class="readmore-w3">
-				<a class="readmore" href="#" data-toggle="modal" data-target="#myModal">Read More</a>
-			</div>
-		</div>
-		<div class="col-md-4 blog-grid">
-			<a href="#" data-toggle="modal" data-target="#myModal"><img src="images/news/3.jpg" alt="" /></a>
-			<h5>June 26,2017</h5>
-			<h4><a href="#" data-toggle="modal" data-target="#myModal">Fadlan Minallah Memperkuat Siliwangi Bandung</a></h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipi scingelit. Vestibulum orci justo, vehicula vel sapien et, feugiat sapien. Integer sit amet.</p>
-			<div class="readmore-w3">
-				<a class="readmore" href="#" data-toggle="modal" data-target="#myModal">Read More</a>
-			</div>
-		</div>
+                <c:forEach var='item' items='${requestScope.nl}'>
+                    <div class="col-md-4 blog-grid">
+                            <a href="#" onclick="detail(${item.value.id})"><img src="images/news/${item.value.foto}" alt="" /></a>
+                            <h5>${item.value.tgl}</h5>
+                            <h4><a href="#" onclick="detail(${item.value.id})">${item.value.judul}</a></h4>
+                            <p> ${item.value.desk}...</p>
+                            <div class="readmore-w3" onclick="detail(${item.value.id})">
+                                    <a class="readmore" href="#" >Read More</a>
+                            </div>
+                    </div>
+                </c:forEach>
 		<div class="clearfix"></div>
 		</div>
 	</div>
@@ -142,6 +126,21 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
 
+<script>
+    function detail(id){
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "NewsDetails");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "id_n");
+        hiddenField.setAttribute("value", id);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+    }
+    
+</script>
 
 
 

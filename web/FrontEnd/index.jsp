@@ -121,7 +121,7 @@
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1}">
-                        <img src='../img/Players/${item.value.foto}' class="foto_pl" onclick="playerdetail('${item.value.idPemain}')">
+                        <img src='../img/Players/${item.value.foto}' class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
                     </c:forEach>
                 </div>
                 <div class="kiri_form">
@@ -152,71 +152,24 @@
                         <tr>
                             <th data-valign="middle" data-sortable="true">No</th>
                             <th style='text-align:left'>Divisi Merah</th>
-                            <th>MP</th>
+                            <th>GP</th>
                             <th>W</th>
                             <th>L</th>
                             <th>PTS</th>
                         </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
+                        <c:forEach var='item' items='${requestScope.klas}'>
+                            <tr>
+                                <td>${item.value.no}</td>
+                                <td style='text-align:left'>
+                                    <a href='#' onclick="teamdetail('${item.value.id_team}')"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
+                                </td>
+                                <td>${item.value.gp}</td>
+                                <td>${item.value.w}</td>
+                                <td>${item.value.l}</td>
+                                <td>${item.value.pts}</td>
+                            </tr>
+                            
+                        </c:forEach>
                 </table>
                 <table class="table table-bordered tb_div">
                         <tr>
@@ -352,6 +305,18 @@
                 var hiddenField = document.createElement("input");
                 hiddenField.setAttribute("type", "hidden");
                 hiddenField.setAttribute("name", "ID_P");
+                hiddenField.setAttribute("value", id);
+                form.appendChild(hiddenField);
+                document.body.appendChild(form);
+                form.submit();
+            }
+            function teamdetail(id){
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "TeamDetails");
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "ID_T");
                 hiddenField.setAttribute("value", id);
                 form.appendChild(hiddenField);
                 document.body.appendChild(form);
