@@ -66,7 +66,7 @@ public class doInsertStatikPlayer extends HttpServlet {
          isMultipart = ServletFileUpload.isMultipartContent(request);
       response.setContentType("text/html");
       java.io.PrintWriter out = response.getWriter( );
-      
+     
       if( !isMultipart ) {
          out.println("<html>");
          out.println("<head>");
@@ -82,7 +82,7 @@ public class doInsertStatikPlayer extends HttpServlet {
       DiskFileItemFactory factory = new DiskFileItemFactory();
        ServletFileUpload upload = new ServletFileUpload(factory);
    DatabaseHandler dh = new DatabaseHandler();
-   out.println("lala");
+   //out.println("lala");
 
         try { 
          // Parse the request to get file items.
@@ -110,19 +110,22 @@ public class doInsertStatikPlayer extends HttpServlet {
                String id_pemain = nama.split("\\-")[0];
                FileItem musimitem = (FileItem) fileItems.get(3);
                String musim = musimitem.getString();
-               String nama_musim =musim.split("\\-")[1];
-               String id_musim =musim.split("\\-")[0];
+              // out.println("musim adalah"+musim+"<br/>");
+               String nama_musim =musim.split("\\_")[1];
+               String id_musim =musim.split("\\_")[0];
                String fieldName = fi.getFieldName();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                String contentType = fi.getContentType();
                boolean isInMemory = fi.isInMemory();
                long sizeInBytes = fi.getSize();
-            //out.println("nama = "+nama_musim);
+              // out.println(ext);
+            //out.println("nama = "+id_musim+"<br/><br/>");
             //out.println("namasplit = "+namasplit);
             //out.println("team = "+id_team);
             //out.println("musim = "+musim);
             //out.println("id pemain = "+id_pemain);
+             out.println(fi);
                if(Arrays.asList(extList).contains(ext.toLowerCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 0 ) {
@@ -267,12 +270,13 @@ public class doInsertStatikPlayer extends HttpServlet {
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
-                   response.sendRedirect("StatistikPlayer");
+                   out.println("tidak ke insert");
+                   //response.sendRedirect("StatistikPlayer");
                }
             }
             else{
                 Name = fi.getString();
-                out.println("masuk ke sini jika bukan excel<br/>");
+                //out.println("masuk ke sini jika bukan excel<br/>");
             }
          }
           //response.sendRedirect("excel");

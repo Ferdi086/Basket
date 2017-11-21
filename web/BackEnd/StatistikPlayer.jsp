@@ -323,7 +323,7 @@
                                       <select name="musim" class="form-control" id="musim">
                                             <option value=""> Choose One Season </option>
                                             <c:forEach var="item" items="${requestScope.musim}">
-                                                <option value="${item.value.id_musim}-${item.value.nama_musim}">${item.value.nama_musim} </option>
+                                                <option value="${item.value.id_musim}_${item.value.nama_musim}">${item.value.nama_musim} </option>
                                               </c:forEach>
                                         </select>
                                    </div>
