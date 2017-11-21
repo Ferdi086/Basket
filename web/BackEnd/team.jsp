@@ -373,19 +373,19 @@
                         </thead>      
                                 <c:forEach var="item" varStatus="loopCounter" items="${requestScope.Team}">
                                     <c:set var="id" value="${item.value.id}"/>
-                                    <c:set var="nama_team" value="${item.value.nama_team}"/>
+                                    <c:set var="nama_team" value="${item.value.namateam}"/>
                                     <c:set var="logo" value="${item.value.logo}"/>
                                     <c:set var="gambar" value="${item.value.gambar}"/>
                                     <c:set var="flagactive" value="${item.value.flagactive}" />
                                     <tr>
                                         <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
                                         <td style="vertical-align: middle;text-align: center"> ${id}</td>
-                                        <td style="vertical-align: middle;text-align: center"> ${nama_team} </td>
+                                        <td style="vertical-align: middle;text-align: center"> ${namateam} </td>
                                         <!--<td style="vertical-align: middle;text-align: center"> ${divisi} </td>-->
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
-                                               role="button" onclick="Update('${id}','${nama_team}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
+                                               role="button" onclick="Update('${id}','${namateam}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
                                                 <c:choose>
                                                      <c:when test="${flagactive=='Y'}">
                                                          <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${id}','${flagactive}')" >Disable</button>

@@ -304,7 +304,7 @@
                                         <select  name="team" class="form-control" id="team">
                                             <option value=""> Choose One Team </option>
                                             <c:forEach var="item" items="${requestScope.team}">
-                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.nama_team} </option>
+                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.namateam} </option>
                                             </c:forEach>
                                         </select>
                                     </div>                                  
