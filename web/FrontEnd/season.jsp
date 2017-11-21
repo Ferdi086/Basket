@@ -154,6 +154,7 @@
     }
     $('#sel_sea').change(function (){
         $('.leader').remove();
+        $('.tb_div').remove();
         var id = $(this).val();
         $.ajax({
             type : 'POST',
@@ -165,6 +166,18 @@
             },
             success: function(data){
                 $('.bungkus').append(data);      
+            }
+        });
+        $.ajax({
+            type : 'POST',
+            url : 'SeasonTabel',
+            data: {
+                'id_m': id
+            },
+            beforeSend: function(){
+            },
+            success: function(data){
+                $('.tbl_schedule').append(data);      
             }
         });
     });
