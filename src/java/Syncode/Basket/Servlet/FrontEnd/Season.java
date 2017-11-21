@@ -7,6 +7,7 @@ package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
 import Syncode.Basket.Object.Musim;
+import Syncode.Basket.Object.ObjMatchStatistic;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -36,14 +37,21 @@ public class Season extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         String id = "5";
         HashMap tr = dh.getMusim();
+        Musim cs = (Musim) tr.get(0);
+        HashMap st = dh.getMatchStatistic(cs.getId_musim());
         HashMap tra = dh.getPPGbySeason(id);
         HashMap trb = dh.getAPGbySeason(id);
         HashMap trc = dh.getRPGbySeason(id);
+        for(int i = 0;i<st.size();i++){
+            ObjMatchStatistic ste = (ObjMatchStatistic) st.get(i);
+            out.println(ste.getTgl()+" "+ste.getTeam1()+" "+ste.getPts1()+" "+ste.getTeam2()+" "+ste.getPts2());
+        }
+        
         request.setAttribute("ppg",tra);
         request.setAttribute("apg",tra);
         request.setAttribute("rpg",tra);
         request.setAttribute("musim", tr);
-        //out.print(tra.size());
+        request.setAttribute("statistik", st);
         request.getRequestDispatcher("season.jsp").forward(request, response);
     }
 

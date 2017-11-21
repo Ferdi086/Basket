@@ -121,13 +121,16 @@
                             <th>Team 2</th>
                             <th>PTS</th>
                         </tr>
-                        <tr>
-                            <td>11 November 2017</td>
-                            <td><a href='#'><img src='../img/Team/Logo/CLS.png' class='logo_kcl'>CLS Knight</a></td>
-                            <td>90</td>
-                            <td><a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a></td>
-                            <td>80</td>
-                        </tr>
+                        <c:forEach var='item' items='${requestScope.statistik}'>
+                            <tr>
+                                <td>${item.value.tgl}</td>
+                                <td><a href='#'><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</a></td>
+                                <td>${item.value.pts1}</td>
+                                <td><a href='#'><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</a></td>
+                                <td>${item.value.pts2}</td>
+                            </tr>
+                        </c:forEach>
+                        
                     </table>
                     </center>
                 </div>
