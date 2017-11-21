@@ -58,7 +58,14 @@ public class doSelectPlayer extends HttpServlet {
                     for(int i=0; i<dsn.size(); i++){
                         ObjPlayer ds = (ObjPlayer) dsn.get(i);
                         
+                        if(ds.getNamaPemain().contains(".")){
+                            String nama= ds.getNamaPemain().replace(".","");
+                         out.print("<option value=\""+ ds.getIdPemain()+"-"+ nama+"\">"+ nama+"</option>");
+                   
+                        }else{
                         out.print("<option value=\""+ ds.getIdPemain()+"-"+ ds.getNamaPemain()+"\">"+ ds.getNamaPemain()+"</option>");
+                   
+                        }
                     }
             }
             
