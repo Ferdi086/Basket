@@ -38,7 +38,7 @@ public class Season extends HttpServlet {
         String id = "5";
         HashMap tr = dh.getMusim();
         Musim cs = (Musim) tr.get(0);
-        HashMap st = dh.getMatchStatistic(cs.getId_musim());
+        HashMap st = dh.getMatchStatistic(id);
         HashMap tra = dh.getPPGbySeason(id);
         HashMap trb = dh.getAPGbySeason(id);
         HashMap trc = dh.getRPGbySeason(id);
