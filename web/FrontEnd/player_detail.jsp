@@ -99,7 +99,7 @@
 			<div class="wthree_team_grids">
 				<div class="col-md-3 wthree_team_grid foto_p">
 					<div class="hovereffect">
-                                            <img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" width="400" height="400"/>						
+                                            <img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="img-responsive" width="400" height="400"/>						
 					</div>
 				</div>
 			</div>
@@ -116,7 +116,7 @@
 		<h1>${item.value.namaPemain}</h1>
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
-		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/CLS.png"/>${item.value.team}</h3></a>
+		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
 		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>
 		<h4><span>Height</span> : ${item.value.tinggi} cm</h4>
 		<h4><span>Weight</span> : ${item.value.berat} kg</h4>
