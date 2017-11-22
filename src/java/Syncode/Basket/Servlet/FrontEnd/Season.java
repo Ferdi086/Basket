@@ -34,14 +34,13 @@ public class Season extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        DatabaseHandler dh = new DatabaseHandler();
-        String id = "5";
+        DatabaseHandler dh = new DatabaseHandler();        
         HashMap tr = dh.getMusim();
         Musim cs = (Musim) tr.get(0);
-        HashMap st = dh.getMatchStatistic(id);
-        HashMap tra = dh.getPPGbySeason(id);
-        HashMap trb = dh.getAPGbySeason(id);
-        HashMap trc = dh.getRPGbySeason(id);
+        HashMap st = dh.getMatchStatistic(cs.getId_musim());
+        HashMap tra = dh.getPPGbySeason(cs.getId_musim());
+        HashMap trb = dh.getAPGbySeason(cs.getId_musim());
+        HashMap trc = dh.getRPGbySeason(cs.getId_musim());
         for(int i = 0;i<st.size();i++){
             ObjMatchStatistic ste = (ObjMatchStatistic) st.get(i);
             out.println(ste.getTgl()+" "+ste.getTeam1()+" "+ste.getPts1()+" "+ste.getTeam2()+" "+ste.getPts2());

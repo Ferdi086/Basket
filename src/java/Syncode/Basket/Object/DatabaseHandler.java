@@ -50,7 +50,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"'"; 
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' ORDER BY Nama_Pemain"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -869,7 +869,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "SELECT Match,CAST(DAY(Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, Tgl_Match) + ' ' + CAST(YEAR(Tgl_Match) AS VARCHAR(4)) As Tgl_Match from TrGameLogs where ID_Musim = '"+id_m+"' GROUP BY Match,Tgl_Match ORDER BY Tgl_Match DESC";
+            String query = "SELECT Match,Tgl_Match from TrGameLogs where ID_Musim = '"+id_m+"' GROUP BY Match,Tgl_Match ORDER BY Tgl_Match DESC";
             String query1;
             String query2;
             ps = conn.prepareStatement(query);
@@ -879,31 +879,31 @@ public class DatabaseHandler extends Connect {
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 if(rs1.next()){
-                    query2 = "select c.Match,c.Tgl_Match,c.Team1,c.Logo1,CAST(AVG(c.PTS1) as decimal(10,2)) as PTS1,c.Team2,c.Logo2,CAST(AVG(c.PTS2) as decimal(10,2)) as PTS2 " +
-                            "from( " +
-                            "	select distinct a.Tgl_Match,a.Match,a.ID_Team as Team1,a.Logo as Logo1,a.PTS as PTS1,b.ID_Team as Team2,b.Logo as Logo2,b.PTS as PTS2 " +
-                            "	from " +
-                            "	( " +
-                            "		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS " +
-                            "		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d  " +
-                            "		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = '"+id_m+"' and b.Match = '"+rs.getString(1)+"' and b.ID_Team = '"+rs1.getString(1)+"' " +
-                            "	) a LEFT JOIN " +
-                            "	( " +
-                            "		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS " +
-                            "		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d  " +
-                            "		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = 5 and b.Match = '"+rs.getString(1)+"' and b.ID_Team != '"+rs1.getString(1)+"' " +
-                            "	) b " +
-                            "ON a.Match = b.Match " +
-                            ")c group by c.Match,c.Tgl_Match,c.Team1,c.Logo1,c.Team2,c.Logo2 "; 
+                    query2 = "select c.Match,CAST(DAY(c.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, c.Tgl_Match) + ' ' + CAST(YEAR(c.Tgl_Match) AS VARCHAR(4)) As Tgl_Match,c.Team1,c.Logo1,CAST(AVG(c.PTS1) as decimal(10,2)) as PTS1,c.Team2,c.Logo2,CAST(AVG(c.PTS2) as decimal(10,2)) as PTS2 " +
+"                            from(   " +
+"                            	select distinct a.Tgl_Match,a.Match,a.ID_Team as Team1,a.Logo as Logo1,a.PTS as PTS1,b.ID_Team as Team2,b.Logo as Logo2,b.PTS as PTS2  " +
+"                            	from  " +
+"                            	(  " +
+"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS  " +
+"                            		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d    "+
+"                            		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = "+id_m+" and b.Match = '"+rs.getString(1)+"' and b.Tgl_Match = '"+rs.getString(2)+"' and b.ID_Team = '"+rs1.getString(1)+"'  " +
+"                            	) a LEFT JOIN  " +
+"                            	(  " +
+"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS  " +
+"                            		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d   " +
+"                            		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = "+id_m+" and b.Match = '"+rs.getString(1)+"' and b.Tgl_Match = '"+rs.getString(2)+"' and b.ID_Team != '"+rs1.getString(1)+"'  " +
+"                            	) b  " +
+"                             ON a.Match = b.Match  " +
+"                            )c group by c.Match,c.Tgl_Match,c.Team1,c.Logo1,c.Team2,c.Logo2 "; 
                     ps2 = conn.prepareStatement(query2);
                     rs2 = ps2.executeQuery();
                     if(rs2.next()){
                         if(rs2.getString(4)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),"-","-","0.00",rs2.getString(6),rs2.getString(7),rs2.getString(8)));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),"-","-","0.00",rs2.getString(6),rs2.getString(7),rs2.getString(8)));
                         }else if(rs2.getString(7)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),"-","-","0.00"));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),"-","-","0.00"));
                         }else{
-                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8)));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8)));
                         }  
                     }
                 }

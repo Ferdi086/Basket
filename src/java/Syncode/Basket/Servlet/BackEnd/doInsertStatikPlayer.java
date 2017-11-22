@@ -147,7 +147,7 @@ public class doInsertStatikPlayer extends HttpServlet {
                 out.println("ke upload filenya = "+namafile);
                 File file1=new File(filePath +namafile);
                 FileInputStream fin = new FileInputStream(file1);
-                out.println(fin);
+                //out.println(fin);
                 //Get the workbook instance for XLS file
                 XSSFWorkbook workbook = new XSSFWorkbook(fin);
                 //Get first sheet from the workbook
@@ -244,7 +244,7 @@ public class doInsertStatikPlayer extends HttpServlet {
                          String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
                                + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
 
-                                out.println(query);
+                                //out.println(query);
                                  boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
                                    if(a == true ){
                                        out.println("berhasil");
@@ -259,7 +259,7 @@ public class doInsertStatikPlayer extends HttpServlet {
 }
         //XSSFSheet sheet2 = workbook.getSheetAt(1);
         // keterangan="Uploaded Filename: " + Name +"."+ ext + "<br>";
-                    out.println(file);
+                    //ln(file);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("StatistikPlayer");
@@ -270,8 +270,8 @@ public class doInsertStatikPlayer extends HttpServlet {
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
-                   out.println("tidak ke insert");
-                   //response.sendRedirect("StatistikPlayer");
+                   //out.println("tidak ke insert");
+                   response.sendRedirect("StatistikPlayer");
                }
             }
             else{
