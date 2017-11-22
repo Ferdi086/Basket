@@ -38,11 +38,13 @@ public class Home extends HttpServlet {
         HashMap trd = dh.getNewsList();
         HashMap tre = dh.getTrendingPlayer();
         HashMap trf = dh.getKlasemen();
+        HashMap trg = dh.getKlasemen2();
         request.setAttribute("p1",tr);
         request.setAttribute("team",tm);
         request.setAttribute("news", trd);
         request.setAttribute("tren", tre);
         request.setAttribute("klas", trf);
+        request.setAttribute("klas2", trg);
         //out.print(trf.size());
         request.getRequestDispatcher("index.jsp").forward(request, response);
         
