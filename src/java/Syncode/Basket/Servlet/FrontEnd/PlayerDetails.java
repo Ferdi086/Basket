@@ -6,7 +6,6 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
-import Syncode.Basket.Object.ObjPlayer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
