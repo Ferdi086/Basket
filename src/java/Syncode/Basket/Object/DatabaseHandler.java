@@ -899,9 +899,9 @@ public class DatabaseHandler extends Connect {
                     rs2 = ps2.executeQuery();
                     if(rs2.next()){
                         if(rs2.getString(4)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),"-","-","0.0",rs2.getString(6),rs2.getString(7),rs2.getString(8)));
+                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),"-","-","0.00",rs2.getString(6),rs2.getString(7),rs2.getString(8)));
                         }else if(rs2.getString(7)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),"-","-","0.0"));
+                            tr.put(i++,new ObjMatchStatistic(rs.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),"-","-","0.00"));
                         }else{
                             tr.put(i++,new ObjMatchStatistic(rs.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8)));
                         }  
