@@ -180,56 +180,18 @@
                             <th>L</th>
                             <th>PTS</th>
                         </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
+                        <c:forEach var='item' items='${requestScope.klas2}'>
+                            <tr>
+                                <td>${item.value.no}</td>
+                                <td style='text-align:left'>
+                                    <a href='#' onclick="teamdetail('${item.value.id_team}')"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
+                                </td>
+                                <td>${item.value.gp}</td>
+                                <td>${item.value.w}</td>
+                                <td>${item.value.l}</td>
+                                <td>${item.value.pts}</td>
+                            </tr>
+                        </c:forEach>
                 </table>
             </div>
         </div>
