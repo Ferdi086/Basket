@@ -203,16 +203,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
+                                                                            <td>${item.value.FG}</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
+                                                                            <td>${item.value.p2}</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
+                                                                            <td>${item.value.p3}</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
+                                                                            <td>${item.value.FT}</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -228,30 +228,149 @@
                                                                     <c:forEach var="item" items="${requestScope.player_stat_sum}">
                                                                     <tr>
                                                                             <td colspan="2"></td>
-                                                                            <td>${item.value.GP}</td>
-                                                                            <td>${item.value.MIN}</td>
-                                                                            <td>${item.value.FGM}</td>
-                                                                            <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
-                                                                            <td>${item.value.PM2}</td>
-                                                                            <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
-                                                                            <td>${item.value.PM3}</td>
-                                                                            <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
-                                                                            <td>${item.value.FTM}</td>
-                                                                            <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
-                                                                            <td>${item.value.o_R}</td>
-                                                                            <td>${item.value.DR}</td>
-                                                                            <td>${item.value.TR}</td>
-                                                                            <td>${item.value.a_S}</td>
-                                                                            <td>${item.value.t_O}</td>
-                                                                            <td>${item.value.ST}</td>
-                                                                            <td>${item.value.BL}</td>
-                                                                            <td>${item.value.PF}</td>
-                                                                            <td>${item.value.EF}</td>
-                                                                            <td>${item.value.PTS}</td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.GP}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.GP}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.MIN}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.MIN}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FGM}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                ${item.value.FGM}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FGA}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FGA}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FG}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FG}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PM2}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PM2}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PA2}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PA2}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.p2}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.p2}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PM3}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PM3}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PA3}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PA3}
+                                                                            </td>
+                                                                            <td><c:if test = "${empty item.value.p3}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.p3}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FTM}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FTM}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FTA}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FTA}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FT}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FT}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.o_R}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.o_R}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.DR}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.DR}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.TR}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.TR}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.a_S}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.a_S}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.t_O}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.t_O}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.ST}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.ST}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.BL}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.BL}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PF}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PF}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.EF}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.EF}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PTS}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PTS}
+                                                                            </td>
                                                                     </tr>                                                                    
                                                                     </c:forEach>
                                                             </table>
@@ -297,16 +416,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
+                                                                            <td>${item.value.FG}</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
+                                                                            <td>${item.value.p2}</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
+                                                                            <td>${item.value.p3}</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
+                                                                            <td>${item.value.FT}</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -322,30 +441,149 @@
                                                                     <c:forEach var="item" items="${requestScope.player_stat2_sum}">
                                                                     <tr>
                                                                             <td colspan="2"></td>
-                                                                            <td>${item.value.GP}</td>
-                                                                            <td>${item.value.MIN}</td>
-                                                                            <td>${item.value.FGM}</td>
-                                                                            <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
-                                                                            <td>${item.value.PM2}</td>
-                                                                            <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
-                                                                            <td>${item.value.PM3}</td>
-                                                                            <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
-                                                                            <td>${item.value.FTM}</td>
-                                                                            <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
-                                                                            <td>${item.value.o_R}</td>
-                                                                            <td>${item.value.DR}</td>
-                                                                            <td>${item.value.TR}</td>
-                                                                            <td>${item.value.a_S}</td>
-                                                                            <td>${item.value.t_O}</td>
-                                                                            <td>${item.value.ST}</td>
-                                                                            <td>${item.value.BL}</td>
-                                                                            <td>${item.value.PF}</td>
-                                                                            <td>${item.value.EF}</td>
-                                                                            <td>${item.value.PTS}</td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.GP}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.GP}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.MIN}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.MIN}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FGM}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                ${item.value.FGM}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FGA}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FGA}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FG}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FG}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PM2}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PM2}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PA2}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PA2}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.p2}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.p2}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PM3}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PM3}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PA3}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PA3}
+                                                                            </td>
+                                                                            <td><c:if test = "${empty item.value.p3}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.p3}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FTM}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FTM}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FTA}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FTA}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.FT}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.FT}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.o_R}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.o_R}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.DR}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.DR}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.TR}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.TR}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.a_S}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.a_S}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.t_O}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.t_O}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.ST}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.ST}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.BL}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.BL}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PF}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PF}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.EF}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.EF}
+                                                                            </td>
+                                                                            <td>
+                                                                                <c:if test = "${empty item.value.PTS}">
+                                                                                    N/A
+                                                                                </c:if>
+                                                                                    ${item.value.PTS}
+                                                                            </td>
                                                                     </tr>                                                                    
                                                                     </c:forEach>
                                                             </table>
