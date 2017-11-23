@@ -116,23 +116,23 @@
         
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4>Every Player</h4>
+                <h4>Top Player</h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1}">
-                        <img src='../img/Players/${item.value.foto}' class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
+                        <img src='../img/Players/${item.value.foto}' onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
                     </c:forEach>
                 </div>
                 <div class="kiri_form">
                 <form id="Pl_kiri" method="post" action="PlayerDetails">		
-                    <select name='' class="form-group" id="sel_team">
+                    <select name='' class="form-group" id="sel_team" required>
                             <option value=''> ------------ Select a Team ------------ </option>
                             <c:forEach var="item" items="${requestScope.team}">
                                 <option value="${item.value.id}"> ${item.value.namateam} </option>
                             </c:forEach>
                     </select>
-                    <select id="sel_plyr" name='ID_P'>
+                    <select id="sel_plyr" name='ID_P' required>
                             <option value=''> ------------ Select a Player ------------ </option>
                     </select><br>
                     <button class="kiri_btn"> Go </button>
