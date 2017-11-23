@@ -109,17 +109,18 @@ public class doInsertPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama+"-"+no+"."+ ext) ;
                     } else {
-                       file = new File( filePath + id_team +"-"+ nama+"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama+"-"+no+"."+ ext) ;
                     }
                     
                     Exten="."+ ext;
-                    foto = id_team +"-"+ nama+Exten;
+                    foto = id_team +"-"+nama+"-"+no+Exten;
                     fi.write( file ) ;
                     //dh.setFile(Name,Exten);
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
+                    out.println("foto="+foto);
                     out.println(file);
                     dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
                     session.setAttribute("ErrMess","Your data successfully recorded");
@@ -129,7 +130,7 @@ public class doInsertPlayer extends HttpServlet {
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");
                         session.setAttribute("alert", "alert-danger");
-                        response.sendRedirect("Player");
+                       response.sendRedirect("Player");
                     }
              }
           }

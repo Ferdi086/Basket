@@ -97,6 +97,8 @@ public class doUpdateTeam extends HttpServlet {
                nama = namaitem.getString().trim();
                FileItem nickitem = (FileItem) fileItems.get(0);
                nick = nickitem.getString();
+               FileItem divisiitem = (FileItem) fileItems.get(2);
+               String divisi = divisiitem.getString().trim();
                String FieldName = fi.getFieldName();
                String fileName = fi.getName()==""?"kosong":fi.getName();
                ext = fileName.split("\\.")[0]=="kosong"?"ini ext kosong":fileName.split("\\.")[1];
@@ -125,24 +127,24 @@ public class doUpdateTeam extends HttpServlet {
                     fi.write( file );
                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama+"',Logo='"+logo+"',Gambar='"+foto+"' where ID_Team='"+nick+"'";
                     out.println("query 2 ="+query+"<br/>");
-                    boolean a=dh.setUpdateMsTeam(nick,nama,logo,foto);
+                    boolean a=dh.setUpdateMsTeam(nick,nama,divisi,logo,foto);
                     //out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     //response.sendRedirect("Team");
                    
             }
-               else {
-                       
-                    }
+               
              }
             else {
                FileItem nickitem = (FileItem) fileItems.get(0);
                nick = nickitem.getString().trim();
                FileItem namaitem = (FileItem) fileItems.get(1);
                nama = namaitem.getString().trim();
+               FileItem divisiitem = (FileItem) fileItems.get(2);
+               String divisi = divisiitem.getString().trim();
                String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama+"',Logo='"+logo+"',Gambar='"+foto+"'where ID_Team='"+nick+"'";
-               boolean a=dh.setUpdateMsTeam(nick,nama,logo,foto);
+               boolean a=dh.setUpdateMsTeam(nick,nama,divisi,logo,foto);
                //out.println(a);
                out.println("query 1 ="+query+"<br/>");
                  
