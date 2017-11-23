@@ -256,25 +256,13 @@
                 <li> 
                     <a href="StatistikPlayer" >
 			<img class="icon" src="../img/package.png">
-			<span class="text">Statistik Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="News" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">News</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Gallery" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Gallery</span>
+			<span class="text">Statistic Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Musim" >
 			<img class="icon" src="../img/package.png">
-			<span class="text">Musim</span>
+			<span class="text">Season</span>
                     </a>
                 </li>
                 <li class="btn-menu">
@@ -427,7 +415,7 @@
                         <div class="form-group">
                                     <label class="control-label col-sm-2 " >Season Name</label>
                                     <div class="col-sm-3">
-                                        <input id="Uid" type="text" name="id" class="form-control" required/>
+                                        <input id="Uid" type="hidden" name="id" class="form-control" required/>
                                         <input id="Umusim" type="text" name="musim" class="form-control" required/>
                                     </div>
                                     <label class="control-label col-sm-2 " >Season Type</label>

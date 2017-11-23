@@ -254,19 +254,7 @@
                 <li> 
                     <a href="StatistikPlayer" >
 			<img class="icon" src="../img/package.png">
-			<span class="text">Statistik Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="News" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">News</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Gallery" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Gallery</span>
+			<span class="text">Statistic Player</span>
                     </a>
                 </li> 
                 <li> 
@@ -321,7 +309,7 @@
                                     </div>
                                    
                                                                   
-                                </div>	
+                            </div>	
                             <div class="form-group">
                                    <label class="control-label col-sm-2">Team's Logo</label>
                                    <div class="col-sm-3">
@@ -373,7 +361,8 @@
                         </thead>      
                                 <c:forEach var="item" varStatus="loopCounter" items="${requestScope.Team}">
                                     <c:set var="id" value="${item.value.id}"/>
-                                    <c:set var="nama_team" value="${item.value.namateam}"/>
+                                    <c:set var="namateam" value="${item.value.namateam}"/>
+                                    <c:set var="divisi" value="${item.value.divisi}"/>
                                     <c:set var="logo" value="${item.value.logo}"/>
                                     <c:set var="gambar" value="${item.value.gambar}"/>
                                     <c:set var="flagactive" value="${item.value.flagactive}" />
@@ -385,7 +374,7 @@
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
-                                               role="button" onclick="Update('${id}','${namateam}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
+                                               role="button" onclick="Update('${id}','${namateam}','${divisi}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
                                                 <c:choose>
                                                      <c:when test="${flagactive=='Y'}">
                                                          <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${id}','${flagactive}')" >Disable</button>
@@ -464,16 +453,24 @@
                             <div class="col-sm-3">
                                 <input type="text" name="id" id="UpdateId" class="form-control">
                             </div>
-                            <div class="col-sm-1">
-                                        <span id="loading"><img src="../img/loading.gif" width="28px"/></span>
-                                        <span id="ok"><img src="../img/ok.png" width="32px"/></span>
-                                        <span id="error"><img src="../img/error.png" width="32px"/></span>
-                                    </div>
+                           
                             <label class="control-label col-sm-2">Team Name</label>
                             <div class="col-sm-3">
                                 <input type="text" name="nama" id="UpdateNama" class="form-control">
                             </div>  
                         </div>
+                        <div class="form-group">
+                                    <label class="control-label col-sm-2 " >Division</label>
+                                    <div class="col-sm-3">
+                                        <select id="Updatedivisi" name="divisi" class="form-control" required>
+                                            <option value="">Choose one division</option>
+                                            <option value="P">Putih</option>
+                                            <option value="M">Merah</option>
+                                        </select>
+                                    </div>
+                                   
+                                                                  
+                            </div>
                         <div class="form-group">
                                    <label class="control-label col-sm-2">Team's Logo</label>
                                    <div class="col-sm-3">
@@ -646,6 +643,8 @@
                 return false;
             }else if($('#UpdateNama').val()===""){
                 return false;
+            }else if($('#Updatedivisi').val()===""){
+                return false;
             }else{
                 return true;
             }
@@ -654,6 +653,8 @@
             if($('#nama').val()===""){   
                 return false;
             }else if($('#nick').val()===""){
+                return false;
+            }else if($('#divisi').val()===""){
                 return false;
             }else if($('#logo').val()===""){
                 return false;
@@ -707,9 +708,10 @@
                 $('#ID_T1').val(ID_Team);
                 $('#Flag1').val(Flag);
             }
-        function Update(id,nama_team,logo,gambar){
+        function Update(id,nama_team,divisi,logo,gambar){
             $('#UpdateId').val(id);
             $('#UpdateNama').val(nama_team);
+            $('#Updatedivisi').val(divisi);
             $('#previewlogoupdate').attr('src',"../img/Team/Logo/"+logo).width(135).height(140);
             $('#previewfotoupdate').attr('src',"../img/Team/Foto/"+gambar).width(135).height(140);  
         }

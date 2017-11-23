@@ -332,7 +332,7 @@ public class doInsertStatikPlayer extends HttpServlet {
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("StatistikPlayer");
-              
+                    
                }         
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
