@@ -88,7 +88,7 @@ h2 span {
 <c:forEach var = "item" items = "${requestScope.team}">
 <div class="row" style="margin-top:10px;margin-bottom:10px;">
 	<div class="col-lg-3 col-lg-offset-2 col-md-4 col-sm-5 col-xs-5 team_logo">
-		<img src="../img/Team/Logo/${item.value.logo}"/>
+		<img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.namateam}" width="150" height="150"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
 		<h3>${item.value.namateam}</h3>
@@ -96,7 +96,7 @@ h2 span {
 </div>
 <center>
 	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-		<img src="../img/Team/Foto/${item.value.gambar}" class="img-responsive" width="200px" height="200px"/>
+		<img src="../img/Team/Foto/${item.value.gambar}"  class="img-responsive" width="200px" height="200px"/>
 	</div>
 </center>
 

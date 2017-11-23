@@ -47,13 +47,11 @@ public class PlayersByNameLike extends HttpServlet {
                 for(int i=0; i<tr.size();i++){
                     ObjPlayerFront pl = (ObjPlayerFront) tr.get(i);
                 out.println("   <div class=\"col-md-3 wthree_team_grid\">");
-                out.println("   <a href=\"PlayerDetails?ID_P="+pl.getIdPemain()+"\">");
-                out.println("   <div class=\"hovereffect\">");
-                out.println("       <img src=\"../img/Players/"+pl.getFoto()+"\" alt=\" \" class=\"img-responsive\" />");
+                out.println("   <div class=\"hovereffect\" onclick=\"playdetail("+pl.getIdPemain()+")\">");
+                out.println("       <img src='../img/Players/"+pl.getFoto()+"'; onerror=\"this.onerror=null;this.src='../img/Players/nopic.png';\" alt='"+pl.getNamaPemain()+"' width=\"400px\" height=\"400px\" class=\"img-responsive\" />");
                 out.println("       <div class=\"overlay\">");
                 out.println("           <h6>"+pl.getNamaPemain()+"</h6>");
                 out.println("       </div>");
-                out.println("   </a>");
                 out.println("   </div>");
                 out.println("   <h4>"+pl.getNamaPos()+"</h4>");
                 out.println("   <p>"+pl.getTinggi()+" cm</p>");

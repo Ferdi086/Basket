@@ -116,23 +116,23 @@
         
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4>Every Player</h4>
+                <h4>Top Player</h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1}">
-                        <img src='../img/Players/${item.value.foto}' class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
+                        <img src='../img/Players/${item.value.foto}' onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
                     </c:forEach>
                 </div>
                 <div class="kiri_form">
                 <form id="Pl_kiri" method="post" action="PlayerDetails">		
-                    <select name='' class="form-group" id="sel_team">
+                    <select name='' class="form-group" id="sel_team" required>
                             <option value=''> ------------ Select a Team ------------ </option>
                             <c:forEach var="item" items="${requestScope.team}">
                                 <option value="${item.value.id}"> ${item.value.namateam} </option>
                             </c:forEach>
                     </select>
-                    <select id="sel_plyr" name='ID_P'>
+                    <select id="sel_plyr" name='ID_P' required>
                             <option value=''> ------------ Select a Player ------------ </option>
                     </select><br>
                     <button class="kiri_btn"> Go </button>
@@ -180,56 +180,18 @@
                             <th>L</th>
                             <th>PTS</th>
                         </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td style='text-align:left'>
-                            <a href='#'><img src='../img/Team/Logo/BPJ.png' class='logo_kcl'>Bima Perkasa Jogja</a>
-                        </td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>50</td>
-                    </tr>
+                        <c:forEach var='item' items='${requestScope.klas2}'>
+                            <tr>
+                                <td>${item.value.no}</td>
+                                <td style='text-align:left'>
+                                    <a href='#' onclick="teamdetail('${item.value.id_team}')"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
+                                </td>
+                                <td>${item.value.gp}</td>
+                                <td>${item.value.w}</td>
+                                <td>${item.value.l}</td>
+                                <td>${item.value.pts}</td>
+                            </tr>
+                        </c:forEach>
                 </table>
             </div>
         </div>
