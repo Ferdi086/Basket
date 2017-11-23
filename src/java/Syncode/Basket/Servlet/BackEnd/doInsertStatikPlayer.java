@@ -154,16 +154,18 @@ public class doInsertStatikPlayer extends HttpServlet {
                 //Get first sheet from the workbook
                 XSSFSheet sheet = workbook.getSheetAt(0);
                     //Iterate through each rows from first sheet
-                 Row row;
+                 Row row,row1;
                  //String contoh="qwer";
                  int trow = sheet.getLastRowNum();
-                 out.println("banyak baris ="+trow);
+                
                   String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
-                    //out.println("row = "+trow);
-                    //row1 = (Row) sheet.getRow(17);
+                     row1 = (Row) sheet.getRow(5);
+                     //out.println("banyak row = "+trow+"");
+                    //out.println("row = "+row1);
                     //out.println("row = "+row1+"<br/><br/>");
                     //contoh= row1.getCell(1).toString();
                    // out.println("cellnya ="+contoh+"<br/><br/>");
+                    
                         for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
                             row = (Row) sheet.getRow(t);//sheet number
                             if(row != null){
@@ -320,8 +322,8 @@ public class doInsertStatikPlayer extends HttpServlet {
                      }else{
                             session.setAttribute("ErrMess","Your data successfully recorded");
                             session.setAttribute("alert", "alert-success");
-                            response.sendRedirect("StatistikPlayer");  
-                   
+                            //response.sendRedirect("StatistikPlayer");  
+                            out.println("data selanjutnya kosong<br/>");
                       }
            //  out.println("sheet = "+sheet.getLastRowNum());
           //  out.println(sno+" "+snama+" "+sumur);
@@ -332,12 +334,12 @@ public class doInsertStatikPlayer extends HttpServlet {
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("StatistikPlayer");
-              
+                    out.println("kondisi normal<br/>");
                }         
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
-                   //out.println("tidak ke insert");
+                   out.println("kondisi format data salaah");
                    response.sendRedirect("StatistikPlayer");
                }
             }

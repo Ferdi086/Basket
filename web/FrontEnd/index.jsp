@@ -175,7 +175,7 @@
                         <tr>
                             <th>No</th>
                             <th style='text-align:left'>Divisi Putih</th>
-                            <th>MP</th>
+                            <th>GP</th>
                             <th>W</th>
                             <th>L</th>
                             <th>PTS</th>

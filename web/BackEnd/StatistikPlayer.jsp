@@ -242,38 +242,26 @@
                 </li> 
                 <li> 
                     <a href="Player" >
-			<img class="icon" src="../img/package.png">
+			<img class="icon" src="../img/pemain.png">
 			<span class='text'>Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Team" >
-			<img class="icon" src="../img/package.png">
+			<img class="icon" src="../img/team.png">
 			<span class='text'>Team</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="StatistikPlayer" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Statistik Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="News" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">News</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Gallery" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Gallery</span>
+			<img class="icon" src="../img/statistik.png">
+			<span class="text">Statistic Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Musim" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Musim</span>
+			<img class="icon" src="../img/musim.png">
+			<span class="text">Season</span>
                     </a>
                 </li>
                 <li class="btn-menu">
@@ -294,7 +282,7 @@
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Players Statistic</b></h2></center>
+                    <center><h2 style="margin-bottom:40px;"><b>Statistic Player</b></h2></center>
                     <form class="form-horizontal" method="post" action="doInsertStatikPlayer" id="formInput" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team</label>

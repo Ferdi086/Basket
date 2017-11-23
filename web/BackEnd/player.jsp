@@ -240,40 +240,28 @@
                 </li> 
                 <li> 
                     <a href="Player" >
-			<img class="icon" src="../img/package.png">
+			<img class="icon" src="../img/pemain.png">
 			<span class='text'>Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Team" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Team</span>
+			<img class="icon" src="../img/team.png">
+			<span class='text'>Team</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="StatistikPlayer" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Statistik Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="News" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">News</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Gallery" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Gallery</span>
+			<img class="icon" src="../img/statistik.png">
+			<span class="text">Statistic Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Musim" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Musim</span>
+			<img class="icon" src="../img/musim.png">
+			<span class="text">Season</span>
                     </a>
-                </li> 
+                </li>
                 <li class="btn-menu">
                     <button id="togglebutton"><span class="glyphicon glyphicon-th-list"></span></button>
                     <label class='text txt-toggle' id="cursor">Menu</label>
@@ -345,7 +333,7 @@
                                    
                                     <label class="control-label col-sm-2">Hand's Position</label>
                                     <div class="col-sm-3">
-                                        <select id="tangan" type="text" name="tangan" class="form-control"  required>
+                                        <select id="tangan" type="text" name="tangan" class="form-control" required>
                                             <option value="kanan">Right</option>
                                             <option value="kiri">Left</option>
                                         </select>
@@ -495,23 +483,23 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="doUpdatePlayer" id="formUpdate" enctype = "multipart/form-data" >
-                        <div class="form-group e">
+                        <div class="form-group ">
                             <input type="hidden" id="updateid_pemain" name="uid_pemain"/>
                             <label class="control-label col-sm-2 col-sm-offset-1" for="pemain">Players Name</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="upemain" id="updatepemain" class="form-control" required>
-                            </div>
+                                <div class="col-sm-3">
+                                    <input type="text" name="upemain" id="updatepemain" class="form-control" required>
+                                </div>
                             <label class="control-label col-sm-2" for="Team">Team</label>
                             <div class="col-sm-3">
-                              <select  name="uteam" class="form-control" id="updateteam">
-                                <option value=""> Choose One Team </option>
-                                <c:forEach var="item" items="${requestScope.team}">
-                                    <option value="${item.value.id}"> ${item.value.id} - ${item.value.nama_team} </option>
-                                </c:forEach>
-                             </select>
+                                <select  name="uteam" class="form-control" id="updateteam">
+                                    <option value=""> Choose One Team </option>
+                                    <c:forEach var="item" items="${requestScope.team}">
+                                    <option value="${item.value.id}"> ${item.value.id} - ${item.value.namateam} </option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group e">
+                        <div class="form-group ">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Position</label>
                                     <div class="col-sm-3">
                                        <select name="uposisi" class="form-control" id="updateposisi">
@@ -526,8 +514,8 @@
                                     <div class="col-sm-3">
                                     	<input id="updateno" type="text" name="uno_punggung" class="form-control" maxlength="2" onkeypress="return isNumber(event)" required >
                                     </div>                                  
-                                </div>	
-                            <div class="form-group e">
+                            </div>	
+                            <div class="form-group ">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Height</label>
                                     <div class="col-sm-3">
                                         <input id="updatetinggi" type="text" name="utinggi" maxlength="3" class="form-control" onkeypress="return isNumber(event)" required/>
@@ -539,7 +527,7 @@
                                     </div>                                  
                                 </div>	
                         
-                            <div class="form-group e">
+                            <div class="form-group ">
                                     <label class="control-label col-sm-2 col-sm-offset-1">Birth Date</label>
                                     <div class="col-sm-3">
                                         <input id="updatetgl" type="text" name="utgl" class="form-control" placeholder="YYYY-MM-DD" required/>
@@ -639,6 +627,40 @@
     <!-- End Modal Konfirmasi Aktif-->
     </body>
     <script>
+        
+        $(document).ready(function(){ 
+            //$("#loading").hide();
+            //$('#sub').hide();
+            $('#togglebutton').click(function() {
+		$('.text').toggle(300);
+                $('#sub').hide();
+            }); 
+            $('.txt-toggle').click(function() {
+		$('.text').toggle(300);
+                $('#sub').hide();
+            }); 
+            $('#Book').click(function(){
+               $('#sub').toggle(300);               
+            });
+            $('#tgl').datetimepicker({
+                    format: 'YYYY-MM-DD'
+            }); 
+            $("#reset").click(function(){
+                $("#pemain").focus();
+                $("#pemain").val(null);
+                $("#team").val(null);
+                $("#posisi").val(null);
+                $("#no_punggung").val(null);
+                $("#tinggi").val(null);
+                $("#berat").val(null);
+                $("#tgl").val(null);
+                $("#tangan").val(null);
+                $("#preview").attr('src',"../img/nopic.png");
+                $("#file").val(null);
+            });    
+            jQuery('.scrollbar-macosx').scrollbar();                
+                     
+	}); 
         function cekInput(){           
             if($('#pemain').val()===""){   
                 return false;
@@ -740,41 +762,6 @@
                 $('#ID_P1').val(ID_Pemain);
                 $('#Flag1').val(Flag);
             }
-        $(document).ready(function(){ 
-           // $('table.package').highchartTable();
-           // $('table.IdCard').highchartTable();
-            //$("#loading").hide();
-            //$('#sub').hide();
-            $('#togglebutton').click(function() {
-		$('.text').toggle(300);
-                $('#sub').hide();
-            }); 
-            $('.txt-toggle').click(function() {
-		$('.text').toggle(300);
-                $('#sub').hide();
-            }); 
-            $('#Book').click(function(){
-               $('#sub').toggle(300);               
-            });
-            $('#tgl').datetimepicker({
-                    format: 'YYYY-MM-DD'
-            }); 
-            $("#reset").click(function(){
-                $("#pemain").focus();
-                $("#pemain").val(null);
-                $("#team").val(null);
-                $("#posisi").val(null);
-                $("#no_punggung").val(null);
-                $("#tinggi").val(null);
-                $("#berat").val(null);
-                $("#tgl").val(null);
-                $("#tangan").val(null);
-                $("#preview").attr('src',"../img/nopic.png");
-                $("#file").val(null);
-            });    
-            jQuery('.scrollbar-macosx').scrollbar();                
-                     
-	}); 
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;

@@ -122,15 +122,15 @@ public class doUpdatePlayer extends HttpServlet {
                      if(FieldName.equals("fileupdate")){
                          out.println("<br/>iniFoto" + nama_pemain + Exten);
                            if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + idTeam +"-"+ nama_pemain+"."+ ext) ;
+                       file = new File( filePath + idTeam +"-"+ nama_pemain+"-"+noPunggung+"."+ ext);
                     } else {
-                       file = new File( filePath + idTeam +"-"+ nama_pemain+"."+ ext) ;
+                       file = new File( filePath + idTeam +"-"+ nama_pemain+"-"+noPunggung+"."+ ext);
                     }
                     
                     
                      }
                     Exten="."+ ext;
-                    foto = idTeam +"-"+ nama_pemain+Exten;
+                    foto = idTeam +"-"+ nama_pemain+"-"+noPunggung+Exten;
                     out.println("ini foto "+foto);
                     fi.write( file ) ;
                     String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";

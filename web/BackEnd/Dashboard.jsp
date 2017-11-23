@@ -241,38 +241,26 @@
                 </li> 
                 <li> 
                     <a href="Player" >
-			<img class="icon" src="../img/package.png">
+			<img class="icon" src="../img/pemain.png">
 			<span class='text'>Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Team" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Team</span>
+			<img class="icon" src="../img/team.png">
+			<span class='text'>Team</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="StatistikPlayer" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Statistik Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="News" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">News</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Gallery" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Gallery</span>
+			<img class="icon" src="../img/statistik.png">
+			<span class="text">Statistic Player</span>
                     </a>
                 </li> 
                 <li> 
                     <a href="Musim" >
-			<img class="icon" src="../img/package.png">
-			<span class="text">Musim</span>
+			<img class="icon" src="../img/musim.png">
+			<span class="text">Season</span>
                     </a>
                 </li> 
                 <li class="btn-menu">
@@ -289,9 +277,26 @@
         </script> 
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
-               
-                
-		</div>
+                <h1 style="text-align:center;margin-bottom:50px">Dashboard</h1> 
+                 <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                        <thead>
+                            <tr style="font-size:18px;">
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Date Match</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>W/L</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Points</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>W/L</center></b></th>
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Points</center></b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+            </div>
                 
                     
             </div>
