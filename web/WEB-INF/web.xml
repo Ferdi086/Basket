@@ -148,6 +148,10 @@
         <servlet-name>Dashboard</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.Dashboard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doLogin</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -323,6 +327,10 @@
     <servlet-mapping>
         <servlet-name>Dashboard</servlet-name>
         <url-pattern>/BackEnd/Dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doLogin</servlet-name>
+        <url-pattern>/BackEnd/doLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
