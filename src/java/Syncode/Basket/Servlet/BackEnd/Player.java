@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjPlayer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -47,6 +48,10 @@ public class Player extends HttpServlet {
             HashMap pos = dh.getPosisi();
             HashMap pl = dh.getPlayer();
             out.println(pl);
+           
+            
+            
+            
             request.setAttribute("player", pl);
             request.setAttribute("team",tm);
             request.setAttribute("posisi",pos);
