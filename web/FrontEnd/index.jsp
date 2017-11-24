@@ -220,13 +220,8 @@
         </div>
     </div>
     
-    <footer>
-            <div class="copyright">
-                    <div class="container">
-                            <p>Copyright © 2017 IT Directorate . All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-                    </div>
-            </div>
-    </footer>
+    
+        <%@include file="Sync/footer.jsp" %>
 
 <!-- js scripts -->
 	
