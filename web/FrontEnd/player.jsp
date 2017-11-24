@@ -167,7 +167,7 @@
 				<div class="col-md-3 wthree_team_grid">
 					
                                         <div class="hovereffect" onclick="playdetail(${item.value.idPemain})">
-                                            <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" alt="${item.value.namaPemain}" width="400px" height="400px" class="img-responsive" />
+                                            <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" alt="${item.value.namaPemain}" width="400px" height="400px" class="img-responsive" />
                                             <div class="overlay">
                                                     <h6>${item.value.namaPemain}</h6>
                                             </div>
