@@ -109,9 +109,9 @@ public class doInsertPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+ ext) ;
+                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+"."+ ext) ;
                     } else {
-                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+ ext) ;
+                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+"."+ ext) ;
                     }
                     
                     Exten="."+ ext;
