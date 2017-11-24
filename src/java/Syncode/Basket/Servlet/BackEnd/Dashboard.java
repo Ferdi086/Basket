@@ -5,12 +5,15 @@
  */
 package Syncode.Basket.Servlet.BackEnd;
 
+import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,7 +32,13 @@ public class Dashboard extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         request.getRequestDispatcher("Dashboard.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+        PrintWriter out = response.getWriter();
+        DatabaseHandler dh = new DatabaseHandler();
+        ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
+        request.setAttribute("nama_usr", usr.getNama());
+        
+        request.getRequestDispatcher("Dashboard.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

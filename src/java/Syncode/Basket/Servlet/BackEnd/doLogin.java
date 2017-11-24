@@ -6,12 +6,14 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +33,29 @@ public class doLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
+        String user = request.getParameter("UserName");
+        String pass = request.getParameter("Password");
+        //out.print(user+pass);
+        ObjUser tes = dh.getUsr(user, pass);
+        
+        if(user.equals("")||pass.equals("")){
+            request.setAttribute("Stat", "Mohon isi form dengan lengkap");
+            request.setAttribute("alert","alert-danger");
+            request.getRequestDispatcher("/BackEnd/index.jsp").forward(request,response);
+        }
+        if((tes.getPassword()).equals("")){
+            request.setAttribute("Stat", "Id atau Password anda Salah");
+            request.setAttribute("alert","alert-danger");
+            out.print("salah woi");
+            request.getRequestDispatcher("/BackEnd/index.jsp").forward(request,response);
+        }
+        if(user.equals(tes.getID())&&pass.equals(tes.getPassword())){
+            session.setAttribute("obj_usr", tes);
+            session.setMaxInactiveInterval(24*60*60);
+            response.sendRedirect("Dashboard");
+        }
         
     }
 

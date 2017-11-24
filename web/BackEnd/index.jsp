@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +21,12 @@
         </style>
     </head>
     <body>
+        
+        <center>
+            <div class="alert ${requestScope.alert} fade in"  style="text-align: center; width: 100%; font-size: 20px; cursor: pointer;">
+                <p><b>${requestScope.Stat}</b></p>
+            </div>
+        </center>
     <center>
         <form id="form" action="doLogin" method="post">
             <div class="form-inline" style="width: 400px; height:250px; background: rgba(25,25,112 , .6);margin-top: 125px; border:1.5px solid white; border-top:none;border-radius:5px ">
@@ -45,5 +52,10 @@
             </div>
         </form>
     </center>
+    
+    <script>
+        $(".alert-danger").delay(5000).fadeOut(1000);  
+        $("#user").focus();
+    </script>
     </body>
 </html>
