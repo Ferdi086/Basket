@@ -133,20 +133,20 @@ public class doUpdatePlayer extends HttpServlet {
                     foto = idTeam +"-"+ nama_pemain+"-"+pos+"-"+noPunggung+Exten;
                     out.println("ini foto "+foto);
                     fi.write( file ) ;
-                    
-                    
+                    out.println("");
+                    out.println(file);
+                    String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                    boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
+                    out.println("query 2 ="+query+"<br/>");
+                    out.println(a);
+                    session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
                     //response.sendRedirect("Team");
                    
             }
                else {
                        
                     }
-                String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
-                boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
-                    out.println("query 2 ="+query+"<br/>");
-                    out.println(a);
-                    session.setAttribute("ErrMess","Your data successfully recorded");
-                    session.setAttribute("alert", "alert-success");
              }
             else {
                FileItem idpemainitem = (FileItem) fileItems.get(0);
