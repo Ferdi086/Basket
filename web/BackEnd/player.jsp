@@ -400,7 +400,7 @@
                                 <c:set var="flagactive" value="${item.value.flagactive}" />
                             <tr>
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}" width="80px" height="80px"/> </td>
+                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
                                 <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${tgl} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${tinggi} cm </td>
