@@ -110,7 +110,7 @@ h2 span {
                 <c:forEach var = "item" items = "${requestScope.tp}">
 		<div class="kotak_team">
 			<div class="kotak_team_isi" style="vertical-align:top;">
-				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="img-circle" width="55" height="55"/>
+				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi" style="max-width:170px;">
 				<h5>${item.value.namaPemain}</h5>
@@ -128,7 +128,7 @@ h2 span {
 		<c:forEach var = "item" items = "${requestScope.ta}">
 		<div class="kotak_team">
 			<div class="kotak_team_isi" style="vertical-align:top;">
-				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="img-circle" width="55" height="55"/>
+				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi" style="max-width:170px;">
 				<h5>${item.value.namaPemain}</h5>
@@ -145,7 +145,7 @@ h2 span {
 		<c:forEach var = "item" items = "${requestScope.tr}">
 		<div class="kotak_team">
 			<div class="kotak_team_isi" style="vertical-align:top;">
-				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="img-circle" width="55" height="55"/>
+				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi" style="max-width:170px;">
 				<h5>${item.value.namaPemain}</h5>
@@ -259,7 +259,7 @@ h2 span {
                                 <c:forEach var = "item" items = "${requestScope.player}">
                                 <div class="col-md-3 wthree_team_grid">
 					<div class="hovereffect" onclick="playdetail(${item.value.idPemain})">
-						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" width="400" height="400"/>
+						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="400" height="400"/>
 						<div class="overlay">
                                                     <h6>${item.value.namaPemain}</h6>
 						</div>
