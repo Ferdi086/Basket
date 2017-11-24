@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -137,9 +139,7 @@ public class doUpdatePlayer extends HttpServlet {
                     boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
                     out.println("query 2 ="+query+"<br/>");
                     out.println(a);
-                    session.setAttribute("ErrMess","Your data successfully recorded");
-                    session.setAttribute("alert", "alert-success");
-                    //response.sendRedirect("Team");
+                    
                    
             }
                else {
@@ -172,6 +172,11 @@ public class doUpdatePlayer extends HttpServlet {
                 out.println(a);
             }
           }
+         try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
             session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                 response.sendRedirect("Player");
