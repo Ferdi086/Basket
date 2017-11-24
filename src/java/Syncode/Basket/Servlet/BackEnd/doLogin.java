@@ -9,7 +9,6 @@ import Syncode.Basket.Object.DatabaseHandler;
 import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author meiiko
+ * @author Yuga
  */
-public class StatistikPlayer extends HttpServlet {
+public class doLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +32,31 @@ public class StatistikPlayer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(true);
-            PrintWriter out = response.getWriter();
-            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           session.removeAttribute("ErrMess");
-            session.removeAttribute("alert");
-           request.setAttribute("ErrMess", ErrMess);
-           request.setAttribute("alert", alert);
-            
-           ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
-            request.setAttribute("nama_usr", usr.getNama());
-            
-            HashMap tm = dh.getTeam();
-            HashMap ms = dh.getMusim();
-            request.setAttribute("team",tm);
-            request.setAttribute("musim", ms);
-            request.getRequestDispatcher("/BackEnd/StatistikPlayer.jsp").forward(request,response);
+        DatabaseHandler dh = new DatabaseHandler();
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
+        String user = request.getParameter("UserName");
+        String pass = request.getParameter("Password");
+        //out.print(user+pass);
+        ObjUser tes = dh.getUsr(user, pass);
+        
+        if(user.equals("")||pass.equals("")){
+            request.setAttribute("Stat", "Mohon isi form dengan lengkap");
+            request.setAttribute("alert","alert-danger");
+            request.getRequestDispatcher("/BackEnd/index.jsp").forward(request,response);
+        }
+        if((tes.getPassword()).equals("")){
+            request.setAttribute("Stat", "Id atau Password anda Salah");
+            request.setAttribute("alert","alert-danger");
+            out.print("salah woi");
+            request.getRequestDispatcher("/BackEnd/index.jsp").forward(request,response);
+        }
+        if(user.equals(tes.getID())&&pass.equals(tes.getPassword())){
+            session.setAttribute("obj_usr", tes);
+            session.setMaxInactiveInterval(24*60*60);
+            response.sendRedirect("Dashboard");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

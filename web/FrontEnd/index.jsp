@@ -116,7 +116,7 @@
         
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4>Top Player</h4>
+                <h4>Every Player</h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
@@ -219,6 +219,14 @@
             </div>
         </div>
     </div>
+    
+    <footer>
+            <div class="copyright">
+                    <div class="container">
+                            <p>Copyright © 2017 IT Directorate . All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                    </div>
+            </div>
+    </footer>
 
 <!-- js scripts -->
 	

@@ -970,5 +970,23 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public ObjUser getUsr(String Id_User, String Password){
+        ObjUser tes = new ObjUser();
+        try{
+            String query = "select  ID_User, Password, Nama from MsUser where ID_User=? and Password=? and FlagActive = 'Y'";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, Id_User);
+            ps.setString(2, Password);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                tes = new ObjUser(rs.getString(1), rs.getString(2), rs.getString(3));
+            }else{
+                tes = new ObjUser();
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tes;
+    }
     
 }

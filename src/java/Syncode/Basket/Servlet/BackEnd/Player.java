@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjUser;
 import Syncode.Basket.Object.ObjPlayer;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,10 +40,13 @@ public class Player extends HttpServlet {
             PrintWriter out = response.getWriter();
             String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
             String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-           session.removeAttribute("ErrMess");
+            session.removeAttribute("ErrMess");
             session.removeAttribute("alert");
             request.setAttribute("ErrMess", ErrMess);
             request.setAttribute("alert", alert);
+            
+            ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
+            request.setAttribute("nama_usr", usr.getNama());
             
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();
