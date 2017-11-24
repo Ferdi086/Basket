@@ -109,13 +109,13 @@ public class doInsertPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + id_team +"-"+ nama+"-"+no+"."+ ext) ;
+                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+ ext) ;
                     } else {
-                       file = new File( filePath + id_team +"-"+ nama+"-"+no+"."+ ext) ;
+                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+ ext) ;
                     }
                     
                     Exten="."+ ext;
-                    foto = id_team +"-"+nama+"-"+no+Exten;
+                    foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
                     fi.write( file ) ;
                     //dh.setFile(Name,Exten);
                      //akhir upload
