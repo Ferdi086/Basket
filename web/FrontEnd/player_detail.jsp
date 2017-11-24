@@ -50,6 +50,15 @@
             margin-top: 40%;
             margin-left: 15%;
         }
+        .tb_p{
+            margin-top: 2%;
+            margin-right: 2%;
+            margin-left: 1%;
+        }
+        .tb_p td{
+            min-width:120px; 
+            background:white;
+        }
 </style>
 </head>
 <body>
@@ -99,7 +108,7 @@
 			<div class="wthree_team_grids">
 				<div class="col-md-3 wthree_team_grid foto_p">
 					<div class="hovereffect">
-                                            <img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" onerror="this.onerror=null;this.src='../img/Players/nopic.png';" class="img-responsive" width="400" height="400"/>						
+                                            <img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-responsive" width="400" height="400"/>						
 					</div>
 				</div>
 			</div>
@@ -117,9 +126,36 @@
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
 		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
-		<h4><span>Birthdate</span>  : ${item.value.tgl}</h4>
-		<h4><span>Height</span> : ${item.value.tinggi} cm</h4>
-		<h4><span>Weight</span> : ${item.value.berat} kg</h4>
+		<h4><span>Birthdate</span>  : 
+                    <c:choose>         
+                        <c:when test = "${item.value.tgl == '1 January 1900'}">
+                            ? 
+                        </c:when>  
+                        <c:otherwise>
+                            ${item.value.tgl} 
+                        </c:otherwise>  
+                    </c:choose> 
+                </h4>
+		<h4><span>Height</span> :
+                    <c:choose>         
+                        <c:when test = "${item.value.tinggi == 0}">
+                            ? cm
+                        </c:when>  
+                        <c:otherwise>
+                            ${item.value.tinggi} cm
+                        </c:otherwise>  
+                    </c:choose>  
+                </h4>
+		<h4><span>Weight</span> : 
+                    <c:choose>         
+                        <c:when test = "${item.value.berat == 0}">
+                            ? Kg
+                        </c:when>  
+                        <c:otherwise>
+                            ${item.value.berat} Kg
+                        </c:otherwise>  
+                    </c:choose>  
+                </h4>
 	</div>
     </c:forEach>
 	<div class="col-lg-4 stat_p">
@@ -161,8 +197,7 @@
   	</ul>
 				
 				  <div class="tab-content">
-					<div id="menu01" class="tab-pane fade in active">
-                                            
+					<div id="menu01" class="tab-pane fade in active">                                            
                                                     <h3 style="margin:3% 0 1% 0">REGULAR</h3>
                                                     <div class="tbl_general table-responsive">
                                                             <table class="table table-bordered table-striped">
@@ -195,7 +230,7 @@
                                                                             <th>PTS</th>
                                                                     </tr>
 
-                                                                    <c:forEach var="item" items="${requestScope.player_stat}">
+                                                                    <c:forEach var="item" items="${requestScope.player_stat}">                                                                        
                                                                     <tr>
                                                                             <td>${item.value.period}</td>
                                                                             <td>${item.value.id_team}</td>
@@ -203,16 +238,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
+                                                                            <td>${item.value.FG}</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
+                                                                            <td>${item.value.p2}</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
+                                                                            <td>${item.value.p3}</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
+                                                                            <td>${item.value.FT}</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -226,33 +261,90 @@
                                                                     </tr>
                                                                     </c:forEach>
                                                                     <c:forEach var="item" items="${requestScope.player_stat_sum}">
-                                                                    <tr>
-                                                                            <td colspan="2"></td>
-                                                                            <td>${item.value.GP}</td>
-                                                                            <td>${item.value.MIN}</td>
-                                                                            <td>${item.value.FGM}</td>
-                                                                            <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
-                                                                            <td>${item.value.PM2}</td>
-                                                                            <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
-                                                                            <td>${item.value.PM3}</td>
-                                                                            <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
-                                                                            <td>${item.value.FTM}</td>
-                                                                            <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
-                                                                            <td>${item.value.o_R}</td>
-                                                                            <td>${item.value.DR}</td>
-                                                                            <td>${item.value.TR}</td>
-                                                                            <td>${item.value.a_S}</td>
-                                                                            <td>${item.value.t_O}</td>
-                                                                            <td>${item.value.ST}</td>
-                                                                            <td>${item.value.BL}</td>
-                                                                            <td>${item.value.PF}</td>
-                                                                            <td>${item.value.EF}</td>
-                                                                            <td>${item.value.PTS}</td>
-                                                                    </tr>                                                                    
+                                                                        <c:choose>         
+                                                                            <c:when test = "${empty item.value.GP}">
+                                                                                <tr>
+                                                                                    <td colspan="26"><center>No matching records found</center></td>
+                                                                                </tr>
+                                                                            </c:when>  
+                                                                            <c:otherwise>
+                                                                                <tr>
+                                                                                    <td colspan="2"></td>
+                                                                                    <td>
+                                                                                        ${item.value.GP}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.MIN}
+                                                                                    </td>
+                                                                                    <td>                                                                                
+                                                                                        ${item.value.FGM}
+                                                                                    </td>
+                                                                                    <td>                                                                                
+                                                                                        ${item.value.FGA}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FG}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PM2}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PA2}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.p2}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PM3}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PA3}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.p3}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FTM}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FTA}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FT}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.o_R}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.DR}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.TR}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.a_S}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.t_O}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.ST}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.BL}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PF}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.EF}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PTS}
+                                                                                    </td>
+                                                                                </tr>   
+                                                                            </c:otherwise>
+                                                                        </c:choose>                                                     
                                                                     </c:forEach>
                                                             </table>
                                                     </div>
@@ -297,16 +389,16 @@
                                                                             <td>${item.value.MIN}</td>
                                                                             <td>${item.value.FGM}</td>
                                                                             <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
+                                                                            <td>${item.value.FG}</td>
                                                                             <td>${item.value.PM2}</td>
                                                                             <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
+                                                                            <td>${item.value.p2}</td>
                                                                             <td>${item.value.PM3}</td>
                                                                             <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
+                                                                            <td>${item.value.p3}</td>
                                                                             <td>${item.value.FTM}</td>
                                                                             <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
+                                                                            <td>${item.value.FT}</td>
                                                                             <td>${item.value.o_R}</td>
                                                                             <td>${item.value.DR}</td>
                                                                             <td>${item.value.TR}</td>
@@ -320,33 +412,90 @@
                                                                     </tr>
                                                                     </c:forEach>
                                                                     <c:forEach var="item" items="${requestScope.player_stat2_sum}">
-                                                                    <tr>
-                                                                            <td colspan="2"></td>
-                                                                            <td>${item.value.GP}</td>
-                                                                            <td>${item.value.MIN}</td>
-                                                                            <td>${item.value.FGM}</td>
-                                                                            <td>${item.value.FGA}</td>
-                                                                            <td>${item.value.FG}%</td>
-                                                                            <td>${item.value.PM2}</td>
-                                                                            <td>${item.value.PA2}</td>
-                                                                            <td>${item.value.p2}%</td>
-                                                                            <td>${item.value.PM3}</td>
-                                                                            <td>${item.value.PA3}</td>
-                                                                            <td>${item.value.p3}%</td>
-                                                                            <td>${item.value.FTM}</td>
-                                                                            <td>${item.value.FTA}</td>
-                                                                            <td>${item.value.FT}%</td>
-                                                                            <td>${item.value.o_R}</td>
-                                                                            <td>${item.value.DR}</td>
-                                                                            <td>${item.value.TR}</td>
-                                                                            <td>${item.value.a_S}</td>
-                                                                            <td>${item.value.t_O}</td>
-                                                                            <td>${item.value.ST}</td>
-                                                                            <td>${item.value.BL}</td>
-                                                                            <td>${item.value.PF}</td>
-                                                                            <td>${item.value.EF}</td>
-                                                                            <td>${item.value.PTS}</td>
-                                                                    </tr>                                                                    
+                                                                        <c:choose>         
+                                                                            <c:when test = "${empty item.value.GP}">
+                                                                                <tr>
+                                                                                    <td colspan="26"><center>No matching records found</center></td>
+                                                                                </tr>
+                                                                            </c:when>  
+                                                                            <c:otherwise>
+                                                                                <tr>
+                                                                                    <td colspan="2"></td>
+                                                                                    <td>
+                                                                                        ${item.value.GP}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.MIN}
+                                                                                    </td>
+                                                                                    <td>                                                                                
+                                                                                        ${item.value.FGM}
+                                                                                    </td>
+                                                                                    <td>                                                                                
+                                                                                        ${item.value.FGA}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FG}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PM2}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PA2}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.p2}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PM3}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PA3}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.p3}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FTM}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FTA}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.FT}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.o_R}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.DR}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.TR}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.a_S}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.t_O}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.ST}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.BL}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PF}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.EF}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        ${item.value.PTS}
+                                                                                    </td>
+                                                                                </tr>   
+                                                                            </c:otherwise>
+                                                                        </c:choose>                                                              
                                                                     </c:forEach>
                                                             </table>
                                                     </div>
@@ -376,27 +525,34 @@
                                                                         <th>MIN</th>
 									<th>FGM</th>
 									<th>FGA</th>
+                                                                        
 									<th>FG%</th>
 									<th>2PM</th>
 									<th>2PA</th>
 									<th>2P%</th>
 									<th>3PM</th>
+                                                                        
 									<th>3PA</th>
 									<th>3P%</th>
 									<th>FTM</th>
 									<th>FTA</th>
 									<th>FT%</th>
+                                                                        
 									<th>OR</th>
 									<th>DR</th>
 									<th>TR</th>
 									<th>AS</th>
 									<th>TO</th>
+                                                                        
 									<th>ST</th>
 									<th>BL</th>
 									<th>PF</th>
 									<th>EF</th>
 									<th>PTS</th>
 								</tr>
+                                                                <tr>
+                                                                    <td colspan="25"><center>No matching records found</center></td>
+                                                                </tr>
 							</table>
 						</div>
 						

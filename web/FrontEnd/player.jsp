@@ -87,7 +87,7 @@
 	<div class="col-lg-2 se_team">
 	  <form>		
 	  	<select name='' class='form-group' id="sel_team">
-			<option value=''> ------------ Select a Team ------------ </option>
+			<option value='null'> ------------ Select a Team ------------ </option>
 			<option value='BPJ'>  BIMA PERKASA JOGJA </option>
 			<option value='GRB'>  BANK BJB GARUDA BANDUNG </option>
 			<option value='CLS'>  CLS KNIGHTS SURABAYA </option>
@@ -105,7 +105,7 @@
 	<div class="col-lg-2 se_pos">
 	  <form>		
 	  	<select name='' class='form-group' id="sel_pos">
-			<option value=''> ------ Select a Position ------ </option>
+			<option value='null'> ------ Select a Position ------ </option>
 			<option value='C'>  CENTER </option>
 			<option value='PF'>  POWER FORWARD </option>
 			<option value='PG'>  POINT GUARD </option>
@@ -238,26 +238,32 @@
         });
     });
     $('.cari_n').click(function(){
-       $('.wthree_team_grids').remove();
-        var id = $('.input_n').val();
+        $('.wthree_team_grids').remove();
+        var xn = $('.input_n').val();
+        var xt = $('#sel_team').val();
+        var xp = $('#sel_pos').val();
+        //alert(xn+xt+xp);
         $.ajax({
             type : 'POST',
             url : 'PlayersByNameLike',
             data: {
-                'Nama_pem': id
+                'Nama_pem': xn,
+                'Team': xt,
+                'Pos': xp
             },
             beforeSend: function(){
             },
             success: function(data){
                 $('.unik').append(data);      
             }
-        }); 
+        });
     });
     $('.input_n').click(function(){
        $(this).val(null); 
     });
 </script>
 <script>
+    
     // Function pindah page with jquery
     function playdetail(id){
         var form = document.createElement("form");

@@ -56,7 +56,7 @@ public class PlayerDetails extends HttpServlet {
         request.setAttribute("player_gl",trc);
         request.setAttribute("id_pem",ID);
         request.setAttribute("ppg",ppg);
-        
+        //out.print(tra.size());
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }
 
