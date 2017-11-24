@@ -69,7 +69,11 @@ public class PlayersBySeason extends HttpServlet {
 "									<th>PTS</th>");
 out.println(" </tr>");
             
-            
+        if(tr.size()==0){
+            out.println("<tr>");
+            out.println("<td colspan='25'><center>No matching records found</center></td>");
+            out.println("</tr>");
+        }
             for(int i=0;i<tr.size();i++){
                 PlayerDetailGLogs pl = (PlayerDetailGLogs) tr.get(i);
                 out.println("   <tr>");

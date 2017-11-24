@@ -52,8 +52,8 @@
         }
         .tb_p{
             margin-top: 2%;
-            margin-right: 6%;
-            margin-left: 3%;
+            margin-right: 2%;
+            margin-left: 1%;
         }
         .tb_p td{
             min-width:120px; 
@@ -264,7 +264,7 @@
                                                                         <c:choose>         
                                                                             <c:when test = "${empty item.value.GP}">
                                                                                 <tr>
-                                                                                    <td colspan="26"><center>No Data Found</center></td>
+                                                                                    <td colspan="26"><center>No matching records found</center></td>
                                                                                 </tr>
                                                                             </c:when>  
                                                                             <c:otherwise>
@@ -415,7 +415,7 @@
                                                                         <c:choose>         
                                                                             <c:when test = "${empty item.value.GP}">
                                                                                 <tr>
-                                                                                    <td colspan="26"><center>No Data Found</center></td>
+                                                                                    <td colspan="26"><center>No matching records found</center></td>
                                                                                 </tr>
                                                                             </c:when>  
                                                                             <c:otherwise>
@@ -525,27 +525,34 @@
                                                                         <th>MIN</th>
 									<th>FGM</th>
 									<th>FGA</th>
+                                                                        
 									<th>FG%</th>
 									<th>2PM</th>
 									<th>2PA</th>
 									<th>2P%</th>
 									<th>3PM</th>
+                                                                        
 									<th>3PA</th>
 									<th>3P%</th>
 									<th>FTM</th>
 									<th>FTA</th>
 									<th>FT%</th>
+                                                                        
 									<th>OR</th>
 									<th>DR</th>
 									<th>TR</th>
 									<th>AS</th>
 									<th>TO</th>
+                                                                        
 									<th>ST</th>
 									<th>BL</th>
 									<th>PF</th>
 									<th>EF</th>
 									<th>PTS</th>
 								</tr>
+                                                                <tr>
+                                                                    <td colspan="25"><center>No matching records found</center></td>
+                                                                </tr>
 							</table>
 						</div>
 						
