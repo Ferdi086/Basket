@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -40,6 +41,10 @@ public class Team extends HttpServlet {
        session.removeAttribute("alert");
        request.setAttribute("ErrMess", ErrMess);
        request.setAttribute("alert", alert);
+       
+       ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
+        request.setAttribute("nama_usr", usr.getNama());
+        
        HashMap tm = dh.getTeam();
        request.setAttribute("Team",tm);
        request.getRequestDispatcher("/BackEnd/team.jsp").forward(request,response);

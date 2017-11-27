@@ -184,13 +184,8 @@
 	</div>
     <h1 class='ab hidden'>${requestScope.abc}</h1>
     
-    <footer>
-            <div class="copyright">
-                    <div class="container">
-                            <p>© 2017 Transporters. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
-                    </div>
-            </div>
-    </footer>
+    
+        <%@include file="Sync/footer.jsp" %>
 <!-- js-scripts -->
 <!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

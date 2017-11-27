@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>index</servlet-name>
+        <servlet-name>Index</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.Index</servlet-class>
     </servlet>
     <servlet>
@@ -148,9 +148,17 @@
         <servlet-name>Dashboard</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.Dashboard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doLogin</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.LogOut</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/BackEnd/Index</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Player</servlet-name>
@@ -323,6 +331,14 @@
     <servlet-mapping>
         <servlet-name>Dashboard</servlet-name>
         <url-pattern>/BackEnd/Dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doLogin</servlet-name>
+        <url-pattern>/BackEnd/doLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/BackEnd/LogOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

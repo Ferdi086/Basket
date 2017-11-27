@@ -93,6 +93,9 @@
 	</div>
     </c:forEach>
 </div>
+
+
+        <%@include file="Sync/footer.jsp" %>
 <!-- js-scripts -->					
 <!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

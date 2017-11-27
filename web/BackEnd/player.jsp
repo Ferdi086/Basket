@@ -369,7 +369,7 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;margin-top: 20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[20, 25, 50, 100, ALL]" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
@@ -400,9 +400,7 @@
                                 <c:set var="flagactive" value="${item.value.flagactive}" />
                             <tr>
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}" 
-                                                                                              
-                                                                                            onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
+                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
                                 <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${tgl} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${tinggi} cm </td>
@@ -410,20 +408,18 @@
                                 <td style="vertical-align: middle;text-align: center"> ${pos} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${idTeam} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
-                                <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal"
-                                                                                      onclick="Update('${idPemain}','${namaPemain}','${tgl}','${tinggi}','${foto}','${berat}','${pos}'
-                                                                                       ,'${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
-                                                                                       <c:choose>
-                                                                                            <c:when test="${flagactive=='Y'}">
-                                                                                                <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
-                                                                                                <br />
-                                                                                            </c:when>   
-                                                                                            <c:when test="${flagactive=='N'}">
-                                                                                                <button class="btn" data-target="#KonfirmasiAktif" data-toggle="modal" onclick="flagaktif('${idPemain}','${flagactive}')" >Enable</button>
-                                                                                            <br />
-                                                                                            </c:when>  
-                                                                                       </c:choose>
-                                                
+                                <td style="vertical-align: middle;text-align: center"> 
+                                    <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${item.value.namaPemain}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <c:choose>
+                                            <c:when test="${flagactive=='Y'}">
+                                                <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
+                                                <br />
+                                            </c:when>   
+                                            <c:when test="${flagactive=='N'}">
+                                                <button class="btn" data-target="#KonfirmasiAktif" data-toggle="modal" onclick="flagaktif('${idPemain}','${flagactive}')" >Enable</button>
+                                                <br />
+                                            </c:when>  
+                                        </c:choose>                                                
                                 </td>
                             </tr>                                                 
                             </c:forEach>
@@ -725,7 +721,7 @@
                 $('#ValidasiInput').modal('show'); 
             }  
         }    
-        function Update(idPemain,namaPemain,tgl,tinggi,foto,berat,pos,idTeam,noPunggung){     
+        function Update(idPemain,namaPemain,tgl,tinggi,foto,berat,pos,idTeam,noPunggung){  
         $("#updateid_pemain").val(idPemain);
         $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
             $('#updatepemain').val(namaPemain);
