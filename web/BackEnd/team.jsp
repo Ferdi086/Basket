@@ -290,12 +290,12 @@
                                    
                                     <label class="control-label col-sm-2">Team NickName</label>
                                     <div class="col-sm-3">
-                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required/>
+                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required style="text-transform:uppercase">
                                     </div>  
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <span id="loading"><img src="../img/loading.gif" width="28px"/></span>
                                         <span id="ok"><img src="../img/ok.png" width="32px"/></span>
-                                        <span id="error"><img src="../img/error.png" width="32px"/></span>
+                                        <span id="error" style="color:red"><img src="../img/error.png" width="32px"/>nickname already</span>
                                     </div>
                                 </div>	
                             <div class="form-group">
@@ -451,7 +451,7 @@
                         <div class="form-group ">
                             <label class="control-label col-sm-2">Team nickname</label>
                             <div class="col-sm-3">
-                                <input type="text" name="id" id="UpdateId" class="form-control">
+                                <input type="text" name="id" id="UpdateId" class="form-control"  >
                             </div>
                            
                             <label class="control-label col-sm-2">Team Name</label>
@@ -590,6 +590,7 @@
             $('#tgl').datetimepicker({
                     format: 'YYYY-MM-DD'
                 });
+                
             jQuery('.scrollbar-macosx').scrollbar();
             
             $("#reset").click(function(){
@@ -628,11 +629,10 @@
                     }else{
                         $('#loading').hide();
                         $("#ok").hide();
-                        alert("Nickname sudah ada !");
-                        $("#nick").val("");
+                        //$("#nick").val("");
                         $("#error").show();                        
                         $("#nick").focus();
-                        $("#error").fadeTo(5000, 0);
+                        //$("#error").fadeTo(5000, 0);
                     }
                 }
             });
@@ -649,6 +649,14 @@
                 return true;
             }
         }
+        function ValidateAlpha(evt)
+    {
+        var keyCode = (evt.which) ? evt.which : evt.keyCode
+        if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
+         
+        return false;
+            return true;
+    }
         function cekInput(){           
             if($('#nama').val()===""){   
                 return false;

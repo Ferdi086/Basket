@@ -384,6 +384,19 @@
     
     <script>
         $(document).ready(function(){
+            $("#loading").hide();
+             $("#ok").hide();
+             $("#error").hide();
+             $('#togglebutton').click(function() {
+		$('.text').toggle(300);
+                $('#sub').hide();
+            }); 
+            $('.txt-toggle').click(function() {
+		$('.text').toggle(300);
+                $('#sub').hide();
+            }); 
+            jQuery('.scrollbar-macosx').scrollbar();
+             $("#pemain").select2();
             $("#reset").click(function(){
                 $("#team").focus();
                 $("#team").val(null);

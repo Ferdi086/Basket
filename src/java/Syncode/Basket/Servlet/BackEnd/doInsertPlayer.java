@@ -115,17 +115,35 @@ public class doInsertPlayer extends HttpServlet {
                     }
                     
                     Exten="."+ ext;
-                    foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
-                    fi.write( file ) ;
+                    
                     //dh.setFile(Name,Exten);
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
                     out.println("foto="+foto);
                     out.println(file);
-                    dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);   
+                    if (nama.contains("'")){
+                       String nama1= nama.replace("'", "`");
+                       foto = id_team +"-"+nama1+"-"+pos+"-"+no+Exten;
+                        fi.write( file ); 
+                       out.println("nama baru="+nama1);
+                       String query = "INSERT INTO MsPemain (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+nama1+"','"+id_team+"',"
+                        + "'"+ pos+"','"+ no +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
+                    boolean a=dh.setMsPemain(nama1,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
+                    out.println(a);
+                    out.println(query);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Player");
+                    //response.sendRedirect("Player");
+                    }
+                    else{
+                        foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
+                        fi.write( file ) ;
+                         boolean b=dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);
+                         out.println(b);
+                    session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                    //response.sendRedirect("Player");
+                    }
                }
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");
