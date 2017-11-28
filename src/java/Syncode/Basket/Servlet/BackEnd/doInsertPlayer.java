@@ -160,7 +160,7 @@ public class doInsertPlayer extends HttpServlet {
           }
          
             try {
-                Thread.sleep(2000);
+                Thread.sleep(3500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
