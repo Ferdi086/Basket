@@ -9,6 +9,8 @@ import Syncode.Basket.Object.DatabaseHandler;
 import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import Syncode.Basket.Object.Musim;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,8 +37,13 @@ public class Dashboard extends HttpServlet {
         HttpSession session = request.getSession(false);
         PrintWriter out = response.getWriter();
         DatabaseHandler dh = new DatabaseHandler();
+        HashMap tr = dh.getMusim();
+        Musim cs = (Musim) tr.get(0);
+        HashMap st = dh.getMatchStatistic(cs.getId_musim());
+        
         ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
         request.setAttribute("nama_usr", usr.getNama());
+        request.setAttribute("statistik", st);
         
         request.getRequestDispatcher("Dashboard.jsp").forward(request, response);
     }

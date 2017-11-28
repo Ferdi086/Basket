@@ -323,11 +323,11 @@
                             <div class="form-group">
                                    <label class="col-sm-2 control-label">Preview Team's Logo</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewlogo" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
+                                        <img id="previewlogo" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
                                    <label class="col-sm-2 col-sm-offset-1 control-label">Preview Team's Foto</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewfoto" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
+                                        <img id="previewfoto" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
                             </div>
                             </form>                                        

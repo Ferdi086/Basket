@@ -185,7 +185,7 @@ public class doUpdatePlayer extends HttpServlet {
             }
           }
          try {
-                Thread.sleep(3500);
+                Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }

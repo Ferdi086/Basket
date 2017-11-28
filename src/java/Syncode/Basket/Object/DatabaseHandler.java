@@ -354,7 +354,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team order by ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -943,31 +943,32 @@ public class DatabaseHandler extends Connect {
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 if(rs1.next()){
-                    query2 = "select c.Match,CAST(DAY(c.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, c.Tgl_Match) + ' ' + CAST(YEAR(c.Tgl_Match) AS VARCHAR(4)) As Tgl_Match,c.Team1,c.Logo1,CAST(AVG(c.PTS1) as decimal(10,2)) as PTS1,c.Team2,c.Logo2,CAST(AVG(c.PTS2) as decimal(10,2)) as PTS2 " +
+                    query2 = "select c.Match,CAST(DAY(c.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, c.Tgl_Match) + ' ' + CAST(YEAR(c.Tgl_Match) AS VARCHAR(4)) As Tgl_Match,c.Team1,c.Logo1,CAST(AVG(c.PTS1) as decimal(10,2)) as PTS1,c.WL1 as WL1,c.Team2,c.Logo2,CAST(AVG(c.PTS2) as decimal(10,2)) as PTS2, c.WL2 as WL2  " +
 "                            from(   " +
-"                            	select distinct a.Tgl_Match,a.Match,a.ID_Team as Team1,a.Logo as Logo1,a.PTS as PTS1,b.ID_Team as Team2,b.Logo as Logo2,b.PTS as PTS2  " +
+"                            	select distinct a.Tgl_Match,a.Match,a.ID_Team as Team1,a.Logo as Logo1,a.PTS as PTS1,a.WL as WL1,b.ID_Team as Team2,b.Logo as Logo2,b.PTS as PTS2,b.WL as WL2  " +
 "                            	from  " +
 "                            	(  " +
-"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS  " +
+"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS,b.WL  " +
 "                            		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d    "+
 "                            		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = "+id_m+" and b.Match = '"+rs.getString(1)+"' and b.Tgl_Match = '"+rs.getString(2)+"' and b.ID_Team = '"+rs1.getString(1)+"'  " +
 "                            	) a LEFT JOIN  " +
 "                            	(  " +
-"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS  " +
+"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS,b.WL  " +
 "                            		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d   " +
 "                            		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = "+id_m+" and b.Match = '"+rs.getString(1)+"' and b.Tgl_Match = '"+rs.getString(2)+"' and b.ID_Team != '"+rs1.getString(1)+"'  " +
 "                            	) b  " +
 "                             ON a.Match = b.Match  " +
-"                            )c group by c.Match,c.Tgl_Match,c.Team1,c.Logo1,c.Team2,c.Logo2 "; 
+"                            )c group by c.Match,c.Tgl_Match,c.Team1,c.Logo1,c.WL1,c.Team2,c.Logo2,c.WL2 "; 
                     ps2 = conn.prepareStatement(query2);
                     rs2 = ps2.executeQuery();
+                    //String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2
                     if(rs2.next()){
                         if(rs2.getString(4)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),"-","-","0.00",rs2.getString(6),rs2.getString(7),rs2.getString(8)));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),"-","-","0.00","-",rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10)));
                         }else if(rs2.getString(7)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),"-","-","0.00"));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),"-","-","0.00","-"));
                         }else{
-                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8)));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10)));
                         }  
                     }
                 }
