@@ -276,7 +276,7 @@
         </script> 
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
-               <div class="col-md-12" style="padding-right:120px;">
+               <div class="col-md-12" style="padding-left: 10px;">
                     <div class="form">
                     <center><h2 style="margin-bottom:40px;"><b>Player</b></h2></center>
            
@@ -366,7 +366,7 @@
 			
                     </div>
                 
-                <div class="col-md-12" style="padding-right:120px;padding-bottom:100px;margin-top: 20px;">
+                <div class="col-md-12" style="padding-right:75px;padding-bottom:100px;margin-top: 20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
                     <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" >
