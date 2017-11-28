@@ -366,7 +366,7 @@
 			
                     </div>
                 
-                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;margin-top: 20px;">
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:50px;margin-top: 20px;">
                     <hr/>
                     <center><h2><b>Player List</b></h2></center>
                     <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[20, 25, 50, 100, ALL]" data-pagination="true">
