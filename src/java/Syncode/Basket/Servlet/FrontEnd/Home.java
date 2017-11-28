@@ -46,7 +46,7 @@ public class Home extends HttpServlet {
         request.setAttribute("klas", trf);
         request.setAttribute("klas2", trg);
         //out.print(trf.size());
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
         
     }
 
