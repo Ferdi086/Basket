@@ -290,12 +290,12 @@
                                    
                                     <label class="control-label col-sm-2">Team NickName</label>
                                     <div class="col-sm-3">
-                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required/>
+                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required style="text-transform:uppercase">
                                     </div>  
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-2">
                                         <span id="loading"><img src="../img/loading.gif" width="28px"/></span>
                                         <span id="ok"><img src="../img/ok.png" width="32px"/></span>
-                                        <span id="error"><img src="../img/error.png" width="32px"/></span>
+                                        <span id="error" style="color:red"><img src="../img/error.png" width="32px"/>nickname already</span>
                                     </div>
                                 </div>	
                             <div class="form-group">
@@ -323,11 +323,11 @@
                             <div class="form-group">
                                    <label class="col-sm-2 control-label">Preview Team's Logo</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewlogo" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
+                                        <img id="previewlogo" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
                                    <label class="col-sm-2 col-sm-offset-1 control-label">Preview Team's Foto</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewfoto" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
+                                        <img id="previewfoto" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
                             </div>
                             </form>                                        
@@ -371,8 +371,8 @@
                                         <td style="vertical-align: middle;text-align: center"> ${id}</td>
                                         <td style="vertical-align: middle;text-align: center"> ${namateam} </td>
                                         <!--<td style="vertical-align: middle;text-align: center"> ${divisi} </td>-->
-                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" width="80px" height="80px"/> </td>
-                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" width="80px" height="80px"/> </td>
+                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="80px" height="80px"/> </td>
+                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
                                                role="button" onclick="Update('${id}','${namateam}','${divisi}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
                                                 <c:choose>
@@ -451,7 +451,7 @@
                         <div class="form-group ">
                             <label class="control-label col-sm-2">Team nickname</label>
                             <div class="col-sm-3">
-                                <input type="text" name="id" id="UpdateId" class="form-control">
+                                <input type="text" name="id" id="UpdateId" class="form-control"  >
                             </div>
                            
                             <label class="control-label col-sm-2">Team Name</label>
@@ -484,11 +484,11 @@
                             <div class="form-group">
                                    <label class="col-sm-2 control-label">Preview Logo</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewlogoupdate" style="margin-left:-15px"/>
+                                        <img id="previewlogoupdate" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" style="margin-left:-15px"/>
                                     </div>
                                    <label class="col-sm-2 col-sm-offset-1 control-label">Preview Foto</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewfotoupdate" style="margin-left:-15px"/>
+                                        <img id="previewfotoupdate" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" style="margin-left:-15px"/>
                                     </div>
                             </div>
                     </form>
@@ -590,6 +590,7 @@
             $('#tgl').datetimepicker({
                     format: 'YYYY-MM-DD'
                 });
+                
             jQuery('.scrollbar-macosx').scrollbar();
             
             $("#reset").click(function(){
@@ -628,11 +629,10 @@
                     }else{
                         $('#loading').hide();
                         $("#ok").hide();
-                        alert("Nickname sudah ada !");
-                        $("#nick").val("");
+                        //$("#nick").val("");
                         $("#error").show();                        
                         $("#nick").focus();
-                        $("#error").fadeTo(5000, 0);
+                        //$("#error").fadeTo(5000, 0);
                     }
                 }
             });
@@ -649,6 +649,14 @@
                 return true;
             }
         }
+        function ValidateAlpha(evt)
+    {
+        var keyCode = (evt.which) ? evt.which : evt.keyCode
+        if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
+         
+        return false;
+            return true;
+    }
         function cekInput(){           
             if($('#nama').val()===""){   
                 return false;

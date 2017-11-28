@@ -213,7 +213,12 @@
                     opacity:0.6;
                     cursor:pointer;
                 }                
-              
+                .logo_kcl{
+                    max-width: 30px;
+                    max-height: 30px;
+                    margin-right:2%;
+                    margin-left:1%;
+                }
 	</style>
     </head>
     <body>
@@ -277,8 +282,10 @@
         </script> 
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
-                <h1 style="text-align:center;margin-bottom:50px">Dashboard</h1> 
-                 <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                <h1 style="text-align:center;margin-bottom:50px;"><b>Dashboard</b></h1><br/>
+                <center><h3><b>Current Season Match List</b></h3></center>
+                <div id="tbl_match" style="margin-right:25px;padding-bottom: 100px;">
+                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
@@ -292,10 +299,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                            </tr>
+                            <c:forEach var='item' varStatus="loopCounter" items='${requestScope.statistik}'>
+                                <tr>
+                                    <td style="vertical-align: middle;text-align: center">${loopCounter.count}</td>
+                                    <td style="vertical-align: middle;text-align: center">${item.value.tgl}</td>
+                                    <td style="vertical-align: middle;text-align: center"><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</td>
+                                    <td style="vertical-align: middle;text-align: center">${item.value.wl1}</td>
+                                    <td style="vertical-align: middle;text-align: center">${item.value.pts1}</td>
+                                    <td style="vertical-align: middle;text-align: center"><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</td>
+                                    <td style="vertical-align: middle;text-align: center">${item.value.wl2}</td>
+                                    <td style="vertical-align: middle;text-align: center">${item.value.pts2}</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
+                    </table>
+                    </div>
             </div>
                 
                     

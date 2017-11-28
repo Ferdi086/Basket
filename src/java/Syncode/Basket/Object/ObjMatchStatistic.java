@@ -14,18 +14,22 @@ public class ObjMatchStatistic {
     private String team1="";
     private String logo1="";
     private String pts1="";
+    private String wl1="";
     private String team2="";
     private String logo2="";
     private String pts2="";
-
-    public ObjMatchStatistic(String tgl, String team1, String logo1, String pts1, String team2, String logo2, String pts2) {
+    private String wl2="";
+    
+    public ObjMatchStatistic(String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2) {
         this.tgl = tgl;
         this.team1 = team1;
         this.logo1 = logo1;
         this.pts1 = pts1;
+        this.wl1 = wl1;
         this.team2 = team2;
         this.logo2 = logo2;
         this.pts2 = pts2;
+        this.wl2 = wl2;
     }
 
     public ObjMatchStatistic() {
@@ -63,6 +67,14 @@ public class ObjMatchStatistic {
         this.pts1 = pts1;
     }
 
+    public String getWl1() {
+        return wl1;
+    }
+
+    public void setWl1(String wl1) {
+        this.wl1 = wl1;
+    }
+
     public String getTeam2() {
         return team2;
     }
@@ -87,5 +99,14 @@ public class ObjMatchStatistic {
         this.pts2 = pts2;
     }
 
+    public String getWl2() {
+        return wl2;
+    }
+
+    public void setWl2(String wl2) {
+        this.wl2 = wl2;
+    }
+
+    
     
 }

@@ -80,7 +80,9 @@ public class doUpdatePlayer extends HttpServlet {
          Iterator i = fileItems.iterator();
            
         String idpemain = "";
+        String nama = "";
         String nama_pemain = "";
+        String NamaFoto = "";
         String tgl = "";
         String foto ="";
         String tinggi = "";
@@ -101,7 +103,12 @@ public class doUpdatePlayer extends HttpServlet {
               FileItem idpemainitem = (FileItem) fileItems.get(0);
                idpemain = idpemainitem.getString();
                FileItem nama_pemain_item = (FileItem) fileItems.get(1);
-               nama_pemain = nama_pemain_item.getString().trim();
+               nama = nama_pemain_item.getString().trim();
+               if (nama.contains("'")){
+                    NamaFoto = nama.replace("'", "`");
+               }else{
+                   NamaFoto = nama;
+               }
                FileItem idTeamitem = (FileItem) fileItems.get(2);
                idTeam = idTeamitem.getString().trim();
                FileItem positem = (FileItem) fileItems.get(3);
@@ -150,7 +157,12 @@ public class doUpdatePlayer extends HttpServlet {
                FileItem idpemainitem = (FileItem) fileItems.get(0);
                idpemain = idpemainitem.getString();
                FileItem nama_pemain_item = (FileItem) fileItems.get(1);
-               nama_pemain = nama_pemain_item.getString().trim();
+               nama = nama_pemain_item.getString().trim();
+               if (nama.contains("'")){
+                    nama_pemain = nama.replace("'", "`");
+               }else{
+                   nama_pemain = nama;
+               }
                FileItem idTeamitem = (FileItem) fileItems.get(2);
                idTeam = idTeamitem.getString().trim();
                FileItem positem = (FileItem) fileItems.get(3);
@@ -173,7 +185,7 @@ public class doUpdatePlayer extends HttpServlet {
             }
           }
          try {
-                Thread.sleep(1500);
+                Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
