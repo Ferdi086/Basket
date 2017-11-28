@@ -156,6 +156,14 @@
         <servlet-name>LogOut</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.LogOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewsB</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.NewsB</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doInsertNews</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertNews</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/BackEnd/Index</url-pattern>
@@ -218,6 +226,13 @@
         <param-name>file-upload-foto-team</param-name>
         <param-value>
          D:\Netbeans\Basket\web\img\Team\Foto\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload-news</param-name>
+        <param-value>
+         D:\Netbeans\Basket\web\img\News\
       </param-value>
     </context-param>
     <servlet-mapping>
@@ -339,6 +354,14 @@
     <servlet-mapping>
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/BackEnd/LogOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewsB</servlet-name>
+        <url-pattern>/BackEnd/NewsB</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doInsertNews</servlet-name>
+        <url-pattern>/doInsertNews</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

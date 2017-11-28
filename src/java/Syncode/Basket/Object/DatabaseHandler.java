@@ -266,6 +266,72 @@ public class DatabaseHandler extends Connect {
              return false;   
         }
     }
+    public HashMap getNews(){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select Id_News,Judul,Tanggal,LEFT(CONVERT(VARCHAR(100),Deskripsi),100),Foto,Flag_active from TrNews"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new NewsBackEnd(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public boolean setNews (String judul,String tanggal, String deskripsi, String foto){
+        try {         
+                String query = "INSERT INTO TrNews (Judul,Tanggal,Deskripsi,Foto) values ('"+judul+"','"+tanggal+"','"+ deskripsi+"','"+ foto +"')";
+                ps = conn.prepareStatement(query);
+                ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+    public boolean setUpdateNews(String id,String judul, String tanggal, String foto, String deskripsi){
+        String query="";
+        try {       
+                if(foto==""){
+                    query = "update TrNews set Judul='"+judul+"', Tanggal='"+tanggal+"', Deskripsi="+deskripsi+" where Id_News='"+ id +"'";
+                    ps = conn.prepareStatement(query);
+                }
+                else{
+                   query = "update TrNews set Judul='"+judul+"', Tanggal='"+tanggal+"', Deskripsi="+deskripsi+", Foto="+foto+" where Id_News='"+ id +"'";
+                   ps = conn.prepareStatement(query);
+                }    
+                   ps.executeUpdate();  
+                return true;            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+    public boolean setNonaktifNews(String id){
+        try {        
+                    String query = "update TrNews set Flag_active='N' where Id_News='"+id+"'";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+     public boolean setAktifNews(String id){
+        try {        
+                    String query = "update TrNews set Flag_active='Y' where Id_News='"+id+"'";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
     public HashMap getPlayersDetails(String ID){
         HashMap tr = new HashMap();
         try{
