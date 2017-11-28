@@ -133,7 +133,7 @@ public class doInsertPlayer extends HttpServlet {
                     out.println(query);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                    //response.sendRedirect("Player");
+                    response.sendRedirect("Player");
                     }
                     else{
                         foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
@@ -142,7 +142,7 @@ public class doInsertPlayer extends HttpServlet {
                          out.println(b);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                    //response.sendRedirect("Player");
+                    response.sendRedirect("Player");
                     }
                }
                else {
