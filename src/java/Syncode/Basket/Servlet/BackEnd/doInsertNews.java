@@ -25,7 +25,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author meiiko
  */
-public class doInsertPlayer extends HttpServlet {
+public class doInsertNews extends HttpServlet {
           private boolean isMultipart;
           private String filePath;
           private File file ;
@@ -41,7 +41,7 @@ public class doInsertPlayer extends HttpServlet {
      */
     public void init( ){
       // Get the file location where it would be stored.
-      filePath = getServletContext().getInitParameter("file-upload-foto"); 
+      filePath = getServletContext().getInitParameter("file-upload-news"); 
    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,22 +84,12 @@ public class doInsertPlayer extends HttpServlet {
             FileItem fi = (FileItem)i.next();
             if ( !fi.isFormField () ) {
                // Get the uploaded file parameters
-               FileItem namaitem = (FileItem) fileItems.get(0);
-               String nama = namaitem.getString().trim();
-               FileItem id_teamitem = (FileItem) fileItems.get(1);
-               String id_team = id_teamitem.getString().trim();
-               FileItem positem = (FileItem) fileItems.get(2);
-               String pos = positem.getString().trim();
-               FileItem noitem = (FileItem) fileItems.get(3);
-               String no = noitem.getString().trim();
-               FileItem tinggiitem = (FileItem) fileItems.get(4);
-               String tinggi = tinggiitem.getString().trim();
-               FileItem beratitem = (FileItem) fileItems.get(5);
-               String berat = beratitem.getString().trim();
-               FileItem tglitem = (FileItem) fileItems.get(6);
+               FileItem judulitem = (FileItem) fileItems.get(0);
+               String judul = judulitem.getString().trim();
+               FileItem tglitem = (FileItem) fileItems.get(1);
                String tgl = tglitem.getString().trim();
-               FileItem tanganitem = (FileItem) fileItems.get(7);
-               String tangan = tanganitem.getString().trim();
+               FileItem deskripsiitem = (FileItem) fileItems.get(2);
+               String deskripsi = deskripsiitem.getString().trim();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                //String contentType = fi.getContentType();
@@ -109,53 +99,38 @@ public class doInsertPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+"."+ ext) ;
+                       file = new File( filePath +judul +"-"+tgl+"."+ ext) ;
                     } else {
-                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+"."+ ext) ;
+                       file = new File( filePath +judul +"-"+tgl+"."+ ext) ;
                     }
                     
                     Exten="."+ ext;
-                    
+                    foto = judul+"-"+tgl+Exten;
                     //dh.setFile(Name,Exten);
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
                     out.println("foto="+foto);
                     out.println(file);
-                    if (nama.contains("'")){
-                       String nama1= nama.replace("'", "`");
-                       foto = id_team +"-"+nama1+"-"+pos+"-"+no+Exten;
-                        fi.write( file ); 
-                       out.println("nama baru="+nama1);
-                       String query = "INSERT INTO MsPemain (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+nama1+"','"+id_team+"',"
-                        + "'"+ pos+"','"+ no +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
-                    boolean a=dh.setMsPemain(nama1,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
+                    fi.write(file); 
+                   String query = "INSERT INTO TrNews (Judul,Tanggal,Deskripsi,Foto) values ('"+judul+"','"+tgl+"','"+ deskripsi+"','"+ foto +"')";
+                   boolean a=dh.setNews(judul,tgl,deskripsi,foto);
                     out.println(a);
                     out.println(query);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Player");
-                    }
-                    else{
-                        foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
-                        fi.write( file ) ;
-                         boolean b=dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);
-                         out.println(b);
-                    session.setAttribute("ErrMess","Your data successfully recorded");
-                    session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Player");
+                    //response.sendRedirect("News");
                     }
                }
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");
                         session.setAttribute("alert", "alert-danger");
-                       response.sendRedirect("Player");
+                      // response.sendRedirect("News");
                     }
              }
-          }
+          
          } catch(Exception ex) {
             System.out.println(ex);
          }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

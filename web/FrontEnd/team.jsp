@@ -94,7 +94,9 @@
 </div>
           
 </center>      
+<div class="clearfix" style="margin-bottom:5%"></div>
 
+        <%@include file="Sync/footer.jsp" %>
 
 <!-- js-scripts -->					
 <!-- js -->
