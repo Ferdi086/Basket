@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +76,7 @@ public class doInsertPlayer extends HttpServlet {
          // Process the uploaded file items
          Iterator i = fileItems.iterator();
         String Name = "";
+        String NamaFoto = "";
         String ext = "";
         String keterangan = "";
         String Exten = "";
@@ -86,6 +89,11 @@ public class doInsertPlayer extends HttpServlet {
                // Get the uploaded file parameters
                FileItem namaitem = (FileItem) fileItems.get(0);
                String nama = namaitem.getString().trim();
+               if (nama.contains("'")){
+                    NamaFoto = nama.replace("'", "`");
+               }else{
+                   NamaFoto = nama;
+               }
                FileItem id_teamitem = (FileItem) fileItems.get(1);
                String id_team = id_teamitem.getString().trim();
                FileItem positem = (FileItem) fileItems.get(2);
@@ -109,9 +117,9 @@ public class doInsertPlayer extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+"."+ ext) ;
+                       file = new File( filePath +id_team +"-"+NamaFoto+"-"+pos+"-"+no+"."+ ext) ;
                     } else {
-                       file = new File( filePath +id_team +"-"+nama+"-"+pos+"-"+no+"."+ ext) ;
+                       file = new File( filePath +id_team +"-"+NamaFoto+"-"+pos+"-"+no+"."+ ext) ;
                     }
                     
                     Exten="."+ ext;
@@ -140,9 +148,7 @@ public class doInsertPlayer extends HttpServlet {
                         fi.write( file ) ;
                          boolean b=dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);
                          out.println(b);
-                    session.setAttribute("ErrMess","Your data successfully recorded");
-                    session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Player");
+                    
                     }
                }
                else {
@@ -152,6 +158,15 @@ public class doInsertPlayer extends HttpServlet {
                     }
              }
           }
+         
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                    response.sendRedirect("Player");
          } catch(Exception ex) {
             System.out.println(ex);
          }
