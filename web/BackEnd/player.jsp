@@ -641,8 +641,11 @@
                $('#sub').toggle(300);               
             });
             $('#tgl').datetimepicker({
-                    format: 'YYYY-MM-DD'
+                    format: 'YYYY-MM-DD',
+                    viewMode: 'years',
+                    defaultDate:'1990-01-01'
             }); 
+            
             $("#reset").click(function(){
                 $("#pemain").focus();
                 $("#pemain").val(null);
