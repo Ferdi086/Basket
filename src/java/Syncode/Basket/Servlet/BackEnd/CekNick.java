@@ -41,7 +41,10 @@ public class CekNick extends HttpServlet {
        
         //out.println(nt);
         //out.println(tm.getId());
-        if(tm.getId().equals(nick)){
+        if(nick==""){
+            out.print("kosong");
+        }
+        else if(tm.getId().equals(nick)){
              out.print("Error");
         }else{
              out.print("Ok");

@@ -10,6 +10,7 @@ package Syncode.Basket.Object;
  * @author Ferdinand
  */
 public class ObjMatchStatistic {
+    private String match="";
     private String tgl="";
     private String team1="";
     private String logo1="";
@@ -20,7 +21,8 @@ public class ObjMatchStatistic {
     private String pts2="";
     private String wl2="";
     
-    public ObjMatchStatistic(String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2) {
+    public ObjMatchStatistic(String match, String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2) {
+        this.match = match;
         this.tgl = tgl;
         this.team1 = team1;
         this.logo1 = logo1;
@@ -30,6 +32,14 @@ public class ObjMatchStatistic {
         this.logo2 = logo2;
         this.pts2 = pts2;
         this.wl2 = wl2;
+    }
+
+    public String getMatch() {
+        return match;
+    }
+
+    public void setMatch(String match) {
+        this.match = match;
     }
 
     public ObjMatchStatistic() {
