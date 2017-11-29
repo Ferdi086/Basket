@@ -121,9 +121,9 @@
                             <th>Team 2</th>
                             <th>PTS</th>
                         </tr>
-                        <c:forEach var='item' items='${requestScope.statistik}'>
+                        <c:forEach var='item' items='${requestScope.statistik}'>                            
                             <tr>
-                                <td>${item.value.tgl}</td>
+                                <td><a href='#' data-toggle="tooltip" data-placement="right" title="${item.value.match}">${item.value.tgl}</a></td>
                                 <td><a href='#'><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</a></td>
                                 <td>${item.value.pts1}</td>
                                 <td><a href='#'><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</a></td>
@@ -143,6 +143,9 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
 <script>
+    $(document).ready(function(){ 
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
     function playdetail(id){
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
