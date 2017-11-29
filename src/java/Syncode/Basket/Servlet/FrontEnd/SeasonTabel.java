@@ -51,7 +51,7 @@ public class SeasonTabel extends HttpServlet {
             for(int i=0;i<st.size();i++){
                     out.println("<tr>");
                     ObjMatchStatistic obs = (ObjMatchStatistic) st.get(i);
-                    out.println("   <td>"+obs.getTgl()+"</td>");
+                    out.println("   <td><a href='#' data-toggle='tooltip' title='"+obs.getMatch()+"'>"+obs.getTgl()+"</a></td>");
                     out.println("   <td><a href='#'><img src='../img/Team/Logo/"+obs.getLogo1()+"' class='logo_kcl'>"+obs.getTeam1()+"</a></td>");
                     out.println("   <td>"+obs.getPts1()+"</td>");
                     out.println("   <td><a href='#'><img src='../img/Team/Logo/"+obs.getLogo2()+"' class='logo_kcl'>"+obs.getTeam2()+"</a></td>");
