@@ -599,8 +599,8 @@
                 $("#nick").val(null);
                 $("#logo").val(null);
                 $("#foto").val(null);
-                $("#previewlogo").attr('src',"../img/nopic.png");
-                $("#previewfoto").attr('src',"../img/nopic.png");
+                $("#previewlogo").attr('src',"../img/Team/Logo/nopic.png");
+                $("#previewfoto").attr('src',"../img/Team/Logo/nopic.png");
             });         
 	});
         
@@ -626,13 +626,17 @@
                         $('#loading').hide();
                         $("#error").hide();
                         $("#ok").show();  
-                    }else{
+                    }else if(data=="Error"){
                         $('#loading').hide();
                         $("#ok").hide();
                         //$("#nick").val("");
                         $("#error").show();                        
                         $("#nick").focus();
                         //$("#error").fadeTo(5000, 0);
+                    }else if(data=="kosong"){
+                        $('#loading').hide();
+                        $("#error").hide();
+                        $("#ok").hide();
                     }
                 }
             });
