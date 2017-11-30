@@ -82,11 +82,13 @@ public class doUpdatePlayer extends HttpServlet {
         String idpemain = "";
         String nama = "";
         String nama_pemain = "";
+        String region = "";
         String NamaFoto = "";
         String tgl = "";
         String foto ="";
         String tinggi = "";
         String berat = "";
+        String tangan="";
         String pos ="";
         String idTeam = "";
         String noPunggung = "";
@@ -121,6 +123,10 @@ public class doUpdatePlayer extends HttpServlet {
                berat = beratitem.getString().trim();
                FileItem tglitem = (FileItem) fileItems.get(7);
                tgl = tglitem.getString().trim();
+               FileItem tanganitem = (FileItem) fileItems.get(8);
+               tangan = tanganitem.getString().trim();
+               FileItem regionitem = (FileItem) fileItems.get(9);
+               region = regionitem.getString().trim();
                String FieldName = fi.getFieldName();
                String fileName = fi.getName()==""?"kosong":fi.getName();
                ext = fileName.split("\\.")[0]=="kosong"?"ini ext kosong":fileName.split("\\.")[1];
@@ -143,7 +149,7 @@ public class doUpdatePlayer extends HttpServlet {
                     out.println("ini foto "+foto);
                     fi.write( file ) ;
                     String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
-                    boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
+                    boolean a=dh.setUpdatePemain(nama_pemain,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
                     out.println("query 2 ="+query+"<br/>");
                     out.println(a);
                     
@@ -175,12 +181,13 @@ public class doUpdatePlayer extends HttpServlet {
                berat = beratitem.getString().trim();
                FileItem tglitem = (FileItem) fileItems.get(7);
                tgl = tglitem.getString().trim();
+               FileItem tanganitem = (FileItem) fileItems.get(8);
+               tangan = tanganitem.getString().trim();
+               FileItem regionitem = (FileItem) fileItems.get(9);
+               region = regionitem.getString().trim();
                
               out.println("tgl= "+tinggi);
-               
-               String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", where Id_Pemain='"+ idpemain +"'";
-                   boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
-               out.println("query 1 ="+query+"<br/>");
+                   boolean a=dh.setUpdatePemain(nama_pemain,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
                 out.println(a);
             }
           }
