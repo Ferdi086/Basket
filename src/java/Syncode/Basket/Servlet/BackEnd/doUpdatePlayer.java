@@ -148,16 +148,14 @@ public class doUpdatePlayer extends HttpServlet {
                     foto = idTeam +"-"+ nama_pemain+"-"+pos+"-"+noPunggung+Exten;
                     out.println("ini foto "+foto);
                     fi.write( file ) ;
-                    String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                    String query2 = "update MsPemain set Nama_Pemain='"+nama+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
                     boolean a=dh.setUpdatePemain(nama_pemain,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
-                    out.println("query 2 ="+query+"<br/>");
+                    out.println("<br/><br/><br/> query 2 ="+query2+"<br/><br/><br/>");
                     out.println(a);
                     
                    
             }
-               else {
-                       
-                    }
+               
              }
             else {
                FileItem idpemainitem = (FileItem) fileItems.get(0);
@@ -187,8 +185,11 @@ public class doUpdatePlayer extends HttpServlet {
                region = regionitem.getString().trim();
                
               out.println("tgl= "+tinggi);
+              String query1 = "update MsPemain set Nama_Pemain='"+nama+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                   
                    boolean a=dh.setUpdatePemain(nama_pemain,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
                 out.println(a);
+                out.println("<br/><br/><br/>query 1= "+query1+"<br/><br/><br/>");
             }
           }
          try {
@@ -198,7 +199,7 @@ public class doUpdatePlayer extends HttpServlet {
             }
             session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                response.sendRedirect("Player");
+                    response.sendRedirect("Player");
          } catch(Exception ex) {
              //out.println(ex);
          }

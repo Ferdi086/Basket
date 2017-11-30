@@ -284,7 +284,7 @@
                                     <label class="control-label col-sm-2">Hand's Position</label>
                                     <div class="col-sm-3">
                                         <select id="tangan" type="text" name="tangan" class="form-control" required>
-                                            <option value="">Choose One</option>
+                                            <option value=""> Choose One Hand's Position </option>
                                             <option value="kanan">Right</option>
                                             <option value="kiri">Left</option>
                                         </select>
@@ -294,7 +294,7 @@
                                     <label class="control-label col-sm-2">Region</label>
                                     <div class="col-sm-3">
                                         <select id="region" type="text" name="region" class="form-control" required>
-                                            <option value="">Choose One</option>
+                                           <option value=""> Choose One Region </option>
                                             <option value="L">Local</option>
                                             <option value="I">Import</option>
                                         </select>
@@ -383,7 +383,7 @@
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
                                 <td style="vertical-align: middle;text-align: center"> 
                                     <div style="margin:auto;">
-                                        <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${namaPemain}','${region}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${namaPemain}','${region}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${tangan}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
                                         <c:choose>
                                             <c:when test="${flagactive=='Y'}">
                                                 <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
@@ -506,8 +506,9 @@
                                     <label class="control-label col-sm-2">Hand's Position</label>
                                     <div class="col-sm-3">
                                         <select id="updatetangan" type="text" name="utangan" class="form-control" required>
-                                            <option value="kanan">Right</option>
-                                            <option value="kiri">Left</option>
+                                            <option value=""> Choose One Hand's Position </option>
+                                            <option value="Kanan">Right</option>
+                                            <option value="Kiri">Left</option>
                                         </select>
                                     </div>   
                             </div>	
@@ -515,6 +516,7 @@
                                     <label class="control-label col-sm-2 col-sm-offset-1">Region</label>
                                     <div class="col-sm-3">
                                         <select id="updateregion" type="text" name="uregion" class="form-control" required>
+                                            <option value=""> Choose One Region </option>
                                             <option value="L">Local</option>
                                             <option value="I">Import</option>
                                         </select>
@@ -691,8 +693,8 @@
                 return false;
             }else if($('#updateberat').val()===""){
                 return false;
-            //}//else if($('#updatetangan').val()===""){
-                //return false;
+            }else if($('#updatetangan').val()===""){
+                return false;
            // }else if($('#updatefile').val()===""){
               //  return false;
             }else{
@@ -714,8 +716,8 @@
                 $('#KonfirmasiUpdate').modal('hide');
                 $('#ValidasiInput').modal('show'); 
             }  
-        }    
-        function Update(idPemain,namaPemain,region,tgl,tinggi,foto,berat,pos,idTeam,noPunggung){  
+        }
+        function Update(idPemain,namaPemain,region,tgl,tinggi,foto,berat,pos,tangan,idTeam,noPunggung){  
         $("#updateid_pemain").val(idPemain);
         $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
             $('#updatepemain').val(namaPemain);
@@ -726,6 +728,7 @@
             $('#updatetinggi').val(tinggi);  
             $('#updateberat').val(berat);  
             $('#updatetgl').val(tgl);  
+            $('#updatetangan').val(tangan);  
         }
         function aktif(){
             var ID_Team = $("#ID_P").val();
