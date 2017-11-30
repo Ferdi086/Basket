@@ -219,58 +219,8 @@
 	</style>
     </head>
     <body>
-        <div class="top-menu">
-            <span class="tl-menu"><a href="Home" style="text-decoration:none;"><div class="logo">IBL</div></a></span>
-            <span class="tr-menu">
-                <a href="LogOut">
-                    <button class="round" type="button" data-toggle="tooltip" data-placement="bottom" title="Sign Out"></button>
-                    <label class="logout">Sign Out</label>
-                </a>
-            </span>
-            <span id="vseparator"></span>
-            <span class="info">
-                <img src="../img/User.png" width="30px;" style="margin-top:-7px">
-                <label class="txt-info">Hi, ${requestScope.nama_usr}</label>
-            </span>
-        </div>
-        <div class="left-menu">
-            <ul class="s-menu">  
-                <li> 
-                    <a href="Dashboard" >
-			<img class="icon" src="../img/Home.png">
-			<span class='text current'>Dashboard</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Player" >
-			<img class="icon" src="../img/pemain.png">
-			<span class='text'>Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Team" >
-			<img class="icon" src="../img/team.png">
-			<span class='text'>Team</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="StatistikPlayer" >
-			<img class="icon" src="../img/statistik.png">
-			<span class="text">Statistic Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Musim" >
-			<img class="icon" src="../img/musim.png">
-			<span class="text">Season</span>
-                    </a>
-                </li>
-                <li class="btn-menu">
-                    <button id="togglebutton"><span class="glyphicon glyphicon-th-list"></span></button>
-                    <label class='text txt-toggle' id="cursor">Menu</label>
-		</li> 
-            </ul>
-        </div>
+        <%@include file="Header.jsp" %>
+        <%@include file="Sidebar.jsp" %>
 	<div style="height:49px;"></div>
         <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
         <script>

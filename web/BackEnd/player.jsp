@@ -216,58 +216,8 @@
 	</style>
     </head>
     <body>
-        <div class="top-menu">
-            <span class="tl-menu"><a href="Home" style="text-decoration:none;"><div class="logo">IBL</div></a></span>
-            <span class="tr-menu">
-                <a href="LogOut">
-                    <button class="round" type="button" data-toggle="tooltip" data-placement="bottom" title="Sign Out"></button>
-                    <label class="logout">Sign Out</label>
-                </a>
-            </span>
-            <span id="vseparator"></span>
-            <span class="info">
-                <img src="../img/User.png" width="30px;" style="margin-top:-7px">
-                <label class="txt-info">Hi, ${requestScope.nama_usr}</label>
-            </span>
-        </div>
-        <div class="left-menu">
-            <ul class="s-menu">  
-                <li> 
-                    <a href="Dashboard" >
-			<img class="icon" src="../img/Home.png">
-			<span class='text current'>Dashboard</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Player" >
-			<img class="icon" src="../img/pemain.png">
-			<span class='text'>Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Team" >
-			<img class="icon" src="../img/team.png">
-			<span class='text'>Team</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="StatistikPlayer" >
-			<img class="icon" src="../img/statistik.png">
-			<span class="text">Statistic Player</span>
-                    </a>
-                </li> 
-                <li> 
-                    <a href="Musim" >
-			<img class="icon" src="../img/musim.png">
-			<span class="text">Season</span>
-                    </a>
-                </li>
-                <li class="btn-menu">
-                    <button id="togglebutton"><span class="glyphicon glyphicon-th-list"></span></button>
-                    <label class='text txt-toggle' id="cursor">Menu</label>
-		</li> 
-            </ul>
-        </div>
+        <%@include file="Header.jsp" %>
+        <%@include file="Sidebar.jsp" %>
 	<div style="height:49px;"></div>
         <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
         <script>
@@ -334,12 +284,22 @@
                                     <label class="control-label col-sm-2">Hand's Position</label>
                                     <div class="col-sm-3">
                                         <select id="tangan" type="text" name="tangan" class="form-control" required>
+                                            <option value="">Choose One</option>
                                             <option value="kanan">Right</option>
                                             <option value="kiri">Left</option>
                                         </select>
                                     </div>                                  
                                 </div>	
-                            
+                            <div class="form-group">
+                                    <label class="control-label col-sm-2">Region</label>
+                                    <div class="col-sm-3">
+                                        <select id="region" type="text" name="region" class="form-control" required>
+                                            <option value="">Choose One</option>
+                                            <option value="L">Local</option>
+                                            <option value="I">Import</option>
+                                        </select>
+                                    </div>                                  
+                                </div>	
                             <div class="form-group">
                                    <label class="control-label col-sm-2" >Foto</label>
                                    <div class="col-sm-3">
@@ -375,10 +335,12 @@
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true" class="col-2"><b><center>Players Name</center><b></th>            
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Players Name</center><b></th>     
+                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Region</center><b></th>          
                                 <th data-align="center" data-valign="middle"><b><center>Birth Date</center><b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Height</center></b></th>
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Weight</center></b></th>
+                                <th data-align="center" data-valign="middle" ><b><center>Height</center></b></th>
+                                <th data-align="center" data-valign="middle" ><b><center>Weight</center></b></th>
+                                <th data-align="center" data-valign="middle" ><b><center>Hand's Position</center></b></th>
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Position</center></b></th>
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team</center><b></th>  
                                 <th data-align="center" data-valign="middle"><b><center>Jersey Number</center><b></th>
@@ -388,7 +350,9 @@
                             <c:forEach var="item" varStatus="loopCounter" items="${requestScope.player}">
                                 <c:set var="idPemain" value="${item.value.idPemain}"/>
                                 <c:set var="namaPemain" value="${item.value.namaPemain}"/>
+                                <c:set var="region" value="${item.value.region}"/>
                                 <c:set var="tgl" value="${item.value.tgl}"/>
+                                <c:set var="tangan" value="${item.value.tangan}"/>
                                 <c:set var="tinggi" value="${item.value.tinggi}"/>
                                 <c:set var="foto" value="${item.value.foto}" />
                                 <c:set var="berat" value="${item.value.berat}" />
@@ -402,15 +366,24 @@
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
                                 <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
                                 <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
+                                <c:choose>
+                                    <c:when test="${region=='L'}">
+                                        <td style="vertical-align: middle;text-align: center"> Local </td>
+                                    </c:when>   
+                                    <c:when test="${region=='I'}">
+                                        <td style="vertical-align: middle;text-align: center"> Import </td>
+                                    </c:when>  
+                                </c:choose>  
                                 <td style="vertical-align: middle;text-align: center"> ${tgl} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${tinggi} cm </td>
                                 <td style="vertical-align: middle;text-align: center"> ${berat} kg </td>
+                                <td style="vertical-align: middle;text-align: center"> ${tangan} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${pos} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${idTeam} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
                                 <td style="vertical-align: middle;text-align: center"> 
                                     <div style="margin:auto;">
-                                        <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${item.value.namaPemain}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${namaPemain}','${region}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
                                         <c:choose>
                                             <c:when test="${flagactive=='Y'}">
                                                 <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
@@ -530,10 +503,23 @@
                                     <div class="col-sm-3">
                                         <input id="updatetgl" type="text" name="utgl" class="form-control" placeholder="YYYY-MM-DD" required/>
                                     </div>
-                                   
-                                                              
+                                    <label class="control-label col-sm-2">Hand's Position</label>
+                                    <div class="col-sm-3">
+                                        <select id="updatetangan" type="text" name="utangan" class="form-control" required>
+                                            <option value="kanan">Right</option>
+                                            <option value="kiri">Left</option>
+                                        </select>
+                                    </div>   
                             </div>	
-                            
+                            <div class="form-group">
+                                    <label class="control-label col-sm-2 col-sm-offset-1">Region</label>
+                                    <div class="col-sm-3">
+                                        <select id="updateregion" type="text" name="uregion" class="form-control" required>
+                                            <option value="L">Local</option>
+                                            <option value="I">Import</option>
+                                        </select>
+                                    </div>                                  
+                                </div>	
                             <div class="form-group ">
                                    <label class="control-label col-sm-2 col-sm-offset-1">Foto</label>
                                    <div class="col-sm-3">
@@ -649,6 +635,7 @@
             $("#reset").click(function(){
                 $("#pemain").focus();
                 $("#pemain").val(null);
+                $("#region").val(null);
                 $("#team").val(null);
                 $("#posisi").val(null);
                 $("#no_punggung").val(null);
@@ -664,6 +651,8 @@
 	}); 
         function cekInput(){           
             if($('#pemain').val()===""){   
+                return false;
+            }else if($('#region').val()===""){
                 return false;
             }else if($('#team').val()===""){
                 return false;
@@ -689,6 +678,8 @@
             if($('#updateid_pemain').val()===""){                
                 return false;
             }else if($('#updatepemain').val()===""){
+                return false;
+            }else if($('#updateregion').val()===""){
                 return false;
             }else if($('#updateteam').val()===""){
                 return false;
@@ -724,10 +715,11 @@
                 $('#ValidasiInput').modal('show'); 
             }  
         }    
-        function Update(idPemain,namaPemain,tgl,tinggi,foto,berat,pos,idTeam,noPunggung){  
+        function Update(idPemain,namaPemain,region,tgl,tinggi,foto,berat,pos,idTeam,noPunggung){  
         $("#updateid_pemain").val(idPemain);
         $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
             $('#updatepemain').val(namaPemain);
+            $('#updateregion').val(region);
             $('#updateteam').val(idTeam);
             $('#updateposisi').val(pos);
             $('#updateno').val(noPunggung);
