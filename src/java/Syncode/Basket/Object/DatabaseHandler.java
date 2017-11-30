@@ -964,11 +964,11 @@ public class DatabaseHandler extends Connect {
                     //String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2
                     if(rs2.next()){
                         if(rs2.getString(4)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),"-","-","0.00","-",rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10)));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(1),rs2.getString(2),"-","-","0.00","-",rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10)));
                         }else if(rs2.getString(7)==null){
-                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),"-","-","0.00","-"));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),"-","-","0.00","-"));
                         }else{
-                            tr.put(i++,new ObjMatchStatistic(rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10)));
+                            tr.put(i++,new ObjMatchStatistic(rs2.getString(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10)));
                         }  
                     }
                 }

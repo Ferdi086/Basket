@@ -121,9 +121,9 @@
                             <th>Team 2</th>
                             <th>PTS</th>
                         </tr>
-                        <c:forEach var='item' items='${requestScope.statistik}'>
+                        <c:forEach var='item' items='${requestScope.statistik}'>                            
                             <tr>
-                                <td>${item.value.tgl}</td>
+                                <td><a href='#' data-toggle="tooltip" title="${item.value.match}">${item.value.tgl}</a></td>
                                 <td><a href='#'><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</a></td>
                                 <td>${item.value.pts1}</td>
                                 <td><a href='#'><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</a></td>
