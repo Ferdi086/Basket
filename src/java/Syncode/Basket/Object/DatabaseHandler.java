@@ -693,7 +693,7 @@ public class DatabaseHandler extends Connect {
     }
     public HashMap getPpgApgRpg(String id_p){
         HashMap tr = new HashMap();
-        try{
+        try{//*100 as decimal(10,0)
             int i = 0;
             String query = "select top 1 Nama_Musim,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG" +
                             "	from " +
