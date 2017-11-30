@@ -10,6 +10,7 @@ import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +40,6 @@ public class doLogin extends HttpServlet {
         String pass = request.getParameter("Password");
         //out.print(user+pass);
         ObjUser tes = dh.getUsr(user, pass);
-        
         if(user.equals("")||pass.equals("")){
             request.setAttribute("Stat", "Mohon isi form dengan lengkap");
             request.setAttribute("alert","alert-danger");
@@ -53,7 +53,7 @@ public class doLogin extends HttpServlet {
         }
         if(user.equals(tes.getID())&&pass.equals(tes.getPassword())){
             session.setAttribute("obj_usr", tes);
-            session.setMaxInactiveInterval(24*60*60);
+            session.setMaxInactiveInterval(48*60*60);
             response.sendRedirect("Dashboard");
         }
         

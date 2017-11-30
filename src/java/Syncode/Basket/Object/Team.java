@@ -23,6 +23,15 @@ public class Team {
     }
 
 
+    public Team(String id, String namateam, String divisi, String logo, String gambar, String flagactive) {
+        this.id = id;
+        this.namateam = namateam;
+        this.divisi = divisi;
+        this.logo = logo;
+        this.gambar = gambar;
+        this.flagactive = flagactive;
+    }
+    
     public String getId() {
         return id;
     }
@@ -63,15 +72,6 @@ public class Team {
         this.gambar = gambar;
     }
 
-    public Team(String id, String namateam, String divisi, String logo, String gambar, String flagactive) {
-        this.id = id;
-        this.namateam = namateam;
-        this.divisi = divisi;
-        this.logo = logo;
-        this.gambar = gambar;
-        this.flagactive = flagactive;
-    }
-
     public String getFlagactive() {
         return flagactive;
     }
@@ -80,9 +80,4 @@ public class Team {
         this.flagactive = flagactive;
     }
    
-   
-
-
-    
-
 }

@@ -217,8 +217,30 @@
 	</style>
     </head>
     <body>
-        <%@include file="Header.jsp" %>
-        <%@include file="Sidebar.jsp" %>
+        <%--<%
+		Cookie[] cks = request.getCookies();
+		if (cks != null) {
+			for (int i = 0; i < cks.length; i++) {
+				String name = cks[i].getName();
+				String value = cks[i].getValue();
+				if (name.equals("auth")) {
+					break; // exit the loop and continue the page
+				}
+				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
+				{
+					response.sendRedirect("Index");
+					return; // to stop further execution
+				}
+				i++;
+			}
+		} else {
+			response.sendRedirect("Index");
+			return; // to stop further execution
+		}
+	%>--%>
+        <%@include file="Sync/Header.jsp" %>
+        <%@include file="Sync/Sidebar.jsp" %>
+        
 	<div style="height:49px;"></div>
         <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
         <script>

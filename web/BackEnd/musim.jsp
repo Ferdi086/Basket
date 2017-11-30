@@ -219,8 +219,8 @@
 	</style>
     </head>
     <body>
-        <%@include file="Header.jsp" %>
-        <%@include file="Sidebar.jsp" %>
+        <%@include file="Sync/Header.jsp" %>
+        <%@include file="Sync/Sidebar.jsp" %>
 	<div style="height:49px;"></div>
         <div class="msg alert ${requestScope.alert}">${requestScope.ErrMess}</div>
         <script>
