@@ -90,7 +90,7 @@ public class doInsertPlayer extends HttpServlet {
                FileItem namaitem = (FileItem) fileItems.get(0);
                String nama = namaitem.getString().trim();
                if (nama.contains("'")){
-                    NamaFoto = nama.replace("'", "`");
+                    NamaFoto = nama.replace("'", "''");
                }else{
                    NamaFoto = nama;
                }

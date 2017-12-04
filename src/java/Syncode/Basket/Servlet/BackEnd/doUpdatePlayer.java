@@ -107,7 +107,7 @@ public class doUpdatePlayer extends HttpServlet {
                FileItem nama_pemain_item = (FileItem) fileItems.get(1);
                nama = nama_pemain_item.getString().trim();
                if (nama.contains("'")){
-                    NamaFoto = nama.replace("'", "`");
+                    NamaFoto = nama.replace("'", "''");
                }else{
                    NamaFoto = nama;
                }
