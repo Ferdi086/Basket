@@ -295,8 +295,8 @@
                                     <div class="col-sm-3">
                                         <select id="region" type="text" name="region" class="form-control" required>
                                            <option value=""> Choose One Region </option>
-                                            <option value="L">Local</option>
-                                            <option value="I">Import</option>
+                                            <option value="Lokal">Local</option>
+                                            <option value="Asing">Import</option>
                                         </select>
                                     </div>                                  
                                 </div>	
@@ -367,10 +367,10 @@
                                 <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
                                 <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
                                 <c:choose>
-                                    <c:when test="${region=='L'}">
+                                    <c:when test="${region=='Lokal'}">
                                         <td style="vertical-align: middle;text-align: center"> Local </td>
                                     </c:when>   
-                                    <c:when test="${region=='I'}">
+                                    <c:when test="${region=='Asing'}">
                                         <td style="vertical-align: middle;text-align: center"> Import </td>
                                     </c:when>  
                                 </c:choose>  
@@ -517,8 +517,8 @@
                                     <div class="col-sm-3">
                                         <select id="updateregion" type="text" name="uregion" class="form-control" required>
                                             <option value=""> Choose One Region </option>
-                                            <option value="L">Local</option>
-                                            <option value="I">Import</option>
+                                            <option value="Lokal">Local</option>
+                                            <option value="Asing">Import</option>
                                         </select>
                                     </div>                                  
                                 </div>	
