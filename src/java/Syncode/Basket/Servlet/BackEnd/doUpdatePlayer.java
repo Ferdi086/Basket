@@ -82,11 +82,13 @@ public class doUpdatePlayer extends HttpServlet {
         String idpemain = "";
         String nama = "";
         String nama_pemain = "";
+        String region = "";
         String NamaFoto = "";
         String tgl = "";
         String foto ="";
         String tinggi = "";
         String berat = "";
+        String tangan="";
         String pos ="";
         String idTeam = "";
         String noPunggung = "";
@@ -121,6 +123,10 @@ public class doUpdatePlayer extends HttpServlet {
                berat = beratitem.getString().trim();
                FileItem tglitem = (FileItem) fileItems.get(7);
                tgl = tglitem.getString().trim();
+               FileItem tanganitem = (FileItem) fileItems.get(8);
+               tangan = tanganitem.getString().trim();
+               FileItem regionitem = (FileItem) fileItems.get(9);
+               region = regionitem.getString().trim();
                String FieldName = fi.getFieldName();
                String fileName = fi.getName()==""?"kosong":fi.getName();
                ext = fileName.split("\\.")[0]=="kosong"?"ini ext kosong":fileName.split("\\.")[1];
@@ -142,16 +148,14 @@ public class doUpdatePlayer extends HttpServlet {
                     foto = idTeam +"-"+ nama_pemain+"-"+pos+"-"+noPunggung+Exten;
                     out.println("ini foto "+foto);
                     fi.write( file ) ;
-                    String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
-                    boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
-                    out.println("query 2 ="+query+"<br/>");
+                    String query2 = "update MsPemain set Nama_Pemain='"+nama+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                    boolean a=dh.setUpdatePemain(nama_pemain,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
+                    out.println("<br/><br/><br/> query 2 ="+query2+"<br/><br/><br/>");
                     out.println(a);
                     
                    
             }
-               else {
-                       
-                    }
+               
              }
             else {
                FileItem idpemainitem = (FileItem) fileItems.get(0);
@@ -175,13 +179,17 @@ public class doUpdatePlayer extends HttpServlet {
                berat = beratitem.getString().trim();
                FileItem tglitem = (FileItem) fileItems.get(7);
                tgl = tglitem.getString().trim();
+               FileItem tanganitem = (FileItem) fileItems.get(8);
+               tangan = tanganitem.getString().trim();
+               FileItem regionitem = (FileItem) fileItems.get(9);
+               region = regionitem.getString().trim();
                
               out.println("tgl= "+tinggi);
-               
-               String query = "update MsPemain set Nama_Pemain='"+nama_pemain+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", where Id_Pemain='"+ idpemain +"'";
-                   boolean a=dh.setUpdatePemain(nama_pemain,tgl,tinggi,berat,pos,idTeam,noPunggung,foto,idpemain);
-               out.println("query 1 ="+query+"<br/>");
+              String query1 = "update MsPemain set Nama_Pemain='"+nama+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                   
+                   boolean a=dh.setUpdatePemain(nama_pemain,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
                 out.println(a);
+                out.println("<br/><br/><br/>query 1= "+query1+"<br/><br/><br/>");
             }
           }
          try {
@@ -191,7 +199,7 @@ public class doUpdatePlayer extends HttpServlet {
             }
             session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                response.sendRedirect("Player");
+                    response.sendRedirect("Player");
          } catch(Exception ex) {
              //out.println(ex);
          }

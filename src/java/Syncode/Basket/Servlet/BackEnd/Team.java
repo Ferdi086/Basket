@@ -34,6 +34,7 @@ public class Team extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        HttpSession session = request.getSession(true);
+       
        DatabaseHandler dh=new DatabaseHandler();
        String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
        String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
@@ -47,7 +48,9 @@ public class Team extends HttpServlet {
         
        HashMap tm = dh.getTeam();
        request.setAttribute("Team",tm);
+       session.setMaxInactiveInterval(24*60*60);
        request.getRequestDispatcher("/BackEnd/team.jsp").forward(request,response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,6 +66,12 @@ public class Team extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+         HttpSession session = request.getSession(false);
+         if(session != null && !session.isNew()) {
+            request.getRequestDispatcher("/BackEnd/team.jsp").forward(request,response);
+        } else {
+            response.sendRedirect("Index");
+         }
     }
 
     /**

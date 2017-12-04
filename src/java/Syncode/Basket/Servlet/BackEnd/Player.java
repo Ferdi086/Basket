@@ -46,7 +46,7 @@ public class Player extends HttpServlet {
             request.setAttribute("alert", alert);
             
             ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
-            request.setAttribute("nama_usr", usr.getNama());
+            //request.setAttribute("nama_usr", usr.getNama());
             
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();

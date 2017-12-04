@@ -15,6 +15,7 @@ import org.json.JSONObject;
 public class ObjPlayer {
     private String idPemain="";
     private String namaPemain ="";
+    private String region ="";
     private String tgl="";
     private String tinggi="";
     private String berat="";
@@ -26,6 +27,7 @@ public class ObjPlayer {
     private String foto="";
     private String idTeam="";
     private String logo="";
+    private String tangan="";
     
     private int No;
    
@@ -47,9 +49,10 @@ public class ObjPlayer {
         this.logo=logo;
         this.No=No;
     }
-    public ObjPlayer(String idPemain, String namaPemain, String tgl, String tinggi, String berat, String pos, String namaPos, String idTeam, String team, String noPunggung, String foto, String flagactive) {
+    public ObjPlayer(String idPemain, String namaPemain, String region, String tgl, String tinggi, String berat, String pos, String namaPos, String idTeam, String team, String noPunggung, String tangan, String foto, String flagactive) {
         this.idPemain = idPemain;
         this.namaPemain = namaPemain;
+        this.region = region;
         this.tgl = tgl;
         this.tinggi = tinggi;
         this.berat = berat;
@@ -57,6 +60,7 @@ public class ObjPlayer {
         this.namaPos = namaPos;
         this.team = team;
         this.noPunggung = noPunggung;
+        this.tangan = tangan;
         this.foto=foto;
         this.idTeam=idTeam;
         this.flagactive=flagactive;
@@ -82,6 +86,14 @@ public class ObjPlayer {
         this.namaPemain = namaPemain;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+    
     public String getTgl() {
         return tgl;
     }
@@ -138,6 +150,13 @@ public class ObjPlayer {
         this.noPunggung = noPunggung;
     }
 
+    public String getTangan() {
+        return tangan;
+    }
+
+    public void setTangan(String tangan) {
+        this.tangan = tangan;
+    }
 
     public String getFoto() {
         return foto;

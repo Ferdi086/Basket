@@ -132,9 +132,9 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public boolean setMsPemain (String name,String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto){
+    public boolean setMsPemain (String name, String region, String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto){
         try {         
-                String query = "INSERT INTO MsPemain (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+id_team+"',"
+                String query = "INSERT INTO MsPemain (Nama_Pemain,Region,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+region+"','"+id_team+"',"
                         + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
@@ -223,15 +223,15 @@ public class DatabaseHandler extends Connect {
         }         
     }
      
-    public boolean setUpdatePemain(String nama, String tgl, String tinggi, String berat, String pos, String id_team, String no, String foto, String id_pemain){
+    public boolean setUpdatePemain(String nama,String region, String tgl, String tinggi, String berat, String pos, String id_team, String no, String tangan, String foto, String id_pemain){
         String query="";
         try {       
                 if(foto==""){
-                    query = "update MsPemain set Nama_Pemain='"+nama+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+" where Id_Pemain='"+ id_pemain +"'";
+                    query = "update MsPemain set Nama_Pemain='"+nama+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"' where Id_Pemain='"+ id_pemain +"'";
                     ps = conn.prepareStatement(query);
                 }
                 else{
-                    query = "update MsPemain set Nama_Pemain='"+nama+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
+                    query = "update MsPemain set Nama_Pemain='"+nama+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"', Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
                     ps = conn.prepareStatement(query);
                 }    
                    ps.executeUpdate();  
@@ -354,12 +354,19 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team order by ID_Team"; 
+            String x= "-";
+            String query = "select distinct a.ID_Pemain,a.Nama_Pemain,a.Region,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Tangan,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team order by ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-     
-                tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
+                
+                if(rs.getString(3)==null){
+                    tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), "-", rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
+                }else{
+                    tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
+                }
+                
+                //tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14)));
             }
         }catch (SQLException ex) {
                 
@@ -373,8 +380,8 @@ public class DatabaseHandler extends Connect {
             String query = "SELECT TOP 9 a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team ORDER BY NEWID()  "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){     
-                tr.put(i++,new ObjPlayer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
+            while(rs.next()){ 
+                tr.put(i++,new ObjPlayer(i++,rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
             }
         }catch (SQLException ex) {
                 
@@ -693,7 +700,7 @@ public class DatabaseHandler extends Connect {
     }
     public HashMap getPpgApgRpg(String id_p){
         HashMap tr = new HashMap();
-        try{
+        try{//*100 as decimal(10,0)
             int i = 0;
             String query = "select top 1 Nama_Musim,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG" +
                             "	from " +

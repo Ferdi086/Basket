@@ -108,6 +108,8 @@ public class doInsertPlayer extends HttpServlet {
                String tgl = tglitem.getString().trim();
                FileItem tanganitem = (FileItem) fileItems.get(7);
                String tangan = tanganitem.getString().trim();
+                FileItem regionitem = (FileItem) fileItems.get(8);
+               String region = regionitem.getString().trim();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                //String contentType = fi.getContentType();
@@ -134,11 +136,8 @@ public class doInsertPlayer extends HttpServlet {
                        foto = id_team +"-"+nama1+"-"+pos+"-"+no+Exten;
                         fi.write( file ); 
                        out.println("nama baru="+nama1);
-                       String query = "INSERT INTO MsPemain (Nama_Pemain,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+nama1+"','"+id_team+"',"
-                        + "'"+ pos+"','"+ no +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
-                    boolean a=dh.setMsPemain(nama1,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
+                    boolean a=dh.setMsPemain(nama1,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
                     out.println(a);
-                    out.println(query);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Player");
@@ -146,7 +145,7 @@ public class doInsertPlayer extends HttpServlet {
                     else{
                         foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
                         fi.write( file ) ;
-                         boolean b=dh.setMsPemain(nama,id_team,pos,no,tinggi,berat,tgl,tangan,foto);
+                         boolean b=dh.setMsPemain(nama,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto);
                          out.println(b);
                     
                     }
