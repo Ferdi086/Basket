@@ -125,7 +125,7 @@
 		<h1>${item.value.namaPemain}</h1>
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
-		<a href="#" style="color:black"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
+		<a href="#" style="color:black" onclick="teamdetail('${item.value.idTeam}')"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
 		<h4><span>Birthdate</span>  : 
                     <c:choose>         
                         <c:when test = "${item.value.tgl == '1 January 1900'}">
@@ -158,33 +158,78 @@
                 </h4>
 	</div>
     </c:forEach>
-	<div class="col-lg-4 stat_p">
+	<div class="col-lg-4 stat_p" >
+            <h3>Regular</h3>
+            <table class="table table-bordered tb_career">
+                <tr>
+                    <th>Summary</th>
+                    <th>GP</th>
+                    <th>PPG</th>
+                    <th>RPG</th>
+                    <th>APG</th>
+                    <th>FG%</th>
+                    <th>FT%</th>
+                </tr>
+                <c:forEach var="item" items="${requestScope.sum}">
+                <tr>
+                    <td>${item.value.sum}</td>
+                    <td>${item.value.gp}</td>
+                    <td>${item.value.ppg}</td>
+                    <td>${item.value.rpg}</td>
+                    <td>${item.value.apg}</td>
+                    <td>${item.value.fg}</td>
+                    <td>${item.value.ft}</td>
+                </tr>
+                </c:forEach>
+                <c:forEach var="item" items="${requestScope.sumcar}">
+                <tr>
+                    <td>${item.value.sum}</td>
+                    <td>${item.value.gp}</td>
+                    <td>${item.value.ppg}</td>
+                    <td>${item.value.rpg}</td>
+                    <td>${item.value.apg}</td>
+                    <td>${item.value.fg}</td>
+                    <td>${item.value.ft}</td>
+                </tr>
+                </c:forEach>
+            </table>
+            
+            <h3>Playoff</h3>
+            <table class="table table-bordered tb_career">
+                <tr>
+                    <th>Summary</th>
+                    <th>GP</th>
+                    <th>PPG</th>
+                    <th>RPG</th>
+                    <th>APG</th>
+                    <th>FG%</th>
+                    <th>FT%</th>
+                </tr>
+                <c:forEach var="item" items="${requestScope.sumpo}">
+                <tr>
+                    <td>${item.value.sum}</td>
+                    <td>${item.value.gp}</td>
+                    <td>${item.value.ppg}</td>
+                    <td>${item.value.rpg}</td>
+                    <td>${item.value.apg}</td>
+                    <td>${item.value.fg}</td>
+                    <td>${item.value.ft}</td>
+                </tr>
+                </c:forEach>
+                <c:forEach var="item" items="${requestScope.sumpocar}">
+                <tr>
+                    <td>${item.value.sum}</td>
+                    <td>${item.value.gp}</td>
+                    <td>${item.value.ppg}</td>
+                    <td>${item.value.rpg}</td>
+                    <td>${item.value.apg}</td>
+                    <td>${item.value.fg}</td>
+                    <td>${item.value.ft}</td>
+                </tr>
+                </c:forEach>
+            </table>
+            
             <c:forEach var="item" items="${requestScope.ppg}">
-		<h3><span class="glyphicon glyphicon-expand"></span>  ${item.value.nama} </h3>
-		<table class="tb_p">
-			<tr>
-				<td class="tb_h"><h3>PPG</h3></td>
-			</tr>
-			<tr>
-				<td><h1>${item.value.ppg}</h1></td>
-			</tr>
-		</table>
-		<table class="tb_p">
-			<tr>
-				<td class="tb_h"><h3>APG</h3></td>
-			</tr>
-			<tr>
-				<td><h1>${item.value.apg}</h1></td>
-			</tr>
-		</table>
-		<table class="tb_p">
-			<tr>
-				<td class="tb_h"><h3>RPG</h3></td>
-			</tr>
-			<tr>
-				<td><h1>${item.value.rpg}</h1></td>
-			</tr>
-		</table>
             </c:forEach>
 	</div>
 </div>
@@ -609,6 +654,19 @@
                     }
                 });
             });
+            
+            function teamdetail(id){
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "TeamDetails");
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "ID_T");
+                hiddenField.setAttribute("value", id);
+                form.appendChild(hiddenField);
+                document.body.appendChild(form);
+                form.submit();
+            }
         </script>
 </body>
 </html>
