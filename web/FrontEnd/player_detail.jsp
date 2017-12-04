@@ -194,6 +194,7 @@
 	<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#menu01">  <b>STATS</b></a></li>
 					<li><a data-toggle="tab" href="#menu1">  <b>GAMELOG</b></a></li>
+					<li><a data-toggle="tab" href="#menu2">  <b>HISTORY TEAM</b></a></li>
   	</ul>
 				
 				  <div class="tab-content">
@@ -557,6 +558,26 @@
 						</div>
 						
 					</div>
+                                        <div id="menu2" class="tab-pane fade">
+                                            <div class="tbl_general table-responsive" style="margin-top:3%">
+							<table class="table table-bordered table-striped">
+                                                            <tr class="tr_general">
+                                                                <th>SEASON</th>
+                                                                <th>AGE</th>
+                                                                <th>TEAM</th>
+                                                                <th>POSITION</th>
+                                                                <th>GP</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2017-2018</td>
+                                                                <td>23</td>
+                                                                <td>JNE SILIWANGI BANDUNG</td>
+                                                                <td>CENTER</td>
+                                                                <td>25</td>
+                                                            </tr>
+                                                        </table>
+                                            </div>
+                                        </div>
 				</div>
 </div>
                                                         
