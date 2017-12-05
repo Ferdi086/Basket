@@ -80,6 +80,7 @@ public class doInsertTeam extends HttpServlet {
         String ext = "";
         String keterangan = "";
         String Exten = "";
+        String NamaNew="";
          int ini ;
        // int u = 1;
          while ( i.hasNext () ) {
@@ -89,6 +90,11 @@ public class doInsertTeam extends HttpServlet {
                // Get the uploaded file parameters
                FileItem namaitem = (FileItem) fileItems.get(0);
                String nama = namaitem.getString().trim();
+               if (nama.contains("'")){
+                    NamaNew = nama.replace("'", "''");
+               }else{
+                   NamaNew = nama;
+               }
                FileItem nickitem = (FileItem) fileItems.get(1);
                String nick = nickitem.getString().trim();
                FileItem divisiitem = (FileItem) fileItems.get(2);
@@ -115,9 +121,9 @@ public class doInsertTeam extends HttpServlet {
                     String foto = "team" +"_"+nick+Exten;
                     String logo = nick+Exten;
                     fi.write( file );
-                    String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+nama+"','"+logo+"','"+foto+"')";
+                    String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+NamaNew+"','"+logo+"','"+foto+"')";
                     out.println(query);
-                    boolean a=dh.setMsTeam(nick,nama,divisi,logo,foto);  
+                    boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,foto);  
                     out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");

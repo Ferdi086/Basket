@@ -76,7 +76,7 @@ public class doInsertPlayer extends HttpServlet {
          // Process the uploaded file items
          Iterator i = fileItems.iterator();
         String Name = "";
-        String NamaFoto = "";
+        String NamaNew = "";
         String ext = "";
         String keterangan = "";
         String Exten = "";
@@ -90,9 +90,9 @@ public class doInsertPlayer extends HttpServlet {
                FileItem namaitem = (FileItem) fileItems.get(0);
                String nama = namaitem.getString().trim();
                if (nama.contains("'")){
-                    NamaFoto = nama.replace("'", "''");
+                    NamaNew = nama.replace("'", "''");
                }else{
-                   NamaFoto = nama;
+                   NamaNew = nama;
                }
                FileItem id_teamitem = (FileItem) fileItems.get(1);
                String id_team = id_teamitem.getString().trim();
@@ -115,40 +115,31 @@ public class doInsertPlayer extends HttpServlet {
                //String contentType = fi.getContentType();
                //boolean isInMemory = fi.isInMemory();
                //long sizeInBytes = fi.getSize();
-               
+               Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath +id_team +"-"+NamaFoto+"-"+pos+"-"+no+"."+ ext) ;
+                       file = new File( filePath +id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten) ;
                     } else {
-                       file = new File( filePath +id_team +"-"+NamaFoto+"-"+pos+"-"+no+"."+ ext) ;
+                       file = new File( filePath +id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten) ;
                     }
                     
-                    Exten="."+ ext;
+                    
                     
                     //dh.setFile(Name,Exten);
                      //akhir upload
                     //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
                     out.println("foto="+foto);
                     out.println(file);
-                    if (nama.contains("'")){
-                       String nama1= nama.replace("'", "`");
-                       foto = id_team +"-"+nama1+"-"+pos+"-"+no+Exten;
+                   
+                       foto = id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten;
                         fi.write( file ); 
-                       out.println("nama baru="+nama1);
-                    boolean a=dh.setMsPemain(nama1,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
+                       out.println("nama baru="+NamaNew);
+                    boolean a=dh.setMsPemain(NamaNew,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
                     out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Player");
-                    }
-                    else{
-                        foto = id_team +"-"+nama+"-"+pos+"-"+no+Exten;
-                        fi.write( file ) ;
-                         boolean b=dh.setMsPemain(nama,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto);
-                         out.println(b);
-                    
-                    }
                }
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");

@@ -85,6 +85,7 @@ public class doUpdateTeam extends HttpServlet {
         String foto ="";
         String Exten = "";
         String ext ="";
+        String NamaNew="";
         int u = 1;
          while ( i.hasNext () ) {
             out.println(u);
@@ -95,6 +96,11 @@ public class doUpdateTeam extends HttpServlet {
                // Get the uploaded file parameters
                FileItem namaitem = (FileItem) fileItems.get(1);
                nama = namaitem.getString().trim();
+                if (nama.contains("'")){
+                    NamaNew = nama.replace("'", "''");
+               }else{
+                   NamaNew = nama;
+               }
                FileItem nickitem = (FileItem) fileItems.get(0);
                nick = nickitem.getString();
                FileItem divisiitem = (FileItem) fileItems.get(2);
@@ -125,9 +131,9 @@ public class doUpdateTeam extends HttpServlet {
                     logo = nick+Exten;
                     //out.println(foto + logo);
                     fi.write( file );
-                    String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama+"',Logo='"+logo+"',Gambar='"+foto+"' where ID_Team='"+nick+"'";
+                    String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+NamaNew+"',Logo='"+logo+"',Gambar='"+foto+"' where ID_Team='"+nick+"'";
                     out.println("query 2 ="+query+"<br/>");
-                    boolean a=dh.setUpdateMsTeam(nick,nama,divisi,logo,foto);
+                    boolean a=dh.setUpdateMsTeam(nick,NamaNew,divisi,logo,foto);
                     //out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
@@ -141,10 +147,15 @@ public class doUpdateTeam extends HttpServlet {
                nick = nickitem.getString().trim();
                FileItem namaitem = (FileItem) fileItems.get(1);
                nama = namaitem.getString().trim();
+               if (nama.contains("'")){
+                    NamaNew = nama.replace("'", "''");
+               }else{
+                   NamaNew = nama;
+               }
                FileItem divisiitem = (FileItem) fileItems.get(2);
                String divisi = divisiitem.getString().trim();
-               String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama+"',Logo='"+logo+"',Gambar='"+foto+"'where ID_Team='"+nick+"'";
-               boolean a=dh.setUpdateMsTeam(nick,nama,divisi,logo,foto);
+               String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+NamaNew+"',Logo='"+logo+"',Gambar='"+foto+"'where ID_Team='"+nick+"'";
+               boolean a=dh.setUpdateMsTeam(nick,NamaNew,divisi,logo,foto);
                //out.println(a);
                out.println("query 1 ="+query+"<br/>");
                  

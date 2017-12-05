@@ -336,7 +336,7 @@
                                 <!--<th data-align="center" data-valign="middle"><b><center>Id Pemain</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Foto</center><b></th>
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Players Name</center><b></th>     
-                                <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Region</center><b></th>          
+                                <th data-align="center" data-valign="middle" ><b><center>Region</center><b></th>          
                                 <th data-align="center" data-valign="middle"><b><center>Birth Date</center><b></th>
                                 <th data-align="center" data-valign="middle" ><b><center>Height</center></b></th>
                                 <th data-align="center" data-valign="middle" ><b><center>Weight</center></b></th>
@@ -364,8 +364,8 @@
                                 <c:set var="flagactive" value="${item.value.flagactive}" />
                             <tr>
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
-                                <td style="vertical-align: middle;text-align: center"> ${namaPemain} </td>
+                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
+                                <td style="vertical-align: middle;text-align: center"> ${namaPemain}</td>
                                 <c:choose>
                                     <c:when test="${region=='Lokal'}">
                                         <td style="vertical-align: middle;text-align: center"> Local </td>

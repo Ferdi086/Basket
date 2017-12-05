@@ -51,6 +51,7 @@ public class Player extends HttpServlet {
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();
             HashMap pl = dh.getPlayer();
+            
             out.println(pl);
            
             
