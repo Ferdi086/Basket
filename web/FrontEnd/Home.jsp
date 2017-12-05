@@ -116,7 +116,7 @@
         
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4>Every Player</h4>
+                <h4>Every Local Player</h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
@@ -220,6 +220,34 @@
                 </ul>
             </div>
         </div>
+        <div class='col-lg-3 col-md-12-sm-12 kiri'>
+            <div class='kiri_jud'>
+                <h4>Every Foreign Player</h4>
+            </div>
+            <center>
+                <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
+                    <c:forEach var = "item" items = "${requestScope.p1a}">
+                        <a href="#" data-toggle="tooltip" data-placement="right" title="${item.value.namaPemain}">
+                            <img src='../img/Players/${item.value.foto}' onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
+                        </a>
+                    </c:forEach>
+                </div>
+                <div class="kiri_form">
+                <form id="Pl_kiri2" method="post" action="PlayerDetails">		
+                    <select name='' class="form-group" id="sel_team2" required>
+                            <option value=''> ------------ Select a Team ------------ </option>
+                            <c:forEach var="item" items="${requestScope.team}">
+                                <option value="${item.value.id}"> ${item.value.namateam} </option>
+                            </c:forEach>
+                    </select>
+                    <select id="sel_plyr2" name='ID_P' required>
+                            <option value=''> ------------ Select a Player ------------ </option>
+                    </select><br>
+                    <button class="kiri_btn"> Go </button>
+                </form> 
+                </div>
+            </center>
+        </div>
     </div>
     
     
@@ -231,6 +259,7 @@
         <script>
             $(document).ready(function(){ 
                 $("#sel_plyr").select2();
+                $("#sel_plyr2").select2();
                 $('[data-toggle="tooltip"]').tooltip();   
             });
             $('#sel_team').change(function () {
@@ -238,19 +267,31 @@
                 //alert(id); 
                 $.ajax({
                     type: 'POST',
-                    url: '../BackEnd/doSelectPlayer',
+                    url: '../FrontEnd/doSelectPlayer2',
                     data: {
+                        'asal' : "Lokal",
                         'bagian': 1,
                         'category': id
                     },
-                    beforeSend: function(){
-                        $('#loading').show();
-                    },
-                    complete: function(){
-                        $('#loading').hide();
-                    },
                     success: function (data) {
                         $('#sel_plyr').html(data);         
+                    }
+                });
+            });
+            
+            $('#sel_team2').change(function () {
+                var id = $(this).val();
+                //alert(id); 
+                $.ajax({
+                    type: 'POST',
+                    url: '../FrontEnd/doSelectPlayer2',
+                    data: {
+                        'asal': "Asing",
+                        'bagian': 1,
+                        'category': id
+                    },
+                    success: function (data) {
+                        $('#sel_plyr2').html(data);         
                     }
                 });
             });

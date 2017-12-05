@@ -373,11 +373,11 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public HashMap getPlayer14(){
+    public HashMap getPlayerRandom(String asal){
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "SELECT TOP 9 a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team ORDER BY NEWID()  "; 
+            String query = "SELECT TOP 9 a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team and Asal = '"+asal+"' ORDER BY NEWID()  "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){ 
@@ -990,7 +990,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = " select a.ID_Musim,a.Nama_Team,a.ID_Team,a.TotalGame,a.TotalWin,a.TotalGame-a.TotalWin as TotalLost,b.Point,a.Logo  from " +
+            String query = " select top 6 a.ID_Musim,a.Nama_Team,a.ID_Team,a.TotalGame,a.TotalWin,a.TotalGame-a.TotalWin as TotalLost,b.Point,a.Logo  from " +
 "                            ( " +
 "                            	select a.ID_Musim,a.Nama_Team,a.Logo,a.ID_Team,a.TotalGame,  " +
 "                            	CASE  " +
@@ -1012,7 +1012,7 @@ public class DatabaseHandler extends Connect {
 "                            	ON a.ID_Musim=b.ID_Musim and a.ID_Team=b.ID_Team " +
 "                            ) a, " +
 "                            (  " +
-"                            	select top 10 a.ID_Musim,a.ID_Team,Sum(a.PTS)  as Point " +
+"                            	select top 12 a.ID_Musim,a.ID_Team,Sum(a.PTS)  as Point " +
 "                            	from TrGameLogs a, MsMusim b where a.ID_Musim=b.ID_Musim and b.Jenis = 'REGULAR' " +
 "                            	group by a.ID_Musim,a.ID_Team order by a.ID_Musim DESC " +
 "                            ) b  " +
@@ -1062,5 +1062,109 @@ public class DatabaseHandler extends Connect {
         }
         return tes;
     }
+    public HashMap getPlayerDetail2(String id_team, String asal){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' and asal = '"+asal+"' ORDER BY Nama_Pemain"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new ObjPlayer(rs.getString(1), rs.getString(2)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
     
+    public HashMap getSummaryRegular(String id){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select a.Tahun,COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT " +
+"       from " +
+"       ( " +
+"        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
+"        from TrGameLogs a, MsPemain b, MsMusim c " +
+"        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'REGULAR'  " +
+"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new PlayerDetailSummary(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getSummaryRegularCar(String id){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT " +
+"       from " +
+"       ( " +
+"        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.		ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
+"        from TrGameLogs a, MsPemain b, MsMusim c " +
+"        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'REGULAR'  " +
+"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new PlayerDetailSummary("Career",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getSummaryPlayoff(String id){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select a.Tahun,COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT " +
+"       from " +
+"       ( " +
+"        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
+"        from TrGameLogs a, MsPemain b, MsMusim c " +
+"        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'PLAYOFF'  " +
+"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new PlayerDetailSummary(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getSummaryPlayoffCar(String id){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT " +
+"       from " +
+"       ( " +
+"        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.		ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
+"        from TrGameLogs a, MsPemain b, MsMusim c " +
+"        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'PLAYOFF'  " +
+"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new PlayerDetailSummary("Career",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
 }

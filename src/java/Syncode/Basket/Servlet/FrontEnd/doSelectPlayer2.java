@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjPlayer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ferdinand
+ * @author Yuga
  */
-public class Home extends HttpServlet {
+public class doSelectPlayer2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,27 +32,47 @@ public class Home extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh = new DatabaseHandler();
+        String bagian = request.getParameter("bagian")==null?"0":request.getParameter("bagian");
+        String asal = request.getParameter("asal")==null?"0":request.getParameter("asal");
+        DatabaseHandler db=new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String asal1 = "Lokal";
-        String asal2 = "Asing";
-        HashMap tr = dh.getPlayerRandom(asal1); 
-        HashMap tra = dh.getPlayerRandom(asal2);      
-        HashMap tm = dh.getTeam();
-        HashMap trd = dh.getNewsList();
-        HashMap tre = dh.getTrendingPlayer();
-        HashMap trf = dh.getKlasemen();
-        HashMap trg = dh.getKlasemen2();
-        request.setAttribute("p1",tr);
-        request.setAttribute("p1a",tra);
-        request.setAttribute("team",tm);
-        request.setAttribute("news", trd);
-        request.setAttribute("tren", tre);
-        request.setAttribute("klas", trf);
-        request.setAttribute("klas2", trg);
-        //out.print(trf.size());
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        //out.println(bagian);
+        if(bagian.equals("0")){
+            //HashMap hm = db.getPlayerDetail();
+            //request.setAttribute("pemain",hm);
+            //out.println("gagal");
+           request.getRequestDispatcher("StatistikPlayer.jsp").forward(request, response);
+            
+        }
+        else if(bagian.equals("1")){
         
+            response.setContentType("text/html;charset=UTF-8");
+            
+            String category = request.getParameter("category")==null?"0":request.getParameter("category");
+            
+            if(category.equals("")){
+                out.print("<option value=''>--No --</option>");
+            }
+            else{
+                HashMap dsn = db.getPlayerDetail2(category, asal);
+                    out.print("<option value=''>-- Choose One --</option>");
+                    for(int i=0; i<dsn.size(); i++){
+                        ObjPlayer ds = (ObjPlayer) dsn.get(i);
+                        
+                        if(ds.getNamaPemain().contains(".")){
+                            String nama= ds.getNamaPemain().replace(".","");
+                         out.print("<option value=\""+ ds.getIdPemain()+"-"+ nama+"\">"+ nama+"</option>");
+                   
+                        }else{
+                        out.print("<option value=\""+ ds.getIdPemain()+"-"+ ds.getNamaPemain()+"\">"+ ds.getNamaPemain()+"</option>");
+                   
+                        }
+                    }
+            }
+            
+            
+           
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
