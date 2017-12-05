@@ -464,7 +464,7 @@ public class DatabaseHandler extends Connect {
                         "		from TrGameLogs a, MsPemain b, MsMusim c " +
                         "		where a.ID_Pemain = '"+id_p+"' and c.Jenis = 'REGULAR' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
                         "	) a group by Jenis,a.Periode,a.Nama_Pemain,a.ID_Team " +
-                        "order by Jenis";
+                        "order by a.Periode DESC";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -526,7 +526,7 @@ public class DatabaseHandler extends Connect {
                         "		from TrGameLogs a, MsPemain b, MsMusim c " +
                         "		where a.ID_Pemain = '"+id_p+"' and c.Jenis = 'PLAYOFF' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
                         "	) a group by Jenis,a.Periode,a.Nama_Pemain,a.ID_Team " +
-                        "order by Jenis";
+                        "order by a.Periode DESC";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -1089,7 +1089,8 @@ public class DatabaseHandler extends Connect {
 "        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
 "        from TrGameLogs a, MsPemain b, MsMusim c " +
 "        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'REGULAR'  " +
-"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun"; 
+"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun "+
+"       ORDER BY Tahun DESC"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -1133,7 +1134,8 @@ public class DatabaseHandler extends Connect {
 "        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
 "        from TrGameLogs a, MsPemain b, MsMusim c " +
 "        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'PLAYOFF'  " +
-"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun"; 
+"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun "+
+"       ORDER BY Tahun DESC";  
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -1177,7 +1179,8 @@ public class DatabaseHandler extends Connect {
 "                                 select CONVERT(VARCHAR(10),c.Tahun_Awal)+'-'+CONVERT(VARCHAR(10),Tahun_Akhir) as Periode,b.Nama_Pemain,DATEDIFF(year, b.Tgl_Lahir, STR(c.Tahun_Awal))as Age,a.ID_Team,e.Nama_Team,[MIN], d.Nama_Posisi, e.Logo " +
 "                                 from TrGameLogs a, MsPemain b, MsMusim c, MsPosisi d, MsTeam e " +
 "                                 where a.ID_Pemain = '"+id+"' and c.Jenis = 'REGULAR' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim and b.KD_Pos = d.KD_Pos and a.ID_Team = e.ID_Team " +
-"                               ) a group by a.Periode,a.Nama_Pemain,a.ID_Team,a.Age,a.Logo,a.Nama_Posisi,a.Nama_Team";
+"                               ) a group by a.Periode,a.Nama_Pemain,a.ID_Team,a.Age,a.Logo,a.Nama_Posisi,a.Nama_Team "+
+                    "           ORDER BY a.Periode DESC";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){

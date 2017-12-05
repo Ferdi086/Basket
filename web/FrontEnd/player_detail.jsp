@@ -170,17 +170,6 @@
                     <th>FG%</th>
                     <th>FT%</th>
                 </tr>
-                <c:forEach var="item" items="${requestScope.sum}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
-                </c:forEach>
                 <c:forEach var="item" items="${requestScope.sumcar}">
                 <tr>
                     <td>${item.value.sum}</td>
@@ -192,6 +181,17 @@
                     <td>${item.value.ft}</td>
                 </tr>
                 </c:forEach>
+                <c:forEach var="item" items="${requestScope.sum}">
+                <tr>
+                    <td>${item.value.sum}</td>
+                    <td>${item.value.gp}</td>
+                    <td>${item.value.ppg}</td>
+                    <td>${item.value.rpg}</td>
+                    <td>${item.value.apg}</td>
+                    <td>${item.value.fg}</td>
+                    <td>${item.value.ft}</td>
+                </tr>
+                </c:forEach>                
             </table>
             
             <h3>Playoff</h3>
@@ -205,17 +205,6 @@
                     <th>FG%</th>
                     <th>FT%</th>
                 </tr>
-                <c:forEach var="item" items="${requestScope.sumpo}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
-                </c:forEach>
                 <c:forEach var="item" items="${requestScope.sumpocar}">
                 <tr>
                     <td>${item.value.sum}</td>
@@ -227,6 +216,18 @@
                     <td>${item.value.ft}</td>
                 </tr>
                 </c:forEach>
+                <c:forEach var="item" items="${requestScope.sumpo}">
+                <tr>
+                    <td>${item.value.sum}</td>
+                    <td>${item.value.gp}</td>
+                    <td>${item.value.ppg}</td>
+                    <td>${item.value.rpg}</td>
+                    <td>${item.value.apg}</td>
+                    <td>${item.value.fg}</td>
+                    <td>${item.value.ft}</td>
+                </tr>
+                </c:forEach>
+                
             </table>
             
             <c:forEach var="item" items="${requestScope.ppg}">
