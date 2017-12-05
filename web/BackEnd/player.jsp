@@ -382,7 +382,7 @@
                                 <td style="vertical-align: middle;text-align: center"> ${idTeam} </td>
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
                                 <td style="vertical-align: middle;text-align: center"> 
-                                    <div style="margin:auto;">
+                                    <div style="margin:auto;">                                                                          
                                         <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${namaPemain}','${region}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${tangan}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
                                         <c:choose>
                                             <c:when test="${flagactive=='Y'}">
