@@ -50,6 +50,7 @@ public class PlayerDetails extends HttpServlet {
         HashMap sumcar = dh.getSummaryRegularCar(ID);
         HashMap sumpo = dh.getSummaryPlayoff(ID);
         HashMap sumpocar = dh.getSummaryPlayoffCar(ID);
+        HashMap his = dh.getHistoryTeam(ID);
         
         request.setAttribute("player",tr);
         request.setAttribute("player_stat",tra);
@@ -62,6 +63,7 @@ public class PlayerDetails extends HttpServlet {
         request.setAttribute("sumcar",sumcar);
         request.setAttribute("sumpo",sumpo);
         request.setAttribute("sumpocar",sumpocar);
+        request.setAttribute("his", his);
         //out.print(tra.size());
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }

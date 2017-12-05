@@ -204,6 +204,9 @@ color:black;
 	padding:6px;
 	margin:2% 0;
 }
+.histo .table tbody tr td{
+    vertical-align:middle !important;
+}
 /*    NEWS */
 .a_box{
 	margin: 1% 0 2% 5%;
