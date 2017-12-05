@@ -15,14 +15,18 @@ public class PlayerDetailHistory {
     private String team="";
     private String pos="";
     private String gp="";
+    private String logo ="";
+    private String nteam ="";
 
     public PlayerDetailHistory() {
     }
 
-    public PlayerDetailHistory(String season, String age, String team, String pos, String gp) {
+    public PlayerDetailHistory(String season, String age, String logo, String team,  String nteam, String pos, String gp) {
         this.season = season;
         this.age = age;
+        this.logo = logo;
         this.team = team;
+        this.nteam = nteam;
         this.pos = pos;
         this.gp = gp;
     }
@@ -43,12 +47,28 @@ public class PlayerDetailHistory {
         this.age = age;
     }
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
     public String getTeam() {
         return team;
     }
 
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    public String getNteam() {
+        return nteam;
+    }
+
+    public void setNteam(String nteam) {
+        this.nteam = nteam;
     }
 
     public String getPos() {
