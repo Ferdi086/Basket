@@ -27,6 +27,11 @@
         <script src="../js/jquery.scrollbar.min.js"></script>
         <link rel="stylesheet" href="../css/style.css">
     </head>
+    <style>
+        .copyright{
+            margin-top: 75px;
+        }
+    </style>
     <body>
         <%@include file="Sync/Header.jsp" %>
         <%@include file="Sync/Sidebar.jsp" %>
@@ -59,10 +64,10 @@
                                 <tr>
                                     <td style="vertical-align: middle;text-align: center">${loopCounter.count}</td>
                                     <td style="vertical-align: middle;text-align: center">${item.value.tgl}</td>
-                                    <td style="vertical-align: middle;text-align: center"><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</td>
+                                    <td style="vertical-align: middle;text-align: center"><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl' onerror='this.remove()'>${item.value.team1}</td>
                                     <td style="vertical-align: middle;text-align: center">${item.value.wl1}</td>
                                     <td style="vertical-align: middle;text-align: center">${item.value.pts1}</td>
-                                    <td style="vertical-align: middle;text-align: center"><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</td>
+                                    <td style="vertical-align: middle;text-align: center"><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl' onerror='this.remove()'>${item.value.team2}</td>
                                     <td style="vertical-align: middle;text-align: center">${item.value.wl2}</td>
                                     <td style="vertical-align: middle;text-align: center">${item.value.pts2}</td>
                                 </tr>
@@ -70,8 +75,9 @@
                         </tbody>
                     </table>
                     </div>
-            </div>
                 <%@include file="Sync/Footer.jsp"%>
+            </div>
+                
             </div>
         
         <!-- Modal Konfirmasi Input-->
