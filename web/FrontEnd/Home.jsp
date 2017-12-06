@@ -75,17 +75,17 @@
     <%@include file="Sync/Menu.jsp" %>
 
     <div class='row bungkus'>
-        <p><b>BasketBall Statistics</b> for IBL(Indonesian Basketball League)</p>
+        <p style="margin-left:25px;"><b>BasketBall Statistics</b> for IBL(Indonesian Basketball League)</p>
         
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4>Every Local Player</h4>
+                <h4><center>Every Local Player</center></h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1}">
                         <a href="#" data-toggle="tooltip" data-placement="right" title="${item.value.namaPemain}">
-                            <img src='../img/Players/${item.value.foto}' onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
+                            <img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
                         </a>
                     </c:forEach>
                 </div>
@@ -104,11 +104,10 @@
                 </form> 
                 </div>
             </center>
-        </div>
-        
+        </div>        
         <div class="col-lg-5 col-md-12-sm-12 kanan">
             <div class="kanan_jud">
-                <h4>Every Team</h4>
+                <h4><center>Every Team</center></h4>
             </div>
             <div class="kanan_isi">
                 <h4>2017 - 2018 IBL Standings</h4>
@@ -160,32 +159,9 @@
                 </table>
             </div>
         </div>
-        <div class='col-lg-3 col-md-12 pojok'>
-            <div class='pojok_jud'>
-                <h4>Others News</h4>
-            </div>
-            <div id='sea'>
-                <h4>2017-2018 IBL Season</h4>
-                <a href='Season'>2017-2018 IBL Regular Schedule</a>
-            </div>
-            <div id='tren'>
-                <h4>Trending Player Pages</h4>
-                <c:forEach var='item' items='${requestScope.tren}'>
-                    <a href='#' onclick='playdetail(${item.value.foto})'>${item.value.namaPemain}</a>,
-                </c:forEach>
-            </div>
-            <div id='pojok_news'>
-                <h4>Recent News</h4>
-                <ul class='pjk'>
-                    <c:forEach var="item" items="${requestScope.news}">
-                         <li> <a href='#' onclick="detail(${item.value.id})">${item.value.judul}</a> </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4>Every Foreign Player</h4>
+                <h4><center>Every Foreign Player</center></h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
@@ -210,6 +186,29 @@
                 </form> 
                 </div>
             </center>
+        </div>
+        <div class='col-lg-3 col-md-10 pojok'>
+            <div class='pojok_jud'>
+                <h4><center>Others News</center></h4>
+            </div>
+            <div id='sea'>
+                <h4>2017-2018 IBL Season</h4>
+                <a href='Season'>2017-2018 IBL Regular Schedule</a>
+            </div>
+            <div id='tren'>
+                <h4>Trending Player Pages</h4>
+                <c:forEach var='item' items='${requestScope.tren}'>
+                    <a href='#' onclick='playdetail(${item.value.foto})'>${item.value.namaPemain}</a>,
+                </c:forEach>
+            </div>
+            <div id='pojok_news'>
+                <h4>Recent News</h4>
+                <ul class='pjk'>
+                    <c:forEach var="item" items="${requestScope.news}">
+                         <li> <a href='#' onclick="detail(${item.value.id})">${item.value.judul}</a> </li>
+                    </c:forEach>
+                </ul>
+            </div>
         </div>
     </div>
     

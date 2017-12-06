@@ -111,14 +111,14 @@
 			<div class="wthree_team_grids">
                             <c:forEach var = "item" items = "${requestScope.player}">
 				<div class="col-md-3 wthree_team_grid">
-					<a href="PlayerDetails?ID_P=${item.value.idPemain}">
-						<div class="hovereffect">
-						<img src="../img/Players/${item.value.foto}" alt=" " class="img-responsive" />
-						<div class="overlay">
-							<h6>${item.value.namaPemain}</h6>
-						</div>
-					</a>
-					</div>
+                                    <a href="PlayerDetails?ID_P=${item.value.idPemain}">
+					<div class="hovereffect">
+                                            <img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-responsive" />
+                                            <div class="overlay">
+                                                <h6>${item.value.namaPemain}</h6>
+                                            </div>
+                                        </div>
+                                    </a>                                        
 					<h4>${item.value.namaPos}</h4>
 					<p>${item.value.tinggi} cm</p>
 				</div>
