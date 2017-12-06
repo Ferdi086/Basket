@@ -440,12 +440,24 @@
                     format: 'YYYY',
                     useCurrent: false
                 }); 
-            
+            $('#Uawal').datetimepicker({
+                    format: 'YYYY'
+                });
+            $('#Uakhir').datetimepicker({
+                    format: 'YYYY',
+                    useCurrent: false
+                }); 
         $("#awal").on("dp.change", function (e) {
             $('#akhir').data("DateTimePicker").minDate(e.date);
         });
         $("#akhir").on("dp.change", function (e) {
             $('#awal').data("DateTimePicker").maxDate(e.date);
+        });
+        $("#Uawal").on("dp.change", function (e) {
+            $('#Uakhir').data("DateTimePicker").minDate(e.date);
+        });
+        $("#Uakhir").on("dp.change", function (e) {
+            $('#Uawal').data("DateTimePicker").maxDate(e.date);
         });
         $("#reset").click(function(){
                 $("#musim").focus();

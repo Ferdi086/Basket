@@ -131,6 +131,8 @@ public class doUpdatePlayer extends HttpServlet {
                String fileName = fi.getName()==""?"kosong":fi.getName();
                ext = fileName.split("\\.")[0]=="kosong"?"ini ext kosong":fileName.split("\\.")[1];
                out.println(ext);
+               out.println("tangan = "+tangan);
+               out.println("region = "+region);
                //out.println(idpemain + nama_pemain + tgl + tinggi + berat + pos + idTeam + noPunggung);
                Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
@@ -151,7 +153,7 @@ public class doUpdatePlayer extends HttpServlet {
                     String query2 = "update MsPemain set Nama_Pemain='"+NamaNew+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
                     boolean a=dh.setUpdatePemain(NamaNew,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
                     out.println("<br/><br/><br/> query 2 ="+query2+"<br/><br/><br/>");
-                    out.println(a);
+                    //out.println(a);
                     
                    
             }
@@ -187,8 +189,8 @@ public class doUpdatePlayer extends HttpServlet {
               out.println("tgl= "+tinggi);
               String query1 = "update MsPemain set Nama_Pemain='"+NamaNew+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
                    
-                   boolean a=dh.setUpdatePemain(NamaNew,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
-                out.println(a);
+                  boolean a=dh.setUpdatePemain(NamaNew,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
+                //out.println(a);
                 out.println("<br/><br/><br/>query 1= "+query1+"<br/><br/><br/>");
             }
           }

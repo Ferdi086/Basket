@@ -265,8 +265,7 @@
                     </table>
                     </div>
             </div>
-                <!--<%@include file="Sync/Header.jsp" %>-->
-                    
+                <%@include file="Sync/Footer.jsp"%>
             </div>
         
         <!-- Modal Konfirmasi Input-->
