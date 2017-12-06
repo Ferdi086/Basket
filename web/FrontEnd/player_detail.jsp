@@ -628,7 +628,7 @@
                                                                 <th>AGE</th>
                                                                 <th>TEAM</th>
                                                                 <th>POSITION</th>
-                                                                <th>GP</th>
+                                                                <th>GAMEPLAY</th>
                                                             </tr>
                                                             <c:forEach var="item" items="${requestScope.his}">
                                                             <tr>

@@ -259,7 +259,7 @@ h2 span {
                                 <c:forEach var = "item" items = "${requestScope.player}">
                                 <div class="col-md-3 wthree_team_grid">
 					<div class="hovereffect" onclick="playdetail(${item.value.idPemain})">
-						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}" class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="400" height="400"/>
+						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}"  class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" style="height:100%; min-height:283px;" />
 						<div class="overlay">
                                                     <h6>${item.value.namaPemain}</h6>
 						</div>
