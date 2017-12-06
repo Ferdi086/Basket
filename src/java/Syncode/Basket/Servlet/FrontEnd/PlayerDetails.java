@@ -35,7 +35,7 @@ public class PlayerDetails extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
         String ID = request.getParameter("ID_P");
-        //String ID = "109";
+        //String ID = "200";
         if(ID.contains("-")){
             String part[] = ID.split("\\-");
             ID = part[0];
@@ -67,7 +67,7 @@ public class PlayerDetails extends HttpServlet {
         request.setAttribute("sumpo",sumpo);
         request.setAttribute("sumpocar",sumpocar);
         request.setAttribute("his", his);
-        //out.print(tra.size());
+        out.print(his.size());
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }
 
