@@ -173,7 +173,7 @@
                 <c:forEach var="item" items="${requestScope.sum}">
                 <tr>
                     <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
+                    <td>${item.value.GP}</td>
                     <td>${item.value.ppg}</td>
                     <td>${item.value.rpg}</td>
                     <td>${item.value.apg}</td>
@@ -182,16 +182,25 @@
                 </tr>
                 </c:forEach>
                 <c:forEach var="item" items="${requestScope.sumcar}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
-                </c:forEach>
+                    <c:choose>        
+                        <c:when test = "${empty item.value.GP}">
+                            <tr>
+                                <td colspan="7"><center>No matching records found</center></td>
+                            </tr>
+                        </c:when>  
+                        <c:otherwise>
+                            <tr>
+                                <td>${item.value.sum}</td>
+                                <td>${item.value.GP}</td>
+                                <td>${item.value.ppg}</td>
+                                <td>${item.value.rpg}</td>
+                                <td>${item.value.apg}</td>
+                                <td>${item.value.fg}</td>
+                                <td>${item.value.ft}</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose> 
+                </c:forEach>                
             </table>
             
             <h3>Playoff</h3>
@@ -206,31 +215,39 @@
                     <th>FT%</th>
                 </tr>
                 <c:forEach var="item" items="${requestScope.sumpo}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
+                    <tr>
+                        <td>${item.value.sum}</td>
+                        <td>${item.value.GP}</td>
+                        <td>${item.value.ppg}</td>
+                        <td>${item.value.rpg}</td>
+                        <td>${item.value.apg}</td>
+                        <td>${item.value.fg}</td>
+                        <td>${item.value.ft}</td>
+                    </tr>
                 </c:forEach>
                 <c:forEach var="item" items="${requestScope.sumpocar}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
+                    <c:choose>        
+                        <c:when test = "${empty item.value.GP}">
+                            <tr>
+                                <td colspan="7"><center>No matching records found</center></td>
+                            </tr>
+                        </c:when>  
+                        <c:otherwise>
+                            <tr>
+                                <td>${item.value.sum}</td>
+                                <td>${item.value.GP}</td>
+                                <td>${item.value.ppg}</td>
+                                <td>${item.value.rpg}</td>
+                                <td>${item.value.apg}</td>
+                                <td>${item.value.fg}</td>
+                                <td>${item.value.ft}</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose> 
                 </c:forEach>
+                
             </table>
             
-            <c:forEach var="item" items="${requestScope.ppg}">
-            </c:forEach>
 	</div>
 </div>
 
@@ -605,7 +622,7 @@
 					</div>
                                         <div id="menu2" class="tab-pane fade">
                                             <div class="tbl_general table-responsive" style="margin-top:3%">
-							<table class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped histo">
                                                             <tr class="tr_general">
                                                                 <th>SEASON</th>
                                                                 <th>AGE</th>
@@ -613,13 +630,16 @@
                                                                 <th>POSITION</th>
                                                                 <th>GP</th>
                                                             </tr>
+                                                            <c:forEach var="item" items="${requestScope.his}">
                                                             <tr>
-                                                                <td>2017-2018</td>
-                                                                <td>23</td>
-                                                                <td>JNE SILIWANGI BANDUNG</td>
-                                                                <td>CENTER</td>
-                                                                <td>25</td>
+                                                                <td>${item.value.season}</td>
+                                                                <td>${item.value.age}</td>
+                                                                <td><a href='#' onclick="teamdetail('${item.value.team}')"><img src="../img/Team/Logo/${item.value.logo}" style="width:50px; height:50px">
+                                                                    ${item.value.nteam}</a></td>
+                                                                <td>${item.value.pos}</td>
+                                                                <td>${item.value.gp}</td>
                                                             </tr>
+                                                            </c:forEach>
                                                         </table>
                                             </div>
                                         </div>

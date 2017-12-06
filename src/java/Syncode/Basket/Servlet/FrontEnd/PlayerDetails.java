@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.PlayerDetailStats;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -34,6 +35,7 @@ public class PlayerDetails extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
         String ID = request.getParameter("ID_P");
+        //String ID = "109";
         if(ID.contains("-")){
             String part[] = ID.split("\\-");
             ID = part[0];
@@ -50,7 +52,9 @@ public class PlayerDetails extends HttpServlet {
         HashMap sumcar = dh.getSummaryRegularCar(ID);
         HashMap sumpo = dh.getSummaryPlayoff(ID);
         HashMap sumpocar = dh.getSummaryPlayoffCar(ID);
-        
+        HashMap his = dh.getHistoryTeam(ID);
+        /*PlayerDetailStats x = (PlayerDetailStats) trbs.get(0);
+        out.print(x.getNo());*/
         request.setAttribute("player",tr);
         request.setAttribute("player_stat",tra);
         request.setAttribute("player_stat_sum",tras);
@@ -62,6 +66,7 @@ public class PlayerDetails extends HttpServlet {
         request.setAttribute("sumcar",sumcar);
         request.setAttribute("sumpo",sumpo);
         request.setAttribute("sumpocar",sumpocar);
+        request.setAttribute("his", his);
         //out.print(tra.size());
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }

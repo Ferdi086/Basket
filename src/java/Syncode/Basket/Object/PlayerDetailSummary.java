@@ -11,25 +11,39 @@ package Syncode.Basket.Object;
  */
 public class PlayerDetailSummary {
     private String sum="";
-    private String gp="";
+    private String GP="";
     private String ppg="";
     private String rpg="";
     private String apg="";
     private String fg="";
     private String ft="";
+    private int no=0;
 
     public PlayerDetailSummary() {
     }
 
     
-    public PlayerDetailSummary(String sum, String gp, String ppg, String rpg, String apg, String fg, String ft) {
+    public PlayerDetailSummary(int no, String sum, String GP, String ppg, String rpg, String apg, String fg, String ft) {
+        this.no = no;
         this.sum = sum;
-        this.gp = gp;
+        this.GP = GP;
         this.ppg = ppg;
         this.rpg = rpg;
         this.apg = apg;
         this.fg = fg;
         this.ft = ft;
+    }
+    public PlayerDetailSummary(int no, String GP){
+        this.no = no;
+        this.GP=GP; 
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getSum() {
@@ -40,12 +54,12 @@ public class PlayerDetailSummary {
         this.sum = sum;
     }
 
-    public String getGp() {
-        return gp;
+    public String getGP() {
+        return GP;
     }
 
-    public void setGp(String gp) {
-        this.gp = gp;
+    public void setGP(String GP) {
+        this.GP = GP;
     }
 
     public String getPpg() {
