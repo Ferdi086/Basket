@@ -287,6 +287,7 @@
                                             <option value=""> Choose One Hand's Position </option>
                                             <option value="kanan">Right</option>
                                             <option value="kiri">Left</option>
+                                            <option value="N/A">Unknown</option>
                                         </select>
                                     </div>                                  
                                 </div>	
@@ -509,6 +510,7 @@
                                             <option value=""> Choose One Hand's Position </option>
                                             <option value="Kanan">Right</option>
                                             <option value="Kiri">Left</option>
+                                            <option value="N/A">Unknown</option>
                                         </select>
                                     </div>   
                             </div>	

@@ -227,18 +227,10 @@ public class DatabaseHandler extends Connect {
         String query="";
         try {       
                 if(foto==""){
-                    if(tangan==""){
-                        query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='N/A' where Id_Pemain='"+ id_pemain +"'";
+                       query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"' where Id_Pemain='"+ id_pemain +"'";
                         ps = conn.prepareStatement(query);
-                    }else{
-                        query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"' where Id_Pemain='"+ id_pemain +"'";
-                        ps = conn.prepareStatement(query);
-                    }
                 }
-                else if(tangan==""){
-                    query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='N/A', Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
-                    ps = conn.prepareStatement(query);
-                }else{
+                else {
                     query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"', Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
                     ps = conn.prepareStatement(query);
                 }    
