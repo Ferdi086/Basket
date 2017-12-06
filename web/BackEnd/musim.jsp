@@ -89,7 +89,7 @@
                                 </div>
 			
                     </div>
-                <div class="col-md-12" style="padding-right:120px;padding-bottom:50px;">
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:100px;">
                     <hr/>
                     <center><h2><b>Season List</b></h2></center>
                     <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-pagination="true">
