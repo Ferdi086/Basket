@@ -170,10 +170,10 @@
                     <th>FG%</th>
                     <th>FT%</th>
                 </tr>
-                <c:forEach var="item" items="${requestScope.sumcar}">
+                <c:forEach var="item" items="${requestScope.sum}">
                 <tr>
                     <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
+                    <td>${item.value.GP}</td>
                     <td>${item.value.ppg}</td>
                     <td>${item.value.rpg}</td>
                     <td>${item.value.apg}</td>
@@ -181,16 +181,25 @@
                     <td>${item.value.ft}</td>
                 </tr>
                 </c:forEach>
-                <c:forEach var="item" items="${requestScope.sum}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
+                <c:forEach var="item" items="${requestScope.sumcar}">
+                    <c:choose>        
+                        <c:when test = "${empty item.value.GP}">
+                            <tr>
+                                <td colspan="7"><center>No matching records found</center></td>
+                            </tr>
+                        </c:when>  
+                        <c:otherwise>
+                            <tr>
+                                <td>${item.value.sum}</td>
+                                <td>${item.value.GP}</td>
+                                <td>${item.value.ppg}</td>
+                                <td>${item.value.rpg}</td>
+                                <td>${item.value.apg}</td>
+                                <td>${item.value.fg}</td>
+                                <td>${item.value.ft}</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose> 
                 </c:forEach>                
             </table>
             
@@ -205,33 +214,40 @@
                     <th>FG%</th>
                     <th>FT%</th>
                 </tr>
-                <c:forEach var="item" items="${requestScope.sumpocar}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
-                </c:forEach>
                 <c:forEach var="item" items="${requestScope.sumpo}">
-                <tr>
-                    <td>${item.value.sum}</td>
-                    <td>${item.value.gp}</td>
-                    <td>${item.value.ppg}</td>
-                    <td>${item.value.rpg}</td>
-                    <td>${item.value.apg}</td>
-                    <td>${item.value.fg}</td>
-                    <td>${item.value.ft}</td>
-                </tr>
+                    <tr>
+                        <td>${item.value.sum}</td>
+                        <td>${item.value.GP}</td>
+                        <td>${item.value.ppg}</td>
+                        <td>${item.value.rpg}</td>
+                        <td>${item.value.apg}</td>
+                        <td>${item.value.fg}</td>
+                        <td>${item.value.ft}</td>
+                    </tr>
+                </c:forEach>
+                <c:forEach var="item" items="${requestScope.sumpocar}">
+                    <c:choose>        
+                        <c:when test = "${empty item.value.GP}">
+                            <tr>
+                                <td colspan="7"><center>No matching records found</center></td>
+                            </tr>
+                        </c:when>  
+                        <c:otherwise>
+                            <tr>
+                                <td>${item.value.sum}</td>
+                                <td>${item.value.GP}</td>
+                                <td>${item.value.ppg}</td>
+                                <td>${item.value.rpg}</td>
+                                <td>${item.value.apg}</td>
+                                <td>${item.value.fg}</td>
+                                <td>${item.value.ft}</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose> 
                 </c:forEach>
                 
             </table>
             
-            <c:forEach var="item" items="${requestScope.ppg}">
-            </c:forEach>
 	</div>
 </div>
 

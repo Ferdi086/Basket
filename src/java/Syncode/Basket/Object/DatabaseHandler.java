@@ -878,7 +878,7 @@ public class DatabaseHandler extends Connect {
             String query = " select TOP 5 a.ID_Pemain,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
 "                         from " +
 "                                   (" +
-"                                       select Nama_Musim,b.ID_Pemain,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS]                                       from TrGameLogs a, MsPemain b, MsMusim c \n" +
+"                                       select Nama_Musim,b.ID_Pemain,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS]  from TrGameLogs a, MsPemain b, MsMusim c " +
 "                                       where a.ID_Musim = 5 and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim " +
 "                                   ) a group by a.Nama_Pemain,a.ID_Pemain,a.KD_Pos,a.ID_Team " +
 "                               order by PTS DESC  ";
@@ -1083,19 +1083,17 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select a.Tahun,COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT " +
-"       from " +
-"       ( " +
-"        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
-"        from TrGameLogs a, MsPemain b, MsMusim c " +
-"        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'REGULAR'  " +
-"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun "+
-"       ORDER BY Tahun DESC"; 
+            String query = "select a.Tahun,COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT       from       (        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT],d.ID_Musim    "
+                    + "   from TrGameLogs a, MsPemain b, MsMusim c, (select top 1 ID_Musim from MsMusim where Jenis = 'Regular' order by Tahun_Awal desc)d      "
+                    + "  where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim  and a.ID_Musim=d.ID_Musim       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun    "
+                   + "ORDER BY Tahun DESC"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new PlayerDetailSummary(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-              
+              tr.put(j++,new PlayerDetailSummary(j++,rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+            }
+            if(!rs.next()){
+                tr.put(j++,new PlayerDetailSummary(j++,rs.getString(1)));
             }
         } catch (SQLException ex) {
             
@@ -1112,12 +1110,13 @@ public class DatabaseHandler extends Connect {
 "        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.		ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
 "        from TrGameLogs a, MsPemain b, MsMusim c " +
 "        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'REGULAR'  " +
-"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team"; 
+"       ) a group by a.Nama_Pemain,a.KD_Pos "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){                
-              tr.put(j++,new PlayerDetailSummary("Career",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-              
+            if(rs.next()){                
+              tr.put(j++,new PlayerDetailSummary(j++,"Career",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+            }else{
+                tr.put(j++,new PlayerDetailSummary(j++,"","","","","","",""));
             }
         } catch (SQLException ex) {
             
@@ -1128,19 +1127,17 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select a.Tahun,COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT " +
-"       from " +
-"       ( " +
-"        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
-"        from TrGameLogs a, MsPemain b, MsMusim c " +
-"        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'PLAYOFF'  " +
-"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun "+
-"       ORDER BY Tahun DESC";  
+            String query = "select a.Tahun,COUNT(a.MIN)as GP,CAST(AVG(a.[PTS]) as decimal(10,2)) as PPG,CAST(AVG(a.[TR]) as decimal(10,2)) as RPG, CAST(AVG(a.[AS]) as decimal(10,2)) as APG,CAST(AVG(a.[FG])*100 as decimal(10,0)) as FG,CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT       from       (        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT],d.ID_Musim    "
+                    + "   from TrGameLogs a, MsPemain b, MsMusim c, (select top 1 ID_Musim from MsMusim where Jenis = 'PLAYOFF' order by Tahun_Awal desc)d      "
+                    + "  where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim  and a.ID_Musim=d.ID_Musim       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team,Tahun    "
+                   + "ORDER BY Tahun DESC";  
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new PlayerDetailSummary(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-              
+                tr.put(j++,new PlayerDetailSummary(j++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+            }
+            if(!rs.next()){
+                tr.put(j++,new PlayerDetailSummary(j++,rs.getString(1)));
             }
         } catch (SQLException ex) {
             
@@ -1157,12 +1154,13 @@ public class DatabaseHandler extends Connect {
 "        select CONVERT(varchar(4),c.Tahun_Awal)+'-'+CONVERT(varchar(4),c.Tahun_Akhir) as Tahun,b.Nama_Pemain,b.KD_Pos,a.		ID_Team,[MIN],[TR],[AS],[PTS],[FG],[FT]  " +
 "        from TrGameLogs a, MsPemain b, MsMusim c " +
 "        where a.ID_Pemain='"+id+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim = c.ID_Musim and c.Jenis = 'PLAYOFF'  " +
-"       ) a group by a.Nama_Pemain,a.KD_Pos,a.ID_Team"; 
+"       ) a group by a.Nama_Pemain,a.KD_Pos"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            while(rs.next()){                
-              tr.put(j++,new PlayerDetailSummary("Career",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-              
+            if(rs.next()){                
+              tr.put(j++,new PlayerDetailSummary(j++,"Career",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+            }else{
+                tr.put(j++,new PlayerDetailSummary(j++,"","","","","","",""));
             }
         } catch (SQLException ex) {
             
