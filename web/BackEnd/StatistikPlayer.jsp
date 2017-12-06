@@ -25,6 +25,11 @@
         <script src="../js/select2.min.js"></script>   
         <script src="../js/jquery.scrollbar.min.js"></script>
         <link rel="stylesheet" href="../css/style.css">
+        <style>
+            .copyright{
+                margin-top: 260px;
+            }
+        </style>
     </head>
     <body>
         <%@include file="Sync/Header.jsp" %>

@@ -25,219 +25,15 @@
         <link rel="stylesheet" href="../css/scrollbar.css">
         <script src="../js/select2.min.js"></script>   
         <script src="../js/jquery.scrollbar.min.js"></script>
-               
+        <link rel="stylesheet" href="../css/style.css">       
         <style>
-		body{
-                    overflow:hidden;
-		}
-                .top-menu{
-                    width:100%;
-                    height:50px;
-                    background:black;
-                    position:fixed;
-                    z-index: 3;
-                }                
-                .tl-menu{
-                    margin-top: 0;
-                    margin-left: 50px;
-                    margin-top: 5px;
-                    float: left;  
-                    font-size:28px;
-                    font-weight: bold;
-                }  
-                tl-menu a{
-                    text-decoration: none;
-                }
-                .logo{
-                    color:white;
-                }
-                .logo:hover{
-                    opacity:0.6;
-                }
-                #vseparator{
-                    background:white;
-                    width:2px;
-                    height:85%;
-                    margin-top: 4px;
-                    margin-right: 15px;
-                    float:right;
-                }
-                .info{
-                    margin-top: 10px;
-                    margin-right: 15px;
-                    float: right;
-                }
-                .txt-info{
-                    color:white;
-                    font-size:18px;
-                    margin-left: 10px;
-                    font-weight: normal;
-                    padding-top: 4px;
-                }
-                .tr-menu{
-                    margin-top: 10px;
-                    margin-right: 50px;
-                    float: right;
-                }   
-		.navbar{
-			border-radius:0;
-		}
-		.list{
-			margin:0 auto;
-			max-width:100%;
-                        height:230px;
-		}
-		.round{
-			border-radius:50%;
-			height:30px;
-			width:30px;
-                        background:transparent;
-                        border:transparent;
-			background-image: url('../img/power.png');
-			background-size:100%;
-			background-position: 0;
-			background-repeat: no-repeat;
-		}
-                .logout{
-                    color:white;
-                    font-weight: normal;
-                    font-size:18px;
-                    margin-left: 10px;
-                    vertical-align: top;
-                    cursor:pointer;
-                    padding-top: 4px;
-                }
-                .tr-menu:hover{
-                    opacity:0.6;
-                }
-                .isi{
-                    width:100%;
-                    padding-top: 0;
-                    padding-left: 180px;
-                    margin:auto;
-                }
-                #togglebutton{
-                    background:transparent;
-                    color:white;
-                    width:32px;
-                    height:32px;
-                    padding:0;
-                    border:transparent;
-                }
-                #togglebutton:hover{
-                    opacity: 0.6;
-                }
-                .left-menu{
-                    min-height:100%;
-                    background:black;
-                    position:fixed;  
-                    float: left;
-                    display: block;
-                    z-index: 1;
-                    padding-top:56px;                    
-                }
-		.left-menu ul{
-			list-style-type: none;
-			margin: 0;
-			padding: 0.2em 0.5em;
-		}
-		.icon { 
-                    width: 32px;
-                    height:32px;  
-                    background:transparent;
-		}
-                .icon:hover{
-                    opacity: 0.6;
-                }
-		.left-menu ul li { 
-			margin-bottom: 15px; 
-                }
-                .left-menu ul li a{
-			text-decoration:none;
-		}
-                .left-menu ul li a:hover{
-                    opacity:0.6;
-		}
-		.text {
-                    display: inline-block;
-                    margin-left: 10px;
-                    color:white;
-		}
-		@media only screen and (max-width: 1280px) {
-		  .text {
-			  display: none;
-		  }
-                  .isi{
-                      margin-left: 50px;
-                  }
-		}
-                .form{
-                    padding:0;
-                }
-                .current{
-                    font-weight: bold;
-                }   
-                .btn-menu{
-                    position:absolute;
-                    bottom:5%;
-                }
-                
                 .news-content{
-                height: 660px;
-                border-radius: 0px 0px 2px 2px;
-                overflow-y: auto;
-                overflow-x: hidden;
-                padding-left: 30px;
+                    height:650px;
                 }
-                
-                #sub{
-                    margin-left:30%;
-                    font-size:14px;                    
-                }
-                #sub a{
-                    color:white;
-                }
-                #sub li{
-                    margin-bottom:10%;
-                }
-                .msg{
-                        padding: 0;
-                        border-radius:0;
-                        margin-bottom: 0;
-                        text-align: center;
-                        font-size: 28px;
-                        font-weight: bold;
-                        cursor:pointer;
-                }
-                .hv:hover{
-                    opacity:0.6;
-                    cursor:pointer;
-                }                
-              
 	</style>
     </head>
     <body>
-        <%--<%
-		Cookie[] cks = request.getCookies();
-		if (cks != null) {
-			for (int i = 0; i < cks.length; i++) {
-				String name = cks[i].getName();
-				String value = cks[i].getValue();
-				if (name.equals("auth")) {
-					break; // exit the loop and continue the page
-				}
-				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-				{
-					response.sendRedirect("Index");
-					return; // to stop further execution
-				}
-				i++;
-			}
-		} else {
-			response.sendRedirect("Index");
-			return; // to stop further execution
-		}
-	%>--%>
+        
         <%@include file="Sync/Header.jsp" %>
         <%@include file="Sync/Sidebar.jsp" %>
         
@@ -316,7 +112,7 @@
                                 </div>
 			
                     </div>
-                <div class="col-md-12" style="padding-right:120px;padding-bottom:20px;">
+                <div class="col-md-12" style="padding-right:120px;padding-bottom:40px;">
                     <hr/>
                     <center><h2><b>Team List</b></h2></center>
                     <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
@@ -362,12 +158,10 @@
                                     </tr>
                                                    
                     </table>          
-                    <div style='margin-top: 60px;'>
-                       ${requestScope.footer}  
-                        </div>
-                </div>    
+                  
+                </div>  
+                 <%@include file="Sync/Footer.jsp"%>
 		</div>
-                
                     
             </div>
         <!-- Modal Konfirmasi Input-->
