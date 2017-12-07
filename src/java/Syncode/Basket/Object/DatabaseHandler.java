@@ -13,6 +13,22 @@ import java.util.HashMap;
  * @author meiiko
  */
 public class DatabaseHandler extends Connect {
+    public HashMap getClock(){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "SELECT CAST(DATEPART(HOUR,GETDATE())AS VARCHAR(2))as h,CAST(DATEPART(MINUTE,GETDATE())AS VARCHAR(2))as m,CAST(DATEPART(SECOND,GETDATE())AS VARCHAR(2))as s"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new ObjJam(rs.getString(1), rs.getString(2), rs.getString(3)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
     public HashMap getTeam(){
         HashMap tr = new HashMap();
         try {      

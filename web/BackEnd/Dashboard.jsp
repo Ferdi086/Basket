@@ -5,7 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,9 +36,10 @@
         .copyright{
             margin:0;
             position:fixed;
-        }
+        }        
+        
     </style>
-    <body>
+    <body onload="startTime()">
         <%@include file="Sync/Header.jsp" %>
         <%@include file="Sync/Sidebar.jsp" %>
 	<div style="height:49px;"></div>
