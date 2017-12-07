@@ -121,9 +121,6 @@
             <span id="vseparator"></span>
            
             <span class="info"> 
-                
-                           
-                
                 <img src="../img/User.png" width="30px;" style="margin-top:-7px">
                 <label class="txt-info">Hi, ${requestScope.nama_usr}</label>
             </span>
