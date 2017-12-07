@@ -36,10 +36,10 @@
         .copyright{
             margin:0;
             position:fixed;
-        }  
+        }        
+        
     </style>
-    
-    <body onload="startTime()">        
+    <body onload="startTime()">
         <%@include file="Sync/Header.jsp" %>
         <%@include file="Sync/Sidebar.jsp" %>
 	<div style="height:49px;"></div>

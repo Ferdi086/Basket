@@ -69,17 +69,7 @@
 			background-position: 0;
 			background-repeat: no-repeat;
 		}
-                .clock{
-			border-radius:50%;
-			height:30px;
-			width:30px;
-                        background:transparent;
-                        border:transparent;
-			background-image: url('../img/Clock.png');
-			background-size:100%;
-			background-position: 0;
-			background-repeat: no-repeat;
-		}
+                
                 .logout{
                     color:white;
                     font-weight: normal;

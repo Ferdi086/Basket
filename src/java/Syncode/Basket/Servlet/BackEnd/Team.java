@@ -58,7 +58,6 @@ public class Team extends HttpServlet {
         request.setAttribute("hour", h);
         request.setAttribute("minute", m);
         request.setAttribute("second", s);
-       //session.setMaxInactiveInterval(24*60*60);
        request.getRequestDispatcher("/BackEnd/team.jsp").forward(request,response);
        
     }
