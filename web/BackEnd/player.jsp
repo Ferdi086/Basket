@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="../css/style.css">
 
     </head>
-    <body>
+    <body onload="startTime()">
         <%@include file="Sync/Header.jsp" %>
         <%@include file="Sync/Sidebar.jsp" %>
 	<div style="height:49px;"></div>

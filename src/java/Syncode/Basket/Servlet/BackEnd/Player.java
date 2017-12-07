@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjJam;
 import Syncode.Basket.Object.ObjUser;
 import Syncode.Basket.Object.ObjPlayer;
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class Player extends HttpServlet {
             request.setAttribute("alert", alert);
             
             ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
-            //request.setAttribute("nama_usr", usr.getNama());
+            request.setAttribute("nama_usr", usr.getNama());
             
             HashMap tm = dh.getTeam();
             HashMap pos = dh.getPosisi();
@@ -60,6 +61,15 @@ public class Player extends HttpServlet {
             request.setAttribute("player", pl);
             request.setAttribute("team",tm);
             request.setAttribute("posisi",pos);
+            //Jam
+        HashMap cl = dh.getClock();
+        ObjJam jm = (ObjJam) cl.get(0);
+        String h = jm.getJam();
+        String m = jm.getMenit();
+        String s  = jm.getDetik();
+        request.setAttribute("hour", h);
+        request.setAttribute("minute", m);
+        request.setAttribute("second", s);
             request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
                   
     }

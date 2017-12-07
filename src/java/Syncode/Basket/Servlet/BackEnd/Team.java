@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjJam;
 import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,7 +49,16 @@ public class Team extends HttpServlet {
         
        HashMap tm = dh.getTeam();
        request.setAttribute("Team",tm);
-       session.setMaxInactiveInterval(24*60*60);
+       //Jam
+        HashMap cl = dh.getClock();
+        ObjJam jm = (ObjJam) cl.get(0);
+        String h = jm.getJam();
+        String m = jm.getMenit();
+        String s  = jm.getDetik();
+        request.setAttribute("hour", h);
+        request.setAttribute("minute", m);
+        request.setAttribute("second", s);
+       //session.setMaxInactiveInterval(24*60*60);
        request.getRequestDispatcher("/BackEnd/team.jsp").forward(request,response);
        
     }

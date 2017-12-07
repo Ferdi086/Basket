@@ -6,6 +6,7 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjJam;
 import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,6 +51,15 @@ public class StatistikPlayer extends HttpServlet {
             HashMap ms = dh.getMusim();
             request.setAttribute("team",tm);
             request.setAttribute("musim", ms);
+            //Jam
+        HashMap cl = dh.getClock();
+        ObjJam jm = (ObjJam) cl.get(0);
+        String h = jm.getJam();
+        String m = jm.getMenit();
+        String s  = jm.getDetik();
+        request.setAttribute("hour", h);
+        request.setAttribute("minute", m);
+        request.setAttribute("second", s);
             request.getRequestDispatcher("/BackEnd/StatistikPlayer.jsp").forward(request,response);
     }
 

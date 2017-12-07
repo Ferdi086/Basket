@@ -10,6 +10,7 @@ import Syncode.Basket.Object.ObjUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import Syncode.Basket.Object.Musim;
+import Syncode.Basket.Object.ObjJam;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,10 +41,19 @@ public class Dashboard extends HttpServlet {
         HashMap tr = dh.getMusim();
         Musim cs = (Musim) tr.get(0);
         HashMap st = dh.getMatchStatistic(cs.getId_musim());
-        
         ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
         request.setAttribute("nama_usr", usr.getNama());
         request.setAttribute("statistik", st);
+        //Jam
+        HashMap cl = dh.getClock();
+        ObjJam jm = (ObjJam) cl.get(0);
+        String h = jm.getJam();
+        String m = jm.getMenit();
+        String s  = jm.getDetik();
+        request.setAttribute("hour", h);
+        request.setAttribute("minute", m);
+        request.setAttribute("second", s);
+        
         
         request.getRequestDispatcher("Dashboard.jsp").forward(request, response);
     }
