@@ -29,7 +29,8 @@
     </head>
     <style>
         .copyright{
-            margin-top: 150px;
+            margin:0;
+            position:fixed;
         }
     </style>
     <body>
@@ -74,8 +75,8 @@
                             </c:forEach>
                         </tbody>
                     </table>
+                      <%@include file="Sync/Footer.jsp"%>
                     </div>
-                <%@include file="Sync/Footer.jsp"%>
             </div>
                 
             </div>

@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <style>
             .copyright{
-                margin-top: 260px;
+            position:fixed;
             }
         </style>
     </head>

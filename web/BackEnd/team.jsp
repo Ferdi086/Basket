@@ -28,8 +28,9 @@
         <link rel="stylesheet" href="../css/style.css">       
         <style>
                 .news-content{
-                    height:650px;
+                    height:620px;
                 }
+                
 	</style>
     </head>
     <body>

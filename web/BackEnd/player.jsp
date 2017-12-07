@@ -38,7 +38,11 @@
         </script> 
         <style>
             .news-content{
-                height:650px;
+                height:620px;
+            }
+            .copyright{
+                margin:0;
+                position:relative;
             }
         </style>
        <div class="isi container" style="overflow: auto;">
