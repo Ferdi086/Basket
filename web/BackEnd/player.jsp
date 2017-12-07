@@ -25,9 +25,17 @@
         <script src="../js/select2.min.js"></script>   
         <script src="../js/jquery.scrollbar.min.js"></script>
         <link rel="stylesheet" href="../css/style.css">
-
+        <style>
+            .news-content{
+                height:620px;
+            }
+            .copyright{
+                margin:0;
+            }
+        </style>
     </head>
     <body>
+        
         <%@include file="Sync/Header.jsp" %>
         <%@include file="Sync/Sidebar.jsp" %>
 	<div style="height:49px;"></div>
@@ -36,15 +44,7 @@
             $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
             $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
         </script> 
-        <style>
-            .news-content{
-                height:620px;
-            }
-            .copyright{
-                margin:0;
-                position:relative;
-            }
-        </style>
+        
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-left: 10px;">
@@ -168,7 +168,8 @@
                                 <th data-align="center" data-valign="middle"><b><center>Jersey Number</center><b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
-                        </thead>      
+                        </thead> 
+                        <tbody>
                             <c:forEach var="item" varStatus="loopCounter" items="${requestScope.player}">
                                 <c:set var="idPemain" value="${item.value.idPemain}"/>
                                 <c:set var="namaPemain" value="${item.value.namaPemain}"/>
@@ -218,6 +219,7 @@
                                 </td>
                             </tr>                                                 
                             </c:forEach>
+                        </tbody>
                     </table>        
                   
                 </div>    
