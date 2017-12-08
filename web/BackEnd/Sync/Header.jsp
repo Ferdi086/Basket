@@ -90,7 +90,7 @@
                         
                         
                         s++;
-                            var t = setTimeout(startTime, 1000);
+                        setTimeout(startTime, 1000);
                 }
                         function checkTime(i) {
                             var x;
