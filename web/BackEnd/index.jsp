@@ -16,7 +16,8 @@
         <script src="../js/bootstrap.min.js"></script>
         <style>
             body{
-                background-color:lightgoldenrodyellow;
+                background-image: url('../img/basket_wp.jpg');
+                background-size: cover;
             }
         </style>
     </head>
