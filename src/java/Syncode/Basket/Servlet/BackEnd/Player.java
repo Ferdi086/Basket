@@ -62,14 +62,16 @@ public class Player extends HttpServlet {
             request.setAttribute("team",tm);
             request.setAttribute("posisi",pos);
             //Jam
-        HashMap cl = dh.getClock();
-        ObjJam jm = (ObjJam) cl.get(0);
-        String h = jm.getJam();
-        String m = jm.getMenit();
-        String s  = jm.getDetik();
-        request.setAttribute("hour", h);
-        request.setAttribute("minute", m);
-        request.setAttribute("second", s);
+            HashMap cl = dh.getClock();
+            ObjJam jm = (ObjJam) cl.get(0);
+            String h = jm.getJam();
+            String m = jm.getMenit();
+            String s  = jm.getDetik();
+            String d  = jm.getTgl();
+            request.setAttribute("hour", h);
+            request.setAttribute("minute", m);
+            request.setAttribute("second", s);
+            request.setAttribute("date", d);
             request.getRequestDispatcher("/BackEnd/player.jsp").forward(request,response);
                   
     }

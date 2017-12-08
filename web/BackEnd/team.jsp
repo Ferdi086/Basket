@@ -84,17 +84,17 @@
                                    <div class="col-sm-3">
                                        <input id="logo" type="file" name="logo" accept=".jpg, .jpeg, .png" onchange="readlogo(this);" required/>
                                    </div>
-                                   <label class="control-label col-sm-2">Team's Foto</label>
+                                   <label class="control-label col-sm-2">Team's Photo</label>
                                    <div class="col-sm-3">
                                        <input id="foto" type="file" name="foto" accept=".jpg, .jpeg, .png" onchange="readfoto(this);" required/>
                                    </div>
                             </div>	
                             <div class="form-group">
-                                   <label class="col-sm-2 control-label">Preview Team's Logo</label>
+                                   <label class="col-sm-2 control-label">Team's Logo Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewlogo" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
-                                   <label class="col-sm-2 col-sm-offset-1 control-label">Preview Team's Foto</label>
+                                   <label class="col-sm-2 col-sm-offset-1 control-label">Team's Photo Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewfoto" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
@@ -124,7 +124,6 @@
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>Team Name</center><b></th>            
                                 <!--<th data-align="center" data-valign="middle"><b><center>Divisi</center><b></th>-->
                                 <th data-align="center" data-valign="middle"><b><center>Logo</center><b></th>
-                                <th data-align="center" data-valign="middle"><b><center>Team's Foto</center></b></th>
                                 <th data-align="center" data-valign="middle"><b><center>Action</center></b></th>
                             </tr>
                         </thead>      
@@ -141,7 +140,6 @@
                                         <td style="vertical-align: middle;text-align: center"> ${namateam} </td>
                                         <!--<td style="vertical-align: middle;text-align: center"> ${divisi} </td>-->
                                         <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Logo/${logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="80px" height="80px"/> </td>
-                                        <td style="vertical-align: middle;text-align: center"> <img src="../img/Team/Foto/${gambar}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="80px" height="80px"/> </td>
                                         <td style="vertical-align: middle;text-align: center"> <button class="btn btn-warning button" data-target="#updateModal" data-toggle="modal" 
                                                role="button" onclick="Update('${id}','${namateam}','${divisi}','${logo}','${gambar}')"><span class="glyphicon glyphicon-edit"></span></button> 
                                                 <c:choose>
@@ -243,17 +241,17 @@
                                    <div class="col-sm-3">
                                        <input id="UpdateLogo" type="file" name="logo"  onchange="readlogoupdate(this);" required/>
                                    </div>
-                                   <label class="control-label col-sm-2">Team's Foto</label>
+                                   <label class="control-label col-sm-2">Team's Photo</label>
                                    <div class="col-sm-3">
                                        <input id="UpdateFoto" type="file" name="foto"  onchange="readfotoupdate(this);" required/>
                                    </div>
                             </div>	
                             <div class="form-group">
-                                   <label class="col-sm-2 control-label">Preview Logo</label>
+                                   <label class="col-sm-2 control-label">Logo Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewlogoupdate" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" style="margin-left:-15px"/>
                                     </div>
-                                   <label class="col-sm-2 col-sm-offset-1 control-label">Preview Foto</label>
+                                   <label class="col-sm-2 col-sm-offset-1 control-label">Photo Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewfotoupdate" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" style="margin-left:-15px"/>
                                     </div>

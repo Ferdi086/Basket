@@ -50,15 +50,17 @@ public class Musim extends HttpServlet {
             HashMap ms = dh.getMusim();
             request.setAttribute("musim",ms);
             //Jam
-        HashMap cl = dh.getClock();
-        ObjJam jm = (ObjJam) cl.get(0);
-        String h = jm.getJam();
-        String m = jm.getMenit();
-        String s  = jm.getDetik();
-        request.setAttribute("hour", h);
-        request.setAttribute("minute", m);
-        request.setAttribute("second", s);
-        request.getRequestDispatcher("/BackEnd/musim.jsp").forward(request,response);
+            HashMap cl = dh.getClock();
+            ObjJam jm = (ObjJam) cl.get(0);
+            String h = jm.getJam();
+            String m = jm.getMenit();
+            String s  = jm.getDetik();
+            String d  = jm.getTgl();
+            request.setAttribute("hour", h);
+            request.setAttribute("minute", m);
+            request.setAttribute("second", s);
+            request.setAttribute("date", d);
+            request.getRequestDispatcher("/BackEnd/musim.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -7,8 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
      
 <style>
-    .popover-content{
-        font-size: 36px;
+    .popover-content{        
         font-weight: bold;
     }
     .clock{
@@ -24,6 +23,12 @@
     }
     .clock:hover{
         opacity:0.6;
+    }
+    #time{
+        font-size: 40px;
+    }
+    #date{
+        font-size: 24px;
     }
 </style>
 <script>
@@ -85,7 +90,7 @@
                         
                         
                         s++;
-                            var t = setTimeout(startTime, 980);
+                            var t = setTimeout(startTime, 1000);
                 }
                         function checkTime(i) {
                             var x;
@@ -125,16 +130,24 @@
                 <label class="txt-info">Hi, ${requestScope.nama_usr}</label>
             </span>
              <span class="info">
-                <a href="#" data-placement="bottom" data-popover-content="#clock" data-toggle="popover"  href="#" tabindex="0">
+                <a href="#" data-placement="bottom" data-popover-content="#datetime" data-toggle="popover"  href="#" tabindex="0">
                     <button class="clock" type="button"></button>
                 </a>
-                 <div class="hidden" id="clock">
+                 <div class="hidden" id="datetime">
                     <div class="popover-body">
-                        <span id="hr">00</span>
-			<span> : </span>
-			<span id="min">00</span>
-			<span> : </span>
-			<span id="sec">00</span>
+                        <center>
+                        <span id="time">
+                            <span id="hr">00</span>
+                            <span> : </span>
+                            <span id="min">00</span>
+                            <span> : </span>
+                            <span id="sec">00</span>
+                        </span>
+                        <br/>
+                        <span>
+                            <span id="date">${requestScope.date}</span>                            
+                        </span>
+                        </center>
                     </div>
                 </div> 
             </span>

@@ -11,12 +11,20 @@ package Syncode.Basket.Object;
  */
 public class ObjJam {
 
-    String jam="";
-    String menit="";
-    String detik="";
+    private String jam="";
+    private String menit="";
+    private String detik="";
+    private String tgl="";
     
     public ObjJam() {
     } 
+    
+    public ObjJam(String jam, String menit, String detik,String tgl) {
+        this.jam = jam;
+        this.menit = menit;
+        this.detik = detik;
+        this.tgl = tgl;
+    }
     
     public String getJam() {
         return jam;
@@ -42,10 +50,12 @@ public class ObjJam {
         this.detik = detik;
     }
 
-    public ObjJam(String jam, String menit, String detik) {
-        this.jam = jam;
-        this.menit = menit;
-        this.detik = detik;
+    public String getTgl() {
+        return tgl;
+    }
+
+    public void setTgl(String tgl) {
+        this.tgl = tgl;
     }
     
 }
