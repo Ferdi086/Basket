@@ -35,13 +35,19 @@ public class Home extends HttpServlet {
         PrintWriter out = response.getWriter();
         String asal1 = "Lokal";
         String asal2 = "Asing";
+        String musim = "5";
+        String div1 = "M";
+        String div2 = "P";
+        String curr = dh.getCurrentRegularSeason();
         HashMap tr = dh.getPlayerRandom(asal1); 
         HashMap tra = dh.getPlayerRandom(asal2);      
         HashMap tm = dh.getTeam();
         HashMap trd = dh.getNewsList();
         HashMap tre = dh.getTrendingPlayer();
-        HashMap trf = dh.getKlasemen();
-        HashMap trg = dh.getKlasemen2();
+        /*HashMap trf = dh.getKlasemen();
+        HashMap trg = dh.getKlasemen2();*/
+        HashMap trf = dh.getKlasemenYuga(musim, div1);
+        HashMap trg = dh.getKlasemenYuga(musim, div2);
         request.setAttribute("p1",tr);
         request.setAttribute("p1a",tra);
         request.setAttribute("team",tm);
