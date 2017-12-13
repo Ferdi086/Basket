@@ -228,6 +228,13 @@
     </context-param>
     <context-param>
         <description>Location to store uploaded file</description>
+        <param-name>file-upload-excel-team</param-name>
+        <param-value>
+         D:\Netbeans\Basket\web\Statistik\Team\
+      </param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
         <param-name>file-upload-foto-logo</param-name>
         <param-value>
          D:\Netbeans\Basket\web\img\Team\Logo\

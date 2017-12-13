@@ -1276,4 +1276,19 @@ public class DatabaseHandler extends Connect {
         }
         return x;
     }
+    public HashMap getPlayerList(){
+        HashMap tr = new HashMap();
+        try{
+            int i =0;
+            String query = "select top 5 ID_Pemain,Nama_Pemain from MsPemain";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjPlayerListTemplate(rs.getString(1), rs.getString(2)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
 }
