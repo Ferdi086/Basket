@@ -185,29 +185,19 @@
             }           
         }
         function DownloadTemplateTeam(){
-                            var id = $('#team').val();
-                            //alert(id); 
-                            $.ajax({
-                                type: 'POST',
-                                url: 'DownloadTemplateTeam',
-                                data: {
-                                    'bagian': 1,
-                                    'category': id
-                                },
-                                beforeSend: function(){
-                                   // $('#loading').show();
-                                },
-                                complete: function(){
-                                    //$('#loading').hide();
-                                },
-                                success: function (data) {
-                                    //alert(data);
-                                   //$('#pemain').html(data);         
-                                }
-                            });
-
-                      
-        }
+        var id = $("#team").val();
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", "DownloadTemplateTeam");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "ID_Team");
+        hiddenField.setAttribute("value", id);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+        
+    }
           
 
     </script>

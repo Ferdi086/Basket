@@ -53,29 +53,18 @@ public class DownloadTemplateTeam extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          //String Path = getServletContext().getInitParameter("file-upload");
-          String bagian = request.getParameter("bagian")==null?"0":request.getParameter("bagian");
          PrintWriter out1 = response.getWriter();
           XSSFWorkbook wb = new XSSFWorkbook();
                  DatabaseHandler dh = new DatabaseHandler();
-                 if(bagian.equals("0")){
-           out1.println("gagal");
-          // request.getRequestDispatcher("StatistikTeam.jsp").forward(request, response);
-            
-        }
-        else if(bagian.equals("1")){
-            response.setContentType("text/html;charset=UTF-8");
-            String category = request.getParameter("category")==null?"0":request.getParameter("category");
-            HashMap tr = dh.getPlayerList(category);
-            Map<String, CellStyle> styles = createStyles(wb);
-            out1.println(category);
-            try{
-            //String file = filePath+"Xceldemo5.xlsx";
-            
-            FileOutputStream out = new FileOutputStream(new File(filePath+"Xceldemo6.xlsx"));
+                 String id = request.getParameter("ID_Team");
+    HashMap tr = dh.getPlayerList(id);
+    Map<String, CellStyle> styles = createStyles(wb);
+        try{
+            FileOutputStream out = new FileOutputStream(new File(filePath+"Xceldemo5.xlsx"));
+           
             for(int i=0; i<tr.size(); i++){
                 ObjPlayerListTemplate x = (ObjPlayerListTemplate) tr.get(i);
                 Sheet Spreadsheet = wb.createSheet(x.getNama());
-                
                 Spreadsheet.setColumnWidth(0, 256*20);
                 Spreadsheet.setColumnWidth(1, 256*20);
                 Spreadsheet.setColumnWidth(2, 256*20);
@@ -137,7 +126,7 @@ public class DownloadTemplateTeam extends HttpServlet {
              // TODO Auto-generated method stub
 		response.setContentType("text/html");
 		
-		String filename = "Xceldemo6.xlsx";
+		String filename = "Xceldemo5.xlsx";
 		String filepath = filePath;
 		response.setContentType("APPLICATION/OCTET-STREAM");
 		response.setHeader("Content-Disposition", "attachment; filename=\""
@@ -159,13 +148,11 @@ public class DownloadTemplateTeam extends HttpServlet {
 
         }
         catch(Exception e){
-            out1.println(e);
+            System.out.println(e);
         }
-            }
-                 
-        //System.out.println("Excel file created");
+        System.out.println("Excel file created");
+   }
     
-    }
     private static Map<String, CellStyle> createStyles(Workbook wb){
         Map<String, CellStyle> styles = new HashMap<>();
         DataFormat df = wb.createDataFormat();
