@@ -118,7 +118,7 @@ public class doInsertTeam extends HttpServlet {
                                 file = new File( filePath2 + nick+Exten) ;
                               }
                      }
-                    String foto = "team" +"_"+nick+Exten;
+                    String foto = "team" +"-"+nick+Exten;
                     String logo = nick+Exten;
                     fi.write( file );
                     String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+NamaNew+"','"+logo+"','"+foto+"')";
