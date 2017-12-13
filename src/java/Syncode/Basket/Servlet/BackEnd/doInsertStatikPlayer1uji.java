@@ -31,7 +31,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author meiiko
  */
-public class doInsertStatikPlayer extends HttpServlet {
+public class doInsertStatikPlayer1uji extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -102,50 +102,50 @@ public class doInsertStatikPlayer extends HttpServlet {
                 //out.println("lala");
         
                // Get the uploaded file parameters
-               FileItem id_teamitem = (FileItem) fileItems.get(0);
-               String id_team = id_teamitem.getString().trim();
-               FileItem namaitem = (FileItem) fileItems.get(1);
-               String nama = namaitem.getString().trim();
-               String namasplit = nama.split("\\-")[1];
-               String id_pemain = nama.split("\\-")[0];
-               FileItem musimitem = (FileItem) fileItems.get(3);
-               String musim = musimitem.getString();
+               //FileItem id_teamitem = (FileItem) fileItems.get(0);
+               //String id_team = id_teamitem.getString().trim();
+               //FileItem namaitem = (FileItem) fileItems.get(1);
+               //String nama = namaitem.getString().trim();
+               //String namasplit = nama.split("\\-")[1];
+               //String id_pemain = nama.split("\\-")[0];
+               //FileItem musimitem = (FileItem) fileItems.get(3);
+               //String musim = musimitem.getString();
               // out.println("musim adalah"+musim+"<br/>");
-               String nama_musim =musim.split("\\_")[1];
-               String id_musim =musim.split("\\_")[0];
-               String fieldName = fi.getFieldName();
-               String fileName = fi.getName();
-               ext = fileName.split("\\.")[1];
-               out.println("id musim ="+id_musim);
-               String contentType = fi.getContentType();
-               boolean isInMemory = fi.isInMemory();
-               long sizeInBytes = fi.getSize();
+               //String nama_musim =musim.split("\\_")[1];
+              // String id_musim =musim.split("\\_")[0];
+               //String fieldName = fi.getFieldName();
+              // String fileName = fi.getName();
+              // ext = fileName.split("\\.")[1];
+               //out.println("id musim ="+id_musim);
+              //String contentType = fi.getContentType();
+              // boolean isInMemory = fi.isInMemory();
+              // long sizeInBytes = fi.getSize();
               // out.println(ext);
             //out.println("nama = "+id_musim+"<br/><br/>");
             //out.println("namasplit = "+namasplit);
             //out.println("team = "+id_team);
             //out.println("musim = "+musim);
             //out.println("id pemain = "+id_pemain);
-             out.println(fi);
-               if(Arrays.asList(extList).contains(ext.toLowerCase())){
+             //out.println(fi);
+               //if(Arrays.asList(extList).contains(ext.toLowerCase())){
                     // Write the file
-                    if( fileName.lastIndexOf("\\") >= 0 ) {
-                       file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
-                    } else {
-                       file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
-                    }
+                   // if( fileName.lastIndexOf("\\") >= 0 ) {
+                   //    file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
+                  // } else {
+                  //     file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
+                 //   }
                     
-                    Exten="."+ ext;
-                    namafile = id_team +"-"+ nama_musim +"-"+namasplit + Exten;
+                 //   Exten="."+ ext;
+                  //  namafile = id_team +"-"+ nama_musim +"-"+namasplit + Exten;
                     
-                    fi.write( file ) ;
+                 //   fi.write( file ) ;
                     //dh.setFile(Name,Exten);
                     //akhir upload
                     
                     //awal import
               //   String filename = request.getParameter("file");
                 //out.println("nama upload= "+fileName);
-                out.println("ke upload filenya = "+namafile);
+                //out.println("ke upload filenya = "+namafile);
                 File file1=new File(filePath +namafile);
                 FileInputStream fin = new FileInputStream(file1);
                 //out.println(fin);
@@ -158,8 +158,8 @@ public class doInsertStatikPlayer extends HttpServlet {
                  //String contoh="qwer";
                  int trow = sheet.getLastRowNum();
                 
-                  String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
-                     row1 = (Row) sheet.getRow(5);
+                  //String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
+                     //row1 = (Row) sheet.getRow(5);
                   
                     
                         for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
@@ -304,13 +304,13 @@ public class doInsertStatikPlayer extends HttpServlet {
                                + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
                                
                                 //out.println(query);
-                                 boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
-                                   if(a == true ){
-                                       out.println("berhasil");
-                                   }
-                                   else{
-                                       out.println("gagal");
-                                   }   
+                                // boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
+                                  // if(a == true ){
+                                   //    out.println("berhasil");
+                                   //}
+                                  // else{
+                                  //     out.println("gagal");
+                                  // }   
                         }
                      else{
                          out.println("data kosong");

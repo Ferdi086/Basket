@@ -341,6 +341,7 @@
     </body>
     <script>
         $(document).ready(function(){ 
+             $('#sub').hide();
              $("#loading").hide();
              $("#ok").hide();
              $("#error").hide();
@@ -348,10 +349,14 @@
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
+            
             $('.txt-toggle').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
+            $('#Statistik').click(function(){
+               $('#sub').toggle(300);               
+            });
             $('#tgl').datetimepicker({
                     format: 'YYYY-MM-DD'
                 });
