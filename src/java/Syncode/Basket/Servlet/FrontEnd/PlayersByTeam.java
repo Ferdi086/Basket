@@ -44,7 +44,7 @@ public class PlayersByTeam extends HttpServlet {
                 ObjPlayerFront pl = (ObjPlayerFront) tr.get(i);
             out.println("   <div class=\"col-md-3 wthree_team_grid\">");
             out.println("   <div class=\"hovereffect\" onclick=\"playdetail("+pl.getIdPemain()+")\">");
-            out.println("       <img src=\"../img/Players/"+pl.getFoto()+"\"; onerror=\"this.onerror=null;this.src='../img/Players/nopic.png';\" alt=\""+pl.getNamaPemain()+"\" width=\"400px\" height=\"400px\" class=\"img-responsive\" />");
+            out.println("       <img src=\"../img/Players/"+pl.getFoto()+"\"; onerror=\"this.onerror=null;this.src='../img/Players/nopics.png';\" alt=\""+pl.getNamaPemain()+"\" width=\"400px\" height=\"400px\" class=\"img-responsive\" />");
             out.println("       <div class=\"overlay\">");
             out.println("           <h6>"+pl.getNamaPemain()+"</h6>");
             out.println("       </div>");
