@@ -107,7 +107,7 @@ public class DatabaseHandler extends Connect {
     }
     public boolean setUpdateMusim(String id,String nama, String awal, String akhir, String jenis){
         try {        
-                    String query = "Update MsMusim set Nama_Musim='"+nama+"',Tahun_Awal='"+awal+"',Tahun_Akhir='"+akhir+"',Jenis='"+jenis+"' where ID_Musim='"+id+"'";
+                    String query = "Update MsMusim set Last_Update = GETDATE(),  Nama_Musim='"+nama+"',Tahun_Awal='"+awal+"',Tahun_Akhir='"+akhir+"',Jenis='"+jenis+"' where ID_Musim='"+id+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
@@ -175,16 +175,16 @@ public class DatabaseHandler extends Connect {
     public boolean setUpdateMsTeam(String nick, String nama_team,String divisi, String logo, String gambar_team){
         try {         
                 if(logo.equals("") && gambar_team.equals("")){
-                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"' where ID_Team='"+nick+"'";
+                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"' where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
                 }else if(logo.equals("")){
-                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Gambar='"+gambar_team+"' where ID_Team='"+nick+"'";
+                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Gambar='"+gambar_team+"' where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
                 }else if(gambar_team.equals("")){
-                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
+                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
                 }else{
-                     String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
+                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
                  }
                ps.executeUpdate();  
@@ -196,7 +196,7 @@ public class DatabaseHandler extends Connect {
     }
     public boolean setNonaktifTeam(String nick){
         try {        
-                    String query = "update MsTeam set Flag_active='N' where ID_Team='"+nick+"'";
+                    String query = "update MsTeam set Flag_active='N', Last_Update = GETDATE() where ID_Team='"+nick+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
@@ -207,7 +207,7 @@ public class DatabaseHandler extends Connect {
     }
      public boolean setAktifTeam(String nick){
         try {        
-                    String query = "update MsTeam set Flag_active='Y' where ID_Team='"+nick+"'";
+                    String query = "update MsTeam set Flag_active='Y', Last_Update = GETDATE() where ID_Team='"+nick+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
@@ -218,7 +218,7 @@ public class DatabaseHandler extends Connect {
     }
      public boolean setNonaktifPlayer(String id){
         try {        
-                    String query = "update MsPemain set Flag_active='N' where ID_Pemain='"+id+"'";
+                    String query = "update MsPemain set Flag_active='N', Last_Update = GETDATE() where ID_Pemain='"+id+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
@@ -229,7 +229,7 @@ public class DatabaseHandler extends Connect {
     }
      public boolean setAktifPlayer(String id){
         try {        
-                    String query = "update MsPemain set Flag_active='Y' where ID_Pemain='"+id+"'";
+                    String query = "update MsPemain set Flag_active='Y', Last_Update = GETDATE() where ID_Pemain='"+id+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
@@ -243,11 +243,11 @@ public class DatabaseHandler extends Connect {
         String query="";
         try {       
                 if(foto==""){
-                       query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"' where Id_Pemain='"+ id_pemain +"'";
+                       query = "update MsPemain set Last_Update = GETDATE(), Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"' where Id_Pemain='"+ id_pemain +"'";
                         ps = conn.prepareStatement(query);
                 }
                 else {
-                    query = "update MsPemain set Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"', Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
+                    query = "update MsPemain set Last_Update = GETDATE(), Nama_Pemain='"+nama+"', Asal='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+id_team+"', No_Punggung="+no+", Tangan='"+tangan+"', Foto='"+foto+"' where Id_Pemain='"+ id_pemain +"'";
                     ps = conn.prepareStatement(query);
                 }    
                    ps.executeUpdate();  
@@ -385,7 +385,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "SELECT TOP 9 a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team and Asal = '"+asal+"' ORDER BY NEWID()  "; 
+            String query = "SELECT TOP 9 a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,a.Flag_active from MsPemain a,MsPosisi b,MsTeam c where a.Flag_active='Y' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team and Asal = '"+asal+"' ORDER BY NEWID()  "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){ 
@@ -400,7 +400,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 1;
-            String query = "select a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.Nama_Pemain like '"+Abc+"%' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
+            String query = "select a.ID_Pemain,a.Nama_Pemain,Convert(varchar(50), a.Tgl_Lahir,106),a.Tinggi,a.Berat,a.KD_Pos,b.Nama_Posisi,a.Id_Team,c.Nama_Team,a.No_Punggung,a.Foto,c.Logo from MsPemain a,MsPosisi b,MsTeam c where a.Flag_active = 'Y' AND a.Nama_Pemain like '"+Abc+"%' AND a.KD_Pos = b.KD_Pos AND a.ID_Team=c.ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -415,7 +415,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "select a.ID_Pemain, a.Nama_Pemain, a.Tinggi, b.Nama_Posisi, a.Foto from MsPemain a, MsPosisi b where a.ID_Team = '"+ID+"' AND a.KD_Pos = b.KD_Pos";
+            String query = "select a.ID_Pemain, a.Nama_Pemain, a.Tinggi, b.Nama_Posisi, a.Foto from MsPemain a, MsPosisi b where a.Flag_active='Y' AND a.ID_Team = '"+ID+"' AND a.KD_Pos = b.KD_Pos";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -1055,7 +1055,7 @@ public class DatabaseHandler extends Connect {
     public ObjUser getUsr(String Id_User, String Password){
         ObjUser tes = new ObjUser();
         try{
-            String query = "select  ID_User, Password, Nama from MsUser where ID_User=? and Password=? and FlagActive = 'Y'";
+            String query = "select ID_User, Password, Nama from MsUser where ID_User=? and Password=? and FlagActive = 'Y'";
             ps = conn.prepareStatement(query);
             ps.setString(1, Id_User);
             ps.setString(2, Password);
@@ -1074,7 +1074,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' and asal = '"+asal+"' ORDER BY Nama_Pemain"; 
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where Flag_active = 'Y' AND ID_Team='"+id_team+"' and asal = '"+asal+"' ORDER BY Nama_Pemain"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -1207,7 +1207,7 @@ public class DatabaseHandler extends Connect {
                             "	( " +
                             "	select ID_Musim,ID_Team,Match, SUM(PTS)as pts,WL,Tgl_Match from TrGameLogs where ID_Musim = '"+id_musim+"' group by Match, WL,Tgl_Match, " +
                             "	ID_Team,ID_Musim " +
-                            "	)a, MsTeam b where a.ID_Team = b.ID_Team and b.Divisi = '"+divisi+"' group by a.ID_Team,a.ID_Musim,b.Logo,b.Nama_Team " +
+                            "	)a, MsTeam b where a.ID_Team = b.ID_Team and b.Flag_active='Y' and b.Divisi = '"+divisi+"' group by a.ID_Team,a.ID_Musim,b.Logo,b.Nama_Team " +
                             ")a " +
                             "INNER JOIN " +
                             "( " +

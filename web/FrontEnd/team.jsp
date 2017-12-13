@@ -41,7 +41,8 @@
 <div class="container-a2">
 		<ul class="caption-style-2">                        
                         <c:forEach var = "item" items = "${requestScope.team}">
-                            <li >                                
+                            <c:if test="${item.value.flagactive == 'Y'}">
+                            <li>                                
 				<a onclick="teamdetail('${item.value.id}')"><img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.id}" width="200px" height="200px" ></a>
 				<div class="caption">
 					<div class="blur"></div>
@@ -51,6 +52,7 @@
 				</div>
                                 
                             </li>
+                            </c:if>
                         </c:forEach>
                         
 		</ul>
