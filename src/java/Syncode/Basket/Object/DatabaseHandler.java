@@ -1197,4 +1197,56 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getKlasemenYuga(String id_musim, String divisi){
+        HashMap tr = new HashMap();
+        try{
+            int i = 0;
+            String query = " SELECT a.ID_Musim, a.Nama_Team,a.ID_Team, a.GP, b.Win, a.GP-b.Win as Lose,a.pts,a.Logo from " +
+                            "( " +
+                            "	select a.ID_Musim,a.ID_Team,b.Nama_Team,SUM(a.pts)as pts,COUNT(a.WL) as GP,b.Logo from " +
+                            "	( " +
+                            "	select ID_Musim,ID_Team,Match, SUM(PTS)as pts,WL,Tgl_Match from TrGameLogs where ID_Musim = '"+id_musim+"' group by Match, WL,Tgl_Match, " +
+                            "	ID_Team,ID_Musim " +
+                            "	)a, MsTeam b where a.ID_Team = b.ID_Team and b.Divisi = '"+divisi+"' group by a.ID_Team,a.ID_Musim,b.Logo,b.Nama_Team " +
+                            ")a " +
+                            "INNER JOIN " +
+                            "( " +
+                            "	select ID_Musim,ID_Team, " +
+                            "		CASE " +
+                            "		WHEN Win is not null then Win " +
+                            "		else '0' " +
+                            "		end as Win " +
+                            "		from " +
+                            "	( " +
+                            "		select ID_Musim,ID_Team,COUNT(WL)as Win from " +
+                            "		( " +
+                            "		select ID_Musim,ID_Team,WL,Match from TrGameLogs where ID_Musim=5 and WL = 'W' group by ID_Team,ID_Musim,WL,Match, " +
+                            "		Tgl_Match " +
+                            "		)b group by ID_Musim,ID_Team " +
+                            "	)b " +
+                            ")b ON A.ID_Team = b.ID_Team order by a.pts desc ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjKlasemen(i, rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
+    public String getCurrentRegularSeason(){
+        String x ="";
+        try{
+            String query = "select TOP 1 ID_Musim from MsMusim where Jenis = 'Regular' order by ID_Musim desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                x = rs.getString(1);
+            }
+        }catch (SQLException ex){
+            
+        }
+        return x;
+    }
 }
