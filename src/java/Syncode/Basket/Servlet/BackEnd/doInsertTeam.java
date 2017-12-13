@@ -129,6 +129,7 @@ public class doInsertTeam extends HttpServlet {
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Team");
             }
+               
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");
                         session.setAttribute("alert", "alert-danger");
