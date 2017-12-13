@@ -180,6 +180,10 @@
         <servlet-name>DownloadTemplateTeam</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.DownloadTemplateTeam</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LockUnlock</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.LockUnlock</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/BackEnd/Index</url-pattern>
@@ -401,6 +405,10 @@
     <servlet-mapping>
         <servlet-name>DownloadTemplateTeam</servlet-name>
         <url-pattern>/BackEnd/DownloadTemplateTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>LockUnlock</servlet-name>
+        <url-pattern>/BackEnd/LockUnlock</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
