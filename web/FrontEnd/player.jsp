@@ -212,8 +212,8 @@
             beforeSend: function(){
             },
             success: function(data){
-                $('.unik').append(data);
-                //alert(data);
+                //$('.unik').append(data);
+                alert(data);
             }
         });
     });

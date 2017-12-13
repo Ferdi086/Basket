@@ -61,7 +61,7 @@ public class PlayersByNameLike extends HttpServlet {
                         out.println("   <p>"+pl.getTinggi()+" cm</p>");
                         out.println("   </div>");
                         out.println("");
-                        out.println(pl.getFoto());
+                        out.println("");
                         out.println("");
                         out.println("");
                         }
