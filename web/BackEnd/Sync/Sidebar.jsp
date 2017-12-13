@@ -25,11 +25,15 @@
 			<span class='text'>Team</span>
                     </a>
                 </li> 
-                <li> 
-                    <a href="StatistikPlayer" >
-			<img class="icon" src="../img/statistik.png">
-			<span class="text">Statistic Player</span>
-                    </a>
+                <li class=”dropdown”>
+                    <div class="hv">
+                    <a href="StatistikPlayer" class=”dropdown-toggle” data-toggle=”dropdown”><img class="icon" src="../img/statistik.png"></a>
+                    <span class='text' id="Statistik">Statistic <span class="caret"></span></span>
+                    </div>
+                    <ul class=”dropdown-menu” id="sub">
+                        <li><a href="StatistikPlayer">Statistik Player</a></li>
+                        <li><a href="StatistikTeam">Statistik Team</a></li> 
+                    </ul>
                 </li> 
                 <li> 
                     <a href="Musim" >

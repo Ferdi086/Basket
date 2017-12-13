@@ -440,7 +440,7 @@
         
         $(document).ready(function(){ 
             //$("#loading").hide();
-            //$('#sub').hide();
+            $('#sub').hide();
             $('#togglebutton').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
@@ -449,7 +449,7 @@
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
-            $('#Book').click(function(){
+            $('#Statistik').click(function(){
                $('#sub').toggle(300);               
             });
             $('#tgl').datetimepicker({

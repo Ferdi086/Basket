@@ -241,6 +241,7 @@
     </body>
     <script>
         $(document).ready(function(){ 
+             $('#sub').hide();
              $('#togglebutton').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
@@ -249,6 +250,9 @@
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
+            $('#Statistik').click(function(){
+               $('#sub').toggle(300);               
+            });
             $('#awal').datetimepicker({
                     format: 'YYYY'
                 });
