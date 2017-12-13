@@ -168,6 +168,10 @@
         <servlet-name>doSelectPlayer2</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.doSelectPlayer2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StatistikTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.StatistikTeam</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/BackEnd/Index</url-pattern>
@@ -377,6 +381,10 @@
     <servlet-mapping>
         <servlet-name>doSelectPlayer2</servlet-name>
         <url-pattern>/FrontEnd/doSelectPlayer2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StatistikTeam</servlet-name>
+        <url-pattern>/BackEnd/StatistikTeam</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

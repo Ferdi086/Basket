@@ -33,10 +33,12 @@
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <style>
+        .news-content{
+            height:620px;
+        }
         .copyright{
             margin:0;
-            position:fixed;
-        }        
+        }      
         
     </style>
     <body onload="startTime()">
@@ -385,7 +387,7 @@
            // $('table.package').highchartTable();
            // $('table.IdCard').highchartTable();
             //$("#loading").hide();
-            //$('#sub').hide();
+            $('#sub').hide();
             $('#togglebutton').click(function() {
 		$('.text').toggle(300);
                 $('#sub').hide();
@@ -394,7 +396,7 @@
 		$('.text').toggle(300);
                 $('#sub').hide();
             }); 
-            $('#Book').click(function(){
+            $('#Statistik').click(function(){
                $('#sub').toggle(300);               
             });
             $('#tgl').datetimepicker({

@@ -150,9 +150,9 @@ public class doUpdatePlayer extends HttpServlet {
                     foto = idTeam +"-"+ NamaNew+"-"+pos+"-"+noPunggung+Exten;
                     out.println("ini foto "+foto);
                     fi.write( file ) ;
-                    String query2 = "update MsPemain set Nama_Pemain='"+NamaNew+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
+                    //String query2 = "update MsPemain set Nama_Pemain='"+NamaNew+"', Region='"+region+"', Tgl_Lahir='"+tgl+"', Tinggi="+tinggi+", Berat="+berat+", KD_Pos='"+pos+"', Id_Team='"+idTeam+"', No_Punggung="+noPunggung+", Tangan="+tangan+", Foto='"+foto+"' where Id_Pemain='"+ idpemain +"'";
                     boolean a=dh.setUpdatePemain(NamaNew,region,tgl,tinggi,berat,pos,idTeam,noPunggung,tangan,foto,idpemain);
-                    out.println("<br/><br/><br/> query 2 ="+query2+"<br/><br/><br/>");
+                    //out.println("<br/><br/><br/> query 2 ="+query2+"<br/><br/><br/>");
                     //out.println(a);
                     
                    
