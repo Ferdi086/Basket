@@ -172,6 +172,10 @@
         <servlet-name>StatistikTeam</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.BackEnd.StatistikTeam</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LockUnlock</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.LockUnlock</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/BackEnd/Index</url-pattern>
@@ -378,6 +382,10 @@
     <servlet-mapping>
         <servlet-name>StatistikTeam</servlet-name>
         <url-pattern>/BackEnd/StatistikTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LockUnlock</servlet-name>
+        <url-pattern>/BackEnd/LockUnlock</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

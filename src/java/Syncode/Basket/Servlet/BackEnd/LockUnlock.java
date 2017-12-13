@@ -6,10 +6,10 @@
 package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
-import Syncode.Basket.Object.ObjJam;
-import Syncode.Basket.Object.ObjUser;
+import Syncode.Basket.Object.Musim;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +19,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author meiiko
+ * @author Ferdinand
  */
-public class Musim extends HttpServlet {
+public class LockUnlock extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,33 +34,32 @@ public class Musim extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            DatabaseHandler dh=new DatabaseHandler();
-            HttpSession session = request.getSession(true);
-            PrintWriter out = response.getWriter();
-            String ErrMess = (String)session.getAttribute("ErrMess")==null?"":(String)session.getAttribute("ErrMess");
-            String alert = (String)session.getAttribute("alert")==null?"":(String)session.getAttribute("alert");
-            session.removeAttribute("ErrMess");
-            session.removeAttribute("alert");
-            request.setAttribute("ErrMess", ErrMess);
-            request.setAttribute("alert", alert);
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
+        PrintWriter out = response.getWriter();
+        String ID = request.getParameter("ID_M");
+        String St = request.getParameter("Flag");
+        DatabaseHandler dh=new DatabaseHandler();
+        boolean x=dh.setAktivasiMusim(ID, St);
+        if(x==true){
+            HashMap a = dh.getMusim(ID);
+            Musim b = (Musim)a.get(0);
+            String c = b.getFlagactive();
+            if(c.equals("Y")){
+                session.setAttribute("ErrMess","This Season Has Been Unlocked");
+                session.setAttribute("alert", "alert-success");
+            }else{
+                session.setAttribute("ErrMess","This Season Has Been Locked");
+                session.setAttribute("alert", "alert-danger");
+            }
             
-            ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
-            request.setAttribute("nama_usr", usr.getNama());
-            
-            HashMap ms = dh.getMusim();
-            request.setAttribute("musim",ms);
-            //Jam
-            HashMap cl = dh.getClock();
-            ObjJam jm = (ObjJam) cl.get(0);
-            String h = jm.getJam();
-            String m = jm.getMenit();
-            String s  = jm.getDetik();
-            String d  = jm.getTgl();
-            request.setAttribute("hour", h);
-            request.setAttribute("minute", m);
-            request.setAttribute("second", s);
-            request.setAttribute("date", d);
-            request.getRequestDispatcher("/BackEnd/musim.jsp").forward(request,response);
+            response.sendRedirect("Musim");
+        }
+        else{
+            session.setAttribute("ErrMess","Your data failed to be recorded");
+            session.setAttribute("alert", "alert-danger");
+            response.sendRedirect("Musim");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

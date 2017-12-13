@@ -82,11 +82,27 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir from MsMusim where Flag_active = 'Y' ORDER BY ID_Musim DESC"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Flag_active from MsMusim ORDER BY ID_Musim DESC"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getMusim(String id){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Flag_active from MsMusim WHERE ID_Musim='"+id+"'"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
               
             }
         } catch (SQLException ex) {
@@ -108,6 +124,17 @@ public class DatabaseHandler extends Connect {
     public boolean setUpdateMusim(String id,String nama, String awal, String akhir, String jenis){
         try {        
                     String query = "Update MsMusim set Last_Update = GETDATE(),  Nama_Musim='"+nama+"',Tahun_Awal='"+awal+"',Tahun_Akhir='"+akhir+"',Jenis='"+jenis+"' where ID_Musim='"+id+"'";
+                    ps = conn.prepareStatement(query);
+                    ps.executeUpdate();  
+                return true;
+            
+        } catch (SQLException ex) {
+            return false;   
+        }         
+    }
+     public boolean setAktivasiMusim(String id,String status){
+        try {        
+                    String query = "Update MsMusim set Last_Update = GETDATE(), Flag_active='"+status+"' where ID_Musim='"+id+"'";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
