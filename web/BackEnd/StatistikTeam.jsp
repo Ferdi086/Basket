@@ -185,30 +185,30 @@
             }           
         }
         function DownloadTemplateTeam(){
-                       location.href="DownloadTemplateTeam"
-        }
-            $('#team').change(function () {
-            var id = $(this).val();
-            //alert(id); 
-            $.ajax({
-                type: 'POST',
-                url: 'doSelectPlayer',
-                data: {
-                    'bagian': 1,
-                    'category': id
-                },
-                beforeSend: function(){
-                    $('#loading').show();
-                },
-                complete: function(){
-                    $('#loading').hide();
-                },
-                success: function (data) {
-                    $('#pemain').html(data);         
-                }
-            });
+                            var id = $('#team').val();
+                            //alert(id); 
+                            $.ajax({
+                                type: 'POST',
+                                url: 'DownloadTemplateTeam',
+                                data: {
+                                    'bagian': 1,
+                                    'category': id
+                                },
+                                beforeSend: function(){
+                                   // $('#loading').show();
+                                },
+                                complete: function(){
+                                    //$('#loading').hide();
+                                },
+                                success: function (data) {
+                                    //alert(data);
+                                   //$('#pemain').html(data);         
+                                }
+                            });
 
-        });
+                      
+        }
+          
 
     </script>
 </html>

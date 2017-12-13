@@ -1249,12 +1249,13 @@ public class DatabaseHandler extends Connect {
         }
         return x;
     }
-    public HashMap getPlayerList(){
+    public HashMap getPlayerList(String id){
         HashMap tr = new HashMap();
         try{
             int i =0;
-            String query = "select top 5 ID_Pemain,Nama_Pemain from MsPemain";
+            String query = "select top 5 ID_Pemain,Nama_Pemain from MsPemain where ID_Team=?";
             ps = conn.prepareStatement(query);
+            ps.setString(1,id);
             rs = ps.executeQuery();
             while(rs.next()){
                 tr.put(i++, new ObjPlayerListTemplate(rs.getString(1), rs.getString(2)));

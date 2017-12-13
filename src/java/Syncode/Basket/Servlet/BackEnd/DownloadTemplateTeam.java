@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tes_excel;
+package Syncode.Basket.Servlet.BackEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
 import Syncode.Basket.Object.ObjPlayerListTemplate;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -24,31 +29,53 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
- * @author Yuga
+ * @author meiiko
  */
-public class addsheet {
-    
-    
-
-    public static void main(String[] args) throws Exception  {     
-        
-    XSSFWorkbook wb = new XSSFWorkbook();
-    //Workbook wb;      
-    DatabaseHandler dh = new DatabaseHandler();
-    HashMap tr = dh.getPlayerList();
-    Map<String, CellStyle> styles = createStyles(wb);
-        try{
-            FileOutputStream out = new FileOutputStream(new File("D:\\Netbeans\\Basket\\web\\Statistik\\Team\\Xceldemo4.xlsx"));
-           
+public class DownloadTemplateTeam extends HttpServlet {
+    private String filePath;
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    public void init( ){
+      // Get the file location where it would be stored.
+      filePath = getServletContext().getInitParameter("file-upload-excel-team"); 
+   }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+         //String Path = getServletContext().getInitParameter("file-upload");
+          String bagian = request.getParameter("bagian")==null?"0":request.getParameter("bagian");
+         PrintWriter out1 = response.getWriter();
+          XSSFWorkbook wb = new XSSFWorkbook();
+                 DatabaseHandler dh = new DatabaseHandler();
+                 if(bagian.equals("0")){
+           out1.println("gagal");
+          // request.getRequestDispatcher("StatistikTeam.jsp").forward(request, response);
+            
+        }
+        else if(bagian.equals("1")){
+            response.setContentType("text/html;charset=UTF-8");
+            String category = request.getParameter("category")==null?"0":request.getParameter("category");
+            HashMap tr = dh.getPlayerList(category);
+            Map<String, CellStyle> styles = createStyles(wb);
+            out1.println(category);
+            try{
+            //String file = filePath+"Xceldemo5.xlsx";
+            
+            FileOutputStream out = new FileOutputStream(new File(filePath+"Xceldemo6.xlsx"));
             for(int i=0; i<tr.size(); i++){
                 ObjPlayerListTemplate x = (ObjPlayerListTemplate) tr.get(i);
                 Sheet Spreadsheet = wb.createSheet(x.getNama());
+                
                 Spreadsheet.setColumnWidth(0, 256*20);
                 Spreadsheet.setColumnWidth(1, 256*20);
                 Spreadsheet.setColumnWidth(2, 256*20);
@@ -103,16 +130,42 @@ public class addsheet {
                 row1.createCell(25).setCellValue("PTS");
  
             }
-           
+          
             wb.write(out);
             out.close();
+            
+             // TODO Auto-generated method stub
+		response.setContentType("text/html");
+		
+		String filename = "Xceldemo6.xlsx";
+		String filepath = filePath;
+		response.setContentType("APPLICATION/OCTET-STREAM");
+		response.setHeader("Content-Disposition", "attachment; filename=\""
+				+ filename + "\"");
+ 
+		// use inline if you want to view the content in browser, helpful for
+		// pdf file
+		// response.setHeader("Content-Disposition","inline; filename=\"" +
+		// filename + "\"");
+		FileInputStream fileInputStream = new FileInputStream(filepath
+				+ filename);
+ 
+		int i;
+		while ((i = fileInputStream.read()) != -1) {
+			out1.write(i);
+		}
+		fileInputStream.close();
+		out1.close();
+
         }
         catch(Exception e){
-            System.out.println(e);
+            out1.println(e);
         }
-        System.out.println("Excel file created");
-   }
+            }
+                 
+        //System.out.println("Excel file created");
     
+    }
     private static Map<String, CellStyle> createStyles(Workbook wb){
         Map<String, CellStyle> styles = new HashMap<>();
         DataFormat df = wb.createDataFormat();
@@ -156,4 +209,47 @@ public class addsheet {
         style.setTopBorderColor(black);
         return style;
     }
+      			
+    
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+     
 }
