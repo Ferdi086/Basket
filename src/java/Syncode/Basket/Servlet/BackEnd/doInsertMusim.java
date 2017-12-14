@@ -34,11 +34,12 @@ public class doInsertMusim extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         HttpSession session = request.getSession(true);
         PrintWriter out = response.getWriter();
+        String id_user = request.getParameter("id_user");
         String nama = request.getParameter("musim");
         String jenis = request.getParameter("jenis");
         String awal = request.getParameter("awal");
         String akhir = request.getParameter("akhir");
-        boolean a=dh.setMusim(nama, awal, akhir, jenis);
+        boolean a=dh.setMusim(nama, awal, akhir, jenis, id_user);
              if(a){
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");

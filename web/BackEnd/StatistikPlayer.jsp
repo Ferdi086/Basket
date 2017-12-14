@@ -51,6 +51,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team</label>
                                     <div class="col-sm-3">
+                                       
                                         <select name="team" class="form-control" id="team">
                                             <option value=""> Choose One Team </option>
                                             <c:forEach var="item" items="${requestScope.team}">
@@ -81,6 +82,7 @@
                                                 
                                              </c:forEach>
                                         </select>
+                                        <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
                                    </div>
                             </div>
                             <div class="form-group">

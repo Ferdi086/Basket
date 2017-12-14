@@ -119,6 +119,7 @@
                                             <option value="Lokal">Local</option>
                                             <option value="Asing">Import</option>
                                         </select>
+                                        <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
                                     </div>                                  
                                 </div>	
                             <div class="form-group">

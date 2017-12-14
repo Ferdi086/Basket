@@ -52,6 +52,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Season Name</label>
                                     <div class="col-sm-3">
+                                        <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
                                         <input id="musim" type="text" name="musim" class="form-control" required/>
                                     </div>
                                     <label class="control-label col-sm-2 " >Season Type</label>

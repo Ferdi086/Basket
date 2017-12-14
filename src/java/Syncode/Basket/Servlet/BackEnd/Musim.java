@@ -46,6 +46,7 @@ public class Musim extends HttpServlet {
             
             ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
             request.setAttribute("nama_usr", usr.getNama());
+            request.setAttribute("id_user", usr.getID());
             
             HashMap ms = dh.getMusim();
             request.setAttribute("musim",ms);

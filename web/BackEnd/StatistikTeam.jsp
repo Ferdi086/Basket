@@ -66,6 +66,7 @@
                                                  <option value="${item.value.id_musim}_${item.value.nama_musim}">${item.value.nama_musim} </option>
                                                </c:forEach>
                                          </select>
+                                        <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
                                     </div>
                                 </div>	
                             <div class="form-group">

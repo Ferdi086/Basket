@@ -99,6 +99,8 @@ public class doInsertTeam extends HttpServlet {
                String nick = nickitem.getString().trim();
                FileItem divisiitem = (FileItem) fileItems.get(2);
                String divisi = divisiitem.getString().trim();
+               FileItem iduseritem = (FileItem) fileItems.get(3);
+               String iduser = iduseritem.getString().trim();
                String FieldName = fi.getFieldName();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
@@ -123,7 +125,7 @@ public class doInsertTeam extends HttpServlet {
                     fi.write( file );
                     String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+NamaNew+"','"+logo+"','"+foto+"')";
                     out.println(query);
-                    boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,foto);  
+                    boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,foto,iduser);  
                     out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");

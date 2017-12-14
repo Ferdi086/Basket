@@ -75,6 +75,7 @@
                                             <option value="P">Putih</option>
                                             <option value="M">Merah</option>
                                         </select>
+                                        <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
                                     </div>
                                    
                                                                   

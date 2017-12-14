@@ -110,6 +110,8 @@ public class doInsertPlayer extends HttpServlet {
                String tangan = tanganitem.getString().trim();
                 FileItem regionitem = (FileItem) fileItems.get(8);
                String region = regionitem.getString().trim();
+               FileItem iduseritem = (FileItem) fileItems.get(9);
+               String iduser = iduseritem.getString().trim();
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                //String contentType = fi.getContentType();
@@ -135,7 +137,7 @@ public class doInsertPlayer extends HttpServlet {
                        foto = id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten;
                         fi.write( file ); 
                        out.println("nama baru="+NamaNew);
-                    boolean a=dh.setMsPemain(NamaNew,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto); 
+                    boolean a=dh.setMsPemain(NamaNew,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto,iduser); 
                     out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");

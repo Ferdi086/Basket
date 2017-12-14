@@ -110,9 +110,9 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public boolean setMusim(String nama, String awal, String akhir, String jenis){
+    public boolean setMusim(String nama, String awal, String akhir, String jenis, String id){
         try {        
-                    String query = "insert into MsMusim (Nama_Musim,Tahun_Awal,Tahun_Akhir,Jenis) values ('"+nama+"','"+awal+"','"+akhir+"','"+jenis+"')";
+                    String query = "insert into MsMusim (Nama_Musim,Tahun_Awal,Tahun_Akhir,Jenis,ID_Pengentri) values ('"+nama+"','"+awal+"','"+akhir+"','"+jenis+"','"+id+"')";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;
@@ -175,10 +175,10 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public boolean setMsPemain (String name, String region, String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto){
+    public boolean setMsPemain (String name, String region, String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto, String iduser){
         try {         
-                String query = "INSERT INTO MsPemain (Nama_Pemain,Asal,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto) values ('"+name+"','"+region+"','"+id_team+"',"
-                        + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"')";
+                String query = "INSERT INTO MsPemain (Nama_Pemain,Asal,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto,ID_Pengentri) values ('"+name+"','"+region+"','"+id_team+"',"
+                        + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"','"+ iduser +"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;
@@ -188,9 +188,9 @@ public class DatabaseHandler extends Connect {
         }         
     }
     
-    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String gambar_team){
+    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String gambar_team, String iduser){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,Gambar)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+gambar_team+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,Gambar,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+gambar_team+"','"+iduser+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;
@@ -298,10 +298,10 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public boolean setStatikPemain(String idmusim, String idpemain, String idteam, String match, String date, String wl,String mins,String fgm,String fga, String fgp,String twopm,String twopa,String twopp,String tripm,String tripa,String tripp,String ftm,String fta,String ftp,String ors,String dr,String tr,String ass,String tos,String st,String bl,String pf,String ef,String pts){
+    public boolean setStatikPemain(String idmusim, String idpemain, String idteam, String match, String date, String wl,String mins,String fgm,String fga, String fgp,String twopm,String twopa,String twopp,String tripm,String tripa,String tripp,String ftm,String fta,String ftp,String ors,String dr,String tr,String ass,String tos,String st,String bl,String pf,String ef,String pts, String iduser){
         try {
-            String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
-                    + "values('"+ idmusim +"','"+ idpemain +"','"+ idteam +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
+            String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS],ID_Pengentri) "
+                    + "values('"+ idmusim +"','"+ idpemain +"','"+ idteam +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"','"+ iduser +"')";
             ps = conn.prepareStatement(query);
             ps.executeUpdate();
             return true;

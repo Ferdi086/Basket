@@ -110,6 +110,8 @@ public class doInsertStatikPlayer extends HttpServlet {
                String id_pemain = nama.split("\\-")[0];
                FileItem musimitem = (FileItem) fileItems.get(3);
                String musim = musimitem.getString();
+               FileItem iduseritem = (FileItem) fileItems.get(4);
+               String iduser = iduseritem.getString().trim();
               // out.println("musim adalah"+musim+"<br/>");
                String nama_musim =musim.split("\\_")[1];
                String id_musim =musim.split("\\_")[0];
@@ -304,7 +306,7 @@ public class doInsertStatikPlayer extends HttpServlet {
                                + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
                                
                                 //out.println(query);
-                                 boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
+                                 boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
                                    if(a == true ){
                                        out.println("berhasil");
                                    }
