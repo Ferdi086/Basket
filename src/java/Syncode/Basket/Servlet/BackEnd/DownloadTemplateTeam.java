@@ -29,6 +29,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -88,8 +89,9 @@ public class DownloadTemplateTeam extends HttpServlet {
                 //rowID.createCell(0).setCellValue("ID_Pemain");
                 Row row = Spreadsheet.createRow(1);
                 Cell cellGL = row.createCell(0);
-                cellGL.setCellStyle(styles.get("GL"));
+                Spreadsheet.addMergedRegion(new CellRangeAddress(1, 1, 0, 25));
                 cellGL.setCellValue("GAME LOGS");
+                cellGL.setCellStyle(styles.get("GL"));
                // row.createCell(0).setCellValue("GAME LOGS");
                 Row row1 = Spreadsheet.createRow(2);
                 row1.createCell(0).setCellValue("DATE");
@@ -118,7 +120,10 @@ public class DownloadTemplateTeam extends HttpServlet {
                 row1.createCell(23).setCellValue("PF");
                 row1.createCell(24).setCellValue("EF");
                 row1.createCell(25).setCellValue("PTS");
- 
+                
+                for(int j = 0; j<=25; j++){
+                row1.getCell(j).setCellStyle(styles.get("TH"));
+                }
             }
           
             wb.write(out);
@@ -171,12 +176,22 @@ public class DownloadTemplateTeam extends HttpServlet {
         
         Font headerFont1 = wb.createFont();
         headerFont1.setBold(true);
+        headerFont1.setColor(IndexedColors.WHITE.getIndex());
         style = createBorderedStyle(wb);
         style.setAlignment(HorizontalAlignment.CENTER);
         style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         style.setFont(headerFont1);
         styles.put("GL", style);
+        
+        Font headerFont2 = wb.createFont();
+        headerFont2.setBold(true);
+        style = createBorderedStyle(wb);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(headerFont2);
+        styles.put("TH", style);
         
 
         return styles;
