@@ -104,11 +104,7 @@ public class doInsertStatikTeam extends HttpServlet {
                // Get the uploaded file parameters
                FileItem id_teamitem = (FileItem) fileItems.get(0);
                String id_team = id_teamitem.getString().trim();
-               FileItem namaitem = (FileItem) fileItems.get(1);
-               String nama = namaitem.getString().trim();
-               String namasplit = nama.split("\\-")[1];
-               String id_pemain = nama.split("\\-")[0];
-               FileItem musimitem = (FileItem) fileItems.get(3);
+               FileItem musimitem = (FileItem) fileItems.get(1);
                String musim = musimitem.getString();
               // out.println("musim adalah"+musim+"<br/>");
                String nama_musim =musim.split("\\_")[1];
@@ -127,16 +123,16 @@ public class doInsertStatikTeam extends HttpServlet {
             //out.println("musim = "+musim);
             //out.println("id pemain = "+id_pemain);
              out.println(fi);
+             Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())){
                     // Write the file
                     if( fileName.lastIndexOf("\\") >= 0 ) {
-                       file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama_musim + Exten) ;
                     } else {
-                       file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
+                       file = new File( filePath + id_team +"-"+ nama_musim + Exten) ;
                     }
                     
-                    Exten="."+ ext;
-                    namafile = id_team +"-"+ nama_musim +"-"+namasplit + Exten;
+                    namafile = id_team +"-"+ nama_musim + Exten;
                     
                     fi.write( file ) ;
                     //dh.setFile(Name,Exten);
@@ -152,17 +148,22 @@ public class doInsertStatikTeam extends HttpServlet {
                 //Get the workbook instance for XLS file
                 XSSFWorkbook workbook = new XSSFWorkbook(fin);
                 //Get first sheet from the workbook
-                XSSFSheet sheet = workbook.getSheetAt(0);
+                //XSSFSheet sheet = workbook.getSheetAt(0);
                     //Iterate through each rows from first sheet
-                 Row row,row1;
+                 Row row,rows;
                  //String contoh="qwer";
-                 int trow = sheet.getLastRowNum();
-                
+                 
+                int a =workbook.getNumberOfSheets();
+                out.println("banyaknya sheet = "+a+"<br/>");
+                for(int q=0; q<a;q++){
+                    XSSFSheet sheet = workbook.getSheetAt(q);
+                    int trow = sheet.getLastRowNum();
+                   rows = (Row) sheet.getRow(0);
+                   String id_pemain=rows.getCell(1).toString();
+                   out.println("id pemain = "+id_pemain+"<br/>");
                   String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
-                     row1 = (Row) sheet.getRow(5);
-                  
-                    
-                        for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
+                    out.println("<br/><br/><br/>");
+                        for(int t=3; t<=trow; t++){  //points to the starting of excel i.e excel first row
                             row = (Row) sheet.getRow(t);//sheet number
                             if(row != null){
            			if( row.getCell(0)!=null) {
@@ -303,10 +304,10 @@ public class doInsertStatikTeam extends HttpServlet {
                          String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
                                + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
                                
-                                //out.println(query);
-                                 boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
-                                   if(a == true ){
-                                       out.println("berhasil");
+                                out.println(query);
+                                 boolean qw =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts);
+                                   if(qw == true ){
+                                      out.println("berhasil");
                                    }
                                    else{
                                        out.println("gagal");
@@ -318,32 +319,32 @@ public class doInsertStatikTeam extends HttpServlet {
                      }else{
                             session.setAttribute("ErrMess","Your data successfully recorded");
                             session.setAttribute("alert", "alert-success");
-                            //response.sendRedirect("StatistikPlayer");  
+                            response.sendRedirect("StatistikTeam");  
                             out.println("data selanjutnya kosong<br/>");
                       }
            //  out.println("sheet = "+sheet.getLastRowNum());
           //  out.println(sno+" "+snama+" "+sumur);
 	     }
-        
+                }
         // keterangan="Uploaded Filename: " + Name +"."+ ext + "<br>";
                     //ln(file);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("StatistikPlayer");
+                    response.sendRedirect("StatistikTeam");
                     out.println("kondisi normal<br/>");
                }         
                else{
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
                    out.println("kondisi format data salaah");
-                   response.sendRedirect("StatistikPlayer");
+                   response.sendRedirect("StatistikTeam");
                }
             }
             
          }
           //response.sendRedirect("excel");
          } catch(Exception ex) {
-             
+             out.println("masuk ke exception");
             out.println(ex);
          }
     }

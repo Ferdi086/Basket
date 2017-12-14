@@ -60,7 +60,8 @@ public class DownloadTemplateTeam extends HttpServlet {
     HashMap tr = dh.getPlayerList(id);
     Map<String, CellStyle> styles = createStyles(wb);
         try{
-            FileOutputStream out = new FileOutputStream(new File(filePath+"Xceldemo5.xlsx"));
+            String namatemplate="Template Excel Team "+id+".xlsx";
+            FileOutputStream out = new FileOutputStream(new File(filePath+namatemplate));
            
             for(int i=0; i<tr.size(); i++){
                 ObjPlayerListTemplate x = (ObjPlayerListTemplate) tr.get(i);
@@ -126,18 +127,18 @@ public class DownloadTemplateTeam extends HttpServlet {
              // TODO Auto-generated method stub
 		response.setContentType("text/html");
 		
-		String filename = "Xceldemo5.xlsx";
+		//String filename = namatemplate;
 		String filepath = filePath;
 		response.setContentType("APPLICATION/OCTET-STREAM");
 		response.setHeader("Content-Disposition", "attachment; filename=\""
-				+ filename + "\"");
+				+ namatemplate + "\"");
  
 		// use inline if you want to view the content in browser, helpful for
 		// pdf file
 		// response.setHeader("Content-Disposition","inline; filename=\"" +
 		// filename + "\"");
 		FileInputStream fileInputStream = new FileInputStream(filepath
-				+ filename);
+				+ namatemplate);
  
 		int i;
 		while ((i = fileInputStream.read()) != -1) {

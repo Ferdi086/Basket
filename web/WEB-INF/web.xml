@@ -89,6 +89,10 @@
         <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertStatikPlayer</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>doInsertStatikTeam</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.BackEnd.doInsertStatikTeam</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PlayersBySeason</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.PlayersBySeason</servlet-class>
     </servlet>
@@ -317,6 +321,10 @@
     <servlet-mapping>
         <servlet-name>doInsertStatikPlayer</servlet-name>
         <url-pattern>/BackEnd/doInsertStatikPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doInsertStatikTeam</servlet-name>
+        <url-pattern>/BackEnd/doInsertStatikTeam</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PlayersBySeason</servlet-name>
