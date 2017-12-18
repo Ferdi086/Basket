@@ -59,7 +59,7 @@
                                    
                                     <label class="control-label col-sm-2">Team NickName</label>
                                     <div class="col-sm-3">
-                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required style="text-transform:uppercase">
+                                        <input id="nick" type="text" name="nick"  class="form-control" maxlength="3" required >
                                     </div>  
                                     <div class="col-sm-2">
                                         <span id="loading"><img src="../img/loading.gif" width="28px"/></span>

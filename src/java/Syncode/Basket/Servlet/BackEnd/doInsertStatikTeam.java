@@ -106,7 +106,7 @@ public class doInsertStatikTeam extends HttpServlet {
                String id_team = id_teamitem.getString().trim();
                FileItem musimitem = (FileItem) fileItems.get(1);
                String musim = musimitem.getString();
-               FileItem iduseritem = (FileItem) fileItems.get(1);
+               FileItem iduseritem = (FileItem) fileItems.get(2);
                String iduser = iduseritem.getString();
               // out.println("musim adalah"+musim+"<br/>");
                String nama_musim =musim.split("\\_")[1];
@@ -115,16 +115,8 @@ public class doInsertStatikTeam extends HttpServlet {
                String fileName = fi.getName();
                ext = fileName.split("\\.")[1];
                out.println("id musim ="+id_musim);
-               String contentType = fi.getContentType();
-               boolean isInMemory = fi.isInMemory();
-               long sizeInBytes = fi.getSize();
-              // out.println(ext);
-            //out.println("nama = "+id_musim+"<br/><br/>");
-            //out.println("namasplit = "+namasplit);
-            //out.println("team = "+id_team);
-            //out.println("musim = "+musim);
-            //out.println("id pemain = "+id_pemain);
-             out.println(fi);
+               
+           
              Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())){
                     // Write the file

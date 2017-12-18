@@ -105,8 +105,8 @@
                                     <div class="col-sm-3">
                                         <select id="tangan" type="text" name="tangan" class="form-control" required>
                                             <option value=""> Choose One Hand's Position </option>
-                                            <option value="kanan">Right</option>
-                                            <option value="kiri">Left</option>
+                                            <option value="Kanan">Right</option>
+                                            <option value="Kiri">Left</option>
                                             <option value="N/A">Unknown</option>
                                         </select>
                                     </div>                                  

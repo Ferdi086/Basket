@@ -108,9 +108,9 @@ public class doInsertTeam extends HttpServlet {
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
                      if(FieldName.equals("logo")){
                             if( fileName.lastIndexOf("\\") >= 0 ) {
-                                 file = new File( filePath + "team" +"-"+ nick+Exten) ;
+                                 file = new File( filePath + "team" +"_"+ nick+Exten) ;
                            } else {
-                              file = new File( filePath + "team" +"-"+ nick+Exten) ;
+                              file = new File( filePath + "team" +"_"+ nick+Exten) ;
                           }
                      }
                      else if(FieldName.equals("foto")){
@@ -120,7 +120,7 @@ public class doInsertTeam extends HttpServlet {
                                 file = new File( filePath2 + nick+Exten) ;
                               }
                      }
-                    String foto = "team" +"-"+nick+Exten;
+                    String foto = "team" +"_"+nick+Exten;
                     String logo = nick+Exten;
                     fi.write( file );
                     String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+NamaNew+"','"+logo+"','"+foto+"')";
