@@ -35,13 +35,14 @@ public class PlayerDetailStats {
     private String PF = "";
     private String EF = "";
     private String PTS = "";
+    private String SPTS = "";
     private String id_team = "";
     private int no=0;
 
     public PlayerDetailStats() {
     }
 
-    public PlayerDetailStats(int no, String Period, String id_team, String GP, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS) {
+    public PlayerDetailStats(int no, String Period, String id_team, String GP, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS, String SPTS) {
         this.Period = Period;
         this.GP = GP;
         this.MIN = MIN;
@@ -67,11 +68,12 @@ public class PlayerDetailStats {
         this.PF = PF;
         this.EF = EF;
         this.PTS = PTS;
+        this.SPTS = SPTS;
         this.no = no;
         this.id_team = id_team;
     }
     
-    public PlayerDetailStats(int no, String GP, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS) {
+    public PlayerDetailStats(int no, String GP, String MIN, String FGM, String FGA, String FG, String PM2, String PA2, String P2, String PM3, String PA3, String P3, String FTM, String FTA, String FT, String O_R, String DR, String TR, String A_S, String T_O, String ST, String BL, String PF, String EF, String PTS, String SPTS) {
         this.GP = GP;
         this.MIN = MIN;
         this.FGM = FGM;
@@ -96,7 +98,16 @@ public class PlayerDetailStats {
         this.PF = PF;
         this.EF = EF;
         this.PTS = PTS;
+        this.SPTS = SPTS;
         this.no = no;
+    }
+
+    public String getSPTS() {
+        return SPTS;
+    }
+
+    public void setSPTS(String SPTS) {
+        this.SPTS = SPTS;
     }
 
     public String getPeriod() {

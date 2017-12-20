@@ -161,7 +161,7 @@
         </div>
         <div class='col-lg-3 col-md-12-sm-12 kiri'>
             <div class='kiri_jud'>
-                <h4><center>Every Foreign Player</center></h4>
+                <h4><center>Every Import Player</center></h4>
             </div>
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
