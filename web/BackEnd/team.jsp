@@ -85,21 +85,12 @@
                                    <div class="col-sm-3">
                                        <input id="logo" type="file" name="logo" accept=".jpg, .jpeg, .png" onchange="readlogo(this);" required/>
                                    </div>
-                                   <label class="control-label col-sm-2">Team's Photo</label>
-                                   <div class="col-sm-3">
-                                       <input id="foto" type="file" name="foto" accept=".jpg, .jpeg, .png" onchange="readfoto(this);" required/>
-                                   </div>
-                            </div>	
-                            <div class="form-group">
-                                   <label class="col-sm-2 control-label">Team's Logo Preview</label>
+                                    <label class="col-sm-2 control-label">Team's Logo Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewlogo" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
                                     </div>
-                                   <label class="col-sm-2 col-sm-offset-1 control-label">Team's Photo Preview</label>
-                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewfoto" style="margin-left:-15px" src="../img/Team/Logo/nopic.png" width="135px" height="140px"/>
-                                    </div>
-                            </div>
+                            </div>	
+                            
                             </form>                                        
 				</div>	     
                                 <br/>
@@ -133,7 +124,6 @@
                                     <c:set var="namateam" value="${item.value.namateam}"/>
                                     <c:set var="divisi" value="${item.value.divisi}"/>
                                     <c:set var="logo" value="${item.value.logo}"/>
-                                    <c:set var="gambar" value="${item.value.gambar}"/>
                                     <c:set var="flagactive" value="${item.value.flagactive}" />
                                     <tr>
                                         <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
@@ -242,21 +232,12 @@
                                    <div class="col-sm-3">
                                        <input id="UpdateLogo" type="file" name="logo"  onchange="readlogoupdate(this);" required/>
                                    </div>
-                                   <label class="control-label col-sm-2">Team's Photo</label>
-                                   <div class="col-sm-3">
-                                       <input id="UpdateFoto" type="file" name="foto"  onchange="readfotoupdate(this);" required/>
-                                   </div>
-                            </div>	
-                            <div class="form-group">
-                                   <label class="col-sm-2 control-label">Logo Preview</label>
+                                    <label class="col-sm-2 control-label">Logo Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="previewlogoupdate" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" style="margin-left:-15px"/>
                                     </div>
-                                   <label class="col-sm-2 col-sm-offset-1 control-label">Photo Preview</label>
-                                    <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="previewfotoupdate" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" style="margin-left:-15px"/>
-                                    </div>
-                            </div>
+                        </div>	
+                            
                     </form>
                     <script>
                         

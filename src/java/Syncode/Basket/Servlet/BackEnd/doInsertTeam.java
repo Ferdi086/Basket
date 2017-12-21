@@ -106,26 +106,18 @@ public class doInsertTeam extends HttpServlet {
                ext = fileName.split("\\.")[1];
                Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
-                     if(FieldName.equals("logo")){
-                            if( fileName.lastIndexOf("\\") >= 0 ) {
-                                 file = new File( filePath + "team" +"_"+ nick+Exten) ;
-                           } else {
-                              file = new File( filePath + "team" +"_"+ nick+Exten) ;
-                          }
-                     }
-                     else if(FieldName.equals("foto")){
+                   if(FieldName.equals("logo")){
                             if( fileName.lastIndexOf("\\") >= 0 ) {
                                 file = new File( filePath2 + nick+Exten) ;
                               } else {
                                 file = new File( filePath2 + nick+Exten) ;
                               }
                      }
-                    String foto = "team" +"_"+nick+Exten;
                     String logo = nick+Exten;
                     fi.write( file );
-                    String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo,Gambar)values('"+nick+"','"+NamaNew+"','"+logo+"','"+foto+"')";
+                    String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo)values('"+nick+"','"+NamaNew+"','"+logo+"')";
                     out.println(query);
-                    boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,foto,iduser);  
+                    boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,iduser);  
                     out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");

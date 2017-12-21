@@ -16,19 +16,17 @@ public class Team {
     private String namateam="";
     private String divisi="";
     private String logo="";
-    private String gambar="";
     private String flagactive="";
 
     public Team() {
     }
 
 
-    public Team(String id, String namateam, String divisi, String logo, String gambar, String flagactive) {
+    public Team(String id, String namateam, String divisi, String logo, String flagactive) {
         this.id = id;
         this.namateam = namateam;
         this.divisi = divisi;
         this.logo = logo;
-        this.gambar = gambar;
         this.flagactive = flagactive;
     }
     
@@ -62,14 +60,6 @@ public class Team {
 
     public void setLogo(String logo) {
         this.logo = logo;
-    }
-
-    public String getGambar() {
-        return gambar;
-    }
-
-    public void setGambar(String gambar) {
-        this.gambar = gambar;
     }
 
     public String getFlagactive() {

@@ -253,7 +253,8 @@
                                                                             <th>BL</th>
                                                                             <th>PF</th>
                                                                             <th>EF</th>
-                                                                            <th>PTS</th>
+                                                                            <th>Average Points</th>
+                                                                            <th>Total Points</th>
                                                                     </tr>
 
                                                                     <c:forEach var="item" items="${requestScope.player_stat}">                                                                        
@@ -284,6 +285,7 @@
                                                                             <td>${item.value.PF}</td>
                                                                             <td>${item.value.EF}</td>
                                                                             <td>${item.value.PTS}</td>
+                                                                            <td>${item.value.SPTS}</td>
                                                                     </tr>
                                                                     </c:forEach>
                                                                     <c:forEach var="item" items="${requestScope.player_stat_sum}">
@@ -368,6 +370,9 @@
                                                                                     <td>
                                                                                         ${item.value.PTS}
                                                                                     </td>
+                                                                                    <td>
+                                                                                        ${item.value.SPTS}
+                                                                                    </td>
                                                                                 </tr>   
                                                                             </c:otherwise>
                                                                         </c:choose>                                                     
@@ -404,7 +409,8 @@
                                                                             <th>BL</th>
                                                                             <th>PF</th>
                                                                             <th>EF</th>
-                                                                            <th>PTS</th>
+                                                                            <th>Average Points</th>
+                                                                            <th>Total Points</th>
                                                                     </tr>
 
                                                                     <c:forEach var="item" items="${requestScope.player_stat2}">
@@ -435,6 +441,7 @@
                                                                             <td>${item.value.PF}</td>
                                                                             <td>${item.value.EF}</td>
                                                                             <td>${item.value.PTS}</td>
+                                                                            <td>${item.value.SPTS}</td>
                                                                     </tr>
                                                                     </c:forEach>
                                                                     <c:forEach var="item" items="${requestScope.player_stat2_sum}">
@@ -519,6 +526,9 @@
                                                                                     <td>
                                                                                         ${item.value.PTS}
                                                                                     </td>
+                                                                                    <td>
+                                                                                        ${item.value.SPTS}
+                                                                                    </td>
                                                                                 </tr>   
                                                                             </c:otherwise>
                                                                         </c:choose>                                                              
@@ -591,7 +601,7 @@
                                                                 <th>AGE</th>
                                                                 <th>TEAM</th>
                                                                 <th>POSITION</th>
-                                                                <th>GAMEPLAY</th>
+                                                                <th>Number of Games</th>
                                                             </tr>
                                                             <c:forEach var="item" items="${requestScope.his}">
                                                             <tr>

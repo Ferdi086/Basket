@@ -111,29 +111,18 @@ public class doUpdateTeam extends HttpServlet {
                out.println(ext);
                Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
-                     if(FieldName.equals("foto")){
-                         out.println("<br/>iniFoto" + nick + Exten);
-                            if( fileName.lastIndexOf("\\") >= 0 ) {
-                                 file = new File( filePath + "team" +"-"+ nick+Exten) ;
-                           } else {
-                              file = new File( filePath + "team" +"-"+ nick+Exten) ;
-                          }
-                     }
-                     else if(FieldName.equals("logo")){
-                         
+                     if(FieldName.equals("logo")){
                             if( fileName.lastIndexOf("\\") >= 0 ) {
                                 file = new File( filePath2 + nick+Exten) ;
                               } else {
                                 file = new File( filePath2 + nick+Exten) ;
                               }
                      }
-                    foto = "team" +"_"+nick+Exten;
                     logo = nick+Exten;
-                    //out.println(foto + logo);
                     fi.write( file );
-                    String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+NamaNew+"',Logo='"+logo+"',Gambar='"+foto+"' where ID_Team='"+nick+"'";
+                    String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+NamaNew+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
                     out.println("query 2 ="+query+"<br/>");
-                    boolean a=dh.setUpdateMsTeam(nick,NamaNew,divisi,logo,foto);
+                    boolean a=dh.setUpdateMsTeam(nick,NamaNew,divisi,logo);
                     //out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
@@ -154,8 +143,8 @@ public class doUpdateTeam extends HttpServlet {
                }
                FileItem divisiitem = (FileItem) fileItems.get(2);
                String divisi = divisiitem.getString().trim();
-               String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+NamaNew+"',Logo='"+logo+"',Gambar='"+foto+"'where ID_Team='"+nick+"'";
-               boolean a=dh.setUpdateMsTeam(nick,NamaNew,divisi,logo,foto);
+               String query = "update MsTeam set ID_Team='"+nick+"',Nama_Team='"+NamaNew+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
+               boolean a=dh.setUpdateMsTeam(nick,NamaNew,divisi,logo);
                //out.println(a);
                out.println("query 1 ="+query+"<br/>");
                  

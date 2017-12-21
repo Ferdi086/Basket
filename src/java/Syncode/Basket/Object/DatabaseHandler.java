@@ -33,11 +33,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar,Flag_active from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo,Flag_active from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -147,11 +147,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar, Flag_active from MsTeam where ID_Team = '"+id+"'"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo, Flag_active from MsTeam where ID_Team = '"+id+"'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -188,9 +188,9 @@ public class DatabaseHandler extends Connect {
         }         
     }
     
-    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String gambar_team, String iduser){
+    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String iduser){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,Gambar,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+gambar_team+"','"+iduser+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+iduser+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;
@@ -199,19 +199,14 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
-    public boolean setUpdateMsTeam(String nick, String nama_team,String divisi, String logo, String gambar_team){
+    public boolean setUpdateMsTeam(String nick, String nama_team,String divisi, String logo){
         try {         
-                if(logo.equals("") && gambar_team.equals("")){
+               if(logo.equals("")){
                      String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"' where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
-                }else if(logo.equals("")){
-                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Gambar='"+gambar_team+"' where ID_Team='"+nick+"'";
-                     ps = conn.prepareStatement(query);
-                }else if(gambar_team.equals("")){
+               }
+               else{
                      String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
-                     ps = conn.prepareStatement(query);
-                }else{
-                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
                  }
                ps.executeUpdate();  
@@ -491,7 +486,7 @@ public class DatabaseHandler extends Connect {
                         "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P])*100 as decimal(10,0)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
                         "	CAST(AVG(a.[3P])*100 as decimal(10,0)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                         "	CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
-                        "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                        "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS, CAST(SUM(a.[PTS]) as decimal(10,2)) as SPTS " +
                         "	from " +
                         "	(" +
                         "		select Jenis,CONVERT(VARCHAR(10),c.Tahun_Awal)+'-'+CONVERT(VARCHAR(10),Tahun_Akhir) as Periode,b.Nama_Pemain,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
@@ -503,7 +498,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)+"%", rs.getString(8), rs.getString(9), rs.getString(10)+"%", rs.getString(11), rs.getString(12), rs.getString(13)+"%", rs.getString(14), rs.getString(15), rs.getString(16)+"%", rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26)));
+                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)+"%", rs.getString(8), rs.getString(9), rs.getString(10)+"%", rs.getString(11), rs.getString(12), rs.getString(13)+"%", rs.getString(14), rs.getString(15), rs.getString(16)+"%", rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27)));
                 
             }
         }catch (SQLException ex) {
@@ -519,13 +514,13 @@ public class DatabaseHandler extends Connect {
                         "      CAST(AVG([PM2]) as decimal(10,2)) as PM2, CAST(AVG([PA2]) as decimal(10,2)) as PA2, CAST(AVG([P2])*100 as decimal(10,0)) as P2, CAST(AVG([PM3]) as decimal(10,2)) as PM3, CAST(AVG([PA3]) as decimal(10,2)) as PA3, " +
                         "      CAST(AVG([P3])*100 as decimal(10,0)) as P3, CAST(AVG([FTM]) as decimal(10,2)) as FTM, CAST(AVG([FTA]) as decimal(10,2)) as FTA, CAST(AVG([FT])*100 as decimal(10,0)) as FT, CAST(AVG([O_R]) as decimal(10,2)) as O_R, " +
                         "      CAST(AVG([DR]) as decimal(10,2)) as DR, CAST(AVG([TR]) as decimal(10,2)) as TR, CAST(AVG([A_S]) as decimal(10,2)) as A_S, CAST(AVG([T_O]) as decimal(10,2)) as T_O, CAST(AVG([ST]) as decimal(10,2)) as ST, " +
-                        "      CAST(AVG([BL]) as decimal(10,2)) as BL, CAST(AVG([PF]) as decimal(10,2)) as PF, CAST(AVG([EF]) as decimal(10,2)) as EF, CAST(AVG([PTS]) as decimal(10,2)) as PTS  " +
+                        "      CAST(AVG([BL]) as decimal(10,2)) as BL, CAST(AVG([PF]) as decimal(10,2)) as PF, CAST(AVG([EF]) as decimal(10,2)) as EF, CAST(AVG([PTS]) as decimal(10,2)) as PTS  , CAST(SUM([SPTS]) as decimal(10,2)) as SPTS " +
                         " FROM(" +
                         "	select a.Periode,a.ID_Team,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG]) as decimal(10,2)) as FG, " +
                         "      CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P]) as decimal(10,2)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
                         "      CAST(AVG(a.[3P]) as decimal(10,2)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT]) as decimal(10,2)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                         "      CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
-                        "      CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                        "      CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS, CAST(SUM(a.[PTS]) as decimal(10,2)) as SPTS " +
                         "      from " +
                         "       (" +
                         "         select Jenis,CONVERT(VARCHAR(10),c.Tahun_Awal)+'-'+CONVERT(VARCHAR(10),Tahun_Akhir) as Periode,b.Nama_Pemain,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
@@ -537,7 +532,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)+"%", rs.getString(6), rs.getString(7), rs.getString(8)+"%", rs.getString(9), rs.getString(10), rs.getString(11)+"%", rs.getString(12), rs.getString(13), rs.getString(14)+"%", rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24)));
+                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)+"%", rs.getString(6), rs.getString(7), rs.getString(8)+"%", rs.getString(9), rs.getString(10), rs.getString(11)+"%", rs.getString(12), rs.getString(13), rs.getString(14)+"%", rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25)));
                 
             }
         }catch (SQLException ex) {
@@ -553,7 +548,7 @@ public class DatabaseHandler extends Connect {
                         "	CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P])*100 as decimal(10,0)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
                         "	CAST(AVG(a.[3P])*100 as decimal(10,0)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT])*100 as decimal(10,0)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                         "	CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
-                        "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                        "	CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS , CAST(SUM(a.[PTS]) as decimal(10,2)) as SPTS " +
                         "	from " +
                         "	(" +
                         "		select Jenis,CONVERT(VARCHAR(10),c.Tahun_Awal)+'-'+CONVERT(VARCHAR(10),Tahun_Akhir) as Periode,b.Nama_Pemain,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
@@ -565,7 +560,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)+"%", rs.getString(8), rs.getString(9), rs.getString(10)+"%", rs.getString(11), rs.getString(12), rs.getString(13)+"%", rs.getString(14), rs.getString(15), rs.getString(16)+"%", rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26)));
+                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)+"%", rs.getString(8), rs.getString(9), rs.getString(10)+"%", rs.getString(11), rs.getString(12), rs.getString(13)+"%", rs.getString(14), rs.getString(15), rs.getString(16)+"%", rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27)));
                 
             }
         }catch (SQLException ex) {
@@ -581,13 +576,13 @@ public class DatabaseHandler extends Connect {
                         "      CAST(AVG([PM2]) as decimal(10,2)) as PM2, CAST(AVG([PA2]) as decimal(10,2)) as PA2, CAST(AVG([P2])*100 as decimal(10,0)) as P2, CAST(AVG([PM3]) as decimal(10,2)) as PM3, CAST(AVG([PA3]) as decimal(10,2)) as PA3, " +
                         "      CAST(AVG([P3])*100 as decimal(10,0)) as P3, CAST(AVG([FTM]) as decimal(10,2)) as FTM, CAST(AVG([FTA]) as decimal(10,2)) as FTA, CAST(AVG([FT])*100 as decimal(10,0)) as FT, CAST(AVG([O_R]) as decimal(10,2)) as O_R, " +
                         "      CAST(AVG([DR]) as decimal(10,2)) as DR, CAST(AVG([TR]) as decimal(10,2)) as TR, CAST(AVG([A_S]) as decimal(10,2)) as A_S, CAST(AVG([T_O]) as decimal(10,2)) as T_O, CAST(AVG([ST]) as decimal(10,2)) as ST, " +
-                        "      CAST(AVG([BL]) as decimal(10,2)) as BL, CAST(AVG([PF]) as decimal(10,2)) as PF, CAST(AVG([EF]) as decimal(10,2)) as EF, CAST(AVG([PTS]) as decimal(10,2)) as PTS  " +
+                        "      CAST(AVG([BL]) as decimal(10,2)) as BL, CAST(AVG([PF]) as decimal(10,2)) as PF, CAST(AVG([EF]) as decimal(10,2)) as EF, CAST(AVG([PTS]) as decimal(10,2)) as PTS , CAST(SUM([SPTS]) as decimal(10,2)) as SPTS " +
                         " FROM(" +
                         "	select a.Periode,a.ID_Team,COUNT([MIN]) as GP, CAST(AVG(a.[MIN]) as decimal(10,2)) as MIN, CAST(AVG(a.[FGM]) as decimal(10,2)) as FGM, CAST(AVG(a.[FGA]) as decimal(10,2)) as FGA, CAST(AVG(a.[FG]) as decimal(10,2)) as FG, " +
                         "      CAST(AVG(a.[2PM]) as decimal(10,2)) as PM2, CAST(AVG(a.[2PA]) as decimal(10,2)) as PA2, CAST(AVG(a.[2P]) as decimal(10,2)) as P2, CAST(AVG(a.[3PM]) as decimal(10,2)) as PM3, CAST(AVG(a.[3PA]) as decimal(10,2)) as PA3, " +
                         "      CAST(AVG(a.[3P]) as decimal(10,2)) as P3, CAST(AVG(a.[FTM]) as decimal(10,2)) as FTM, CAST(AVG(a.[FTA]) as decimal(10,2)) as FTA, CAST(AVG(a.[FT]) as decimal(10,2)) as FT, CAST(AVG(a.[OR]) as decimal(10,2)) as O_R, " +
                         "      CAST(AVG(a.[DR]) as decimal(10,2)) as DR, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, CAST(AVG(a.[TO]) as decimal(10,2)) as T_O, CAST(AVG(a.[ST]) as decimal(10,2)) as ST, " +
-                        "      CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                        "      CAST(AVG(a.[BL]) as decimal(10,2)) as BL, CAST(AVG(a.[PF]) as decimal(10,2)) as PF, CAST(AVG(a.[EF]) as decimal(10,2)) as EF, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS, CAST(SUM(a.[PTS]) as decimal(10,2)) as SPTS " +
                         "      from " +
                         "       (" +
                         "         select Jenis,CONVERT(VARCHAR(10),c.Tahun_Awal)+'-'+CONVERT(VARCHAR(10),Tahun_Akhir) as Periode,b.Nama_Pemain,a.ID_Team,[MIN],[FGM],[FGA],[FG], " +
@@ -599,7 +594,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)+"%", rs.getString(6), rs.getString(7), rs.getString(8)+"%", rs.getString(9), rs.getString(10), rs.getString(11)+"%", rs.getString(12), rs.getString(13), rs.getString(14)+"%", rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24)));
+                tr.put(i++, new PlayerDetailStats(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)+"%", rs.getString(6), rs.getString(7), rs.getString(8)+"%", rs.getString(9), rs.getString(10), rs.getString(11)+"%", rs.getString(12), rs.getString(13), rs.getString(14)+"%", rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25)));
                 
             }
         }catch (SQLException ex) {
