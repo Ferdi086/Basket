@@ -15,13 +15,17 @@ public class ObjKlasemenNew {
     private String nama="";
     private String id_musim="";
     private String logo="";
+    private String thn_awal="";
+    private String thn_akhir="";
 
-    public ObjKlasemenNew(int no, String id_team, String nama, String id_musim, String logo) {
+    public ObjKlasemenNew(int no, String id_team, String nama, String id_musim, String logo, String thn_awal, String thn_akhir) {
         this.no = no;
         this.id_team = id_team;
         this.nama = nama;
         this.id_musim = id_musim;
         this.logo = logo;
+        this.thn_awal = thn_awal;
+        this.thn_akhir = thn_akhir;
     }
     
     public ObjKlasemenNew() {
@@ -68,6 +72,24 @@ public class ObjKlasemenNew {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    public String getThn_awal() {
+        return thn_awal;
+    }
+
+    public void setThn_awal(String thn_awal) {
+        this.thn_awal = thn_awal;
+    }
+
+    public String getThn_akhir() {
+        return thn_akhir;
+    }
+
+    public void setThn_akhir(String thn_akhir) {
+        this.thn_akhir = thn_akhir;
+    }
+    
+    
     
     
     

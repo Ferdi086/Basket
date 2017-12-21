@@ -54,14 +54,10 @@ h2 span {
 		<img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.namateam}" width="150" height="150"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
-		<h3>${item.value.namateam}</h3>
+            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir} ${item.value.namateam}</h3>
+            
 	</div>
 </div>
-<center>
-	<div class="team_foto col-lg-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
-		<img src="../img/Team/Foto/${item.value.gambar}"  class="img-responsive" width="200px" height="200px"/>
-	</div>
-</center>
 
 <div class="col-lg-12 team_stats">
 	<h3> ${item.value.namateam} STATISTICS <span class="glyphicon glyphicon-stats"> </span></h3>
@@ -219,15 +215,15 @@ h2 span {
 			<span>ROSTER</span>
 		</h2>
 			<div class="wthree_team_grids">                                
-                                <c:forEach var = "item" items = "${requestScope.player}">
+                                <c:forEach var = "item" items = "${requestScope.playerlist}">
                                 <div class="col-md-3 wthree_team_grid">
-					<div class="hovereffect" onclick="playdetail(${item.value.idPemain})">
-						<img src="../img/Players/${item.value.foto}" alt="${item.value.namaPemain}"  class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" style="height:100%; min-height:283px;" />
+					<div class="hovereffect" onclick="playdetail(${item.value.id_pemain})">
+						<img src="../img/Players/${item.value.foto}" alt="${item.value.nama_pemain}"  class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" style="height:100%; min-height:283px;" />
 						<div class="overlay">
-                                                    <h6>${item.value.namaPemain}</h6>
+                                                    <h6>${item.value.nama_pemain}</h6>
 						</div>
 					</div>
-					<h4>${item.value.namaPos}</h4>
+					<h4>${item.value.nama_posisi}</h4>
 					<p>${item.value.tinggi} cm</p>
 				</div>
                                 </c:forEach>

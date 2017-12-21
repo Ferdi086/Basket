@@ -35,13 +35,18 @@ public class TeamDetails extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("ID_T");
+        String ID = request.getParameter("id_t");
+        String id_musim = request.getParameter("id_musim");
+        String thn_awal = request.getParameter("thn_awal");
+        String thn_akhir = request.getParameter("thn_akhir");
         HashMap tr = dh.getTeamDetail(ID); 
         HashMap tr1 = dh.getPlayers(ID);
         HashMap tr2 = dh.getTopPoint(ID);
         HashMap tr3 = dh.getTopAssist(ID);
         HashMap tr4 = dh.getTopRebound(ID);
-        HashMap Season = dh.getTeamSeason(ID);
+        HashMap Season = dh.getTeamSeason(ID, thn_awal);
+        HashMap playerlist = dh.getPlayerlistTeam(ID, id_musim);
+        //out.print(playerlist);
         ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
         HashMap gs = dh.getGeneralStat(ID, msm.getId_musim());
         request.setAttribute("id_team",ID);
@@ -52,6 +57,9 @@ public class TeamDetails extends HttpServlet {
         request.setAttribute("tr",tr4);
         request.setAttribute("ss",Season);
         request.setAttribute("gs",gs);
+        request.setAttribute("playerlist",playerlist);
+        request.setAttribute("thn_awal",thn_awal);
+        request.setAttribute("thn_akhir",thn_akhir);
         request.getRequestDispatcher("team_detail.jsp").forward(request, response);
     }
 
