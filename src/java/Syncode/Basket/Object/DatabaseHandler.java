@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -1280,7 +1280,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i =0;
-            String query = "select top 5 ID_Pemain,Nama_Pemain from MsPemain where ID_Team=?";
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team=? and Flag_active = 'Y'";
             ps = conn.prepareStatement(query);
             ps.setString(1,id);
             rs = ps.executeQuery();

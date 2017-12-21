@@ -52,7 +52,7 @@
                                     <label class="control-label col-sm-2 " >Team</label>
                                     <div class="col-sm-3">
                                         <select name="team" class="form-control" id="team">
-                                            <option value=""> Choose One Team </option>
+                                            <option value="kocak"> Choose One Team </option>
                                             <c:forEach var="item" items="${requestScope.team}">
                                                 <option value="${item.value.id}"> ${item.value.id} - ${item.value.namateam} </option>
                                               </c:forEach>
@@ -137,6 +137,22 @@
         </div>
     </div>
     <!-- End Modal Validasi Input-->
+    <!-- Modal Select Team-->
+    <div id="selectTeam" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size:24px;color:red;font-weight:bold;text-align:center;">Please Select your Team First!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" data-dismiss="modal" aria-hidden="true">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
     
     <script>
@@ -187,6 +203,9 @@
         }
         function DownloadTemplateTeam(){
         var id = $("#team").val();
+        if(id==='kocak'){
+                $('#selectTeam').modal('show');  
+        }else{
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
         form.setAttribute("action", "DownloadTemplateTeam");
@@ -197,6 +216,7 @@
         form.appendChild(hiddenField);
         document.body.appendChild(form);
         form.submit();
+        }
         
     }
           
