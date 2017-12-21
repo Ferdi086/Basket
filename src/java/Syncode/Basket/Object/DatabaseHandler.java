@@ -33,11 +33,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar,Flag_active from MsTeam"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo,Flag_active from MsTeam"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -147,11 +147,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Gambar, Flag_active from MsTeam where ID_Team = '"+id+"'"; 
+            String query = "select ID_Team,Nama_Team,Divisi,Logo, Flag_active from MsTeam where ID_Team = '"+id+"'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
               
             }
         } catch (SQLException ex) {
@@ -188,9 +188,9 @@ public class DatabaseHandler extends Connect {
         }         
     }
     
-    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String gambar_team, String iduser){
+    public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String iduser){
         try {         
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,Gambar,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+gambar_team+"','"+iduser+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+iduser+"')";
                 ps = conn.prepareStatement(query);
                 ps.executeUpdate();  
                 return true;
@@ -199,19 +199,14 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
-    public boolean setUpdateMsTeam(String nick, String nama_team,String divisi, String logo, String gambar_team){
+    public boolean setUpdateMsTeam(String nick, String nama_team,String divisi, String logo){
         try {         
-                if(logo.equals("") && gambar_team.equals("")){
+               if(logo.equals("")){
                      String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"' where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
-                }else if(logo.equals("")){
-                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Gambar='"+gambar_team+"' where ID_Team='"+nick+"'";
-                     ps = conn.prepareStatement(query);
-                }else if(gambar_team.equals("")){
+               }
+               else{
                      String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
-                     ps = conn.prepareStatement(query);
-                }else{
-                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"',Gambar='"+gambar_team+"'where ID_Team='"+nick+"'";
                      ps = conn.prepareStatement(query);
                  }
                ps.executeUpdate();  
