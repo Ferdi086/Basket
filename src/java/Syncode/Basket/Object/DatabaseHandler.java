@@ -13,6 +13,38 @@ import java.util.HashMap;
  * @author meiiko
  */
 public class DatabaseHandler extends Connect {
+    public HashMap getCurrentu(){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select top 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where Jenis='Regular' order by Tahun_Awal desc"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Testq(rs.getString(1), rs.getString(2), rs.getString(3)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getprevious(String Tahun){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Musim,Nama_Musim,Tahun_Awal,Tahun_Akhir from MsMusim where Jenis='Regular' AND Tahun_Awal < '"+Tahun+"' order by Tahun_Awal desc"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Testq(rs.getString(1), rs.getString(2), rs.getString(3)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
     public HashMap getClock(){
         HashMap tr = new HashMap();
         try {      
