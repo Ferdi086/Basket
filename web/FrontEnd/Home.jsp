@@ -110,27 +110,22 @@
                 <h4><center>Every Team</center></h4>
             </div>
             <div class="kanan_isi">
-                <h4>2017 - 2018 IBL Standings</h4>
+                <c:forEach var="item" items="${requestScope.current}">
+                    <h4>${item.value.thn_awal} - ${item.value.thn_akhir} IBL Standings</h4>
+                </c:forEach>
+                
                 
                 <table class="table table-bordered tb_div">
                         <tr>
                             <th data-valign="middle" data-sortable="true">No</th>
                             <th style='text-align:left'>Divisi Merah</th>
-                            <th>GP</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>PTS</th>
                         </tr>
-                        <c:forEach var='item' items='${requestScope.klas}'>
+                        <c:forEach var='item' items='${requestScope.klasmen_m}'>
                             <tr>
                                 <td>${item.value.no}</td>
                                 <td style='text-align:left'>
                                     <a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
                                 </td>
-                                <td>${item.value.gp}</td>
-                                <td>${item.value.w}</td>
-                                <td>${item.value.l}</td>
-                                <td>${item.value.pts}</td>
                             </tr>
                             
                         </c:forEach>
@@ -139,21 +134,13 @@
                         <tr>
                             <th>No</th>
                             <th style='text-align:left'>Divisi Putih</th>
-                            <th>GP</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>PTS</th>
                         </tr>
-                        <c:forEach var='item' items='${requestScope.klas2}'>
+                        <c:forEach var='item' items='${requestScope.klasmen_p}'>
                             <tr>
                                 <td>${item.value.no}</td>
                                 <td style='text-align:left'>
                                     <a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
                                 </td>
-                                <td>${item.value.gp}</td>
-                                <td>${item.value.w}</td>
-                                <td>${item.value.l}</td>
-                                <td>${item.value.pts}</td>
                             </tr>
                         </c:forEach>
                 </table>

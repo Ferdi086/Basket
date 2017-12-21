@@ -45,16 +45,22 @@ public class Home extends HttpServlet {
         HashMap trd = dh.getNewsList();
         HashMap tre = dh.getTrendingPlayer();
         /*HashMap trf = dh.getKlasemen();
-        HashMap trg = dh.getKlasemen2();*/
+        HashMap trg = dh.getKlasemen2();
         HashMap trf = dh.getKlasemenYuga(musim, div1);
         HashMap trg = dh.getKlasemenYuga(musim, div2);
+        request.setAttribute("klas", trf);
+        request.setAttribute("klas2", trg);*/
+        HashMap current = dh.getCurrentSeasonHome();
+        HashMap klasmen_m = dh.getKlasemenNew("5", div1);
+        HashMap klasmen_p = dh.getKlasemenNew("5", div2);
         request.setAttribute("p1",tr);
         request.setAttribute("p1a",tra);
         request.setAttribute("team",tm);
         request.setAttribute("news", trd);
         request.setAttribute("tren", tre);
-        request.setAttribute("klas", trf);
-        request.setAttribute("klas2", trg);
+        request.setAttribute("current", current);
+        request.setAttribute("klasmen_m",klasmen_m);
+        request.setAttribute("klasmen_p",klasmen_p);
         //out.print(trf.size());
         request.getRequestDispatcher("Home.jsp").forward(request, response);
         
