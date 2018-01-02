@@ -6,6 +6,9 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.Musim;
+import Syncode.Basket.Object.ObjTeamSeason;
+import Syncode.Basket.Object.Team;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -18,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ferdinand
  */
-public class Home extends HttpServlet {
+public class Next extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,37 +36,47 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String asal1 = "Lokal";
-        String asal2 = "Asing";
-        String musim = "5";
-        String div1 = "M";
-        String div2 = "P";
-        String curr = dh.getCurrentRegularSeason();
-        HashMap tr = dh.getPlayerRandom(asal1); 
-        HashMap tra = dh.getPlayerRandom(asal2);      
-        HashMap tm = dh.getTeam(curr);
-        HashMap trd = dh.getNewsList();
-        HashMap tre = dh.getTrendingPlayer();
-        /*HashMap trf = dh.getKlasemen();
-        HashMap trg = dh.getKlasemen2();
-        HashMap trf = dh.getKlasemenYuga(musim, div1);
-        HashMap trg = dh.getKlasemenYuga(musim, div2);
-        request.setAttribute("klas", trf);
-        request.setAttribute("klas2", trg);*/
-        HashMap current = dh.getCurrentSeasonHome();
-        HashMap klasmen_m = dh.getKlasemenNew("5", div1);
-        HashMap klasmen_p = dh.getKlasemenNew("5", div2);
-        request.setAttribute("p1",tr);
-        request.setAttribute("p1a",tra);
-        request.setAttribute("team",tm);
-        request.setAttribute("news", trd);
-        request.setAttribute("tren", tre);
-        request.setAttribute("current", current);
-        request.setAttribute("klasmen_m",klasmen_m);
-        request.setAttribute("klasmen_p",klasmen_p);
-        //out.print(trf.size());
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
-        
+        String ID_M = request.getParameter("id_musim");         
+        HashMap aw = dh.getNext(ID_M);
+        Musim tm = (Musim)aw.get(0);
+        String ID = request.getParameter("id_t");
+        String id_musim=tm.getId_musim();
+        HashMap Team = dh.getTeam(id_musim);
+        Team team = (Team)Team.get(0);
+        out.print(ID_M+" - "+id_musim);
+        String thn_awal = team.getThn_awal();
+        String thn_akhir = team.getThn_akhir();
+        HashMap tr = dh.getTeamDetail(ID); 
+        HashMap tr1 = dh.getPlayers(ID);
+        HashMap tr2 = dh.getTopPoint(ID);
+        HashMap tr3 = dh.getTopAssist(ID);
+        HashMap tr4 = dh.getTopRebound(ID);
+        HashMap Season = dh.getTeamSeason(ID, thn_awal);
+        HashMap playerlist = dh.getPlayerlistTeam(ID, id_musim);
+        //out.print(playerlist);
+        ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
+        HashMap gs = dh.getGeneralStat(ID, msm.getId_musim());
+        HashMap awk = dh.getPrevious(id_musim);
+        Musim tm1 = (Musim)awk.get(0);
+        String id_musimprev = tm1.getId_musim();
+        HashMap next = dh.getNext(id_musim);
+        Musim tm2 = (Musim)next.get(0);
+        String id_musimnext = tm2.getId_musim();  
+        request.setAttribute("id_team",ID);
+        request.setAttribute("team",tr);
+        request.setAttribute("player",tr1);
+        request.setAttribute("tp",tr2);
+        request.setAttribute("ta",tr3);
+        request.setAttribute("tr",tr4);
+        request.setAttribute("ss",Season);
+        request.setAttribute("gs",gs);
+        request.setAttribute("playerlist",playerlist);
+        request.setAttribute("thn_awal",thn_awal);
+        request.setAttribute("thn_akhir",thn_akhir);
+        request.setAttribute("idmusim", id_musim);
+        request.setAttribute("idmusimprev", id_musimprev);
+        request.setAttribute("idmusimnext", id_musimnext);
+        request.getRequestDispatcher("team_detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

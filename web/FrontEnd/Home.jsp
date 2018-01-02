@@ -139,7 +139,7 @@
                             <tr>
                                 <td>${item.value.no}</td>
                                 <td style='text-align:left'>
-                                    <a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
+                                    <a href='#' onclick="teamdetail('${item.value.id_team}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
                                 </td>
                             </tr>
                         </c:forEach>

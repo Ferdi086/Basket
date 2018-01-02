@@ -45,6 +45,46 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }*/
+    public HashMap getPrevious(String idmusim){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select TOP 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where ID_Musim < (Select ID_Musim from MsMusim where ID_Musim="+idmusim+" ) and Jenis = 'REGULAR' order by ID_Musim desc"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2)));
+              
+            }
+            if(!rs.next()){
+                tr.put(j++,new Musim("0", "-"));
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    
+    public HashMap getNext(String idmusim){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select TOP 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where ID_Musim > (Select ID_Musim from MsMusim where ID_Musim="+idmusim+" ) and Jenis = 'REGULAR' order by ID_Musim"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2)));
+              
+            }
+            if(!rs.next()){
+                tr.put(j++,new Musim("0", "-"));
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    
     public HashMap getClock(){
         HashMap tr = new HashMap();
         try {      
@@ -61,15 +101,32 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    /*
     public HashMap getTeam(){
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Flag_active from MsTeam"; 
+            String query = "Select ID_Team,Nama_Team,Divisi,Logo,Flag_active FROM MsTeam WHERE Flag_active = 'Y'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
               tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }*/
+    public HashMap getTeam(String id_musim){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "Select a.ID_Team,b.Nama_Team,b.Divisi,b.Logo,a.ID_Musim,c.Tahun_Awal,c.Tahun_Akhir,a.Flag_active from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team group by a.ID_Team,a.Flag_active,b.Nama_Team,b.Divisi,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir order by a.ID_Team"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
               
             }
         } catch (SQLException ex) {
@@ -1292,7 +1349,7 @@ public class DatabaseHandler extends Connect {
     public String getCurrentRegularSeason(){
         String x ="";
         try{
-            String query = "select TOP 1 ID_Musim from MsMusim where Jenis = 'Regular' order by Tahun_Awal desc";
+            String query = "SELECT DISTINCT a.ID_Musim,a.Tahun_Awal from MsMusim a, TrGameLogs b  where a.Jenis = 'Regular' and a.ID_Musim = b.ID_Musim ORDER BY Tahun_Awal DESC";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             if(rs.next()){
@@ -1338,7 +1395,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i =0;
-            String query = "	select a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team and b.Divisi='"+divisi+"' group by a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir";
+            String query = "Select a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team and b.Divisi='"+divisi+"' group by a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
