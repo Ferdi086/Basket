@@ -49,66 +49,14 @@
                 <th>Team</th>
                 <th>Points</th>
             </tr>
+            <c:forEach var="item" items="${requestScope.topPoint}">
             <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick='teamdetail(${item.value.id_team})' data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><a href='#' onclick='playdetail()' clas='nama_dash'>AtangAtangAtangAtangAtangAtang</a></td>
-                <td><a href='#' data-toggle="tooltip" title="BPJ"><img src='../img/Team/Logo/BPJ.png' class='logo_dash'></a></td>
-                <td>250.00</td>
-            </tr>
+            </c:forEach>
         </table>
     </div>
     <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -547,19 +495,18 @@
 <!-- //js -->	
 
 <script>
-    function detail(id){
-        var form = document.createElement("form");
-        form.setAttribute("method", "POST");
-        form.setAttribute("action", "NewsDetails");
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", "id_n");
-        hiddenField.setAttribute("value", id);
-        form.appendChild(hiddenField);
-        document.body.appendChild(form);
-        form.submit();
-    }
-    
+            function playdetail(id){
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "PlayerDetails");
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "ID_P");
+                hiddenField.setAttribute("value", id);
+                form.appendChild(hiddenField);
+                document.body.appendChild(form);
+                form.submit();
+            }
 </script>
 
 

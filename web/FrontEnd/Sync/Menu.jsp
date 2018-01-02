@@ -32,6 +32,9 @@
 		<li><a href="Players" class="hvr-underline-from-center"> 
                     <span class="glyphicon glyphicon-user"> </span> Players</a>
                 </li>
+		<li><a href="DashboardFront" class="hvr-underline-from-center"> 
+                    <span class="glyphicon glyphicon-stats"> </span> Dashboard</a>
+                </li>
             </ul>
         </div>
 	<div class="clearfix"> </div>	

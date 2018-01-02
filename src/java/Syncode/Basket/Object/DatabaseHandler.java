@@ -1365,4 +1365,20 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getTopPointDashboard(){
+        HashMap tr = new HashMap();
+        try{
+            int i =0;
+            String query = "select top 10 a.ID_Pemain,b.Nama_Pemain,a.ID_Team,c.Nama_Team,c.Logo,SUM(a.PTS)as Points from "
+                    + "TrGameLogs a, MsPemain b, MsTeam c where a.ID_Pemain = b.ID_Pemain and a.ID_Team = c.ID_Team group by a.ID_Pemain, b.Nama_Pemain,a.ID_Team,c.Nama_Team,c.Logo order by Points desc";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjTopTenDashboard(i,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
 }
