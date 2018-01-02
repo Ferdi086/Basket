@@ -13,8 +13,8 @@ import java.util.HashMap;
  * @author meiiko
  */
 public class DatabaseHandler extends Connect {
-    public HashMap getCurrentu(){
-        HashMap tr = new HashMap();
+   /* public HashMap getCurrentu(){
+       HashMap tr = new HashMap();
         try {      
             int j=0;
             String query = "select top 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where Jenis='Regular' order by Tahun_Awal desc"; 
@@ -38,6 +38,22 @@ public class DatabaseHandler extends Connect {
             rs = ps.executeQuery();
             while(rs.next()){                
               tr.put(j++,new Testq(rs.getString(1), rs.getString(2), rs.getString(3)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }*/
+    public HashMap getN(String idmusim){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select top 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where Jenis='Regular' AND ID_Musim < (Select Top 1 ID_Musim from MsMusim where Jenis ='Regular' and ID_Musim="+idmusim+" order by Tahun_Akhir desc)"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2)));
               
             }
         } catch (SQLException ex) {
@@ -787,13 +803,13 @@ public class DatabaseHandler extends Connect {
         return tr;
     }
     
-    public HashMap getTeamSeason(String id_team){
+    public HashMap getTeamSeason(String id_team, String thn_awal){
         HashMap tr = new HashMap();
         try{
             int i = 0;
-            String query = "SELECT ID_Musim,Nama_Musim from(" +
-                            "	select distinct a.ID_Musim,a.Nama_Musim FROM MsMusim a, TrGameLogs b, MsTeam c where a.ID_Musim = b.ID_Musim and b.ID_Team = c.ID_Team and b.ID_Team = '"+id_team+"' " +
-                            ")a order by a.ID_Musim desc";
+            String query = "SELECT ID_Musim,Nama_Musim from( " +
+                            "	select distinct a.ID_Musim,a.Nama_Musim FROM MsMusim a, TrGameLogs b, MsTeam c where a.ID_Musim = b.ID_Musim and b.ID_Team = c.ID_Team and b.ID_Team = '"+id_team+"' and a.Tahun_Awal ='"+thn_awal+"' " +
+                            ")a order by a.ID_Musim desc ";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -1338,11 +1354,27 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i =0;
-            String query = "select a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team and b.Divisi='"+divisi+"' group by a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo";
+            String query = "	select a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team and b.Divisi='"+divisi+"' group by a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new ObjKlasemenNew(i,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+                tr.put(i++, new ObjKlasemenNew(i,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
+    public HashMap getPlayerlistTeam(String id_team, String id_musim){
+        HashMap tr = new HashMap();
+        try{
+            int i =0;
+            String query = "select a.ID_Musim,a.ID_Pemain,a.Nama_Pemain,a.Nama_Team,a.Nama_Posisi,a.Foto,a.Tinggi from " +
+"(select c.ID_Musim,b.ID_Pemain,b.Nama_Pemain,e.Nama_Team, d.Nama_Posisi,b.Foto,b.Tinggi from TrGameLogs a, MsPemain b, MsMusim c, MsPosisi d, MsTeam e   where a.ID_Team = '"+id_team+"' and c.Jenis = 'REGULAR' and   a.ID_Musim=c.ID_Musim and b.KD_Pos = d.KD_Pos and a.ID_Team = e.ID_Team and a.ID_Musim = '"+id_musim+"' and a.ID_Pemain = b.ID_Pemain ) a group by a.ID_Musim,a.ID_Pemain,a.Nama_Pemain,a.Nama_Team,a.Foto,a.Tinggi,a.Nama_Posisi ";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjPlayerlistTeam(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
             }
         }catch (SQLException ex){
             

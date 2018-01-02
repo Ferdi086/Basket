@@ -6,7 +6,7 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
-import Syncode.Basket.Object.ObjTeamSeason;
+import Syncode.Basket.Object.Musim;
 import Syncode.Basket.Object.Team;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ferdinand
+ * @author meiiko
  */
-public class TeamDetails extends HttpServlet {
+public class Previous extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,35 +33,14 @@ public class TeamDetails extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh = new DatabaseHandler();
+       DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        String ID = request.getParameter("id_t");
-        String id_musim = request.getParameter("id_musim");
-        String thn_awal = request.getParameter("thn_awal");
-        String thn_akhir = request.getParameter("thn_akhir");
-        HashMap tr = dh.getTeamDetail(ID); 
-        HashMap tr1 = dh.getPlayers(ID);
-        HashMap tr2 = dh.getTopPoint(ID);
-        HashMap tr3 = dh.getTopAssist(ID);
-        HashMap tr4 = dh.getTopRebound(ID);
-        HashMap Season = dh.getTeamSeason(ID, thn_awal);
-        HashMap playerlist = dh.getPlayerlistTeam(ID, id_musim);
-        //out.print(playerlist);
-        ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
-        HashMap gs = dh.getGeneralStat(ID, msm.getId_musim());
-        request.setAttribute("id_team",ID);
-        request.setAttribute("team",tr);
-        request.setAttribute("player",tr1);
-        request.setAttribute("tp",tr2);
-        request.setAttribute("ta",tr3);
-        request.setAttribute("tr",tr4);
-        request.setAttribute("ss",Season);
-        request.setAttribute("gs",gs);
-        request.setAttribute("playerlist",playerlist);
-        request.setAttribute("thn_awal",thn_awal);
-        request.setAttribute("thn_akhir",thn_akhir);
-        request.setAttribute("idmusim", id_musim);
-        request.getRequestDispatcher("team_detail.jsp").forward(request, response);
+        String ID = request.getParameter("id__musim");
+         HashMap aw = dh.getN(ID);
+         Musim tm = (Musim)aw.get(0);
+         String as=tm.getId_musim();
+         out.println(as);
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
