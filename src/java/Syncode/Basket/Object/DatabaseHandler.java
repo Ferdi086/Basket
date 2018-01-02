@@ -13,8 +13,8 @@ import java.util.HashMap;
  * @author meiiko
  */
 public class DatabaseHandler extends Connect {
-    public HashMap getCurrentu(){
-        HashMap tr = new HashMap();
+   /* public HashMap getCurrentu(){
+       HashMap tr = new HashMap();
         try {      
             int j=0;
             String query = "select top 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where Jenis='Regular' order by Tahun_Awal desc"; 
@@ -44,7 +44,7 @@ public class DatabaseHandler extends Connect {
             
         }
         return tr;
-    }
+    }*/
     public HashMap getClock(){
         HashMap tr = new HashMap();
         try {      
