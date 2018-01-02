@@ -49,16 +49,36 @@ h2 span {
 <body>
 <%@include file="Sync/Menu.jsp" %>
 <c:forEach var = "item" items = "${requestScope.team}">
+     <c:set var = "idmusim" value ="${requestScope.idmusim}"/>
 <div class="row" style="margin-top:10px;margin-bottom:10px;">
 	<div class="col-lg-3 col-lg-offset-2 col-md-4 col-sm-5 col-xs-5 team_logo">
 		<img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.namateam}" width="150" height="150"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
-            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir} ${item.value.namateam}</h3>
+            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir}-${idmusim} ${item.value.namateam}</h3>
             
 	</div>
+           
 </div>
-
+            <div>
+                <button onclick="previous('${idmusim}')">Previous</button><button>Next</button>
+            </div>
+            <script>
+                 function previous(idmusim){
+                     var ids = idmusim;
+                     alert(ids);
+                      var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "Previous");
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", "id__musim");
+                    hiddenField.setAttribute("value", idmusim);
+                    form.appendChild(hiddenField);
+                    document.body.appendChild(form);
+                    form.submit();
+                 }
+            </script>
 <div class="col-lg-12 team_stats">
 	<h3> ${item.value.namateam} STATISTICS <span class="glyphicon glyphicon-stats"> </span></h3>
 </div>
