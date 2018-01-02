@@ -3446,3 +3446,32 @@ img.zoom-img:hover,.portfolio-grids:hover img.zoom-img{
 .tbl_schedule {
     margin: 0 5%;
 }
+
+/* end season */
+/* css dashboard*/
+.tb_dash{
+    margin-top:2%;
+}
+.logo_dash{
+    max-width: 30px;
+    max-height: 30px;
+}
+.nama_dash{
+    color:black !important;
+}
+.tb_dash > tbody > tr > th{
+    padding: 10px !important;
+    vertical-align: middle;
+    text-align: center;
+}
+.tb_dash > tbody > tr > td{
+    padding:4px !important;
+    vertical-align: middle;
+    text-align: center;
+}
+.tb_dash > tbody > tr > td > a{
+    color:black !important;
+}
+.tb_dash > tbody > tr > td > a:hover{
+    color:#23B684 !important;
+}
