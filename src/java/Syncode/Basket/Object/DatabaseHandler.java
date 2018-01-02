@@ -101,6 +101,23 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    /*
+    public HashMap getTeam(){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "Select ID_Team,Nama_Team,Divisi,Logo,Flag_active FROM MsTeam WHERE Flag_active = 'Y'"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }*/
     public HashMap getTeam(String id_musim){
         HashMap tr = new HashMap();
         try {      
@@ -1332,7 +1349,7 @@ public class DatabaseHandler extends Connect {
     public String getCurrentRegularSeason(){
         String x ="";
         try{
-            String query = "select TOP 1 ID_Musim from MsMusim where Jenis = 'Regular' order by Tahun_Awal desc";
+            String query = "SELECT DISTINCT a.ID_Musim,a.Tahun_Awal from MsMusim a, TrGameLogs b  where a.Jenis = 'Regular' and a.ID_Musim = b.ID_Musim ORDER BY Tahun_Awal DESC";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             if(rs.next()){
