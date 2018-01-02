@@ -77,15 +77,15 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public HashMap getTeam(){
+    public HashMap getTeam(String id_musim){
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Team,Nama_Team,Divisi,Logo,Flag_active from MsTeam"; 
+            String query = "Select a.ID_Team,b.Nama_Team,b.Divisi,b.Logo,a.ID_Musim,c.Tahun_Awal,c.Tahun_Akhir,a.Flag_active from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team group by a.ID_Team,a.Flag_active,b.Nama_Team,b.Divisi,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir order by a.ID_Team"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+              tr.put(j++,new Team(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
               
             }
         } catch (SQLException ex) {
@@ -1354,7 +1354,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try{
             int i =0;
-            String query = "	select a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team and b.Divisi='"+divisi+"' group by a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir";
+            String query = "Select a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir from TrGameLogs a, MsTeam b, MsMusim c where a.ID_Musim=c.ID_Musim and c.ID_Musim='"+id_musim+"' and a.ID_Team=b.ID_Team and b.Divisi='"+divisi+"' group by a.ID_Team,b.Nama_Team,a.ID_Musim,b.Logo,c.Tahun_Awal,c.Tahun_Akhir";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){

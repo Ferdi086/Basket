@@ -33,7 +33,7 @@ public class Teams extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        HashMap tr = dh.getTeam();    
+        HashMap tr = dh.getTeam("5");    
         request.setAttribute("team",tr);
         request.getRequestDispatcher("team.jsp").forward(request, response);
     }

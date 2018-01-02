@@ -41,7 +41,7 @@ public class Home extends HttpServlet {
         String curr = dh.getCurrentRegularSeason();
         HashMap tr = dh.getPlayerRandom(asal1); 
         HashMap tra = dh.getPlayerRandom(asal2);      
-        HashMap tm = dh.getTeam();
+        HashMap tm = dh.getTeam(curr);
         HashMap trd = dh.getNewsList();
         HashMap tre = dh.getTrendingPlayer();
         /*HashMap trf = dh.getKlasemen();
