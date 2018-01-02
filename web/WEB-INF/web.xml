@@ -192,6 +192,10 @@
         <servlet-name>Previous</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.Previous</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Next</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.Next</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/BackEnd/Index</url-pattern>
@@ -425,6 +429,10 @@
     <servlet-mapping>
         <servlet-name>Previous</servlet-name>
         <url-pattern>/FrontEnd/Previous</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Next</servlet-name>
+        <url-pattern>/FrontEnd/Next</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

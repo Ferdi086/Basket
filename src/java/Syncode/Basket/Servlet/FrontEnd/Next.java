@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author meiiko
+ * @author Ferdinand
  */
-public class Previous extends HttpServlet {
+public class Next extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,13 +37,13 @@ public class Previous extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
         String ID_M = request.getParameter("id_musim");         
-        HashMap aw = dh.getPrevious(ID_M);
+        HashMap aw = dh.getNext(ID_M);
         Musim tm = (Musim)aw.get(0);
         String ID = request.getParameter("id_t");
         String id_musim=tm.getId_musim();
         HashMap Team = dh.getTeam(id_musim);
         Team team = (Team)Team.get(0);
-        
+        out.print(ID_M+" - "+id_musim);
         String thn_awal = team.getThn_awal();
         String thn_akhir = team.getThn_akhir();
         HashMap tr = dh.getTeamDetail(ID); 
@@ -77,9 +77,6 @@ public class Previous extends HttpServlet {
         request.setAttribute("idmusimprev", id_musimprev);
         request.setAttribute("idmusimnext", id_musimnext);
         request.getRequestDispatcher("team_detail.jsp").forward(request, response);
-        
-        out.println(id_musimprev);
-         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

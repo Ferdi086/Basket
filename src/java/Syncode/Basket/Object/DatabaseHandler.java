@@ -45,22 +45,46 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }*/
-    public HashMap getN(String idmusim){
+    public HashMap getPrevious(String idmusim){
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select top 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where Jenis='Regular' AND ID_Musim < (Select Top 1 ID_Musim from MsMusim where Jenis ='Regular' and ID_Musim="+idmusim+" order by Tahun_Akhir desc)"; 
+            String query = "select TOP 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where ID_Musim < (Select ID_Musim from MsMusim where ID_Musim="+idmusim+" ) and Jenis = 'REGULAR' order by ID_Musim desc"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
               tr.put(j++,new Musim(rs.getString(1), rs.getString(2)));
               
             }
+            if(!rs.next()){
+                tr.put(j++,new Musim("0", "-"));
+            }
         } catch (SQLException ex) {
             
         }
         return tr;
     }
+    
+    public HashMap getNext(String idmusim){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select TOP 1 ID_Musim,Nama_Musim,Tahun_Awal from MsMusim where ID_Musim > (Select ID_Musim from MsMusim where ID_Musim="+idmusim+" ) and Jenis = 'REGULAR' order by ID_Musim"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2)));
+              
+            }
+            if(!rs.next()){
+                tr.put(j++,new Musim("0", "-"));
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    
     public HashMap getClock(){
         HashMap tr = new HashMap();
         try {      

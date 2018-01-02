@@ -55,28 +55,57 @@ h2 span {
 		<img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.namateam}" width="150" height="150"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
-            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir}-${idmusim} ${item.value.namateam}</h3>
+            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir} ${idmusim} ${item.value.namateam}</h3>
             
 	</div>
            
 </div>
             <div>
-                <button onclick="previous('${idmusim}')">Previous</button><button>Next</button>
+                <c:if test = "${requestScope.idmusimprev != 0}" >
+                    <button onclick="previous('${item.value.id}','${idmusim}')">Previous</button>
+                </c:if>
+                <c:if test = "${requestScope.idmusimnext != 0}" >
+                    <button onclick="next('${item.value.id}','${idmusim}')">Next</button>
+                </c:if>
+                
+                
             </div>
             <script>
-                 function previous(idmusim){
-                     var ids = idmusim;
-                     alert(ids);
-                      var form = document.createElement("form");
+                function previous(id_t, idmusim){
+                    var ids = idmusim;
+                    var form = document.createElement("form");
                     form.setAttribute("method", "POST");
                     form.setAttribute("action", "Previous");
                     var hiddenField = document.createElement("input");
                     hiddenField.setAttribute("type", "hidden");
-                    hiddenField.setAttribute("name", "id__musim");
-                    hiddenField.setAttribute("value", idmusim);
+                    hiddenField.setAttribute("name", "id_t");
+                    hiddenField.setAttribute("value", id_t);
                     form.appendChild(hiddenField);
+                    var hiddenField1 = document.createElement("input");
+                    hiddenField1.setAttribute("type", "hidden");
+                    hiddenField1.setAttribute("name", "id_musim");
+                    hiddenField1.setAttribute("value", idmusim);
+                    form.appendChild(hiddenField1);                    
                     document.body.appendChild(form);
-                    form.submit();
+                    form.submit();                    
+                 }
+                 function next(id_t, idmusim){
+                    var ids = idmusim;
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "Next");
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", "id_t");
+                    hiddenField.setAttribute("value", id_t);
+                    form.appendChild(hiddenField);
+                    var hiddenField1 = document.createElement("input");
+                    hiddenField1.setAttribute("type", "hidden");
+                    hiddenField1.setAttribute("name", "id_musim");
+                    hiddenField1.setAttribute("value", idmusim);
+                    form.appendChild(hiddenField1);                    
+                    document.body.appendChild(form);
+                    form.submit();                    
                  }
             </script>
 <div class="col-lg-12 team_stats">
