@@ -38,10 +38,18 @@ public class DashboardFront extends HttpServlet {
         HashMap tr = dh.getTopTenDashboard(al[0]);
         HashMap rb = dh.getTopTenDashboard(al[1]);
         HashMap as = dh.getTopTenDashboard(al[2]);
+        HashMap st = dh.getTopTenDashboard(al[3]);
+        HashMap bl = dh.getTopTenDashboard(al[4]);
+        HashMap pm = dh.getTopTenDashboard(al[5]);
+        HashMap ng = dh.getTopNumberOfGames();
         //HashMap rb = dh.getTopReboundDashboard();
         request.setAttribute("topPoint",tr);
         request.setAttribute("topRebound",rb);
         request.setAttribute("topAssist",as);
+        request.setAttribute("topSteal",st);
+        request.setAttribute("topBlock",bl);
+        request.setAttribute("top3PM",pm);
+        request.setAttribute("numberGames", ng);
         //out.print(as.size());
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }

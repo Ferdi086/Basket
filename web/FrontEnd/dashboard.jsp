@@ -44,11 +44,9 @@
 <center>
 		<h2 style="margin-top:2%"><span>DASHBOARD</span></h2>
 </center>
-<br/>
 <div class="bungkus_dash" style="height:1600px">
     <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <center><h4>Top Points</h4></center>
-        <br/>
+        <center><h4 class="jud_dash">Top Points</h4></center>
         <table class="table table-bordered table-responsive tb_dash">
             <tr>
                 <th style="width: 50px">No</th>
@@ -67,8 +65,7 @@
         </table>
     </div>
     <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <center><h4>Top Rebounds</h4></center>
-        <br/>
+        <center><h4 class="jud_dash">Top Rebounds</h4></center>
         <table class="table table-bordered table-responsive tb_dash">
             <tr>
                 <th style="width: 50px">No</th>
@@ -87,8 +84,7 @@
         </table>
     </div>
     <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <center><h4>Top Assists</h4></center>
-        <br/>
+        <center><h4 class="jud_dash">Top Assists</h4></center>
         <table class="table table-bordered table-responsive tb_dash">
             <tr>
                 <th style="width: 50px">No</th>
@@ -97,6 +93,82 @@
                 <th>Points</th>
             </tr>
             <c:forEach var="item" items="${requestScope.topAssist}">
+            <tr>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <center><h4 class="jud_dash">Top Steals</h4></center>
+        <table class="table table-bordered table-responsive tb_dash">
+            <tr>
+                <th style="width: 50px">No</th>
+                <th>Nama</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+            <c:forEach var="item" items="${requestScope.topSteal}">
+            <tr>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <center><h4 class="jud_dash">Top Blocks</h4></center>
+        <table class="table table-bordered table-responsive tb_dash">
+            <tr>
+                <th style="width: 50px">No</th>
+                <th>Nama</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+            <c:forEach var="item" items="${requestScope.topBlock}">
+            <tr>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <center><h4 class="jud_dash">Top 3PM</h4></center>
+        <table class="table table-bordered table-responsive tb_dash">
+            <tr>
+                <th style="width: 50px">No</th>
+                <th>Nama</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+            <c:forEach var="item" items="${requestScope.top3PM}">
+            <tr>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <center><h4 class="jud_dash">Top Number Of Games</h4></center>
+        <table class="table table-bordered table-responsive tb_dash">
+            <tr>
+                <th style="width: 50px">No</th>
+                <th>Nama</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+            <c:forEach var="item" items="${requestScope.numberGames}">
             <tr>
                 <td>${item.value.no}</td>
                 <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
