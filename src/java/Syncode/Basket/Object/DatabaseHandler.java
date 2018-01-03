@@ -1391,6 +1391,21 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public HashMap getCurrentSeasonHome(String id){
+        HashMap tr = new HashMap();
+        try{
+            int i =0;
+            String query = "SELECT DISTINCT TOP 1 a.ID_Musim,a.Tahun_Awal,a.Tahun_Akhir from MsMusim a, TrGameLogs b  where a.Jenis = 'Regular' and a.ID_Musim = b.ID_Musim and b.ID_Team = '"+id+"' ORDER BY Tahun_Awal DESC";
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tr.put(i++, new ObjCurrentSeason(rs.getString(1),rs.getString(2),rs.getString(3)));
+            }
+        }catch (SQLException ex){
+            
+        }
+        return tr;
+    }
     public HashMap getKlasemenNew(String id_musim, String divisi){
         HashMap tr = new HashMap();
         try{
