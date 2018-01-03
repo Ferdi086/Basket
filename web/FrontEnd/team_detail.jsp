@@ -61,22 +61,22 @@ h2 span {
            
 </div>
             <div class="container">  
-                <!--
+                
                 <div class="btn-group">                    
                     <c:if test = "${requestScope.idmusimprev != 0}" >
-                        <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous</b></button>
+                        <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous Season</b></button>
                     </c:if>
                     <c:if test = "${requestScope.idmusimnext != 0}" >
-                        <button class="btn btn-default" onclick="next('${item.value.id}','${idmusim}')"><b>Next</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
+                        <button class="btn btn-default" onclick="next('${item.value.id}','${idmusim}')"><b>Next Season</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
                     </c:if>       
                 </div>
-                -->
+                <!--
                 <c:if test = "${requestScope.idmusimprev != 0}" >
-                    <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous</b></button>
+                    <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous Season</b></button>
                 </c:if>
                 <c:if test = "${requestScope.idmusimnext != 0}" >
-                    <button class="btn btn-default" style="float:right;" onclick="next('${item.value.id}','${idmusim}')"><b>Next</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
-                </c:if>  
+                    <button class="btn btn-default" style="float:right;" onclick="next('${item.value.id}','${idmusim}')"><b>Next Season</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
+                </c:if>  -->
                 <!--
                 ghggh
                 <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous</b></button>    

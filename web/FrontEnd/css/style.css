@@ -1317,6 +1317,8 @@ section.slider {
   transform: scale(1.1);
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
+  min-height: 280px;
+    width: 100%;
 }
 
 .hovereffect:hover img,.wthree_team_grid:hover .hovereffect img{

@@ -831,9 +831,6 @@ public class DatabaseHandler extends Connect {
             while(rs.next()){
                 tr.put(i++, new ObjTeamSeason(rs.getString(1), rs.getString(2)));
             }
-            if(!rs.next()){
-                tr.put(i++, new ObjTeamSeason("", ""));
-            }
         }catch (SQLException ex) {
                 
         }
