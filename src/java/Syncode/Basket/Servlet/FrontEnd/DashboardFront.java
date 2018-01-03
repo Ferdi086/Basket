@@ -33,10 +33,16 @@ public class DashboardFront extends HttpServlet {
             throws ServletException, IOException {
         DatabaseHandler dh = new DatabaseHandler();
         PrintWriter out = response.getWriter();
-        HashMap tr = dh.getTopPointDashboard();
+        String[] al = {"PTS","TR","[AS]","ST","BL","[3PM]"};
         
+        HashMap tr = dh.getTopTenDashboard(al[0]);
+        HashMap rb = dh.getTopTenDashboard(al[1]);
+        HashMap as = dh.getTopTenDashboard(al[2]);
+        //HashMap rb = dh.getTopReboundDashboard();
         request.setAttribute("topPoint",tr);
-        //out.print(trf.size());
+        request.setAttribute("topRebound",rb);
+        request.setAttribute("topAssist",as);
+        //out.print(as.size());
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 

@@ -59,6 +59,44 @@
             </c:forEach>
         </table>
     </div>
+    <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <h4>Top Rebounds</h4>
+        <table class="table table-bordered table-responsive tb_dash">
+            <tr>
+                <th style="width: 50px">No</th>
+                <th>Nama</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+            <c:forEach var="item" items="${requestScope.topRebound}">
+            <tr>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="isi_dash col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <h4>Top Assists</h4>
+        <table class="table table-bordered table-responsive tb_dash">
+            <tr>
+                <th style="width: 50px">No</th>
+                <th>Nama</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+            <c:forEach var="item" items="${requestScope.topAssist}">
+            <tr>
+                <td>${item.value.no}</td>
+                <td><a href='#' onclick='playdetail(${item.value.id_pemain})'>${item.value.nama_pemain}</a></td>
+                <td><a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_dash'></a></td>
+                <td>${item.value.point}</td>
+            </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 
         <%@include file="Sync/footer.jsp" %>
