@@ -153,7 +153,7 @@
             <center>
                 <div class='foto_wrap' style="padding-left:5px;padding-right: 5px;">
                     <c:forEach var = "item" items = "${requestScope.p1a}">
-                        <a href="#" data-toggle="tooltip" data-placement="right" title="${item.value.namaPemain}">
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="${item.value.namaPemain}">
                             <img src='../img/Players/${item.value.foto}' onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="foto_pl" onclick="playdetail('${item.value.idPemain}')">
                         </a>
                     </c:forEach>
