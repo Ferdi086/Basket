@@ -101,7 +101,7 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    /*
+    
     public HashMap getTeam(){
         HashMap tr = new HashMap();
         try {      
@@ -117,7 +117,7 @@ public class DatabaseHandler extends Connect {
             
         }
         return tr;
-    }*/
+    }
     public HashMap getTeam(String id_musim){
         HashMap tr = new HashMap();
         try {      
