@@ -88,8 +88,10 @@
 		<h1>${item.value.namaPemain}</h1>
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
-		<a href="#" style="color:black" onclick="teamdetail('${item.value.idTeam}')"><h3><img src="../img/Team/Logo/${item.value.logo}"/>${item.value.team}</h3></a>
-		<h4><span>Birthdate</span>  : 
+                <br/>
+		<a href="#" style="color:black" onclick="teamdetail('${item.value.idTeam}','${requestScope.id_musim}','${requestScope.thn_awal}','${requestScope.thn_akhir}')"><h3><img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="65" height="65"/>${item.value.team}</h3></a>
+		<br/>
+                <h4><span>Birthdate</span>  : 
                     <c:choose>         
                         <c:when test = "${item.value.tgl == '1 January 1900'}">
                             ? 
@@ -607,7 +609,7 @@
                                                             <tr>
                                                                 <td>${item.value.season}</td>
                                                                 <td>${item.value.age}</td>
-                                                                <td><a href='#' onclick="teamdetail('${item.value.team}')"><img src="../img/Team/Logo/${item.value.logo}" style="width:50px; height:50px">
+                                                                <td><a href='#' onclick="teamdetail('${item.value.team}','${requestScope.id_musim}','${requestScope.thn_awal}','${requestScope.thn_akhir}')"><img src="../img/Team/Logo/${item.value.logo}" style="width:50px; height:50px">
                                                                     ${item.value.nteam}</a></td>
                                                                 <td>${item.value.pos}</td>
                                                                 <td>${item.value.gp}</td>
@@ -648,15 +650,30 @@
                 });
             });
             
-            function teamdetail(id){
+            function teamdetail(id_t, id_musim, thn_awal, thn_akhir){
                 var form = document.createElement("form");
                 form.setAttribute("method", "POST");
                 form.setAttribute("action", "TeamDetails");
                 var hiddenField = document.createElement("input");
                 hiddenField.setAttribute("type", "hidden");
-                hiddenField.setAttribute("name", "ID_T");
-                hiddenField.setAttribute("value", id);
+                hiddenField.setAttribute("name", "id_t");
+                hiddenField.setAttribute("value", id_t);
                 form.appendChild(hiddenField);
+                var hiddenField2 = document.createElement("input");
+                hiddenField2.setAttribute("type", "hidden");
+                hiddenField2.setAttribute("name", "id_musim");
+                hiddenField2.setAttribute("value", id_musim);
+                form.appendChild(hiddenField2);
+                var hiddenField3 = document.createElement("input");
+                hiddenField3.setAttribute("type", "hidden");
+                hiddenField3.setAttribute("name", "thn_awal");
+                hiddenField3.setAttribute("value", thn_awal);
+                form.appendChild(hiddenField3);
+                var hiddenField4 = document.createElement("input");
+                hiddenField4.setAttribute("type", "hidden");
+                hiddenField4.setAttribute("name", "thn_akhir");
+                hiddenField4.setAttribute("value", thn_akhir);
+                form.appendChild(hiddenField4);
                 document.body.appendChild(form);
                 form.submit();
             }

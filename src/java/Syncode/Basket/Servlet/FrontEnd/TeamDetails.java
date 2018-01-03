@@ -52,9 +52,9 @@ public class TeamDetails extends HttpServlet {
         
         HashMap tr = dh.getTeamDetail(ID); 
         HashMap tr1 = dh.getPlayers(ID);
-        HashMap tr2 = dh.getTopPoint(ID);
-        HashMap tr3 = dh.getTopAssist(ID);
-        HashMap tr4 = dh.getTopRebound(ID);
+        HashMap tr2 = dh.getTopPoint(ID,thn_awal);
+        HashMap tr3 = dh.getTopAssist(ID,thn_awal);
+        HashMap tr4 = dh.getTopRebound(ID,thn_awal);
         HashMap Season = dh.getTeamSeason(ID, thn_awal);
         HashMap playerlist = dh.getPlayerlistTeam(ID, id_musim);
         //out.print(playerlist);

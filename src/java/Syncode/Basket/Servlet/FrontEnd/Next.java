@@ -43,14 +43,14 @@ public class Next extends HttpServlet {
         String id_musim=tm.getId_musim();
         HashMap Team = dh.getTeam(id_musim);
         Team team = (Team)Team.get(0);
-        out.print(ID_M+" - "+id_musim);
+        out.print("");
         String thn_awal = team.getThn_awal();
         String thn_akhir = team.getThn_akhir();
         HashMap tr = dh.getTeamDetail(ID); 
         HashMap tr1 = dh.getPlayers(ID);
-        HashMap tr2 = dh.getTopPoint(ID);
-        HashMap tr3 = dh.getTopAssist(ID);
-        HashMap tr4 = dh.getTopRebound(ID);
+        HashMap tr2 = dh.getTopPoint(ID,thn_awal);
+        HashMap tr3 = dh.getTopAssist(ID,thn_awal);
+        HashMap tr4 = dh.getTopRebound(ID,thn_awal);
         HashMap Season = dh.getTeamSeason(ID, thn_awal);
         HashMap playerlist = dh.getPlayerlistTeam(ID, id_musim);
         //out.print(playerlist);

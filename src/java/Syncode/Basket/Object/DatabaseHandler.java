@@ -469,7 +469,7 @@ public class DatabaseHandler extends Connect {
             if(rs.next()){
                 tr.put(i++,new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12)));
             }else{
-                tr.put(i++,new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),"nopic.png",rs.getString(12)));
+                tr.put(i++,new ObjPlayer(i++, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),"nopics.png",rs.getString(12)));
             }
         }catch (SQLException ex) {
                 
@@ -723,54 +723,40 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-    public HashMap getTopPoint(String id_team){
+    public HashMap getTopPoint(String id_team, String thn_awal){
         HashMap tr = new HashMap();
         try {      
-            int i=0;
-            String query = "select TOP 1 ID_Musim from(" +
-                            "select distinct a.ID_Musim,a.Nama_Musim, b.ID_Team from MsMusim a, TrGameLogs b where a.ID_Musim = b.ID_Musim and b.ID_Team='"+id_team+"'" +
-                        ")a order by a.ID_Musim desc";
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            if(rs.next()){                  
+            int i=0;                         
                 String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
                                     " from " +
                                     " (" +
                                         " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
                                         " from TrGameLogs a, MsPemain b, MsMusim c " +
-                                        " where a.ID_Team = '"+id_team+"' and a.ID_Musim = '"+rs.getString(1)+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
+                                        " where a.ID_Team = '"+id_team+"' and c.Tahun_Awal = '"+thn_awal+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
                                     " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
                                 " order by PTS DESC"; 
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
                     tr.put(i++,new ObjTopPoint(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
-                }         
-                 
-            }else{
-                tr.put(i++,new ObjTopPoint(i++, "nopic.png", "", "", "0.0"));
-            }
+                }        
+                
         } catch (SQLException ex) {
             
         }
         return tr;
     }
-    public HashMap getTopAssist(String id_team){
+    public HashMap getTopAssist(String id_team, String thn_awal){
         HashMap tr = new HashMap();
         try {      
             int i=0;
-            String query = "select TOP 1 ID_Musim from(" +
-                            "select distinct a.ID_Musim,a.Nama_Musim, b.ID_Team from MsMusim a, TrGameLogs b where a.ID_Musim = b.ID_Musim and b.ID_Team='"+id_team+"'" +
-                        ")a order by a.ID_Musim desc";
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            if(rs.next()){                  
+                              
                 String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S " +
                                     " from " +
                                     " (" +
                                         " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
                                         " from TrGameLogs a, MsPemain b, MsMusim c " +
-                                        " where a.ID_Team = '"+id_team+"' and a.ID_Musim = '"+rs.getString(1)+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
+                                        " where a.ID_Team = '"+id_team+"' and c.Tahun_Awal = '"+thn_awal+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
                                     " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
                                 " order by A_S DESC"; 
                 ps1 = conn.prepareStatement(query1);
@@ -778,40 +764,29 @@ public class DatabaseHandler extends Connect {
                 while(rs1.next()){
                     tr.put(i++,new ObjTopAssist(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
                 } 
-            }else{
-                tr.put(i++,new ObjTopAssist(i++, "nopic.png", "", "", "0.0"));
-            }
         } catch (SQLException ex) {
             
         }
         return tr;
     }
-    public HashMap getTopRebound(String id_team){
+    public HashMap getTopRebound(String id_team, String thn_awal){
         HashMap tr = new HashMap();
         try {      
-            int i=0;
-            String query = "select TOP 1 ID_Musim from(" +
-                            "select distinct a.ID_Musim,a.Nama_Musim, b.ID_Team from MsMusim a, TrGameLogs b where a.ID_Musim = b.ID_Musim and b.ID_Team='"+id_team+"'" +
-                        ")a order by a.ID_Musim desc";
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            if(rs.next()){                  
+            int i=0;            
+                     
                 String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[TR]) as decimal(10,2)) as TR " +
                                     " from " +
                                     " (" +
                                         " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
                                         " from TrGameLogs a, MsPemain b, MsMusim c " +
-                                        " where a.ID_Team = '"+id_team+"' and a.ID_Musim = '"+rs.getString(1)+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
+                                        " where a.ID_Team = '"+id_team+"' and c.Tahun_Awal = '"+thn_awal+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
                                     " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
                                 " order by TR DESC"; 
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
                     tr.put(i++,new ObjTopRebound(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
-                }    
-            }else{
-                tr.put(i++,new ObjTopRebound(i++, "nopic.png", "", "", "0.0"));
-            }
+                }                
         } catch (SQLException ex) {
             
         }
@@ -1426,7 +1401,10 @@ public class DatabaseHandler extends Connect {
         try{
             int i =0;
             String query = "select a.ID_Musim,a.ID_Pemain,a.Nama_Pemain,a.Nama_Team,a.Nama_Posisi,a.Foto,a.Tinggi from " +
-"(select c.ID_Musim,b.ID_Pemain,b.Nama_Pemain,e.Nama_Team, d.Nama_Posisi,b.Foto,b.Tinggi from TrGameLogs a, MsPemain b, MsMusim c, MsPosisi d, MsTeam e   where a.ID_Team = '"+id_team+"' and c.Jenis = 'REGULAR' and   a.ID_Musim=c.ID_Musim and b.KD_Pos = d.KD_Pos and a.ID_Team = e.ID_Team and a.ID_Musim = '"+id_musim+"' and a.ID_Pemain = b.ID_Pemain ) a group by a.ID_Musim,a.ID_Pemain,a.Nama_Pemain,a.Nama_Team,a.Foto,a.Tinggi,a.Nama_Posisi ";
+                            "(select c.ID_Musim,b.ID_Pemain,b.Nama_Pemain,e.Nama_Team, d.Nama_Posisi,b.Foto,b.Tinggi from " +
+                            " TrGameLogs a, MsPemain b, MsMusim c, MsPosisi d, MsTeam e   where a.ID_Team = '"+id_team+"'"+
+                            " and c.Jenis = 'REGULAR' and   a.ID_Musim=c.ID_Musim and b.KD_Pos = d.KD_Pos and a.ID_Team = e.ID_Team" +
+                            " and a.ID_Musim = '"+id_musim+"' and a.ID_Pemain = b.ID_Pemain ) a group by a.ID_Musim,a.ID_Pemain,a.Nama_Pemain,a.Nama_Team,a.Foto,a.Tinggi,a.Nama_Posisi ";
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){

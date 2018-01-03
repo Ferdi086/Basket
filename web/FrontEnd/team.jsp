@@ -32,6 +32,15 @@
 <!-- //web-fonts -->
 
 </head>
+<style>
+    #logo{
+        cursor: pointer;
+    }
+    #logo:hover{
+        background-color: #e2e2e2;
+        z-index: 1;
+    }
+</style>
 <body>
 <%@include file="Sync/Menu.jsp" %>
 
@@ -43,7 +52,7 @@
                         <c:forEach var = "item" items = "${requestScope.team}">
                             <c:if test="${item.value.flagactive == 'Y'}">
                             <li>                                
-				<a onclick="teamdetail('${item.value.id}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')"><img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.id}" width="200px" height="200px" ></a>
+				<a onclick="teamdetail('${item.value.id}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')"><img src="../img/Team/Logo/${item.value.logo}" id="logo" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.id}" width="200px" height="200px" ></a>
 				<div class="caption">
 					<div class="blur"></div>
 					<div class="caption-text"  onclick="teamdetail('${item.value.id}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')">

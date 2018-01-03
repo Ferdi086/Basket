@@ -6,6 +6,8 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
+import Syncode.Basket.Object.ObjCurrentSeason;
+import Syncode.Basket.Object.ObjPlayer;
 import Syncode.Basket.Object.PlayerDetailStats;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,9 +42,15 @@ public class PlayerDetails extends HttpServlet {
             String part[] = ID.split("\\-");
             ID = part[0];
         }
+        
         HashMap tr = dh.getPlayersDetails(ID);
-        //ObjPlayer x = (ObjPlayer) tr.get(0);
-        //out.print(x.getFoto());
+        ObjPlayer x = (ObjPlayer) tr.get(1);    
+        String ID_Team = x.getIdTeam();
+        HashMap getc = dh.getCurrentSeasonHome(ID_Team);
+        ObjCurrentSeason msm = (ObjCurrentSeason) getc.get(0);
+        String id_musim = msm.getId();
+        String thn_awal = msm.getThn_awal();
+        String thn_akhir = msm.getthn_akhir();
         HashMap tra = dh.getPlayerDetailStat(ID);
         HashMap tras = dh.getSumPlayerDetailStat(ID);
         HashMap trb = dh.getPlayerDetailStat2(ID);
@@ -55,6 +63,9 @@ public class PlayerDetails extends HttpServlet {
         HashMap his = dh.getHistoryTeam(ID);
         /*PlayerDetailStats x = (PlayerDetailStats) trbs.get(0);
         out.print(x.getNo());*/
+        request.setAttribute("id_musim",id_musim);
+        request.setAttribute("thn_awal",thn_awal);
+        request.setAttribute("thn_akhir",thn_akhir);
         request.setAttribute("player",tr);
         request.setAttribute("player_stat",tra);
         request.setAttribute("player_stat_sum",tras);
@@ -67,7 +78,6 @@ public class PlayerDetails extends HttpServlet {
         request.setAttribute("sumpo",sumpo);
         request.setAttribute("sumpocar",sumpocar);
         request.setAttribute("his", his);
-        out.print(his.size());
         request.getRequestDispatcher("player_detail.jsp").forward(request, response);
     }
 

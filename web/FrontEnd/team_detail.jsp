@@ -55,18 +55,20 @@ h2 span {
 		<img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.namateam}" width="150" height="150"/>
 	</div>
 	<div class="col-lg-6  col-md-6 col-sm-7 col-xs-7 team_name">
-            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir} ${idmusim} ${item.value.namateam}</h3>
+            <h3>${requestScope.thn_awal} - ${requestScope.thn_akhir} ${item.value.namateam}</h3>
             
 	</div>
            
 </div>
-            <div>
-                <c:if test = "${requestScope.idmusimprev != 0}" >
-                    <button onclick="previous('${item.value.id}','${idmusim}')">Previous</button>
-                </c:if>
-                <c:if test = "${requestScope.idmusimnext != 0}" >
-                    <button onclick="next('${item.value.id}','${idmusim}')">Next</button>
-                </c:if>
+            <div class="container">                
+                <div class="btn-group">
+                    <c:if test = "${requestScope.idmusimprev != 0}" >
+                        <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous</b></button>
+                    </c:if>
+                    <c:if test = "${requestScope.idmusimnext != 0}" >
+                        <button class="btn btn-default" onclick="next('${item.value.id}','${idmusim}')"><b>Next</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
+                    </c:if>  
+                </div>
                 
                 
             </div>
@@ -267,7 +269,7 @@ h2 span {
                                 <c:forEach var = "item" items = "${requestScope.playerlist}">
                                 <div class="col-md-3 wthree_team_grid">
 					<div class="hovereffect" onclick="playdetail(${item.value.id_pemain})">
-						<img src="../img/Players/${item.value.foto}" alt="${item.value.nama_pemain}"  class="img-responsive" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" style="height:100%; min-height:283px;" />
+						<img src="../img/Players/${item.value.foto}" alt="${item.value.nama_pemain}"  onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="100%" height="300" />
 						<div class="overlay">
                                                     <h6>${item.value.nama_pemain}</h6>
 						</div>
