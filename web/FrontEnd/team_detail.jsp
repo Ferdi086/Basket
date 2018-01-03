@@ -77,8 +77,7 @@ h2 span {
                 <c:if test = "${requestScope.idmusimnext != 0}" >
                     <button class="btn btn-default" style="float:right;" onclick="next('${item.value.id}','${idmusim}')"><b>Next Season</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
                 </c:if>  -->
-                <!--
-                ghggh
+                <!--                
                 <button class="btn btn-default" onclick="previous('${item.value.id}','${idmusim}')"><span class="glyphicon glyphicon-chevron-left"></span> <b>Previous</b></button>    
                 <button class="btn btn-default" style="float:right;" onclick="next('${item.value.id}','${idmusim}')"><b>Next</b> <span class="glyphicon glyphicon-chevron-right"></span></button>
                 -->
