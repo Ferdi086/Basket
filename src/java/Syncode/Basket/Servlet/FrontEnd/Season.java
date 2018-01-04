@@ -34,7 +34,7 @@ public class Season extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         DatabaseHandler dh = new DatabaseHandler();        
-        HashMap tr = dh.getMusim();
+        HashMap tr = dh.getMusim1();
         Musim cs = (Musim) tr.get(0);
         HashMap st = dh.getMatchStatistic(cs.getId_musim());
         HashMap tra = dh.getPPGbySeason(cs.getId_musim());
