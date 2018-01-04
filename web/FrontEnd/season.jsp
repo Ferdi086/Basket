@@ -18,15 +18,18 @@
 <!--// Meta tag Keywords -->
 
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="all" /><!-- for testimonials -->
-
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- css files -->
 <link rel="stylesheet" href="css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
 <link rel="stylesheet" href="css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
 <link rel="stylesheet" href="css/team_hover.css"> 
 <link rel="stylesheet" href="css/styles.css"> 
+<link rel="stylesheet" href="css/bootstrap-table.css">
 <!-- //css files -->
-
+<script type="text/javascript" src="js/bootstrap-table.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
 <!-- web-fonts -->
 <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
@@ -102,8 +105,8 @@
         <%@include file="Sync/footer.jsp" %>
 <!-- js-scripts -->					
 <!-- js -->
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
+	
+  
 <!-- //js -->	
 <script>
     function playdetail(id){

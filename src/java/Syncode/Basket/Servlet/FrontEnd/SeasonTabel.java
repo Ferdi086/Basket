@@ -40,23 +40,27 @@ public class SeasonTabel extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try{
             out.println("<center>");
-            out.println("<table class=\"table table-bordered tb_div table-responsive\" style=\"max-width: 1000px\">");
+            out.println("<table class=\"table table-bordered table-responsive\" id=\"table\" data-toggle=\"table\" data-search=\"true\" data-page-list=\"[10, 25, 50, 100, ALL]\" data-pagination=\"true\" style=\"max-width: 1000px\">");
+            out.println(" <thead>");
             out.println("   <tr>");
-            out.println("       <th>Date</th>");
-            out.println("       <th>Team 1</th>");
-            out.println("       <th>PTS</th>");
-            out.println("       <th>Team 2</th>");
-            out.println("       <th>PTS</th>");
+            out.println("       <th data-align=\"center\" data-valign=\"middle\">Date</th>");
+            out.println("       <th data-align=\"center\" data-valign=\"middle\">Team 1</th>");
+            out.println("       <th data-align=\"center\" data-valign=\"middle\">PTS</th>");
+            out.println("       <th data-align=\"center\" data-valign=\"middle\">Team 2</th>");
+            out.println("       <th data-align=\"center\" data-valign=\"middle\">PTS</th>");
             out.println("   </tr>");
+            out.println(" </thead>");
             for(int i=0;i<st.size();i++){
-                    out.println("<tr>");
+                    out.println("<tbody>");
+                    out.println("   <tr>");
                     ObjMatchStatistic obs = (ObjMatchStatistic) st.get(i);
-                    out.println("   <td><a href='#' data-toggle='tooltip' title='"+obs.getMatch()+"'>"+obs.getTgl()+"</a></td>");
-                    out.println("   <td><a href='#'><img src='../img/Team/Logo/"+obs.getLogo1()+"' class='logo_kcl'>"+obs.getTeam1()+"</a></td>");
-                    out.println("   <td>"+obs.getPts1()+"</td>");
-                    out.println("   <td><a href='#'><img src='../img/Team/Logo/"+obs.getLogo2()+"' class='logo_kcl'>"+obs.getTeam2()+"</a></td>");
-                    out.println("   <td>"+obs.getPts2()+"</td>");
-                    out.println("</tr>");
+                    out.println("       <td style=\"vertical-align: middle;text-align: center\"><a href='#' data-toggle='tooltip' title='"+obs.getMatch()+"'>"+obs.getTgl()+"</a></td>");
+                    out.println("       <td style=\"vertical-align: middle;text-align: center\"><a href='#'><img src='../img/Team/Logo/"+obs.getLogo1()+"' class='logo_kcl'>"+obs.getTeam1()+"</a></td>");
+                    out.println("       <td style=\"vertical-align: middle;text-align: center\">"+obs.getPts1()+"</td>");
+                    out.println("       <td style=\"vertical-align: middle;text-align: center\"><a href='#'><img src='../img/Team/Logo/"+obs.getLogo2()+"' class='logo_kcl'>"+obs.getTeam2()+"</a></td>");
+                    out.println("       <td style=\"vertical-align: middle;text-align: center\">"+obs.getPts2()+"</td>");
+                    out.println("   </tr>");
+                    out.println("</tbody>");
             }
             out.println("</table>");
             out.println("</center>");
