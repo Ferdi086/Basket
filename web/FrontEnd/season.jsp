@@ -79,24 +79,19 @@
                 </div>
                 <div class="col-sm-12-md-12 tbl_schedule center-block">
                     <center>
-                    <table class="table table-bordered tb_div table-responsive" style="max-width: 1000px">
-                        <tr>
-                            <th>Date</th>
-                            <th>Team 1</th>
-                            <th>PTS</th>
-                            <th>Team 2</th>
-                            <th>PTS</th>
-                        </tr>
-                        <c:forEach var='item' items='${requestScope.statistik}'>                            
+                    <table class="table table-bordered  table-responsive" id="table" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                        <thead>
                             <tr>
-                                <td><a href='#' data-toggle="tooltip" title="${item.value.match}">${item.value.tgl}</a></td>
-                                <td><a href='#'><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</a></td>
-                                <td>${item.value.pts1}</td>
-                                <td><a href='#'><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</a></td>
-                                <td>${item.value.pts2}</td>
+                                <th>Date</th>
+                                <th>Team 1</th>
+                                <th>PTS</th>
+                                <th>Team 2</th>
+                                <th>PTS</th>
                             </tr>
-                        </c:forEach>
-                        
+                        </thead>
+                        <tbody class="tbl_">
+                            
+                        </tbody>
                     </table>
                     </center>
                 </div>
@@ -123,7 +118,7 @@
     }
     $('#sel_sea').change(function (){
         $('.leader').remove();
-        $('.tb_div').remove();
+       //$('.aa').remove();
         var id = $(this).val();
         $.ajax({
             type : 'POST',
@@ -137,7 +132,7 @@
                 $('.bungkus').append(data);      
             }
         });
-        $.ajax({
+       $.ajax({
             type : 'POST',
             url : 'SeasonTabel',
             data: {
@@ -146,10 +141,12 @@
             beforeSend: function(){
             },
             success: function(data){
-                $('.tbl_schedule').append(data);      
+                $('.tbl_').html(data);   
+                //$('.tbl_').append(data);      
             }
         });
     });
+         
 </script>
 
 

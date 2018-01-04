@@ -5,6 +5,8 @@
  */
 package Syncode.Basket.Object;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author Ferdinand
@@ -21,6 +23,8 @@ public class ObjMatchStatistic {
     private String pts2="";
     private String wl2="";
     
+    private JSONObject json = new JSONObject();
+    
     public ObjMatchStatistic(String match, String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2) {
         this.match = match;
         this.tgl = tgl;
@@ -34,6 +38,22 @@ public class ObjMatchStatistic {
         this.wl2 = wl2;
     }
 
+    public JSONObject toJson(){ 
+         json.put("match",match);
+         json.put("tgl", tgl);
+         json.put("team1", team1);
+         json.put("logo1", logo1);
+         json.put("pts1", pts1);
+         json.put("wl1", wl1);
+         json.put("team2", team2);
+         json.put("logo2", logo2);
+         json.put("pts2", pts2);
+         json.put("wl2", wl2);
+          return json;
+    }
+    public JSONObject getJson(){
+        return json;
+    }
     public String getMatch() {
         return match;
     }

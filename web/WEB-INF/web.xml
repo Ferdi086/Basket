@@ -200,6 +200,10 @@
         <servlet-name>Next</servlet-name>
         <servlet-class>Syncode.Basket.Servlet.FrontEnd.Next</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DataMatch</servlet-name>
+        <servlet-class>Syncode.Basket.Servlet.FrontEnd.DataMatch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/BackEnd/Index</url-pattern>
@@ -441,6 +445,10 @@
     <servlet-mapping>
         <servlet-name>Next</servlet-name>
         <url-pattern>/FrontEnd/Next</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DataMatch</servlet-name>
+        <url-pattern>/DataMatch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
