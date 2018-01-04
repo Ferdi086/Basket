@@ -6,21 +6,19 @@
 package Syncode.Basket.Servlet.FrontEnd;
 
 import Syncode.Basket.Object.DatabaseHandler;
-import Syncode.Basket.Object.ObjMatchStatistic;
-import Syncode.Basket.Object.ObjTopPoint;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 
 /**
  *
- * @author Yuga
+ * @author meiiko
  */
-public class SeasonTabel extends HttpServlet {
+public class DataMatch extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,27 +31,23 @@ public class SeasonTabel extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DatabaseHandler dh = new DatabaseHandler();
-        String id = request.getParameter("id_m");
+       DatabaseHandler dh = new DatabaseHandler();
+        //response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HashMap st = dh.getMatchStatistic(id);
-        response.setContentType("text/html;charset=UTF-8");
-        try{
-           
-            for(int i=0;i<st.size();i++){
-                    out.println("   <tr>");
-                    ObjMatchStatistic obs = (ObjMatchStatistic) st.get(i);
-                    out.println("       <td style=\"vertical-align: middle;text-align: center\"><a href='#' data-toggle='tooltip' title='"+obs.getMatch()+"'>"+obs.getTgl()+"</a></td>");
-                    out.println("       <td style=\"vertical-align: middle;text-align: center\"><a href='#'><img src='../img/Team/Logo/"+obs.getLogo1()+"' class='logo_kcl'>"+obs.getTeam1()+"</a></td>");
-                    out.println("       <td style=\"vertical-align: middle;text-align: center\">"+obs.getPts1()+"</td>");
-                    out.println("       <td style=\"vertical-align: middle;text-align: center\"><a href='#'><img src='../img/Team/Logo/"+obs.getLogo2()+"' class='logo_kcl'>"+obs.getTeam2()+"</a></td>");
-                    out.println("       <td style=\"vertical-align: middle;text-align: center\">"+obs.getPts2()+"</td>");
-                    out.println("   </tr>");
-            }
-           
-        }catch (Exception e){
-            
-        }
+         String id = request.getParameter("id_m");
+         /*if(id==null){
+             out.println("kosong");
+         }
+         else{
+             out.println(id);
+         }
+         out.print("dwsd");
+         */
+        JSONArray ars = dh.getMatchStatistik(id);
+       
+        out.print(ars);
+        out.flush();
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
