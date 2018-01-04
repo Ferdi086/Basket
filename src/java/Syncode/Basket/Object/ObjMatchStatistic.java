@@ -39,16 +39,11 @@ public class ObjMatchStatistic {
     }
 
     public JSONObject toJson(){ 
-         json.put("match",match);
-         json.put("tgl", tgl);
-         json.put("team1", team1);
-         json.put("logo1", logo1);
+         json.put("tgl","<a href='#' data-toggle='tooltip' title='"+match+"'>"+tgl+"</a>" );
+         json.put("team1","<a href='#'><img src='../img/Team/Logo/"+logo1+"'> "+team1+"</a>");
          json.put("pts1", pts1);
-         json.put("wl1", wl1);
-         json.put("team2", team2);
-         json.put("logo2", logo2);
+         json.put("team2","<a href='#'><img src='../img/Team/Logo/"+logo2+"'> "+team2+"</a>");
          json.put("pts2", pts2);
-         json.put("wl2", wl2);
           return json;
     }
     public JSONObject getJson(){

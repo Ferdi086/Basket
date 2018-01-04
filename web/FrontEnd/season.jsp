@@ -79,14 +79,14 @@
                 </div>
                 <div class="col-sm-12-md-12 tbl_schedule center-block">
                     <center>
-                    <table class="table table-bordered  table-responsive" id="table" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                    <table class="table table-bordered  table-responsive" id="table" data-toggle="table" data-search="true" data-url="../FrontEnd/DataMatch" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Team 1</th>
-                                <th>PTS</th>
-                                <th>Team 2</th>
-                                <th>PTS</th>
+                                <th data-align="center" data-field="tgl">Date</th>
+                                <th data-align="center" data-field="team1">Team 1</th>
+                                <th data-align="center" data-field="pts1"> PTS</th>
+                                <th data-align="center" data-field="team2">Team 2</th>
+                                <th data-align="center" data-field="pts2">PTS</th>
                             </tr>
                         </thead>
                         <tbody class="tbl_">
@@ -120,6 +120,7 @@
         $('.leader').remove();
        //$('.aa').remove();
         var id = $(this).val();
+        /*
         $.ajax({
             type : 'POST',
             url : 'SeasonLeader',
@@ -132,7 +133,8 @@
                 $('.bungkus').append(data);      
             }
         });
-       $.ajax({
+        
+        $.ajax({
             type : 'POST',
             url : 'SeasonTabel',
             data: {
@@ -143,6 +145,33 @@
             success: function(data){
                 $('.tbl_').html(data);   
                 //$('.tbl_').append(data);      
+            }
+        });*/
+        
+        $.ajax({
+        type: 'POST',
+        url: 'DataMatch',
+        
+        
+        //dataType: 'json',
+        //data: JSON.stringify(article),
+        //contentType: 'application/json',
+        //mimeType: 'application/json',
+        
+            data: {
+                'id_m': id
+            },
+            beforeSend: function(){
+                alert (id);
+            },
+            afterSend: function(){
+                alert ("id");
+            },
+            success: function(data){
+                alert (data);
+            },
+            error: function(data){
+                alert ("x");
             }
         });
     });

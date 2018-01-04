@@ -448,7 +448,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DataMatch</servlet-name>
-        <url-pattern>/DataMatch</url-pattern>
+        <url-pattern>/FrontEnd/DataMatch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

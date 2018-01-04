@@ -32,13 +32,22 @@ public class DataMatch extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        DatabaseHandler dh = new DatabaseHandler();
-        response.setContentType("application/json;charset=UTF-8");
+        //response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String 
-        JSONArray ars = dh.getMatchStatistic(id);
-        
-        out.println(ars);
+         String id = request.getParameter("id_m");
+         /*if(id==null){
+             out.println("kosong");
+         }
+         else{
+             out.println(id);
+         }
+         out.print("dwsd");
+         */
+        JSONArray ars = dh.getMatchStatistik(id);
+       
+        out.print(ars);
         out.flush();
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
