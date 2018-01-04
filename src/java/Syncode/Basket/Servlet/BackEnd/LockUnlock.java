@@ -38,14 +38,19 @@ public class LockUnlock extends HttpServlet {
         HttpSession session = request.getSession(true);
         PrintWriter out = response.getWriter();
         String ID = request.getParameter("ID_M");
-        String St = request.getParameter("Flag");
+        int St = Integer.parseInt(request.getParameter("Flag")) ;
         DatabaseHandler dh=new DatabaseHandler();
+        
         boolean x=dh.setAktivasiMusim(ID, St);
-        if(x==true){
+        
+        if(x==true){ 
+            
             HashMap a = dh.getMusim(ID);
             Musim b = (Musim)a.get(0);
-            String c = b.getFlagactive();
-            if(c.equals("Y")){
+            String c = b.getStatus();
+            out.print(c);
+            
+            if(c.equals("1")){
                 session.setAttribute("ErrMess","This Season Has Been Unlocked");
                 session.setAttribute("alert", "alert-success");
             }else{
@@ -60,6 +65,7 @@ public class LockUnlock extends HttpServlet {
             session.setAttribute("alert", "alert-danger");
             response.sendRedirect("Musim");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

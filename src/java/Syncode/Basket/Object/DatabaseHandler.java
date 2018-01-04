@@ -171,11 +171,27 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Flag_active from MsMusim ORDER BY ID_Musim DESC"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status,Flag_active from MsMusim WHERE Status = 1 ORDER BY ID_Musim DESC"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+              
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return tr;
+    }
+    public HashMap getMusim1(){
+        HashMap tr = new HashMap();
+        try {      
+            int j=0;
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status,Flag_active from MsMusim WHERE Flag_active = 'Y' ORDER BY ID_Musim DESC"; 
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){                
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
               
             }
         } catch (SQLException ex) {
@@ -187,11 +203,11 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Flag_active from MsMusim WHERE ID_Musim='"+id+"'"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status, Flag_active from MsMusim WHERE ID_Musim='"+id+"'"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
-              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+              tr.put(j++,new Musim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
               
             }
         } catch (SQLException ex) {
@@ -221,9 +237,9 @@ public class DatabaseHandler extends Connect {
             return false;   
         }         
     }
-     public boolean setAktivasiMusim(String id,String status){
+     public boolean setAktivasiMusim(String id,int status){
         try {        
-                    String query = "Update MsMusim set Last_Update = GETDATE(), Flag_active='"+status+"' where ID_Musim='"+id+"'";
+                    String query = "Update MsMusim set Last_Update = GETDATE(), Status='"+status+"' where ID_Musim="+id+"";
                     ps = conn.prepareStatement(query);
                     ps.executeUpdate();  
                 return true;

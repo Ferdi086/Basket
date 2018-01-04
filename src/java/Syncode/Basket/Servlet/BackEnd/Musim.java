@@ -48,7 +48,7 @@ public class Musim extends HttpServlet {
             request.setAttribute("nama_usr", usr.getNama());
             request.setAttribute("id_user", usr.getID());
             
-            HashMap ms = dh.getMusim();
+            HashMap ms = dh.getMusim1();
             request.setAttribute("musim",ms);
             //Jam
             HashMap cl = dh.getClock();

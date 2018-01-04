@@ -15,6 +15,7 @@ public class Musim {
     private String jenis_musim;
     private String tgl_awal;
     private String tgl_akhir;
+    private String status;
     private String flagactive;
     
     public Musim(){
@@ -25,13 +26,22 @@ public class Musim {
     }
    
     
-    public Musim(String id_musim, String nama_musim, String jenis_musim, String tgl_awal, String tgl_akhir, String flagactive) {
+    public Musim(String id_musim, String nama_musim, String jenis_musim, String tgl_awal, String tgl_akhir, String status, String flagactive) {
         this.id_musim = id_musim;
         this.nama_musim = nama_musim;
         this.jenis_musim = jenis_musim;
         this.tgl_awal = tgl_awal;
         this.tgl_akhir = tgl_akhir;
+        this.status = status;
         this.flagactive = flagactive;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFlagactive() {

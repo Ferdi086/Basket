@@ -110,7 +110,7 @@
                                 <c:set var="jenisMusim" value="${item.value.jenis_musim}"/>
                                 <c:set var="awal" value="${item.value.tgl_awal}"/>
                                 <c:set var="akhir" value="${item.value.tgl_akhir}" />
-                                <c:set var="status" value="${item.value.flagactive}" />
+                                <c:set var="status" value="${item.value.status}" />
                                
                             <tr>
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
@@ -120,7 +120,7 @@
                                 <td style="vertical-align: middle;text-align: center"> 
                                     <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idMusim}','${namaMusim}','${jenisMusim}','${awal}','${akhir}')"><span class="glyphicon glyphicon-edit"></span></button>
                                     <c:choose>
-                                        <c:when test="${status == 'Y'}">
+                                        <c:when test="${status == '1'}">
                                             <button class="btn btn-danger button" data-target="#KonfirmasiLock" data-toggle="modal" onclick="lockval('${idMusim}')">Lock</button>
                                         </c:when>
                                         <c:otherwise> 
@@ -258,7 +258,7 @@
                 <div class="modal-body">
                     <form action="../BackEnd/LockUnlock" method="post" id="formlock">
                     <input type="hidden" name="ID_M" id="ID_M"/>
-                    <input type="hidden" name="Flag" id="Flag" value="N"/>
+                    <input type="hidden" name="Flag" id="Flag" value="0"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                     </form>
                 </div>
@@ -281,7 +281,7 @@
                 <div class="modal-body">
                     <form action="../BackEnd/LockUnlock" method="post" id="formunlock">
                     <input type="hidden" name="ID_M" id="ID_M1"/>
-                    <input type="hidden" name="Flag" id="Flag1" value="Y"/>
+                    <input type="hidden" name="Flag" id="Flag1" value="1"/>
                         <p style="font-size:20px;color:red;font-weight:bold;text-align:center;">Are You Sure ?</p>
                     </form>
                 </div>
