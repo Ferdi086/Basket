@@ -18,15 +18,18 @@
 <!--// Meta tag Keywords -->
 
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="all" /><!-- for testimonials -->
-
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- css files -->
 <link rel="stylesheet" href="css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
 <link rel="stylesheet" href="css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
 <link rel="stylesheet" href="css/team_hover.css"> 
 <link rel="stylesheet" href="css/styles.css"> 
+<link rel="stylesheet" href="css/bootstrap-table.css">
 <!-- //css files -->
-
+<script type="text/javascript" src="js/bootstrap-table.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
 <!-- web-fonts -->
 <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
@@ -76,24 +79,20 @@
                 </div>
                 <div class="col-sm-12-md-12 tbl_schedule center-block">
                     <center>
-                    <table class="table table-bordered tb_div table-responsive" style="max-width: 1000px">
-                        <tr>
-                            <th>Date</th>
-                            <th>Team 1</th>
-                            <th>PTS</th>
-                            <th>Team 2</th>
-                            <th>PTS</th>
-                        </tr>
-                        <c:forEach var='item' items='${requestScope.statistik}'>                            
+                    <table class="table table-bordered  table-responsive" id="table" data-toggle="table" data-search="true" data-url="DataMatch?id_m=5" data-page-list="[10, 25, 50, 100, ALL]"  data-show-pagination-switch="true"
+           data-pagination="true">
+                        <thead>
                             <tr>
-                                <td><a href='#' data-toggle="tooltip" title="${item.value.match}">${item.value.tgl}</a></td>
-                                <td><a href='#'><img src='../img/Team/Logo/${item.value.logo1}' class='logo_kcl'>${item.value.team1}</a></td>
-                                <td>${item.value.pts1}</td>
-                                <td><a href='#'><img src='../img/Team/Logo/${item.value.logo2}' class='logo_kcl'>${item.value.team2}</a></td>
-                                <td>${item.value.pts2}</td>
+                                <th data-align="center" data-field="tgl">Date</th>
+                                <th data-align="center" data-field="team1">Team 1</th>
+                                <th data-align="center" data-field="pts1"> PTS</th>
+                                <th data-align="center" data-field="team2">Team 2</th>
+                                <th data-align="center" data-field="pts2">PTS</th>
                             </tr>
-                        </c:forEach>
-                        
+                        </thead>
+                        <tbody class="tbl_">
+                            
+                        </tbody>
                     </table>
                     </center>
                 </div>
@@ -102,8 +101,8 @@
         <%@include file="Sync/footer.jsp" %>
 <!-- js-scripts -->					
 <!-- js -->
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
+	
+  
 <!-- //js -->	
 <script>
     function playdetail(id){
@@ -120,8 +119,15 @@
     }
     $('#sel_sea').change(function (){
         $('.leader').remove();
-        $('.tb_div').remove();
+       //$('.aa').remove();
         var id = $(this).val();
+        $("#table").bootstrapTable('refresh', {
+            url: 'DataMatch?id_m='+id
+        });
+                        
+        
+        
+        /*$("#table").bootstrapTable('refresh');
         $.ajax({
             type : 'POST',
             url : 'SeasonLeader',
@@ -134,6 +140,7 @@
                 $('.bungkus').append(data);      
             }
         });
+        
         $.ajax({
             type : 'POST',
             url : 'SeasonTabel',
@@ -143,10 +150,39 @@
             beforeSend: function(){
             },
             success: function(data){
-                $('.tbl_schedule').append(data);      
+                $('.tbl_').html(data);   
+                //$('.tbl_').append(data);      
             }
         });
+        
+        $.ajax({
+        type: 'POST',
+        url: 'DataMatch',
+        
+        
+        //dataType: 'json',
+        //data: JSON.stringify(article),
+        //contentType: 'application/json',
+        //mimeType: 'application/json',
+        
+            data: {
+                'id_m': id
+            },
+            beforeSend: function(){
+                alert (id);
+            },
+            afterSend: function(){
+                alert ("id");
+            },
+            success: function(data){
+                alert (data);
+            },
+            error: function(data){
+                alert ("x");
+            }
+        });*/
     });
+         
 </script>
 
 
