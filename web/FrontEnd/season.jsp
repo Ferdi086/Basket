@@ -79,7 +79,8 @@
                 </div>
                 <div class="col-sm-12-md-12 tbl_schedule center-block">
                     <center>
-                    <table class="table table-bordered  table-responsive" id="table" data-toggle="table" data-search="true" data-url="../FrontEnd/DataMatch" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                    <table class="table table-bordered  table-responsive" id="table" data-toggle="table" data-search="true" data-url="DataMatch?id_m=5" data-page-list="[10, 25, 50, 100, ALL]"  data-show-pagination-switch="true"
+           data-pagination="true">
                         <thead>
                             <tr>
                                 <th data-align="center" data-field="tgl">Date</th>
@@ -120,7 +121,13 @@
         $('.leader').remove();
        //$('.aa').remove();
         var id = $(this).val();
-        /*
+        $("#table").bootstrapTable('refresh', {
+            url: 'DataMatch?id_m='+id
+        });
+                        
+        
+        
+        /*$("#table").bootstrapTable('refresh');
         $.ajax({
             type : 'POST',
             url : 'SeasonLeader',
@@ -146,7 +153,7 @@
                 $('.tbl_').html(data);   
                 //$('.tbl_').append(data);      
             }
-        });*/
+        });
         
         $.ajax({
         type: 'POST',
@@ -173,7 +180,7 @@
             error: function(data){
                 alert ("x");
             }
-        });
+        });*/
     });
          
 </script>

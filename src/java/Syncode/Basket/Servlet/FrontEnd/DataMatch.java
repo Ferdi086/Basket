@@ -35,6 +35,7 @@ public class DataMatch extends HttpServlet {
         //response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
          String id = request.getParameter("id_m");
+         //out.print(id);
          /*if(id==null){
              out.println("kosong");
          }
