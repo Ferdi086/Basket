@@ -23,9 +23,10 @@
                 <li><a class="hvr-underline-from-center active" href="Home">
                     <span class="glyphicon glyphicon-home"> </span> Home</a>
 		</li>
+                <!--
 		<li><a class="hvr-underline-from-center active" href="News">
                     <span class="glyphicon glyphicon-comment"> </span> News</a>
-		</li>
+		</li>-->
 		<li><a href="Teams" class="hvr-underline-from-center">
                     <span class="glyphicon glyphicon-th-large"> </span> Teams</a>
 		</li>

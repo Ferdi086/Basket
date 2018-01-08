@@ -52,10 +52,10 @@
                         <c:forEach var = "item" items = "${requestScope.team}">
                             <c:if test="${item.value.flagactive == 'Y'}">
                             <li>                                
-				<a onclick="teamdetail('${item.value.id}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')"><img src="../img/Team/Logo/${item.value.logo}" id="logo" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.id}" width="200px" height="200px" ></a>
+				<a onclick="teamdetail('${item.value.id}')"><img src="../img/Team/Logo/${item.value.logo}" id="logo" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" alt="${item.value.id}" width="200px" height="200px" ></a>
 				<div class="caption">
 					<div class="blur"></div>
-					<div class="caption-text"  onclick="teamdetail('${item.value.id}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')">
+					<div class="caption-text"  onclick="teamdetail('${item.value.id}')">
 						<h1><a><c:out value = "${item.value.namateam}"/></a></h1>
 					</div>
 				</div>
@@ -78,7 +78,7 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap --> 
 <!-- //js -->	
 <script>
-    function teamdetail(id_t, id_musim, thn_awal, thn_akhir){
+    function teamdetail(id_t){
         /*
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
@@ -99,21 +99,6 @@
         hiddenField.setAttribute("name", "id_t");
         hiddenField.setAttribute("value", id_t);
         form.appendChild(hiddenField);
-        var hiddenField2 = document.createElement("input");
-        hiddenField2.setAttribute("type", "hidden");
-        hiddenField2.setAttribute("name", "id_musim");
-        hiddenField2.setAttribute("value", id_musim);
-        form.appendChild(hiddenField2);
-        var hiddenField3 = document.createElement("input");
-        hiddenField3.setAttribute("type", "hidden");
-        hiddenField3.setAttribute("name", "thn_awal");
-        hiddenField3.setAttribute("value", thn_awal);
-        form.appendChild(hiddenField3);
-        var hiddenField4 = document.createElement("input");
-        hiddenField4.setAttribute("type", "hidden");
-        hiddenField4.setAttribute("name", "thn_akhir");
-        hiddenField4.setAttribute("value", thn_akhir);
-        form.appendChild(hiddenField4);
         document.body.appendChild(form);
         form.submit();
     }

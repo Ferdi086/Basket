@@ -188,7 +188,7 @@ public class DatabaseHandler extends Connect {
         HashMap tr = new HashMap();
         try {      
             int j=0;
-            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status,Flag_active from MsMusim WHERE Flag_active = 'Y' ORDER BY ID_Musim DESC"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status,Flag_active from MsMusim WHERE Status = 0 ORDER BY ID_Musim DESC"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -1057,7 +1057,7 @@ public class DatabaseHandler extends Connect {
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 if(rs1.next()){
-                    query2 = "select c.Match,CAST(DAY(c.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, c.Tgl_Match) + ' ' + CAST(YEAR(c.Tgl_Match) AS VARCHAR(4)) As Tgl_Match,c.Team1,c.Logo1,CAST(AVG(c.PTS1) as decimal(10,2)) as PTS1,c.WL1 as WL1,c.Team2,c.Logo2,CAST(AVG(c.PTS2) as decimal(10,2)) as PTS2, c.WL2 as WL2  " +
+                    query2 = "select c.Match,CAST(DAY(c.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, c.Tgl_Match) + ' ' + CAST(YEAR(c.Tgl_Match) AS VARCHAR(4)) As Tgl_Match,c.Team1,c.Logo1,CAST(SUM(c.PTS1) as decimal(10,2)) as PTS1,c.WL1 as WL1,c.Team2,c.Logo2,CAST(SUM(c.PTS2) as decimal(10,2)) as PTS2, c.WL2 as WL2  " +
 "                            from(   " +
 "                            	select distinct a.Tgl_Match,a.Match,a.ID_Team as Team1,a.Logo as Logo1,a.PTS as PTS1,a.WL as WL1,b.ID_Team as Team2,b.Logo as Logo2,b.PTS as PTS2,b.WL as WL2  " +
 "                            	from  " +
