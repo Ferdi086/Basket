@@ -124,7 +124,7 @@
                             <tr>
                                 <td>${item.value.no}</td>
                                 <td style='text-align:left'>
-                                    <a href='#' onclick="teamdetail('${item.value.id_team}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
+                                    <a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
                                 </td>
                             </tr>
                             
@@ -139,7 +139,7 @@
                             <tr>
                                 <td>${item.value.no}</td>
                                 <td style='text-align:left'>
-                                    <a href='#' onclick="teamdetail('${item.value.id_team}','${item.value.id_musim}','${item.value.thn_awal}','${item.value.thn_akhir}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
+                                    <a href='#' onclick="teamdetail('${item.value.id_team}')" data-toggle="tooltip" data-placement="right" title="${item.value.id_team}"><img src='../img/Team/Logo/${item.value.logo}' class='logo_kcl'>${item.value.nama}</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -182,12 +182,13 @@
                 <h4>2017-2018 IBL Season</h4>
                 <a href='Season'>2017-2018 IBL Regular Schedule</a>
             </div>
-            <div id='tren'>
+            <div id='tren' style="margin-bottom: 5%">
                 <h4>Trending Player Pages</h4>
                 <c:forEach var='item' items='${requestScope.tren}'>
                     <a href='#' onclick='playdetail(${item.value.foto})'>${item.value.namaPemain}</a>,
                 </c:forEach>
             </div>
+            <!--
             <div id='pojok_news'>
                 <h4>Recent News</h4>
                 <ul class='pjk'>
@@ -196,6 +197,7 @@
                     </c:forEach>
                 </ul>
             </div>
+            -->
         </div>
     </div>
     
@@ -268,7 +270,7 @@
                 document.body.appendChild(form);
                 form.submit();
             }
-            function teamdetail(id_t, id_musim, thn_awal, thn_akhir){
+            function teamdetail(id_t){
                 var form = document.createElement("form");
                 form.setAttribute("method", "POST");
                 form.setAttribute("action", "TeamDetails");
@@ -277,21 +279,6 @@
                 hiddenField.setAttribute("name", "id_t");
                 hiddenField.setAttribute("value", id_t);
                 form.appendChild(hiddenField);
-                var hiddenField2 = document.createElement("input");
-                hiddenField2.setAttribute("type", "hidden");
-                hiddenField2.setAttribute("name", "id_musim");
-                hiddenField2.setAttribute("value", id_musim);
-                form.appendChild(hiddenField2);
-                var hiddenField3 = document.createElement("input");
-                hiddenField3.setAttribute("type", "hidden");
-                hiddenField3.setAttribute("name", "thn_awal");
-                hiddenField3.setAttribute("value", thn_awal);
-                form.appendChild(hiddenField3);
-                var hiddenField4 = document.createElement("input");
-                hiddenField4.setAttribute("type", "hidden");
-                hiddenField4.setAttribute("name", "thn_akhir");
-                hiddenField4.setAttribute("value", thn_akhir);
-                form.appendChild(hiddenField4);
                 document.body.appendChild(form);
                 form.submit();
             }

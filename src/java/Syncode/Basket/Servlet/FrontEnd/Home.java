@@ -42,7 +42,7 @@ public class Home extends HttpServlet {
         HashMap tr = dh.getPlayerRandom(asal1); 
         HashMap tra = dh.getPlayerRandom(asal2);      
         HashMap tm = dh.getTeam(curr);
-        HashMap trd = dh.getNewsList();
+        //HashMap trd = dh.getNewsList();
         HashMap tre = dh.getTrendingPlayer();
         /*HashMap trf = dh.getKlasemen();
         HashMap trg = dh.getKlasemen2();
@@ -56,7 +56,7 @@ public class Home extends HttpServlet {
         request.setAttribute("p1",tr);
         request.setAttribute("p1a",tra);
         request.setAttribute("team",tm);
-        request.setAttribute("news", trd);
+        //request.setAttribute("news", trd);
         request.setAttribute("tren", tre);
         request.setAttribute("current", current);
         request.setAttribute("klasmen_m",klasmen_m);

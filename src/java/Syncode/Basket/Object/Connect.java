@@ -52,4 +52,33 @@ public class Connect {
             return false;
         }
     }
+    void open(){
+     connector(fixUrl, ID, PASSWORD);
+    }
+    void close(){
+        if (rs!=null){
+            try{
+                rs.close();
+            }
+          catch(Exception e){
+            System.out.print(e);
+            }
+        }
+        if (ps!=null){
+            try{
+                ps.close();
+            }
+          catch(Exception e){
+            System.out.print(e);
+            }
+        }
+        if (conn!=null){
+            try{
+                conn.close();
+            }
+          catch(Exception e){
+            System.out.print(e);
+            }
+        }
+    }
 }

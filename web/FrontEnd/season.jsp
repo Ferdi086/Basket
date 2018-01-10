@@ -124,10 +124,6 @@
         $("#table").bootstrapTable('refresh', {
             url: 'DataMatch?id_m='+id
         });
-                        
-        
-        
-        /*$("#table").bootstrapTable('refresh');
         $.ajax({
             type : 'POST',
             url : 'SeasonLeader',
@@ -140,48 +136,21 @@
                 $('.bungkus').append(data);      
             }
         });
-        
-        $.ajax({
-            type : 'POST',
-            url : 'SeasonTabel',
-            data: {
-                'id_m': id
-            },
-            beforeSend: function(){
-            },
-            success: function(data){
-                $('.tbl_').html(data);   
-                //$('.tbl_').append(data);      
-            }
-        });
-        
-        $.ajax({
-        type: 'POST',
-        url: 'DataMatch',
-        
-        
-        //dataType: 'json',
-        //data: JSON.stringify(article),
-        //contentType: 'application/json',
-        //mimeType: 'application/json',
-        
-            data: {
-                'id_m': id
-            },
-            beforeSend: function(){
-                alert (id);
-            },
-            afterSend: function(){
-                alert ("id");
-            },
-            success: function(data){
-                alert (data);
-            },
-            error: function(data){
-                alert ("x");
-            }
-        });*/
     });
+    
+            function teamdetail(id_t, id_musim, thn_awal, thn_akhir){
+                var form = document.createElement("form");
+                form.setAttribute("method","POST");
+                form.setAttribute("action","TeamDetails");
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type","hiden");
+                hiddenField.setAttribute("name","id_t");
+                hiddenField.setAttribute("value",id_t);
+                form.appendChild(hiddenField);
+                document.body.appendChild(form);
+                form.submit();
+            }
+                
          
 </script>
 
