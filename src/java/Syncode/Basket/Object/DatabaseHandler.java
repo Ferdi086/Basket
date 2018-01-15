@@ -215,7 +215,7 @@ public class DatabaseHandler extends Connect {
         try {      
             super.open();
             int j=0;
-            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status,Flag_active from MsMusim WHERE Status = 0 ORDER BY ID_Musim DESC"; 
+            String query = "select ID_Musim,Nama_Musim,Jenis,Tahun_Awal,Tahun_Akhir,Status,Flag_active from MsMusim WHERE Flag_active = 'Y' ORDER BY ID_Musim DESC"; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                

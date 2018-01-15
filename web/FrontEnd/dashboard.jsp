@@ -166,7 +166,7 @@
                 <th style="width: 50px">No</th>
                 <th>Nama</th>
                 <th>Team</th>
-                <th>Points</th>
+                <th>Number Of Games</th>
             </tr>
             <c:forEach var="item" items="${requestScope.numberGames}">
             <tr>

@@ -116,7 +116,7 @@
             });
     </script>
         <div class="top-menu">
-            <span class="tl-menu"><a href="Home" style="text-decoration:none;"><div class="logo">IBL</div></a></span>
+            <span class="tl-menu"><a href="Dashboard" style="text-decoration:none;"><div class="logo">IBL</div></a></span>
             <span class="tr-menu">                
                 <a href="LogOut">
                     <button class="round" type="button" data-toggle="tooltip" data-placement="bottom" title="Sign Out"></button>
