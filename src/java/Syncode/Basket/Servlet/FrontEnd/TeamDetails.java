@@ -57,7 +57,7 @@ public class TeamDetails extends HttpServlet {
         HashMap tr4 = dh.getTopRebound(ID,thn_awal);
         HashMap Season = dh.getTeamSeason(ID, thn_awal);
         HashMap playerlist = dh.getPlayerlistTeam(ID, id_musim);
-        //out.print(playerlist);
+        //out.print(tr3.size());
         ObjTeamSeason msm = (ObjTeamSeason) Season.get(0);
         HashMap gs = dh.getGeneralStat(ID, msm.getId_musim());
         HashMap pre = dh.getPrevious(id_musim);

@@ -15,17 +15,28 @@ public class ObjTopPoint {
     private String NamaPemain = "";
     private String Pos = "";
     private String Point = "";
+    private String id= "";
 
     public ObjTopPoint() {
     }
     
-    public ObjTopPoint(int No, String Foto, String NamaPemain, String Pos, String Point) {
+    public ObjTopPoint(int No, String Foto, String NamaPemain, String Pos, String Point, String id) {
         this.No = No;
         this.Foto = Foto;
         this.NamaPemain = NamaPemain;
         this.Pos = Pos;
         this.Point = Point;
+        this.id = id;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public int getNo() {
         return No;
     }

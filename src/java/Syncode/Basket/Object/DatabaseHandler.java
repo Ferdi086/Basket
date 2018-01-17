@@ -876,18 +876,18 @@ public class DatabaseHandler extends Connect {
         try {      
             super.open();
             int i=0;                         
-                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS " +
+                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[PTS]) as decimal(10,2)) as PTS,a.ID_Pemain " +
                                     " from " +
                                     " (" +
-                                        " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+                                        " select a.ID_Pemain,c.Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
                                         " from TrGameLogs a, MsPemain b, MsMusim c " +
                                         " where a.ID_Team = '"+id_team+"' and c.Tahun_Awal = '"+thn_awal+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
-                                    " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
+                                    " ) a group by a.ID_Pemain,a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
                                 " order by PTS DESC"; 
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
-                    tr.put(i++,new ObjTopPoint(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
+                    tr.put(i++,new ObjTopPoint(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getString(5)));
                 }        
                 
         } catch (SQLException ex) {
@@ -902,18 +902,18 @@ public class DatabaseHandler extends Connect {
         try {    
             super.open();
             int i=0;                              
-                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S " +
+                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[AS]) as decimal(10,2)) as A_S, a.ID_Pemain " +
                                     " from " +
                                     " (" +
-                                        " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+                                        " select a.ID_Pemain,c.Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
                                         " from TrGameLogs a, MsPemain b, MsMusim c " +
                                         " where a.ID_Team = '"+id_team+"' and c.Tahun_Awal = '"+thn_awal+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
-                                    " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
+                                    " ) a group by a.ID_Pemain,a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
                                 " order by A_S DESC"; 
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
-                    tr.put(i++,new ObjTopAssist(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
+                    tr.put(i++,new ObjTopAssist(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getString(5)));
                 } 
         } catch (SQLException ex) {
             
@@ -928,18 +928,18 @@ public class DatabaseHandler extends Connect {
             super.open();
             int i=0;            
                      
-                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[TR]) as decimal(10,2)) as TR " +
+                String query1 = "select TOP 3 a.Foto,a.Nama_Pemain,a.KD_Pos as POS, CAST(AVG(a.[TR]) as decimal(10,2)) as TR, a.ID_Pemain " +
                                     " from " +
                                     " (" +
-                                        " select Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
+                                        " select a.ID_Pemain,c.Nama_Musim,b.Foto,b.Nama_Pemain,b.KD_Pos,a.ID_Team,[MIN],[TR],[AS],[PTS] " +
                                         " from TrGameLogs a, MsPemain b, MsMusim c " +
                                         " where a.ID_Team = '"+id_team+"' and c.Tahun_Awal = '"+thn_awal+"' and a.ID_Pemain=b.ID_Pemain and a.ID_Musim=c.ID_Musim "+
-                                    " ) a group by a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
+                                    " ) a group by a.ID_Pemain,a.Nama_Pemain,a.Foto,a.KD_Pos,a.ID_Team " +
                                 " order by TR DESC"; 
                 ps1 = conn.prepareStatement(query1);
                 rs1 = ps1.executeQuery();
                 while(rs1.next()){
-                    tr.put(i++,new ObjTopRebound(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4)));
+                    tr.put(i++,new ObjTopRebound(i++, rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getString(5)));
                 }                
         } catch (SQLException ex) {
             
@@ -1083,7 +1083,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1),""));
             }
         }catch (SQLException ex){
             
@@ -1108,7 +1108,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1),""));
             }
         }catch (SQLException ex){
             
@@ -1133,7 +1133,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1),""));
             }
         }catch (SQLException ex){
             
@@ -1157,7 +1157,7 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1)));
+                tr.put(i++, new ObjTopPoint(i++,rs.getString(1),rs.getString(2),rs.getString(1),rs.getString(1),""));
             }
         }catch (SQLException ex){
             
