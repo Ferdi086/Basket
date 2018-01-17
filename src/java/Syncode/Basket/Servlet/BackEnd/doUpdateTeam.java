@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -150,6 +152,11 @@ public class doUpdateTeam extends HttpServlet {
                  
             }
           }
+         try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Team.class.getName()).log(Level.SEVERE, null, ex);
+            }
             session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                 response.sendRedirect("Team");
