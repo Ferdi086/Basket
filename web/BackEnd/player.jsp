@@ -542,7 +542,7 @@
                 $('#ValidasiInput').modal('show'); 
             }  
         }
-        function Update(idPemain,namaPemain,region,tgl,tinggi,foto,berat,pos,tangan,idTeam,noPunggung){  
+        function Update(idPemain,namaPemain,region,tgl,tinggi,foto,berat,pos,tangan,idTeam,noPunggung){ 
         $("#updateid_pemain").val(idPemain);
         $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
             $('#updatepemain').val(namaPemain);
