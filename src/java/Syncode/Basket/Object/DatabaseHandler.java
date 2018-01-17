@@ -172,6 +172,22 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
+    public boolean setReplace(String idteamnew, String idteamold){
+        try {
+            super.open();
+            String query = "UPDATE TrGameLogs set ID_Team='"+idteamnew+"' where ID_Team='"+idteamold+"'";
+            ps = conn.prepareStatement(query);
+            ps.executeUpdate();
+            String query1 = "UPDATE MsPemain set ID_Team='"+idteamnew+"' where ID_Team='"+idteamold+"'";
+            ps1 = conn.prepareStatement(query1);
+            ps1.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+             return false;   
+        }finally{
+            super.close();
+        }
+    }
     public HashMap getPlayerDetail(String id_team){
         HashMap tr = new HashMap();
         try {      
@@ -358,15 +374,15 @@ public class DatabaseHandler extends Connect {
             super.close();
         }        
     }
-    public boolean setUpdateMsTeam(String nick, String nama_team,String divisi, String logo){
+    public boolean setUpdateMsTeam(String nicknew, String nickold, String nama_team,String divisi, String logo){
         try {         
             super.open();
                if(logo.equals("")){
-                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"' where ID_Team='"+nick+"'";
+                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nicknew+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"' where ID_Team='"+nickold+"'";
                      ps = conn.prepareStatement(query);
                }
                else{
-                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nick+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"' where ID_Team='"+nick+"'";
+                     String query = "update MsTeam set Last_Update = GETDATE(), ID_Team='"+nicknew+"',Nama_Team='"+nama_team+"',Divisi='"+divisi+"',Logo='"+logo+"' where ID_Team='"+nickold+"'";
                      ps = conn.prepareStatement(query);
                  }
                ps.executeUpdate();  
