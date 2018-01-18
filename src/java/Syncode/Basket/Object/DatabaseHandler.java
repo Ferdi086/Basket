@@ -1223,43 +1223,33 @@ public class DatabaseHandler extends Connect {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){
-                query1 = "SELECT DISTINCT TOP 1 ID_Team From TrGameLogs Where Match = '"+rs.getString(1)+"' AND ID_Musim = '"+id_m+"'";
-                ps1 = conn.prepareStatement(query1);
-                rs1 = ps1.executeQuery();
-                if(rs1.next()){
-                    query2 = "select c.Match,CAST(DAY(c.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, c.Tgl_Match) + ' ' + CAST(YEAR(c.Tgl_Match) AS VARCHAR(4)) As Tgl_Match,c.Team1,c.Logo1,CAST(SUM(c.PTS1) as decimal(10,2)) as PTS1,c.WL1 as WL1,c.Team2,c.Logo2,CAST(SUM(c.PTS2) as decimal(10,2)) as PTS2, c.WL2 as WL2  " +
-"                            from(   " +
-"                            	select distinct a.Tgl_Match,a.Match,a.ID_Team as Team1,a.Logo as Logo1,a.PTS as PTS1,a.WL as WL1,b.ID_Team as Team2,b.Logo as Logo2,b.PTS as PTS2,b.WL as WL2  " +
-"                            	from  " +
-"                            	(  " +
-"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS,b.WL  " +
-"                            		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d    "+
-"                            		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = "+id_m+" and b.Match = '"+rs.getString(1)+"' and b.Tgl_Match = '"+rs.getString(2)+"' and b.ID_Team = '"+rs1.getString(1)+"'  " +
-"                            	) a LEFT JOIN  " +
-"                            	(  " +
-"                            		select a.ID_Team,d.Logo,b.Match,b.Tgl_Match,b.PTS,b.WL  " +
-"                            		from MsPemain a,TrGameLogs b, MsMusim c, MsTeam d   " +
-"                            		where a.ID_Pemain = b.ID_Pemain and b.ID_Musim = c.ID_Musim and b.ID_Team = d.ID_Team and b.ID_Musim = "+id_m+" and b.Match = '"+rs.getString(1)+"' and b.Tgl_Match = '"+rs.getString(2)+"' and b.ID_Team != '"+rs1.getString(1)+"'  " +
-"                            	) b  " +
-"                             ON a.Match = b.Match  " +
-"                            )c group by c.Match,c.Tgl_Match,c.Team1,c.Logo1,c.WL1,c.Team2,c.Logo2,c.WL2 "; 
-                    ps2 = conn.prepareStatement(query2);
-                    rs2 = ps2.executeQuery();
-                    //String tgl, String team1, String logo1, String pts1, String wl1, String team2, String logo2, String pts2, String wl2
-                    if(rs2.next()){
-                        if(rs2.getString(4)==null){
-                            ObjMatchStatistic obj = new ObjMatchStatistic(rs2.getString(1),rs2.getString(2),"-","-","0.00","-",rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10));
-                             tr.put(obj.toJson());
-                        }else if(rs2.getString(7)==null){
-                            ObjMatchStatistic obj = new ObjMatchStatistic(rs2.getString(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),"-","-","0.00","-");
-                             tr.put(obj.toJson());
-                        }else{
+                query1 = "SELECT DISTINCT TOP 1 CAST(DAY(a.Tgl_Match) AS VARCHAR(2)) + ' ' + DATENAME(MM, a.Tgl_Match) + ' ' + CAST(YEAR(a.Tgl_Match) AS VARCHAR(4))As Tgl_Match, " +
+                    "b.Logo As Logo1,a.ID_Team As Team1, " +
+                    "( " +
+                    "	SELECT SUM(b.PTS) FROM TrGameLogs b WHERE b.Match = '"+rs.getString(1)+"' AND b.Tgl_Match = '"+rs.getString(2)+"' AND b.ID_Team = a.ID_Team " +
+                    ")As PTS1, " +
+                    "( " +
+                    "	SELECT DISTINCT TOP 1 d.Logo From TrGameLogs c, MsTeam d Where c.ID_Team = d.ID_Team AND c.Match ='"+rs.getString(1)+"' AND c.Tgl_Match = '"+rs.getString(2)+"' AND c.ID_Team != a.ID_Team " +
+                    ")As Logo2, " +
+                    "( " +
+                    "	SELECT DISTINCT TOP 1 c.ID_Team From TrGameLogs c Where c.Match ='"+rs.getString(1)+"' AND c.Tgl_Match = '"+rs.getString(2)+"' AND c.ID_Team != a.ID_Team " +
+                    ")As Team2, " +
+                    "( " +
+                    "	SELECT SUM(d.PTS) FROM TrGameLogs d WHERE d.Match = '"+rs.getString(1)+"' AND d.Tgl_Match = '"+rs.getString(2)+"' AND d.ID_Team != a.ID_Team " +
+                    ")As PTS2 " +
+                    "From TrGameLogs a, MsTeam b Where a.ID_Team = b.ID_Team AND a.Match ='"+rs.getString(1)+"' AND a.Tgl_Match = '"+rs.getString(2)+"' ";
+                    
+                    //String match, String tgl, String team1, String logo1, String pts1, String team2, String logo2, String pts2
+                   /*
                             ObjMatchStatistic obj = new ObjMatchStatistic(rs2.getString(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getString(5),rs2.getString(6),rs2.getString(7),rs2.getString(8),rs2.getString(9),rs2.getString(10));
                              tr.put(obj.toJson());
-                        }  
-                       
+                            */
+                    ps1 = conn.prepareStatement(query1);
+                    rs1 = ps1.executeQuery();
+                    if(rs1.next()){  
+                        ObjMatchStatistic obj = new ObjMatchStatistic(rs.getString(1),rs1.getString(1),rs1.getString(3),rs1.getString(2),rs1.getString(4),rs1.getString(6),rs1.getString(5),rs1.getString(7));
+                        tr.put(obj.toJson());
                     }
-                }
             }
         }catch (SQLException ex){
             
