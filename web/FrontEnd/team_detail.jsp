@@ -44,6 +44,10 @@ h2 span {
     color:#23B684;
     padding:0 10px; 
 }
+.kotak_team_isi > h5:hover{
+    cursor:pointer;
+    color:#23B684;
+}
 </style>
 </head>
 <body>
@@ -133,7 +137,7 @@ h2 span {
 				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi" style="max-width:170px;">
-				<h5>${item.value.namaPemain}</h5>
+                            <h5 onclick="playdetail(${item.value.id})">${item.value.namaPemain}</h5>
 				<p>${item.value.pos}</p>
 			</div>
 			<div class="kotak_team_isi pull-right">
@@ -151,7 +155,7 @@ h2 span {
 				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi" style="max-width:170px;">
-				<h5>${item.value.namaPemain}</h5>
+				<h5 onclick="playdetail(${item.value.id})">${item.value.namaPemain}</h5>
 				<p>${item.value.pos}</p>
 			</div>
 			<div class="kotak_team_isi pull-right">
@@ -168,7 +172,7 @@ h2 span {
 				<img src="../img/Players/${item.value.foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" class="img-circle" width="55" height="55"/>
 			</div>
 			<div class="kotak_team_isi" style="max-width:170px;">
-				<h5>${item.value.namaPemain}</h5>
+				<h5 onclick="playdetail(${item.value.id})">${item.value.namaPemain}</h5>
 				<p>${item.value.pos}</p>
 			</div>
 			<div class="kotak_team_isi pull-right">

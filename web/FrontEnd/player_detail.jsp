@@ -59,6 +59,12 @@
             min-width:120px; 
             background:white;
         }
+        #imgteam:hover{
+            cursor:pointer;
+        }
+        #namateam:hover{
+            color:white;
+        }
 </style>
 </head>
 <body>
@@ -89,7 +95,17 @@
                 <br>
 		<h3 style="color:white">${item.value.namaPos}</h3>
                 <br/>
-		<a href="#" style="color:black" onclick="teamdetail('${item.value.idTeam}','${requestScope.id_musim}','${requestScope.thn_awal}','${requestScope.thn_akhir}')"><h3><img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="65" height="65"/>${item.value.team}</h3></a>
+                <table id='imgteam'>
+                    <tr onclick="teamdetail('${item.value.idTeam}','${requestScope.id_musim}','${requestScope.thn_awal}','${requestScope.thn_akhir}')">
+                        <td>
+                            <img src="../img/Team/Logo/${item.value.logo}" onerror="this.onerror=null;this.src='../img/Team/Logo/nopic.png';" width="65" height="65"/>
+                        </td>
+                        <td style='padding:7px'>
+                            <a href="#" style="color:black" ><h3 id='namateam'>${item.value.team}</h3></a>
+                        </td>
+                    </tr>
+                </table>
+		
 		<br/>
                 <h4><span>Birthdate</span>  : 
                     <c:choose>         

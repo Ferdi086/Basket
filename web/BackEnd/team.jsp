@@ -207,7 +207,8 @@
                         <div class="form-group ">
                             <label class="control-label col-sm-2">Team nickname</label>
                             <div class="col-sm-3">
-                                <input type="text" name="id" id="UpdateId" class="form-control"  >
+                                <input type="hidden" name="idold" id="UpdateIdold" class="form-control"  >
+                                <input type="text" name="idnew" id="UpdateIdnew" class="form-control"  >
                             </div>
                            
                             <label class="control-label col-sm-2">Team Name</label>
@@ -473,7 +474,8 @@
                 $('#Flag1').val(Flag);
             }
         function Update(id,nama_team,divisi,logo,gambar){
-            $('#UpdateId').val(id);
+            $('#UpdateIdold').val(id);
+            $('#UpdateIdnew').val(id);
             $('#UpdateNama').val(nama_team);
             $('#Updatedivisi').val(divisi);
             $('#previewlogoupdate').attr('src',"../img/Team/Logo/"+logo).width(135).height(140);
