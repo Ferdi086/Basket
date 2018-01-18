@@ -351,9 +351,7 @@
                 $("#nama").val(null);
                 $("#nick").val(null);
                 $("#logo").val(null);
-                $("#foto").val(null);
                 $("#previewlogo").attr('src',"../img/Team/Logo/nopic.png");
-                $("#previewfoto").attr('src',"../img/Team/Logo/nopic.png");
             });         
 	});
         
@@ -420,10 +418,6 @@
             }else if($('#nick').val()===""){
                 return false;
             }else if($('#divisi').val()===""){
-                return false;
-            }else if($('#logo').val()===""){
-                return false;
-            }else if($('#foto').val()===""){
                 return false;
             }else{
                 return true;

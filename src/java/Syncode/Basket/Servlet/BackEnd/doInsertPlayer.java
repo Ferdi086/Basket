@@ -108,15 +108,22 @@ public class doInsertPlayer extends HttpServlet {
                String tgl = tglitem.getString().trim();
                FileItem tanganitem = (FileItem) fileItems.get(7);
                String tangan = tanganitem.getString().trim();
-                FileItem regionitem = (FileItem) fileItems.get(8);
+               FileItem regionitem = (FileItem) fileItems.get(8);
                String region = regionitem.getString().trim();
                FileItem iduseritem = (FileItem) fileItems.get(9);
                String iduser = iduseritem.getString().trim();
-               String fileName = fi.getName();
-               ext = fileName.split("\\.")[1];
-               //String contentType = fi.getContentType();
-               //boolean isInMemory = fi.isInMemory();
-               //long sizeInBytes = fi.getSize();
+               String fileName="";
+               fileName = fi.getName();
+               if(fileName.equals("")){
+                   out.println("kosong");
+                   boolean a=dh.setMsPemain(NamaNew,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto,iduser); 
+                    out.println(a);
+                    session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                    response.sendRedirect("Player");
+               }else{
+                   out.println("ada");
+                   ext = fileName.split("\\.")[1];
                Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toUpperCase())){
                     // Write the file
@@ -125,20 +132,11 @@ public class doInsertPlayer extends HttpServlet {
                     } else {
                        file = new File( filePath +id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten) ;
                     }
-                    
-                    
-                    
-                    //dh.setFile(Name,Exten);
-                     //akhir upload
-                    //out.println("Uploaded Filename: " + Name +"."+ ext + "<br>");
-                    out.println("foto="+foto);
-                    out.println(file);
                    
-                       foto = id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten;
-                        fi.write( file ); 
-                       out.println("nama baru="+NamaNew);
+                    foto = id_team +"-"+NamaNew+"-"+pos+"-"+no+Exten;
+                    fi.write( file ); 
+                    out.println("nama baru="+NamaNew);
                     boolean a=dh.setMsPemain(NamaNew,region,id_team,pos,no,tinggi,berat,tgl,tangan,foto,iduser); 
-                    out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Player");
@@ -146,21 +144,25 @@ public class doInsertPlayer extends HttpServlet {
                else {
                         session.setAttribute("ErrMess","Your data failed to be recorded");
                         session.setAttribute("alert", "alert-danger");
-                       response.sendRedirect("Player");
+                        response.sendRedirect("Player");
                     }
+               }
+               
+               
              }
+            
           }
-         
+        
             try {
-                Thread.sleep(3000);
+                Thread.sleep(5000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
-            session.setAttribute("ErrMess","Your data successfully recorded");
-                    session.setAttribute("alert", "alert-success");
-                    response.sendRedirect("Player");
+                session.setAttribute("ErrMess","Your data successfully recorded");
+                session.setAttribute("alert", "alert-success");
+                response.sendRedirect("Player");
          } catch(Exception ex) {
-            System.out.println(ex);
+            out.println(ex);
          }
         
     }
