@@ -103,7 +103,16 @@ public class doInsertTeam extends HttpServlet {
                String iduser = iduseritem.getString().trim();
                String FieldName = fi.getFieldName();
                String fileName = fi.getName();
-               ext = fileName.split("\\.")[1];
+               String logo="";
+               if(fileName.equals("")){
+                   out.println("kosong");
+                   boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,iduser);  
+                    out.println(a);
+                    session.setAttribute("ErrMess","Your data successfully recorded");
+                    session.setAttribute("alert", "alert-success");
+                    response.sendRedirect("Team");
+               }else{
+                   ext = fileName.split("\\.")[1];
                Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
                    if(FieldName.equals("logo")){
@@ -113,7 +122,7 @@ public class doInsertTeam extends HttpServlet {
                                 file = new File( filePath2 + nick+Exten) ;
                               }
                      }
-                    String logo = nick+Exten;
+                     logo = nick+Exten;
                     fi.write( file );
                     String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo)values('"+nick+"','"+NamaNew+"','"+logo+"')";
                     out.println(query);
@@ -129,6 +138,8 @@ public class doInsertTeam extends HttpServlet {
                         session.setAttribute("alert", "alert-danger");
                         response.sendRedirect("Team");
                     }
+               }
+               
              }
           }
          } catch(Exception ex) {

@@ -347,9 +347,16 @@ public class DatabaseHandler extends Connect {
     public boolean setMsPemain (String name, String region, String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto, String iduser){
         try {         
             super.open();
-                String query = "INSERT INTO MsPemain (Nama_Pemain,Asal,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto,ID_Pengentri) values ('"+name+"','"+region+"','"+id_team+"',"
-                        + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"','"+ iduser +"')";
-                ps = conn.prepareStatement(query);
+                if(foto.equals("")){
+                    String query = "INSERT INTO MsPemain (Nama_Pemain,Asal,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto,ID_Pengentri) values ('"+name+"','"+region+"','"+id_team+"',"
+                       + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','nopics.png','"+ iduser +"')";
+                    ps = conn.prepareStatement(query);
+                }else{
+                    String query = "INSERT INTO MsPemain (Nama_Pemain,Asal,Id_Team,KD_Pos,No_Punggung,Tinggi,Berat,Tgl_Lahir,Tangan,Foto,ID_Pengentri) values ('"+name+"','"+region+"','"+id_team+"',"
+                            + "'"+ posisi+"','"+ no_punggung +"','"+ tinggi+ "','"+ berat +"','"+ tgl +"','"+ tangan +"','"+ foto +"','"+ iduser +"')";
+                    ps = conn.prepareStatement(query);
+                }
+                
                 ps.executeUpdate();  
                 return true;
             
@@ -363,8 +370,13 @@ public class DatabaseHandler extends Connect {
     public boolean setMsTeam(String nick, String nama_team, String divisi, String logo, String iduser){
         try {         
             super.open();
+            if(logo.equals("")){
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','nopics.png','"+iduser+"')";
+                ps = conn.prepareStatement(query);
+            }else{
                 String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+iduser+"')";
                 ps = conn.prepareStatement(query);
+            }
                 ps.executeUpdate();  
                 return true;
             

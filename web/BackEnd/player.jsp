@@ -475,7 +475,8 @@
                 $("#tgl").val(null);
                 $("#tangan").val(null);
                 $("#preview").attr('src',"../img/nopic.png");
-                $("#file").attr("value","../img/nopic.png");
+                $("#file").val(null);
+                
             });    
             jQuery('.scrollbar-macosx').scrollbar();                
                      
