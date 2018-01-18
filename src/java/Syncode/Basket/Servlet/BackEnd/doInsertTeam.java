@@ -112,8 +112,9 @@ public class doInsertTeam extends HttpServlet {
                     session.setAttribute("alert", "alert-success");
                     response.sendRedirect("Team");
                }else{
+                   out.println("ada");
                    ext = fileName.split("\\.")[1];
-               Exten="."+ ext;
+                   Exten="."+ ext;
                if(Arrays.asList(extList).contains(ext.toLowerCase())) {
                    if(FieldName.equals("logo")){
                             if( fileName.lastIndexOf("\\") >= 0 ) {
@@ -125,7 +126,7 @@ public class doInsertTeam extends HttpServlet {
                      logo = nick+Exten;
                     fi.write( file );
                     String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Logo)values('"+nick+"','"+NamaNew+"','"+logo+"')";
-                    out.println(query);
+                    //out.println(query);
                     boolean a=dh.setMsTeam(nick,NamaNew,divisi,logo,iduser);  
                     out.println(a);
                     session.setAttribute("ErrMess","Your data successfully recorded");

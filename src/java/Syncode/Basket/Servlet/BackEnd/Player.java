@@ -58,7 +58,6 @@ public class Player extends HttpServlet {
            
             
             
-            
             request.setAttribute("player", pl);
             request.setAttribute("team",tm);
             request.setAttribute("posisi",pos);
