@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import Syncode.Basket.Object.Musim;
 import Syncode.Basket.Object.ObjJam;
+import Syncode.Basket.Object.ObjMatchStatistic;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,14 @@ public class Dashboard extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         HashMap tr = dh.getMusim1();
         Musim cs = (Musim) tr.get(0);
-        HashMap st = dh.getMatchStatistic(cs.getId_musim());
+        //HashMap st = dh.getMatchStatistic(cs.getId_musim());
+        HashMap st = dh.getMatchStatistic("5");
+        /*
+        for(int i = 0;i<st.size();i++){
+            ObjMatchStatistic csr = (ObjMatchStatistic) st.get(i);
+            out.println(csr.getMatch());
+        }*/
+        
         ObjUser usr = (ObjUser) session.getAttribute("obj_usr");
         request.setAttribute("nama_usr", usr.getNama());
         request.setAttribute("statistik", st);
