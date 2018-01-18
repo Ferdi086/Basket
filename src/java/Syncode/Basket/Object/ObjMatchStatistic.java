@@ -37,6 +37,17 @@ public class ObjMatchStatistic {
         this.pts2 = pts2;
         this.wl2 = wl2;
     }
+    
+    public ObjMatchStatistic(String match, String tgl, String team1, String logo1, String pts1, String team2, String logo2, String pts2) {
+        this.match = match;
+        this.tgl = tgl;
+        this.team1 = team1;
+        this.logo1 = logo1;
+        this.pts1 = pts1;
+        this.team2 = team2;
+        this.logo2 = logo2;
+        this.pts2 = pts2;
+    }
 
     public JSONObject toJson(){ 
          json.put("tgl","<a href='#' data-toggle='tooltip' title='"+match+"'>"+tgl+"</a>" );

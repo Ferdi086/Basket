@@ -124,9 +124,10 @@
                                 </div>	
                             <div class="form-group">
                                    <label class="control-label col-sm-2" >Foto</label>
-                                   <div class="col-sm-3">
+                                   <div class="col-sm-3" id="inputfile">
                                        <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" onchange="readURL(this);" required/>
                                    </div> 
+                                   
                                    <label class="col-sm-2 control-label">Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
                                         <img id="preview" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
@@ -441,6 +442,8 @@
         
         $(document).ready(function(){ 
             //$("#loading").hide();
+            //var url = $('#preview').attr('src');
+           // $('#inputfile,input:file').val(url);
             $('#sub').hide();
             $('#togglebutton').click(function() {
 		$('.text').toggle(300);
@@ -457,7 +460,8 @@
                     format: 'YYYY-MM-DD',
                     viewMode: 'years',
                     defaultDate:'1990-01-01'
-            }); 
+            });
+            
             
             $("#reset").click(function(){
                 $("#pemain").focus();
@@ -471,7 +475,7 @@
                 $("#tgl").val(null);
                 $("#tangan").val(null);
                 $("#preview").attr('src',"../img/nopic.png");
-                $("#file").val(null);
+                $("#file").attr("value","../img/nopic.png");
             });    
             jQuery('.scrollbar-macosx').scrollbar();                
                      
@@ -494,8 +498,6 @@
             }else if($('#tgl').val()===""){
                 return false;
             }else if($('#tangan').val()===""){
-                return false;
-            }else if($('#file').val()===""){
                 return false;
             }else{
                 return true;
@@ -529,6 +531,7 @@
         function input(){
             if(cekInput()){
                 $('#inputplayer').submit();
+                $('#player').bootstrapTable('refresh');
             }else{                
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
@@ -537,6 +540,7 @@
          function ubah(){
             if(cekEdit()){ 
                 $('#formUpdate').submit();
+                $('#player').bootstrapTable('refresh');
             }else{
                 $('#KonfirmasiUpdate').modal('hide');
                 $('#ValidasiInput').modal('show'); 

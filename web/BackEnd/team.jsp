@@ -108,7 +108,7 @@
                 <div class="col-md-12" style="padding-right:120px;padding-bottom:40px;">
                     <hr/>
                     <center><h2><b>Team List</b></h2></center>
-                    <table id="player" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
+                    <table id="team" class="table table-condensed table-striped" data-toggle="table" data-search="true" data-page-list="[10, 25, 50, 100, ALL]" data-pagination="true">
                         <thead>
                             <tr style="font-size:18px;">
                                 <th data-align="center" data-valign="middle" data-sortable="true"><b><center>No</center></b></th>
@@ -432,6 +432,7 @@
         function input(){
             if(cekInput()){
                 $('#InputTeam').submit();
+                $team.bootstrapTable('refresh');
             }else{                
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
@@ -440,6 +441,7 @@
         function ubah(){
             if(cekUpdate()){ 
                 $('#formUpdate').submit();
+                $team.bootstrapTable('refresh');
             }else{
                 $('#KonfirmasiUpdate').modal('hide');
                 $('#ValidasiInput').modal('show'); 
