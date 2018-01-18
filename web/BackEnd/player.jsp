@@ -529,6 +529,7 @@
         function input(){
             if(cekInput()){
                 $('#inputplayer').submit();
+                $player.bootstrapTable('refresh');
             }else{                
                 $('#KonfirmasiInput').modal('hide');
                 $('#ValidasiInput').modal('show');     
@@ -537,6 +538,7 @@
          function ubah(){
             if(cekEdit()){ 
                 $('#formUpdate').submit();
+                $player.bootstrapTable('refresh');
             }else{
                 $('#KonfirmasiUpdate').modal('hide');
                 $('#ValidasiInput').modal('show'); 
