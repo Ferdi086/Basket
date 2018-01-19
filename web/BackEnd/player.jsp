@@ -130,7 +130,7 @@
                                    
                                    <label class="col-sm-2 control-label">Preview</label>
                                     <div class="col-sm-4" style="background-color: whitesmoke;height:140px;width:135px;margin-left:50px">
-                                        <img id="preview" style="margin-left:-15px" src="../img/nopic.png" width="135px" height="140px"/>
+                                        <img id="preview" style="margin-left:-15px" src="../img/Players/nopics.png" width="135px" height="140px"/>
                                     </div>
                                   
                             </div>
