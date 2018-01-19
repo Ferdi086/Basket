@@ -186,9 +186,11 @@
                                 <c:set var="team" value="${item.value.team}" />
                                 <c:set var="noPunggung" value="${item.value.noPunggung}"/>
                                 <c:set var="flagactive" value="${item.value.flagactive}" />
+                                <c:set var="nama" value="${item.value.nama}"/>
+                                <c:set var="foto1" value="${item.value.foto1}" />
                             <tr>
                                 <td style="vertical-align: middle;text-align: center"> ${loopCounter.count}</td>
-                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}" onerror="this.onerror=null;this.src='../img/Players/nopics.png';" width="80px" height="80px"/> </td>
+                                <td style="vertical-align: middle;text-align: center"> <img src="../img/Players/${foto}"  width="80px" height="80px"/> </td>
                                 <td style="vertical-align: middle;text-align: center"> ${namaPemain}</td>
                                 <c:choose>
                                     <c:when test="${region=='Lokal'}">
@@ -207,7 +209,7 @@
                                 <td style="vertical-align: middle;text-align: center"> ${noPunggung} </td>
                                 <td style="vertical-align: middle;text-align: center"> 
                                     <div style="margin:auto;">                                                                          
-                                        <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${namaPemain}','${region}','${tgl}','${tinggi}','${foto}','${berat}','${pos}','${tangan}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${nama}','${region}','${tgl}','${tinggi}','${foto1}','${berat}','${pos}','${tangan}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
                                         <c:choose>
                                             <c:when test="${flagactive=='Y'}">
                                                 <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
@@ -549,8 +551,20 @@
         }
         function Update(idPemain,namaPemain,region,tgl,tinggi,foto,berat,pos,tangan,idTeam,noPunggung){ 
         $("#updateid_pemain").val(idPemain);
-        $('#updatepreview').attr('src',"../img/Players/"+foto).width(135).height(140); 
-            $('#updatepemain').val(namaPemain);
+        var nama="";
+        var photo;
+        if (namaPemain.includes("?")){
+            nama = namaPemain.replace("?", "'");
+        }else{
+            nama = namaPemain;
+        }
+        if (foto.includes("?")){
+            photo = foto.replace("?", "'");
+        }else{
+            photo = foto;
+        }
+        $('#updatepreview').attr('src',"../img/Players/"+photo).width(135).height(140); 
+            $('#updatepemain').val(nama);
             $('#updateregion').val(region);
             $('#updateteam').val(idTeam);
             $('#updateposisi').val(pos);

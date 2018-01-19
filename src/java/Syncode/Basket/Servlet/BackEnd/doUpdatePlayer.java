@@ -84,6 +84,7 @@ public class doUpdatePlayer extends HttpServlet {
         String nama_pemain = "";
         String region = "";
         String NamaNew = "";
+        String namafoto = "";
         String tgl = "";
         String foto ="";
         String tinggi = "";
@@ -105,6 +106,7 @@ public class doUpdatePlayer extends HttpServlet {
               FileItem idpemainitem = (FileItem) fileItems.get(0);
                idpemain = idpemainitem.getString();
                FileItem nama_pemain_item = (FileItem) fileItems.get(1);
+               namafoto = nama_pemain_item.getString();
                nama = nama_pemain_item.getString().trim();
                if (nama.contains("'")){
                     NamaNew = nama.replace("'", "''");
@@ -139,9 +141,9 @@ public class doUpdatePlayer extends HttpServlet {
                      if(FieldName.equals("fileupdate")){
                          out.println("<br/>iniFoto" + NamaNew + Exten);
                            if( fileName.lastIndexOf("\\") >= 1 ) {
-                       file = new File( filePath + idTeam +"-"+ NamaNew+"-"+pos+"-"+noPunggung+"."+ ext);
+                       file = new File( filePath + idTeam +"-"+ namafoto+"-"+pos+"-"+noPunggung+"."+ ext);
                     } else {
-                       file = new File( filePath + idTeam +"-"+ NamaNew+"-"+pos+"-"+noPunggung+"."+ ext);
+                       file = new File( filePath + idTeam +"-"+ namafoto+"-"+pos+"-"+noPunggung+"."+ ext);
                     }
                     
                     
@@ -165,7 +167,7 @@ public class doUpdatePlayer extends HttpServlet {
                FileItem nama_pemain_item = (FileItem) fileItems.get(1);
                nama = nama_pemain_item.getString().trim();
                if (nama.contains("'")){
-                    NamaNew = nama.replace("'", "`");
+                    NamaNew = nama.replace("'", "''");
                }else{
                    NamaNew = nama;
                }

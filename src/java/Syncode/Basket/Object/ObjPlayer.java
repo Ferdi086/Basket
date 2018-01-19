@@ -28,6 +28,8 @@ public class ObjPlayer {
     private String idTeam="";
     private String logo="";
     private String tangan="";
+    private String nama = "";
+    private String foto1="";
     
     private int No;
    
@@ -49,7 +51,7 @@ public class ObjPlayer {
         this.logo=logo;
         this.No=No;
     }
-    public ObjPlayer(String idPemain, String namaPemain, String region, String tgl, String tinggi, String berat, String pos, String namaPos, String idTeam, String team, String noPunggung, String tangan, String foto, String flagactive) {
+    public ObjPlayer(String idPemain, String namaPemain, String region, String tgl, String tinggi, String berat, String pos, String namaPos, String idTeam, String team, String noPunggung, String tangan, String foto, String flagactive, String nama, String foto1) {
         this.idPemain = idPemain;
         this.namaPemain = namaPemain;
         this.region = region;
@@ -64,6 +66,24 @@ public class ObjPlayer {
         this.foto=foto;
         this.idTeam=idTeam;
         this.flagactive=flagactive;
+        this.nama = nama;
+        this.foto1 = foto1;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getFoto1() {
+        return foto1;
+    }
+
+    public void setFoto1(String foto1) {
+        this.foto1 = foto1;
     }
     public ObjPlayer(String IdPemain, String NamaPemain){
         this.idPemain = IdPemain;
