@@ -40,50 +40,45 @@
             $(".alert-success").delay(5000).fadeOut(2000, function () { $(this).remove(); });
             $(".alert-danger").delay(6000).fadeOut(3000, function () { $(this).remove(); });
         </script> 
-        
-        
        <div class="isi container" style="overflow: auto;">
             <div class="news-content scrollbar-macosx">
                <div class="col-md-12" style="padding-right:120px;">
                     <div class="form">
-                    <center><h2 style="margin-bottom:40px;"><b>Statistic Player</b></h2></center>
-                    <form class="form-horizontal" method="post" action="doInsertStatikPlayer" id="formInput" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2 " >Team</label>
-                                    <div class="col-sm-3">
-                                       
-                                        <select name="team" class="form-control" id="team">
-                                            <option value=""> Choose One Team </option>
-                                            <c:forEach var="item" items="${requestScope.team}">
-                                                <option value="${item.value.id}"> ${item.value.id} - ${item.value.namateam} </option>
-                                              </c:forEach>
-                                        </select>
-                                    </div>
-                                   
-                                    <label class="control-label col-sm-2">Player Name</label>
-                                    <div class="col-sm-3">
-                                        <select name="pemain" id="pemain" class=" form-control">
-                                        </select>
-                                    </div>                                  
-                                </div>	
+                        <center><h2 style="margin-bottom:40px;"><b>Statistic Player</b></h2></center>
+                        <form class="form-horizontal" method="post" action="doInsertStatikPlayer" id="formInput" enctype="multipart/form-data">
                             <div class="form-group">
-                                   <label class="control-label col-sm-2">Import File Excel</label>
-                                   <div class="col-sm-3">
-                                       <input id="file" type="file" name="excel" accept=".xlsx" required/>
-                                   </div>
-                                   <label class="control-label col-sm-2">Season</label>
-                                   <div class="col-sm-3">
-                                      <select name="musim" class="form-control" id="musim">
-                                            <option value=""> Choose One Season </option>
-                                            <c:forEach var="item" items="${requestScope.musim}">
-                                                <c:if test="${item.value.flagactive == 'Y'}">
-                                                    <option value="${item.value.id_musim}_${item.value.nama_musim}">${item.value.nama_musim} </option>
-                                                </c:if>
-                                                
-                                             </c:forEach>
-                                        </select>
-                                        <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
-                                   </div>
+                                <label class="control-label col-sm-2 " >Team</label>
+                                <div class="col-sm-3">
+                                    <select name="team" class="form-control" id="team">
+                                        <option value=""> Choose One Team </option>
+                                        <c:forEach var="item" items="${requestScope.team}">
+                                            <option value="${item.value.id}"> ${item.value.id} - ${item.value.namateam} </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <label class="control-label col-sm-2">Player Name</label>
+                                <div class="col-sm-3">
+                                    <select name="pemain" id="pemain" class=" form-control">
+                                    </select>
+                                </div>                                  
+                            </div>	
+                            <div class="form-group">
+                               <label class="control-label col-sm-2">Import File Excel</label>
+                               <div class="col-sm-3">
+                                   <input id="file" type="file" name="excel" accept=".xlsx" required/>
+                               </div>
+                               <label class="control-label col-sm-2">Season</label>
+                               <div class="col-sm-3">
+                                  <select name="musim" class="form-control" id="musim">
+                                        <option value=""> Choose One Season </option>
+                                        <c:forEach var="item" items="${requestScope.musim}">
+                                            <c:if test="${item.value.flagactive == 'Y'}">
+                                                <option value="${item.value.id_musim}_${item.value.nama_musim}">${item.value.nama_musim} </option>
+                                            </c:if>
+                                         </c:forEach>
+                                    </select>
+                                    <input id="id_user" type="hidden" name="id_user" value="${requestScope.id_user}">
+                               </div>
                             </div>
                             <div class="form-group">
                                        <label class="control-label col-sm-2">Template Excel</label>
@@ -91,25 +86,20 @@
                                            <img onclick="DownloadTemplate()" src="../img/download.png" height="60px" width="120px" style="cursor:pointer;">
                                        </div>
                             </div>
-                            </form>   
-                    
-                
-				</div>	     
-                                <br/>
-                                <div class="form-group">
-                                    <div class="col-sm-4 col-sm-offset-1">
-                                        <button class="btn btn-success btn-block" data-toggle="modal" data-target="#KonfirmasiInput"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
-                                    </div>
-                                    <div class="col-sm-4 col-sm-offset-1">
-                                        <button class="btn btn-info btn-block" id="reset"><span class="glyphicon glyphicon-repeat"></span> Reset</button>
-                                    
-                                    </div>
-                                </div>
-			
+                        </form>   
+                    </div>	     
+                        <br/>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#KonfirmasiInput"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+                            </div>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <button class="btn btn-info btn-block" id="reset"><span class="glyphicon glyphicon-repeat"></span> Reset</button>
+                            </div>
+                        </div>
                     </div>
 		</div>
                 <%@include file="Sync/Footer.jsp" %>
-                    
             </div>
         <!-- Modal Konfirmasi Input-->
     <div id="KonfirmasiInput" class="modal fade" role="dialog">
