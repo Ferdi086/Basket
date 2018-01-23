@@ -212,10 +212,10 @@
                                         <button class="btn btn-warning button" data-target="#updatemodal" data-toggle="modal" onclick="Update('${idPemain}','${nama}','${region}','${tgl}','${tinggi}','${foto1}','${berat}','${pos}','${tangan}','${idTeam}','${noPunggung}')"><span class="glyphicon glyphicon-edit"></span></button>
                                         <c:choose>
                                             <c:when test="${flagactive=='Y'}">
-                                                <button class="btn" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
+                                                <button class="btn btn-danger" data-target="#KonfirmasiNonaktif" data-toggle="modal" onclick="flagnonaktif('${idPemain}','${flagactive}')" >Disable</button>
                                             </c:when>   
                                             <c:when test="${flagactive=='N'}">
-                                                <button class="btn" data-target="#KonfirmasiAktif" data-toggle="modal" onclick="flagaktif('${idPemain}','${flagactive}')" >Enable</button>
+                                                <button class="btn btn-success" data-target="#KonfirmasiAktif" data-toggle="modal" onclick="flagaktif('${idPemain}','${flagactive}')" >Enable</button>
                                             </c:when>  
                                         </c:choose>   
                                     </div>
