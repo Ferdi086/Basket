@@ -23,11 +23,6 @@ public class PlayerDetailGL {
         this.nama_m = nama_m;
     }
     
-    public PlayerDetailGL(String id_m, String id_p) {
-        this.id_m = id_m;
-        this.id_p = id_p;
-    }
-
     public String getId_m() {
         return id_m;
     }
