@@ -395,7 +395,7 @@ public class DatabaseHandler extends Connect {
         try {         
             super.open();
             if(logo.equals("")){
-                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','nopics.png','"+iduser+"')";
+                String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','nopic.png','"+iduser+"')";
                 ps = conn.prepareStatement(query);
             }else{
                 String query = "INSERT INTO MsTeam (ID_Team,Nama_Team,Divisi,Logo,ID_Pengentri)values('"+nick+"','"+nama_team+"','"+divisi+"','"+logo+"','"+iduser+"')";
