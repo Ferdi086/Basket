@@ -53,13 +53,13 @@ public class DownloadTemplateTeam extends HttpServlet {
    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         //String Path = getServletContext().getInitParameter("file-upload");
-         PrintWriter out1 = response.getWriter();
-          XSSFWorkbook wb = new XSSFWorkbook();
-                 DatabaseHandler dh = new DatabaseHandler();
-                 String id = request.getParameter("ID_Team");
-    HashMap tr = dh.getPlayerList(id);
-    Map<String, CellStyle> styles = createStyles(wb);
+        //String Path = getServletContext().getInitParameter("file-upload");
+            PrintWriter out1 = response.getWriter();
+            XSSFWorkbook wb = new XSSFWorkbook();
+            DatabaseHandler dh = new DatabaseHandler();
+            String id = request.getParameter("ID_Team");
+            HashMap tr = dh.getPlayerList(id);
+            Map<String, CellStyle> styles = createStyles(wb);
         try{
             String namatemplate="Template Excel Team "+id+".xlsx";
             FileOutputStream out = new FileOutputStream(new File(filePath+namatemplate));
@@ -72,9 +72,9 @@ public class DownloadTemplateTeam extends HttpServlet {
                 Spreadsheet.setColumnWidth(2, 256*20);
                 for(int columnIndex = 3; columnIndex < 27; columnIndex++) {
                     Spreadsheet.setColumnWidth(columnIndex, 256*8);
-               }
+                }
                 Spreadsheet.setColumnWidth(0, 256*20);
-                 Spreadsheet.autoSizeColumn(2);
+                Spreadsheet.autoSizeColumn(2);
                 Spreadsheet.setZoom(85);
                 Row rowID = Spreadsheet.createRow(0);
                 Cell cellID = rowID.createCell(0);
@@ -154,9 +154,9 @@ public class DownloadTemplateTeam extends HttpServlet {
 
         }
         catch(Exception e){
-            System.out.println(e);
+            out1.println(e);
         }
-        System.out.println("Excel file created");
+        out1.println("Excel file created");
    }
     
     private static Map<String, CellStyle> createStyles(Workbook wb){

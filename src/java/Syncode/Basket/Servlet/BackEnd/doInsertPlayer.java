@@ -146,24 +146,21 @@ public class doInsertPlayer extends HttpServlet {
                         session.setAttribute("alert", "alert-danger");
                         response.sendRedirect("Player");
                     }
-               }
-               
-               
-             }
+                }
+            }
             
-          }
-        
+        }
             try {
                 Thread.sleep(5000);
-            } catch (InterruptedException ex) {
+            }   catch (InterruptedException ex) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
                 session.setAttribute("ErrMess","Your data successfully recorded");
                 session.setAttribute("alert", "alert-success");
                 response.sendRedirect("Player");
-         } catch(Exception ex) {
+        } catch(Exception ex) {
             out.println(ex);
-         }
+        }
         
     }
 
