@@ -185,7 +185,7 @@
         function cekInput(){           
             if($('#team').val()===""){   
                 return false;
-            }else if($('#excel').val()===""){
+            }else if($('#file').val()===""){
                 return false;
             }else if($('#musim').val()===""){
                 return false;
