@@ -193,7 +193,7 @@ public class DatabaseHandler extends Connect {
         try {      
             super.open();
             int j=0;
-            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' ORDER BY Nama_Pemain"; 
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' and Flag_Active='Y' ORDER BY Nama_Pemain "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -344,29 +344,7 @@ public class DatabaseHandler extends Connect {
         }
         return tr;
     }
-     
-     public HashMap getGameLog(String id_pemain, String id_musim){
-        HashMap tr = new HashMap();
-        try {      
-            super.open();
-            int j=0;
-            
-            String query = "select distinct ID_Musim,ID_Pemain from TrGameLogs where iD_Pemain ='"+id_pemain+"' and ID_Musim='"+id_musim+"' "; 
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            if(rs.next()){  
-                    tr.put(j++,new PlayerDetailGL(rs.getString(1), rs.getString(2)));
-            }
-             else{
-                    tr.put(j++,new PlayerDetailGL("", ""));
-                }
-        } catch (SQLException ex) {
-            
-        } finally{
-            super.close();
-        }
-        return tr;
-    }
+   
      
     public boolean setMsPemain (String name, String region, String id_team, String posisi, String no_punggung, String tinggi, String berat, String tgl, String tangan, String foto, String iduser){
         try {         
@@ -1668,7 +1646,7 @@ public class DatabaseHandler extends Connect {
         try{
             super.open();
             int i =0;
-            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team=? and Flag_active = 'Y'";
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team=? and Flag_active = 'Y' order by Nama_Pemain";
             ps = conn.prepareStatement(query);
             ps.setString(1,id);
             rs = ps.executeQuery();

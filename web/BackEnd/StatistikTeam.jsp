@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2 " >Team</label>
                                     <div class="col-sm-3">
-                                        <select name="team" class="form-control" id="team">
+                                        <select name="team" class="form-control" id="team" required>
                                             <option value="kocak"> Choose One Team </option>
                                             <c:forEach var="item" items="${requestScope.team}">
                                                 <option value="${item.value.id}"> ${item.value.id} - ${item.value.namateam} </option>
@@ -60,7 +60,7 @@
                                     </div>  
                                     <label class="control-label col-sm-2">Season</label>
                                     <div class="col-sm-3">
-                                       <select name="musim" class="form-control" id="musim">
+                                       <select name="musim" class="form-control" id="musim" required>
                                              <option value=""> Choose One Season </option>
                                              <c:forEach var="item" items="${requestScope.musim}">
                                                  <option value="${item.value.id_musim}_${item.value.nama_musim}">${item.value.nama_musim} </option>

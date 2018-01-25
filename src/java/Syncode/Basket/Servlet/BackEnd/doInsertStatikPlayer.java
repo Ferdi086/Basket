@@ -123,206 +123,196 @@ public class doInsertStatikPlayer extends HttpServlet {
                    boolean isInMemory = fi.isInMemory();
                    long sizeInBytes = fi.getSize();
                  
-                    HashMap ai =dh.getGameLog(id_pemain, id_musim);
-                    PlayerDetailGL py =(PlayerDetailGL) ai.get(0); 
-                    idmusimn = py.getId_m();
-                    idpemainn = py.getId_p();
-                    if(id_pemain.equals(idpemainn) && id_musim.equals(idmusimn)){
-                        out.println("SAMA");
-                        session.setAttribute("ErrMess","This statistic already ");
+                    
+                    out.println("BEDA");
+                    if(Arrays.asList(extList).contains(ext.toLowerCase())){
+                        // Write the file
+                        if( fileName.lastIndexOf("\\") >= 0 ) {
+                           file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
+                        } else {
+                           file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
+                        }
+                        Exten="."+ ext;
+                        namafile = id_team +"-"+ nama_musim +"-"+namasplit + Exten;
+                        fi.write( file ) ;
+                        out.println("ke upload filenya = "+namafile);
+                        File file1=new File(filePath +namafile);
+                        FileInputStream fin = new FileInputStream(file1);
+                        //Get the workbook instance for XLS file
+                        XSSFWorkbook workbook = new XSSFWorkbook(fin);
+                        //Get first sheet from the workbook
+                        XSSFSheet sheet = workbook.getSheetAt(0);
+                        //Iterate through each rows from first sheet
+                        Row row,row1;
+                        int trow = sheet.getLastRowNum();
+
+                        String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
+                        row1 = (Row) sheet.getRow(5);
+                        for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
+                            row = (Row) sheet.getRow(t);//sheet number
+                            if(row != null){
+                                if( row.getCell(0)!=null) {
+                                    date = row.getCell(0).toString();
+                                }else {
+                                    date="";
+                                } 
+                                if( row.getCell(1)!=null) { 
+                                    match = row.getCell(1).toString(); 
+                                }else {
+                                    match="";
+                                }  
+                                if( row.getCell(2)!=null) { 
+                                    wl= row.getCell(2).toString();
+                                }else {
+                                    wl="";
+                                } 
+                                if( row.getCell(3)!=null) { 
+                                    mins= row.getCell(3).toString();
+                                }else {
+                                    mins="";
+                                } 
+                                if( row.getCell(4)!=null) { 
+                                    fgm = row.getCell(4).toString();
+                                }else {
+                                    fgm="";
+                                }  
+                                if( row.getCell(5)!=null) { 
+                                    fga = row.getCell(5).toString(); 
+                                }else {
+                                    fga="";
+                                }  
+                                if( row.getCell(6)!=null) { 
+                                    fgp = row.getCell(6).toString(); 
+                                }else {
+                                    fgp="";
+                                }  
+                                if( row.getCell(7)!=null) { 
+                                    twopm= row.getCell(7).toString();
+                                }else {
+                                    twopm="";
+                                } 
+                                if( row.getCell(8)!=null) { 
+                                    twopa= row.getCell(8).toString();
+                                }else {
+                                    twopa="";
+                                } 
+                                if( row.getCell(9)!=null) { 
+                                    twopp = row.getCell(9).toString();
+                                }else {
+                                    twopp="";
+                                }  
+                                if( row.getCell(10)!=null) { 
+                                    tripm = row.getCell(10).toString(); 
+                                }else {
+                                    tripm="";
+                                }  
+                                if( row.getCell(11)!=null) { 
+                                    tripa= row.getCell(11).toString();
+                                }else {
+                                    tripa="";
+                                } 
+                                if( row.getCell(12)!=null) { 
+                                    tripp= row.getCell(12).toString();
+                                }else {
+                                    tripp="";
+                                } 
+                                if( row.getCell(13)!=null) { 
+                                    ftm= row.getCell(13).toString();
+                                }else {
+                                    ftm="";
+                                } 
+                                if( row.getCell(14)!=null) { 
+                                    fta= row.getCell(14).toString();
+                                }else {
+                                    fta="";
+                                } 
+                                if( row.getCell(15)!=null) { 
+                                    ftp = row.getCell(15).toString();
+                                }else {
+                                    ftp="";
+                                }  
+                                if( row.getCell(16)!=null) { 
+                                    ors = row.getCell(16).toString(); 
+                                }else {
+                                    ors="";
+                                }  
+                                if( row.getCell(17)!=null) { 
+                                    dr= row.getCell(17).toString();
+                                }else {
+                                    dr="";
+                                } 
+                                if( row.getCell(18)!=null) { 
+                                    tr= row.getCell(18).toString();
+                                }else {
+                                    tr="";
+                                } 
+                                if( row.getCell(19)!=null) { 
+                                    ass= row.getCell(19).toString();
+                                }else {
+                                    ass="";
+                                } 
+                                if( row.getCell(20)!=null) { 
+                                    tos = row.getCell(20).toString();
+                                }else {
+                                    tos="";
+                                }  
+                                if( row.getCell(21)!=null) { 
+                                    st = row.getCell(21).toString(); 
+                                }else {
+                                    st="";
+                                }  
+                                if( row.getCell(22)!=null) { 
+                                    bl= row.getCell(22).toString();
+                                }else {
+                                    bl="";
+                                } 
+                                if( row.getCell(23)!=null) { 
+                                    pf= row.getCell(23).toString();
+                                }else {
+                                    pf="";
+                                } 
+                                if( row.getCell(24)!=null) { 
+                                    ef = row.getCell(24).toString(); 
+                                }else {
+                                    ef="";
+                                }  
+                                if( row.getCell(25)!=null) { 
+                                    pts= row.getCell(25).toString();
+                                }else {
+                                    pts="";
+                                }
+
+                                if (date!="" && match!="" && wl!="" && mins!="" && fgm!="" && fga!="" && fgp!="" && twopm!="" && twopa!="" && twopp!="" && tripm!="" && tripa!="" && 
+                                    tripp!="" && ftm!="" && fta!="" && ftp!="" && ors!="" && dr!="" && tr!="" && ass!="" && tos!="" && st!="" && bl!="" && pf!="" && ef!="" && pts!=""){        
+                                        boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
+                                          if(a == true ){
+                                            out.println("berhasil");
+                                          }
+                                          else{
+                                            out.println("gagal");
+                                          }   
+                                }
+                                else{
+                                    out.println("data kosong");
+                                }
+                            }else{
+                                   session.setAttribute("ErrMess","Your data successfully recorded");
+                                   session.setAttribute("alert", "alert-success");
+                                   response.sendRedirect("StatistikPlayer");  
+                            }
+                        }
+                        session.setAttribute("ErrMess","Your data successfully recorded");
+                        session.setAttribute("alert", "alert-success");
+                        response.sendRedirect("StatistikPlayer");
+                        out.println("kondisi normal<br/>");
+                    }         
+                    else{
+                        session.setAttribute("ErrMess","Your data failed to be recorded");
                         session.setAttribute("alert", "alert-danger");
+                        out.println("kondisi format data salaah");
                         response.sendRedirect("StatistikPlayer");
                     }
-                    else{
-                        out.println("BEDA");
-                        if(Arrays.asList(extList).contains(ext.toLowerCase())){
-                            // Write the file
-                            if( fileName.lastIndexOf("\\") >= 0 ) {
-                               file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
-                            } else {
-                               file = new File( filePath + id_team +"-"+ nama_musim +"-"+namasplit +"."+ ext) ;
-                            }
-                            Exten="."+ ext;
-                            namafile = id_team +"-"+ nama_musim +"-"+namasplit + Exten;
-                            fi.write( file ) ;
-                            out.println("ke upload filenya = "+namafile);
-                            File file1=new File(filePath +namafile);
-                            FileInputStream fin = new FileInputStream(file1);
-                            //Get the workbook instance for XLS file
-                            XSSFWorkbook workbook = new XSSFWorkbook(fin);
-                            //Get first sheet from the workbook
-                            XSSFSheet sheet = workbook.getSheetAt(0);
-                            //Iterate through each rows from first sheet
-                            Row row,row1;
-                            int trow = sheet.getLastRowNum();
-
-                            String date="",match="",wl="",mins="",fgm="",fga="",fgp="",twopm="",twopa="",twopp="",tripm="",tripa="",tripp="",ftm="",fta="",ftp="",ors="",dr="",tr="",ass="",tos="",st="",bl="",pf="",ef="",pts="";
-                            row1 = (Row) sheet.getRow(5);
-                            for(int t=2; t<=trow; t++){  //points to the starting of excel i.e excel first row
-                                row = (Row) sheet.getRow(t);//sheet number
-                                if(row != null){
-                                    if( row.getCell(0)!=null) {
-                                        date = row.getCell(0).toString();
-                                    }else {
-                                        date="";
-                                    } 
-                                    if( row.getCell(1)!=null) { 
-                                        match = row.getCell(1).toString(); 
-                                    }else {
-                                        match="";
-                                    }  
-                                    if( row.getCell(2)!=null) { 
-                                        wl= row.getCell(2).toString();
-                                    }else {
-                                        wl="";
-                                    } 
-                                    if( row.getCell(3)!=null) { 
-                                        mins= row.getCell(3).toString();
-                                    }else {
-                                        mins="";
-                                    } 
-                                    if( row.getCell(4)!=null) { 
-                                        fgm = row.getCell(4).toString();
-                                    }else {
-                                        fgm="";
-                                    }  
-                                    if( row.getCell(5)!=null) { 
-                                        fga = row.getCell(5).toString(); 
-                                    }else {
-                                        fga="";
-                                    }  
-                                    if( row.getCell(6)!=null) { 
-                                        fgp = row.getCell(6).toString(); 
-                                    }else {
-                                        fgp="";
-                                    }  
-                                    if( row.getCell(7)!=null) { 
-                                        twopm= row.getCell(7).toString();
-                                    }else {
-                                        twopm="";
-                                    } 
-                                    if( row.getCell(8)!=null) { 
-                                        twopa= row.getCell(8).toString();
-                                    }else {
-                                        twopa="";
-                                    } 
-                                    if( row.getCell(9)!=null) { 
-                                        twopp = row.getCell(9).toString();
-                                    }else {
-                                        twopp="";
-                                    }  
-                                    if( row.getCell(10)!=null) { 
-                                        tripm = row.getCell(10).toString(); 
-                                    }else {
-                                        tripm="";
-                                    }  
-                                    if( row.getCell(11)!=null) { 
-                                        tripa= row.getCell(11).toString();
-                                    }else {
-                                        tripa="";
-                                    } 
-                                    if( row.getCell(12)!=null) { 
-                                        tripp= row.getCell(12).toString();
-                                    }else {
-                                        tripp="";
-                                    } 
-                                    if( row.getCell(13)!=null) { 
-                                        ftm= row.getCell(13).toString();
-                                    }else {
-                                        ftm="";
-                                    } 
-                                    if( row.getCell(14)!=null) { 
-                                        fta= row.getCell(14).toString();
-                                    }else {
-                                        fta="";
-                                    } 
-                                    if( row.getCell(15)!=null) { 
-                                        ftp = row.getCell(15).toString();
-                                    }else {
-                                        ftp="";
-                                    }  
-                                    if( row.getCell(16)!=null) { 
-                                        ors = row.getCell(16).toString(); 
-                                    }else {
-                                        ors="";
-                                    }  
-                                    if( row.getCell(17)!=null) { 
-                                        dr= row.getCell(17).toString();
-                                    }else {
-                                        dr="";
-                                    } 
-                                    if( row.getCell(18)!=null) { 
-                                        tr= row.getCell(18).toString();
-                                    }else {
-                                        tr="";
-                                    } 
-                                    if( row.getCell(19)!=null) { 
-                                        ass= row.getCell(19).toString();
-                                    }else {
-                                        ass="";
-                                    } 
-                                    if( row.getCell(20)!=null) { 
-                                        tos = row.getCell(20).toString();
-                                    }else {
-                                        tos="";
-                                    }  
-                                    if( row.getCell(21)!=null) { 
-                                        st = row.getCell(21).toString(); 
-                                    }else {
-                                        st="";
-                                    }  
-                                    if( row.getCell(22)!=null) { 
-                                        bl= row.getCell(22).toString();
-                                    }else {
-                                        bl="";
-                                    } 
-                                    if( row.getCell(23)!=null) { 
-                                        pf= row.getCell(23).toString();
-                                    }else {
-                                        pf="";
-                                    } 
-                                    if( row.getCell(24)!=null) { 
-                                        ef = row.getCell(24).toString(); 
-                                    }else {
-                                        ef="";
-                                    }  
-                                    if( row.getCell(25)!=null) { 
-                                        pts= row.getCell(25).toString();
-                                    }else {
-                                        pts="";
-                                    }
-
-                                    if (date!="" && match!="" && wl!="" && mins!="" && fgm!="" && fga!="" && fgp!="" && twopm!="" && twopa!="" && twopp!="" && tripm!="" && tripa!="" && 
-                                        tripp!="" && ftm!="" && fta!="" && ftp!="" && ors!="" && dr!="" && tr!="" && ass!="" && tos!="" && st!="" && bl!="" && pf!="" && ef!="" && pts!=""){        
-                                            boolean a =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
-                                              if(a == true ){
-                                                out.println("berhasil");
-                                              }
-                                              else{
-                                                out.println("gagal");
-                                              }   
-                                    }
-                                    else{
-                                        out.println("data kosong");
-                                    }
-                                }else{
-                                       session.setAttribute("ErrMess","Your data successfully recorded");
-                                       session.setAttribute("alert", "alert-success");
-                                       response.sendRedirect("StatistikPlayer");  
-                                }
-                            }
-                            session.setAttribute("ErrMess","Your data successfully recorded");
-                            session.setAttribute("alert", "alert-success");
-                            response.sendRedirect("StatistikPlayer");
-                            out.println("kondisi normal<br/>");
-                        }         
-                        else{
-                            session.setAttribute("ErrMess","Your data failed to be recorded");
-                            session.setAttribute("alert", "alert-danger");
-                            out.println("kondisi format data salaah");
-                            response.sendRedirect("StatistikPlayer");
-                        }
-                    }
+                    
                 }
             }
         } 
