@@ -82,7 +82,6 @@ public class doInsertStatikTeam extends HttpServlet {
       DiskFileItemFactory factory = new DiskFileItemFactory();
        ServletFileUpload upload = new ServletFileUpload(factory);
    DatabaseHandler dh = new DatabaseHandler();
-   //out.println("lala");
 
         try { 
          // Parse the request to get file items.
@@ -99,8 +98,6 @@ public class doInsertStatikTeam extends HttpServlet {
          while ( i.hasNext () ) {
             FileItem fi = (FileItem)i.next();
             if ( !fi.isFormField () ) {
-                //out.println("lala");
-        
                // Get the uploaded file parameters
                FileItem id_teamitem = (FileItem) fileItems.get(0);
                String id_team = id_teamitem.getString().trim();
@@ -108,7 +105,6 @@ public class doInsertStatikTeam extends HttpServlet {
                String musim = musimitem.getString();
                FileItem iduseritem = (FileItem) fileItems.get(2);
                String iduser = iduseritem.getString();
-              // out.println("musim adalah"+musim+"<br/>");
                String nama_musim =musim.split("\\_")[1];
                String id_musim =musim.split("\\_")[0];
                String fieldName = fi.getFieldName();
@@ -145,7 +141,6 @@ public class doInsertStatikTeam extends HttpServlet {
                 //XSSFSheet sheet = workbook.getSheetAt(0);
                     //Iterate through each rows from first sheet
                  Row row,rows;
-                 //String contoh="qwer";
                  
                 int a =workbook.getNumberOfSheets();
                 out.println("banyaknya sheet = "+a+"<br/>");
@@ -292,34 +287,35 @@ public class doInsertStatikTeam extends HttpServlet {
                                 }
                             
                                 //out.println("date saat ini = "+date);
-                     if (date!="" && match!="" && wl!="" && mins!="" && fgm!="" && fga!="" && fgp!="" && twopm!="" && twopa!="" && twopp!="" && tripm!="" && tripa!="" && 
-                         tripp!="" && ftm!="" && fta!="" && ftp!="" && ors!="" && dr!="" && tr!="" && ass!="" && tos!="" && st!="" && bl!="" && pf!="" && ef!="" && pts!=""){        
-                            
-                         String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
-                               + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
-                               
-                                out.println(query);
-                                 boolean qw =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
-                                   if(qw == true ){
-                                      out.println("berhasil");
+                                if (date!="" && match!="" && wl!="" && mins!="" && fgm!="" && fga!="" && fgp!="" && twopm!="" && twopa!="" && twopp!="" && tripm!="" && tripa!="" && 
+                                    tripp!="" && ftm!="" && fta!="" && ftp!="" && ors!="" && dr!="" && tr!="" && ass!="" && tos!="" && st!="" && bl!="" && pf!="" && ef!="" && pts!=""){        
+
+                                    String query = "INSERT INTO TrGameLogs(ID_musim,ID_Pemain,ID_Team,Match,Tgl_Match,WL,[MIN],[FGM],[FGA],[FG],[2PM],[2PA],[2P],[3PM],[3PA],[3P],[FTM],[FTA],[FT],[OR],[DR],[TR],[AS],[TO],[ST],[BL],[PF],[EF],[PTS]) "
+                                          + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
+
+                                           out.println(query);
+                                            boolean qw =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
+                                              if(qw == true ){
+                                                 out.println("berhasil");
+                                              }
+                                              else{
+                                                  out.println("gagal");
+                                              }   
                                    }
-                                   else{
-                                       out.println("gagal");
-                                   }   
-                        }
-                     else{
-                         out.println("data kosong");
-                     }
-                     }else{
-                            session.setAttribute("ErrMess","Your data successfully recorded");
-                            session.setAttribute("alert", "alert-success");
-                            response.sendRedirect("StatistikTeam");  
-                            out.println("data selanjutnya kosong<br/>");
-                      }
+                                else{
+                                    out.println("data kosong");
+                                }
+                            }
+                            //else{
+                            //session.setAttribute("ErrMess","Your data successfully recorded");
+                            //session.setAttribute("alert", "alert-success");
+                            //response.sendRedirect("StatistikTeam");  
+                            //out.println("data selanjutnya kosong<br/>");
+                           // }
            //  out.println("sheet = "+sheet.getLastRowNum());
           //  out.println(sno+" "+snama+" "+sumur);
-	     }
-                }
+                        }
+                    }
         // keterangan="Uploaded Filename: " + Name +"."+ ext + "<br>";
                     //ln(file);
                     session.setAttribute("ErrMess","Your data successfully recorded");
@@ -335,12 +331,13 @@ public class doInsertStatikTeam extends HttpServlet {
                }
             }
             
-         }
-          response.sendRedirect("StatistikTeam");
-         } catch(Exception ex) {
+        }
+        response.sendRedirect("StatistikTeam");
+        }
+            catch(Exception ex) {
              out.println("masuk ke exception");
-            out.println(ex);
-         }
+             out.println(ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
