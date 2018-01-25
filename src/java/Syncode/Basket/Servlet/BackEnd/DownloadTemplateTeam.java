@@ -75,7 +75,7 @@ public class DownloadTemplateTeam extends HttpServlet {
                 }
                 Spreadsheet.setColumnWidth(0, 256*20);
                 Spreadsheet.autoSizeColumn(2);
-                Spreadsheet.setZoom(85);
+                Spreadsheet.setZoom(75);
                 Row rowID = Spreadsheet.createRow(0);
                 Cell cellID = rowID.createCell(0);
                 cellID.setCellStyle(styles.get("header"));
