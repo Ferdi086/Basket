@@ -193,7 +193,7 @@ public class DatabaseHandler extends Connect {
         try {      
             super.open();
             int j=0;
-            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' ORDER BY Nama_Pemain"; 
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team='"+id_team+"' and Flag_Active='Y' ORDER BY Nama_Pemain "; 
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while(rs.next()){                
@@ -1646,7 +1646,7 @@ public class DatabaseHandler extends Connect {
         try{
             super.open();
             int i =0;
-            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team=? and Flag_active = 'Y'";
+            String query = "select ID_Pemain,Nama_Pemain from MsPemain where ID_Team=? and Flag_active = 'Y' order by Nama_Pemain";
             ps = conn.prepareStatement(query);
             ps.setString(1,id);
             rs = ps.executeQuery();
