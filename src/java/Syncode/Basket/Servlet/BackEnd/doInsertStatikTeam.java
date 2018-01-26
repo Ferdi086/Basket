@@ -331,7 +331,7 @@ public class doInsertStatikTeam extends HttpServlet {
             }
             
         }
-        response.sendRedirect("StatistikTeam");
+        //response.sendRedirect("StatistikTeam");
         }
             catch(Exception ex) {
              out.println("masuk ke exception");
