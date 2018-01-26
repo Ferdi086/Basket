@@ -310,7 +310,7 @@ public class doInsertStatikTeam extends HttpServlet {
             }
             
         }
-         
+        //response.sendRedirect("StatistikTeam");
         }
         catch(Exception ex) {
          //out.println(ex);
