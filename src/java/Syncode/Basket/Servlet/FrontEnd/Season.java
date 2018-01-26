@@ -40,12 +40,11 @@ public class Season extends HttpServlet {
         HashMap tra = dh.getPPGbySeason(cs.getId_musim());
         HashMap trb = dh.getAPGbySeason(cs.getId_musim());
         HashMap trc = dh.getRPGbySeason(cs.getId_musim());
-        
-        
         request.setAttribute("ppg",tra);
         request.setAttribute("apg",tra);
         request.setAttribute("rpg",tra);
         request.setAttribute("musim", tr);
+        request.setAttribute("cs",cs.getId_musim());
         request.setAttribute("statistik", st);
         request.getRequestDispatcher("season.jsp").forward(request, response);
     }

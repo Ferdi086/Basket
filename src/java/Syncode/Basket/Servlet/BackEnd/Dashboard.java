@@ -41,8 +41,8 @@ public class Dashboard extends HttpServlet {
         DatabaseHandler dh = new DatabaseHandler();
         HashMap tr = dh.getMusim1();
         Musim cs = (Musim) tr.get(0);
-        //HashMap st = dh.getMatchStatistic(cs.getId_musim());
-        HashMap st = dh.getMatchStatistic("5");
+        HashMap st = dh.getMatchStatistic(cs.getId_musim());
+        //HashMap st = dh.getMatchStatistic("5");
         /*
         for(int i = 0;i<st.size();i++){
             ObjMatchStatistic csr = (ObjMatchStatistic) st.get(i);

@@ -1304,7 +1304,7 @@ public class DatabaseHandler extends Connect {
     
     public HashMap getMatchStatistic(String id_m){
         HashMap tr = new HashMap();
-        try{
+            try{
             super.open();
             int i = 0;
             String query = "SELECT Match,Tgl_Match from TrGameLogs where ID_Musim = '"+id_m+"' GROUP BY Match,Tgl_Match ORDER BY Tgl_Match DESC";
