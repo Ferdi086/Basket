@@ -57,14 +57,14 @@ public class doInsertStatikTeam extends HttpServlet {
      */
  public void init( ){
       // Get the file location where it would be stored.
-      filePath = getServletContext().getInitParameter("file-upload-excel"); 
+      filePath = getServletContext().getInitParameter("file-upload-excel-team"); 
    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
       
          isMultipart = ServletFileUpload.isMultipartContent(request);
-      java.io.PrintWriter out = response.getWriter( );
+      PrintWriter out = response.getWriter( );
      
       if( !isMultipart ) {
          out.println("<html>");
@@ -145,7 +145,12 @@ public class doInsertStatikTeam extends HttpServlet {
                 out.println("banyaknya sheet = "+a+"<br/>");
                 for(int q=0; q<a;q++){
                     XSSFSheet sheet = workbook.getSheetAt(q);
+                    //XSSFSheet sheet2 = workbook.getSheetAt(0);
+                    String qwerty =sheet.getSheetName();
+                    out.println("nama sheet"+qwerty+"<br/>");
                     int trow = sheet.getLastRowNum();
+                  
+                    out.println("byknya row "+trow);
                    rows = (Row) sheet.getRow(0);
                    String id_pemain=rows.getCell(1).toString();
                    out.println("id pemain = "+id_pemain+"<br/>");
@@ -293,13 +298,13 @@ public class doInsertStatikTeam extends HttpServlet {
                                           + "values('"+ id_musim +"','"+ id_pemain +"','"+ id_team +"','"+ match +"','"+ date +"' ,'"+ wl +"','"+ mins +"','"+ fgm +"' ,'"+ fga +"','"+ fgp +"' ,'"+ twopm +"','"+ twopa +"' ,'"+ twopp +"','"+ tripm +"' ,'"+ tripa +"','"+ tripp +"' ,'"+ ftm +"','"+ fta +"' ,'"+ ftp +"','"+ ors +"' ,'"+ dr +"','"+ tr +"','"+ ass +"','"+ tos +"','"+ st +"','"+ bl +"','"+ pf +"','"+ ef +"','"+ pts +"')";
 
                                            out.println(query);
-                                            boolean qw =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
-                                              if(qw == true ){
-                                                 out.println("berhasil");
-                                              }
-                                              else{
-                                                  out.println("gagal");
-                                              }   
+                                            //boolean qw =dh.setStatikPemain(id_musim,id_pemain,id_team,match,date,wl,mins,fgm,fga,fgp,twopm,twopa,twopp,tripm,tripa,tripp,ftm,fta,ftp,ors,dr,tr,ass,tos,st,bl,pf,ef,pts,iduser);
+                                              //if(qw == true ){
+                                             //    out.println("berhasil");
+                                              //}
+                                             // else{
+                                             //     out.println("gagal");
+                                             // }   
                                    }
                                 else{
                                     out.println("data kosong");
@@ -319,6 +324,7 @@ public class doInsertStatikTeam extends HttpServlet {
                     //ln(file);
                     session.setAttribute("ErrMess","Your data successfully recorded");
                     session.setAttribute("alert", "alert-success");
+                    //response.sendRedirect("StatistikTeam");
                     response.sendRedirect("StatistikTeam");
                     out.println("kondisi normal<br/>");
                }         
@@ -326,16 +332,20 @@ public class doInsertStatikTeam extends HttpServlet {
                    session.setAttribute("ErrMess","Your data failed to be recorded");
                    session.setAttribute("alert", "alert-danger");
                    out.println("kondisi format data salaah");
-                   response.sendRedirect("StatistikTeam");
+                   //response.sendRedirect("StatistikTeam");
                }
             }
             
         }
-        response.sendRedirect("StatistikTeam");
+         //request.getRequestDispatcher("StatistikTeam").forward(request, response);
+         
+              
+        //
         }
             catch(Exception ex) {
              out.println("masuk ke exception");
              out.println(ex);
+             
         }
     }
 

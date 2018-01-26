@@ -66,8 +66,7 @@ public class doInsertStatikPlayer extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
       
         isMultipart = ServletFileUpload.isMultipartContent(request);
-        response.setContentType("text/html");
-        java.io.PrintWriter out = response.getWriter( );
+        PrintWriter out = response.getWriter( );
      
         if( !isMultipart ) {
            out.println("<html>");
