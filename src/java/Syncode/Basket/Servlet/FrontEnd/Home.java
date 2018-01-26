@@ -35,7 +35,6 @@ public class Home extends HttpServlet {
         PrintWriter out = response.getWriter();
         String asal1 = "Lokal";
         String asal2 = "Asing";
-        String musim = "5";
         String div1 = "M";
         String div2 = "P";
         String curr = dh.getCurrentRegularSeason();
@@ -51,8 +50,8 @@ public class Home extends HttpServlet {
         request.setAttribute("klas", trf);
         request.setAttribute("klas2", trg);*/
         HashMap current = dh.getCurrentSeasonHome();
-        HashMap klasmen_m = dh.getKlasemenNew("5", div1);
-        HashMap klasmen_p = dh.getKlasemenNew("5", div2);
+        HashMap klasmen_m = dh.getKlasemenNew(curr, div1);
+        HashMap klasmen_p = dh.getKlasemenNew(curr, div2);
         request.setAttribute("p1",tr);
         request.setAttribute("p1a",tra);
         request.setAttribute("team",tm);
