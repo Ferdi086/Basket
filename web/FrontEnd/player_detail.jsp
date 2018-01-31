@@ -574,6 +574,7 @@
 						<div class="tbl_general table-responsive bungkus_season">
 							<table class="table table-bordered table-striped tb_season">
 								<tr class="tr_general">
+                                                                        <th>DATE</th>
 									<th>MATCH</th>
 									<th>W/L</th>
                                                                         <th>MIN</th>
@@ -605,7 +606,7 @@
 									<th>PTS</th>
 								</tr>
                                                                 <tr>
-                                                                    <td colspan="25"><center>No matching records found</center></td>
+                                                                    <td colspan="26"><center>No matching records found</center></td>
                                                                 </tr>
 							</table>
 						</div>

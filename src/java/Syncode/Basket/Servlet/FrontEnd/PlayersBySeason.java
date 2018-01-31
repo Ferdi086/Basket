@@ -42,7 +42,8 @@ public class PlayersBySeason extends HttpServlet {
             
             out.println("<table class=\"table table-bordered table-striped tb_season\">");
             out.println("   <tr class=\"tr_general\">");
-            out.println("                                               <th>MATCH</th>" +
+            out.println("                                               <th>DATE</th>" +
+"									<th>MATCH</th>" +
 "									<th>W/L</th>" +
 "                                                                       <th>MIN</th>" +        
 "									<th>FGM</th>" +
@@ -77,6 +78,7 @@ out.println(" </tr>");
             for(int i=0;i<tr.size();i++){
                 PlayerDetailGLogs pl = (PlayerDetailGLogs) tr.get(i);
                 out.println("   <tr>");
+                out.println("       <td>"+pl.getTgl()+"</td>");
                 out.println("       <td>"+pl.getMatch()+"</td>");
                 out.println("       <td>"+pl.getWl()+"</td>");
                 out.println("       <td>"+pl.getMIN()+"</td>");
